@@ -1,4 +1,4 @@
-package com.example.tasbeeh_app
+package com.tasbeehApp.app
 
 import io.flutter.embedding.android.FlutterActivity
 

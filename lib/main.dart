@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:tasbeeh_app/Controller/counter_controller.dart';
+import 'package:tasbeeh_app/Controller/quran_controller.dart';
 import 'package:tasbeeh_app/splas_screen.dart';
 
 void main() {
+  Get.put(CounterController());
+  Get.put(QuranController());
   runApp(const MyApp());
 }
 
@@ -9,7 +14,7 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Tasbeeh',
       theme: ThemeData(
