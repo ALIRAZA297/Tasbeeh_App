@@ -1,8 +1,8 @@
+import 'package:adhan/adhan.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_islamic_icons/flutter_islamic_icons.dart';
 import 'package:get/get.dart';
-import 'package:adhan/adhan.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tasbeeh_app/Components/animated_loader.dart';
 import 'package:tasbeeh_app/Components/animation.dart';
@@ -10,7 +10,7 @@ import 'package:tasbeeh_app/Controller/prayer_controller.dart';
 import 'package:tasbeeh_app/Drawer%20Items/Allah_names.dart';
 import 'package:tasbeeh_app/Drawer%20Items/about_page.dart';
 import 'package:tasbeeh_app/Drawer%20Items/quran_view.dart';
-import 'package:tasbeeh_app/Home/home_page.dart';
+import 'package:tasbeeh_app/Home/tasbeeh_screen.dart';
 
 class PrayerScreen extends StatelessWidget {
   PrayerScreen({super.key});
@@ -87,7 +87,7 @@ class PrayerScreen extends StatelessWidget {
                   const SizedBox(
                     height: 4,
                   ),
-                   _buildListTile(
+                  _buildListTile(
                     icon: FlutterIslamicIcons.solidAllah,
                     title: 'Asma ul Husna',
                     subtitle: 'اسماء الحسنہ',
@@ -108,10 +108,9 @@ class PrayerScreen extends StatelessWidget {
                     title: 'Tasbeeh',
                     subtitle: 'تسبیح',
                     onTap: () {
-                      Get.to(()=> const CounterHomePage());
+                      Get.to(() => TasbeehScreen());
                     },
                   ),
-                  
                   _buildListTile(
                     icon: FlutterIslamicIcons.solidLantern,
                     title: 'Masnoon Duaein',
@@ -135,7 +134,7 @@ class PrayerScreen extends StatelessWidget {
                     title: 'About us',
                     subtitle: 'ہمارے بارے میں',
                     onTap: () {
-                      Get.to(()=> const AboutPage());
+                      Get.to(() => const AboutPage());
                     },
                   ),
                 ],

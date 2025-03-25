@@ -1,0 +1,82 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:tasbeeh_app/Controller/tasbeeh_controller.dart';
+import 'package:tasbeeh_app/Home/tasbeeh_list_screen.dart';
+
+class TasbeehScreen extends StatefulWidget {
+  const TasbeehScreen({super.key});
+
+  @override
+  State<TasbeehScreen> createState() => _TasbeehScreenState();
+}
+
+class _TasbeehScreenState extends State<TasbeehScreen>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+  final TasbeehController controller = Get.find<TasbeehController>();
+  final RxInt currentTabIndex = 0.obs; // Reactive tab index
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+    _tabController.addListener(() {
+      currentTabIndex.value = _tabController.index; // Update reactive index
+    });
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: const Text('Tasbeeh'),
+        centerTitle: true,
+      ),
+      body: Column(
+        children: [
+          Image.asset(
+            'assets/images/quran-verse_388877-10.avif', // Replace with your image asset path
+            height: 170, // Adjust height as needed
+            width: double.infinity,
+            fit: BoxFit.cover, // Ensures it covers the area properly
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          TabBar(
+            controller: _tabController,
+            tabs: const [
+              Tab(text: 'Popular Tasbeeh'),
+              Tab(text: 'My Tasbeeh'),
+            ],
+          ),
+          Expanded(
+            child: TabBarView(
+              controller: _tabController,
+              children: [
+                TasbeehListScreen(isMyTasbeeh: false),
+                TasbeehListScreen(isMyTasbeeh: true),
+              ],
+            ),
+          ),
+        ],
+      ),
+      floatingActionButton: Obx(() {
+        return currentTabIndex.value == 1
+            ? FloatingActionButton(
+                onPressed: () => controller.showTasbeehDialog(context),
+                child: const Icon(Icons.add),
+              )
+            : const SizedBox.shrink();
+      }),
+    );
+  }
+}

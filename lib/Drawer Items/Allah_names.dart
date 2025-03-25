@@ -73,8 +73,9 @@ class _AsmaulHusnaScreenState extends State<AsmaulHusnaScreen> {
                     //   borderRadius: BorderRadius.circular(12),
                     // ),
                     decoration: BoxDecoration(
+                      
                       borderRadius: BorderRadius.circular(12),
-                      color: Colors.green.withOpacity(0.1),
+                      color: Colors.white,
                       image: const DecorationImage(
                         fit: BoxFit.cover,
                         image: AssetImage(

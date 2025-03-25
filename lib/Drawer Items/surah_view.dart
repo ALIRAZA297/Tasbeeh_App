@@ -190,6 +190,7 @@ class _SurahDetailViewState extends State<SurahDetailView> {
                 textAlign: TextAlign.right,
                 style: GoogleFonts.amiriQuran(
                   fontSize: 24,
+                  height: 2,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),
