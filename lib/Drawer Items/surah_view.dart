@@ -170,13 +170,20 @@ class _SurahDetailViewState extends State<SurahDetailView> {
         itemBuilder: (context, index) {
           final ayah = widget.surah.ayahs[index];
 
-          return Card(
+          return Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: (widget.lastReadAyah != null &&
+                      ayah.numberInSurah == widget.lastReadAyah)
+                  ? Colors.green.shade200 // Highlight the last read ayah
+                  : Colors.green.shade50,
+            ),
             margin: const EdgeInsets.symmetric(vertical: 5),
-            color: (widget.lastReadAyah != null &&
-                    ayah.numberInSurah == widget.lastReadAyah)
-                ? Colors.green.shade100 // Highlight the last read ayah
-                : Colors.white,
             child: ListTile(
+              splashColor: Colors.transparent,
+              shape: BeveledRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
               contentPadding: const EdgeInsets.all(16),
               title: Text(
                 ayah.text,

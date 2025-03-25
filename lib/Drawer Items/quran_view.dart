@@ -125,6 +125,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tasbeeh_app/Components/animated_loader.dart';
+import 'package:tasbeeh_app/Components/animation.dart';
 import 'package:tasbeeh_app/Controller/quran_controller.dart';
 import 'package:tasbeeh_app/Drawer%20Items/surah_view.dart';
 
@@ -203,37 +204,50 @@ class QuranView extends StatelessWidget {
                 itemCount: controller.quranModel.value.surahs.length,
                 itemBuilder: (context, index) {
                   final surah = controller.quranModel.value.surahs[index];
-                  return Card(
-                    margin:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-                    child: ListTile(
-                      leading: CircleAvatar(
-                        backgroundColor: Colors.green.shade700,
-                        child: Text(
-                          surah.number.toString(),
-                          style: GoogleFonts.poppins(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
+                  return AppButtonAnimation(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.green.shade50,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 5),
+                      child: ListTile(
+                        splashColor: Colors.transparent,
+                        shape: BeveledRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        leading: CircleAvatar(
+                          backgroundColor: Colors.green.shade700,
+                          child: Text(
+                            surah.number.toString(),
+                            style: GoogleFonts.poppins(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                      ),
-                      title: Text(
-                        surah.englishName,
-                        style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
-                      ),
-                      subtitle: Text(
-                        surah.englishNameTranslation,
-                        style: GoogleFonts.poppins(color: Colors.grey.shade700),
-                      ),
-                      trailing: Text(
-                        surah.name,
-                        style: GoogleFonts.amiriQuran(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                        title: Text(
+                          surah.englishName,
+                          style:
+                              GoogleFonts.poppins(fontWeight: FontWeight.bold),
                         ),
+                        subtitle: Text(
+                          surah.englishNameTranslation,
+                          style:
+                              GoogleFonts.poppins(color: Colors.grey.shade700),
+                        ),
+                        trailing: Text(
+                          surah.name,
+                          style: GoogleFonts.amiriQuran(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                        onTap: () =>
+                            Get.to(() => SurahDetailView(surah: surah)),
                       ),
-                      onTap: () => Get.to(() => SurahDetailView(surah: surah)),
                     ),
                   );
                 },
