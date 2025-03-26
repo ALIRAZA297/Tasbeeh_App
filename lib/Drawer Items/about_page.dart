@@ -11,7 +11,7 @@ class AboutPage extends StatelessWidget {
       appBar: AppBar(
         scrolledUnderElevation: 0,
         title: Text(
-          "About",
+          "About us",
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
             color: Colors.black,
@@ -87,16 +87,36 @@ class AboutPage extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               _buildFeatureItem(
-                "Quran Reading",
-                "Read the complete Quran with Surah names in Arabic and English translations.",
-              ),
-              _buildFeatureItem(
                 "Last Read",
                 "Resume your reading from where you left off with a single tap.",
               ),
               _buildFeatureItem(
                 "Offline Access",
                 "Access the Quran anytime, even without an internet connection after the initial load.",
+              ),
+              _buildFeatureItem(
+                "Zikr Azkar",
+                "Engage in daily supplications and adhkar for spiritual peace and mindfulness.",
+              ),
+              _buildFeatureItem(
+                "Tasbeeh Counter",
+                "Recite Tasbeehat with Urdu translation and create your own custom Tasbeeh for personal use.",
+              ),
+              _buildFeatureItem(
+                "Qibla Direction",
+                "Find the accurate Qibla direction based on your location, making it easy to pray anywhere.",
+              ),
+              _buildFeatureItem(
+                "Masnoon Duas",
+                "A collection of authentic supplications for daily life situations, including eating, sleeping, traveling, and more.",
+              ),
+              _buildFeatureItem(
+                "Ibaadaat Guide",
+                "Learn about essential worship practices such as Salah (Namaz), fasting, Namaz-e-Janaza, and other religious rituals.",
+              ),
+              _buildFeatureItem(
+                "Namaz Timing",
+                "Get accurate prayer timings based on your location.",
               ),
               const SizedBox(height: 20),
 

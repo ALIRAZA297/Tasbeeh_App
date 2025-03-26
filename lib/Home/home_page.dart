@@ -83,13 +83,27 @@ class _CounterHomePageState extends State<CounterHomePage> {
                           ),
                         ),
                         const SizedBox(height: 20),
+                        if (widget.tasbeeh['count'] != null ||
+                            widget.tasbeeh['count'] != 0)
+                          Text(
+                            'Count ${widget.tasbeeh['count'].toString()}',
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.poppins(
+                              fontSize: 18,
+                              color: Colors.grey,
+                              height: 2,
+                            ),
+                          ),
+                        if (widget.tasbeeh['count'] != null ||
+                            widget.tasbeeh['count'] != 0)
+                          const SizedBox(height: 20),
                       ],
                     ),
                   ),
                   const SizedBox(height: 20),
                   Text(
                     'Count: ${controller.counterModel.value.count}',
-                    style: const TextStyle(
+                    style: GoogleFonts.poppins(
                       fontSize: 30.0,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
@@ -98,7 +112,7 @@ class _CounterHomePageState extends State<CounterHomePage> {
                   const SizedBox(height: 20.0),
                   ElevatedButton(
                     style: const ButtonStyle(
-                      side: MaterialStatePropertyAll(
+                      side: WidgetStatePropertyAll(
                         BorderSide(color: Color(0xff01301C)),
                       ),
                     ),
@@ -114,12 +128,12 @@ class _CounterHomePageState extends State<CounterHomePage> {
                           children: [
                             IconButton(
                               style: ButtonStyle(
-                                overlayColor: MaterialStatePropertyAll(
+                                overlayColor: WidgetStatePropertyAll(
                                     Colors.white.withOpacity(0.5)),
-                                shape: const MaterialStatePropertyAll(
+                                shape: const WidgetStatePropertyAll(
                                   CircleBorder(),
                                 ),
-                                backgroundColor: const MaterialStatePropertyAll(
+                                backgroundColor: const WidgetStatePropertyAll(
                                   Color(0xff01301C),
                                 ),
                               ),
@@ -136,16 +150,15 @@ class _CounterHomePageState extends State<CounterHomePage> {
                               right: 0,
                               child: IconButton(
                                 style: ButtonStyle(
-                                  overlayColor: MaterialStatePropertyAll(
+                                  overlayColor: WidgetStatePropertyAll(
                                       Colors.white.withOpacity(0.5)),
-                                  shape: const MaterialStatePropertyAll(
+                                  shape: const WidgetStatePropertyAll(
                                     CircleBorder(
                                       side: BorderSide(
                                           color: Colors.white, width: 3),
                                     ),
                                   ),
-                                  backgroundColor:
-                                      const MaterialStatePropertyAll(
+                                  backgroundColor: const WidgetStatePropertyAll(
                                     Color(0xff01301C),
                                   ),
                                 ),

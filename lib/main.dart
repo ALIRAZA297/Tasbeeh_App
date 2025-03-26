@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tasbeeh_app/Controller/counter_controller.dart';
 import 'package:tasbeeh_app/Controller/prayer_controller.dart';
+import 'package:tasbeeh_app/Controller/qibla_direction_controller.dart';
 import 'package:tasbeeh_app/Controller/quran_controller.dart';
 import 'package:tasbeeh_app/Controller/tasbeeh_controller.dart';
 import 'package:tasbeeh_app/splas_screen.dart';
@@ -11,6 +12,7 @@ void main() {
   Get.put(QuranController());
   Get.put(PrayerController());
   Get.put(TasbeehController());
+  // Get.put(QiblaController());
   runApp(const MyApp());
 }
 

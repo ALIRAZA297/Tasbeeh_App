@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tasbeeh_app/Controller/tasbeeh_controller.dart';
 import 'package:tasbeeh_app/Home/tasbeeh_list_screen.dart';
 
@@ -37,37 +38,45 @@ class _TasbeehScreenState extends State<TasbeehScreen>
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: const Text('Tasbeeh'),
+        title: Text(
+          'Tasbeehat',
+          style: GoogleFonts.poppins(
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          Image.asset(
-            'assets/images/quran-verse_388877-10.avif', // Replace with your image asset path
-            height: 170, // Adjust height as needed
-            width: double.infinity,
-            fit: BoxFit.cover, // Ensures it covers the area properly
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          TabBar(
-            controller: _tabController,
-            tabs: const [
-              Tab(text: 'Popular Tasbeeh'),
-              Tab(text: 'My Tasbeeh'),
-            ],
-          ),
-          Expanded(
-            child: TabBarView(
+      body: SafeArea(
+        child: Column(
+          children: [
+            Image.asset(
+              'assets/images/quran-verse_388877-10.avif', // Replace with your image asset path
+              height: 170, // Adjust height as needed
+              width: double.infinity,
+              fit: BoxFit.cover, // Ensures it covers the area properly
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            TabBar(
               controller: _tabController,
-              children: [
-                TasbeehListScreen(isMyTasbeeh: false),
-                TasbeehListScreen(isMyTasbeeh: true),
+              tabs: const [
+                Tab(text: 'Popular Tasbeeh'),
+                Tab(text: 'My Tasbeeh'),
               ],
             ),
-          ),
-        ],
+            Expanded(
+              child: TabBarView(
+                controller: _tabController,
+                children: [
+                  TasbeehListScreen(isMyTasbeeh: false),
+                  TasbeehListScreen(isMyTasbeeh: true),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
       floatingActionButton: Obx(() {
         return currentTabIndex.value == 1

@@ -42,7 +42,10 @@ class _AsmaulHusnaScreenState extends State<AsmaulHusnaScreen> {
         scrolledUnderElevation: 0,
         title: Text(
           "99 Names of Allah",
-          style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
+           style: GoogleFonts.poppins(
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
         ),
         centerTitle: true,
         backgroundColor: Colors.white,

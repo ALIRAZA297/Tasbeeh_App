@@ -26,7 +26,30 @@ class TasbeehListScreen extends StatelessWidget {
             Obx(() {
               if (isMyTasbeeh) {
                 if (controller.myTasbeehList.isEmpty) {
-                  return const Center(child: Text('No Tasbeeh available'));
+                  return Align(
+                    alignment: Alignment.center,
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: Get.height * 0.2,
+                        ),
+                        Icon(
+                          Icons.search_off,
+                          size: 50,
+                          color: Colors.grey.shade500,
+                        ),
+                        Text(
+                          'No Tasbeeh available',
+                          style: GoogleFonts.poppins(
+                            fontSize: 18,
+                            height: 2,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey.shade500,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
                 }
                 return ListView.builder(
                   controller: scrollContext,
@@ -117,8 +140,9 @@ class TasbeehListScreen extends StatelessWidget {
               if (tasbeeh['count'] != null)
                 Text(
                   'Count: ${tasbeeh['count']}',
-                  style: const TextStyle(
+                  style: GoogleFonts.poppins(
                     fontSize: 14,
+                    height: 2,
                     color: Colors.grey,
                   ),
                 ),

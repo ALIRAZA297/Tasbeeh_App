@@ -9,6 +9,7 @@ import 'package:tasbeeh_app/Components/animation.dart';
 import 'package:tasbeeh_app/Controller/prayer_controller.dart';
 import 'package:tasbeeh_app/Drawer%20Items/Allah_names.dart';
 import 'package:tasbeeh_app/Drawer%20Items/about_page.dart';
+import 'package:tasbeeh_app/Drawer%20Items/qibla_direction.dart';
 import 'package:tasbeeh_app/Drawer%20Items/quran_view.dart';
 import 'package:tasbeeh_app/Home/tasbeeh_screen.dart';
 
@@ -22,7 +23,13 @@ class PrayerScreen extends StatelessWidget {
     final PrayerController controller = Get.find<PrayerController>();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Prayer Times'),
+        title: Text(
+          'Prayer Times',
+          style: GoogleFonts.poppins(
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
         centerTitle: true,
         backgroundColor: Colors.white,
       ),
@@ -108,7 +115,7 @@ class PrayerScreen extends StatelessWidget {
                     title: 'Tasbeeh',
                     subtitle: 'تسبیح',
                     onTap: () {
-                      Get.to(() => TasbeehScreen());
+                      Get.to(() => const TasbeehScreen());
                     },
                   ),
                   _buildListTile(
@@ -127,7 +134,9 @@ class PrayerScreen extends StatelessWidget {
                     icon: FlutterIslamicIcons.solidKaaba,
                     title: 'Qibla Direction',
                     subtitle: 'قبلہ رخ',
-                    onTap: () {},
+                    onTap: () {
+                      // Get.to(()=> const QiblaScreen());
+                    },
                   ),
                   _buildListTile(
                     icon: CupertinoIcons.info_circle_fill,
