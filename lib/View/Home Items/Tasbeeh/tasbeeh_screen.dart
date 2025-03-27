@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tasbeeh_app/Controller/tasbeeh_controller.dart';
-import 'package:tasbeeh_app/Home/tasbeeh_list_screen.dart';
+import 'package:tasbeeh_app/View/Home%20Items/Tasbeeh/tasbeeh_list_screen.dart';
 
 class TasbeehScreen extends StatefulWidget {
   const TasbeehScreen({super.key});
@@ -80,9 +80,9 @@ class _TasbeehScreenState extends State<TasbeehScreen>
       ),
       floatingActionButton: Obx(() {
         return currentTabIndex.value == 1
-            ? FloatingActionButton(
+            ? FloatingActionButton(backgroundColor: Colors.green.shade900,
                 onPressed: () => controller.showTasbeehDialog(context),
-                child: const Icon(Icons.add),
+                child:  const Icon(Icons.add, color: Colors.white),
               )
             : const SizedBox.shrink();
       }),

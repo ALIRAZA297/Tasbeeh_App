@@ -7,11 +7,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:tasbeeh_app/Components/animated_loader.dart';
 import 'package:tasbeeh_app/Components/animation.dart';
 import 'package:tasbeeh_app/Controller/prayer_controller.dart';
-import 'package:tasbeeh_app/Drawer%20Items/Allah_names.dart';
-import 'package:tasbeeh_app/Drawer%20Items/about_page.dart';
-import 'package:tasbeeh_app/Drawer%20Items/qibla_direction.dart';
-import 'package:tasbeeh_app/Drawer%20Items/quran_view.dart';
-import 'package:tasbeeh_app/Home/tasbeeh_screen.dart';
+import 'package:tasbeeh_app/View/Home%20Items/Asma%20ul%20Husna/Allah_names.dart';
+import 'package:tasbeeh_app/View/Home%20Items/About%20us/about_page.dart';
+import 'package:tasbeeh_app/View/Home%20Items/Masnoon%20Dua/category_wise_dua.dart';
+import 'package:tasbeeh_app/View/Home%20Items/Quran/quran_view.dart';
+import 'package:tasbeeh_app/View/Home%20Items/Tasbeeh/tasbeeh_screen.dart';
 
 class PrayerScreen extends StatelessWidget {
   PrayerScreen({super.key});
@@ -92,7 +92,7 @@ class PrayerScreen extends StatelessWidget {
                 physics: const BouncingScrollPhysics(),
                 children: [
                   const SizedBox(
-                    height: 4,
+                    height: 5,
                   ),
                   _buildListTile(
                     icon: FlutterIslamicIcons.solidAllah,
@@ -120,9 +120,11 @@ class PrayerScreen extends StatelessWidget {
                   ),
                   _buildListTile(
                     icon: FlutterIslamicIcons.solidLantern,
-                    title: 'Masnoon Duaein',
+                    title: 'Masnoon Duas',
                     subtitle: 'مسنون دعائیں',
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(()=> const DuaCategoryScreen());
+                    },
                   ),
                   _buildListTile(
                     icon: Icons.mosque,

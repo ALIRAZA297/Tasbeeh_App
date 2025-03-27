@@ -3,16 +3,16 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tasbeeh_app/Controller/counter_controller.dart';
 
-class CounterHomePage extends StatefulWidget {
+class CounterPage extends StatefulWidget {
   final Map<String, dynamic> tasbeeh;
 
-  const CounterHomePage({super.key, required this.tasbeeh});
+  const CounterPage({super.key, required this.tasbeeh});
 
   @override
-  State<CounterHomePage> createState() => _CounterHomePageState();
+  State<CounterPage> createState() => _CounterPageState();
 }
 
-class _CounterHomePageState extends State<CounterHomePage> {
+class _CounterPageState extends State<CounterPage> {
   @override
   void initState() {
     super.initState();

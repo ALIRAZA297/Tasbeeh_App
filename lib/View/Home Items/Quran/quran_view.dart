@@ -127,7 +127,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:tasbeeh_app/Components/animated_loader.dart';
 import 'package:tasbeeh_app/Components/animation.dart';
 import 'package:tasbeeh_app/Controller/quran_controller.dart';
-import 'package:tasbeeh_app/Drawer%20Items/surah_view.dart';
+import 'package:tasbeeh_app/View/Home%20Items/Quran/surah_view.dart';
 
 class QuranView extends StatelessWidget {
   const QuranView({super.key});

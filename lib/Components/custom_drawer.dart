@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_islamic_icons/flutter_islamic_icons.dart';
 import 'package:get/get.dart';
-import 'package:tasbeeh_app/Drawer%20Items/Allah_names.dart';
-import 'package:tasbeeh_app/Drawer%20Items/about_page.dart';
-import 'package:tasbeeh_app/Drawer%20Items/quran_view.dart';
+import 'package:tasbeeh_app/View/Home%20Items/Asma%20ul%20Husna/Allah_names.dart';
+import 'package:tasbeeh_app/View/Home%20Items/About%20us/about_page.dart';
+import 'package:tasbeeh_app/View/Home%20Items/Quran/quran_view.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});

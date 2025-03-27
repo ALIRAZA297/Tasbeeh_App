@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:tasbeeh_app/Components/animated_loader.dart';
 import 'package:tasbeeh_app/Components/animation.dart';
 import 'package:tasbeeh_app/Controller/hadees_chapters.dart';
-import 'package:tasbeeh_app/Drawer%20Items/hadees_view.dart';
+import 'package:tasbeeh_app/View/Home%20Items/Hadees/hadees_view.dart';
 
 class HadithChaptersView extends StatelessWidget {
   final String bookSlug;

@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tasbeeh_app/Controller/tasbeeh_controller.dart';
-import 'package:tasbeeh_app/Home/home_page.dart';
+import 'package:tasbeeh_app/View/Home%20Items/Tasbeeh/counter_page.dart';
 
 class TasbeehListScreen extends StatelessWidget {
   final bool isMyTasbeeh;
@@ -87,7 +87,7 @@ class TasbeehListScreen extends StatelessWidget {
   Widget _buildTasbeehCard(
       Map<String, dynamic> tasbeeh, int index, bool isMyTasbeeh) {
     return GestureDetector(
-      onTap: () => Get.to(() => CounterHomePage(tasbeeh: tasbeeh)),
+      onTap: () => Get.to(() => CounterPage(tasbeeh: tasbeeh)),
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
         decoration: BoxDecoration(
