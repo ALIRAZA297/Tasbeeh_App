@@ -208,7 +208,7 @@ class DuaCard extends StatelessWidget {
             Text(
               dua.dua,
               textAlign: TextAlign.right,
-              style: GoogleFonts.amiriQuran(
+              style: GoogleFonts.amiri(
                 fontSize: 24,
                 height: 2,
                 fontWeight: FontWeight.bold,
@@ -267,22 +267,23 @@ class DuaCard extends StatelessWidget {
             /// **Edit & Delete Buttons** (Only for User-Added Duas)
             if (dua.isUserAdded)
               Row(
-  children: [
-    IconButton(
-      icon: const Icon(Icons.edit, color: Colors.blue),
-      onPressed: () {
-        duaController.showEditDuaDialog(context, category, index, dua);
-      },
-    ),
-    IconButton(
-      icon: const Icon(CupertinoIcons.delete, color: Colors.red),
-      onPressed: () {
-        duaController.showDeleteConfirmationDialog(context, category, index);
-      },
-    ),
-  ],
-),
-
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.edit, color: Colors.blue),
+                    onPressed: () {
+                      duaController.showEditDuaDialog(
+                          context, category, index, dua);
+                    },
+                  ),
+                  IconButton(
+                    icon: const Icon(CupertinoIcons.delete, color: Colors.red),
+                    onPressed: () {
+                      duaController.showDeleteConfirmationDialog(
+                          context, category, index);
+                    },
+                  ),
+                ],
+              ),
           ],
         ),
       ),

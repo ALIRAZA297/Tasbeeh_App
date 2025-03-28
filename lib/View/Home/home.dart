@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tasbeeh_app/Components/animated_loader.dart';
 import 'package:tasbeeh_app/Components/animation.dart';
+import 'package:tasbeeh_app/Controller/masnoon_dua_controller.dart';
 import 'package:tasbeeh_app/Controller/prayer_controller.dart';
 import 'package:tasbeeh_app/View/Home%20Items/Asma%20ul%20Husna/Allah_names.dart';
 import 'package:tasbeeh_app/View/Home%20Items/About%20us/about_page.dart';
@@ -123,6 +124,7 @@ class PrayerScreen extends StatelessWidget {
                     title: 'Masnoon Duas',
                     subtitle: 'مسنون دعائیں',
                     onTap: () {
+                      // Get.find<DuaController>().clearStorageOnce();
                       Get.to(()=> const DuaCategoryScreen());
                     },
                   ),
