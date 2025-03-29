@@ -25,38 +25,39 @@ class _DuaScreenState extends State<DuaScreen> {
     final DuaController duaController = Get.find<DuaController>();
 
     return Scaffold(
-        appBar: AppBar(
-          scrolledUnderElevation: 0,
-          centerTitle: true,
-          title: Text(
-            widget.categoryName,
-            style: GoogleFonts.poppins(
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            ),
+      appBar: AppBar(
+        scrolledUnderElevation: 0,
+        centerTitle: true,
+        title: Text(
+          widget.categoryName,
+          style: GoogleFonts.poppins(
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
           ),
-          backgroundColor: Colors.white,
         ),
         backgroundColor: Colors.white,
-        body: Obx(() {
-          final category = duaController.categories
-              .firstWhereOrNull((c) => c.name == widget.categoryName);
-          return category != null
-              ? ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: category.duas.length,
-                  itemBuilder: (context, index) {
-                    return DuaCard(
-                      dua: category.duas[index],
-                      index: index,
-                      category: widget.categoryName,
-                    );
-                  },
-                )
-              : const Center(child: Text("No Duas Available"));
-        }),
-        floatingActionButton: Obx(() {
+      ),
+      backgroundColor: Colors.white,
+      body: Obx(() {
+        final category = duaController.categories
+            .firstWhereOrNull((c) => c.name == widget.categoryName);
+        return category != null
+            ? ListView.builder(
+                physics: const BouncingScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: category.duas.length,
+                itemBuilder: (context, index) {
+                  return DuaCard(
+                    dua: category.duas[index],
+                    index: index,
+                    category: widget.categoryName,
+                  );
+                },
+              )
+            : const Center(child: Text("No Duas Available"));
+      }),
+      floatingActionButton: Obx(
+        () {
           final category = duaController.categories
               .firstWhereOrNull((c) => c.name == widget.categoryName);
           return (category != null && category.isUserAdded)
@@ -69,6 +70,8 @@ class _DuaScreenState extends State<DuaScreen> {
                   child: const Icon(Icons.add, color: Colors.white),
                 )
               : const SizedBox.shrink();
-        }));
+        },
+      ),
+    );
   }
 }

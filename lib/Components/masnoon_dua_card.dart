@@ -146,13 +146,13 @@ import 'package:tasbeeh_app/Model/masnoon_dua_model.dart';
 class DuaCard extends StatelessWidget {
   final DuaModel dua;
   final int index;
-  final String category; // ✅ New parameter
+  final String category;
 
   const DuaCard({
     super.key,
     required this.dua,
     required this.index,
-    required this.category, // ✅ Receive category
+    required this.category,
   });
 
   @override
@@ -202,7 +202,7 @@ class DuaCard extends StatelessWidget {
               ],
             ),
 
-            const SizedBox(height: 10),
+            const SizedBox(height: 15),
 
             /// **Arabic Dua**
             Text(

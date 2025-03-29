@@ -100,7 +100,7 @@ class DuaCategoryScreen extends StatelessWidget {
           const SizedBox(height: 10),
           ElevatedButton(
             style: const ButtonStyle(
-              backgroundColor: WidgetStatePropertyAll(Colors.green),
+              backgroundColor: MaterialStatePropertyAll(Colors.green),
             ),
             onPressed: () {
               if (categoryController.text.isNotEmpty) {

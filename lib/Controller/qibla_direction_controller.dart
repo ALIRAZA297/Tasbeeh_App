@@ -52,7 +52,6 @@
 // import 'dart:developer';
 
 // import 'package:flutter_qiblah/flutter_qiblah.dart';
-// import 'package:geolocator/geolocator.dart';
 // import 'package:get/get.dart';
 // import 'package:permission_handler/permission_handler.dart';
 

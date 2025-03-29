@@ -112,7 +112,7 @@ class _CounterPageState extends State<CounterPage> {
                   const SizedBox(height: 20.0),
                   ElevatedButton(
                     style: const ButtonStyle(
-                      side: WidgetStatePropertyAll(
+                      side: MaterialStatePropertyAll(
                         BorderSide(color: Color(0xff01301C)),
                       ),
                     ),
@@ -128,12 +128,12 @@ class _CounterPageState extends State<CounterPage> {
                           children: [
                             IconButton(
                               style: ButtonStyle(
-                                overlayColor: WidgetStatePropertyAll(
+                                overlayColor: MaterialStatePropertyAll(
                                     Colors.white.withOpacity(0.5)),
-                                shape: const WidgetStatePropertyAll(
+                                shape: const MaterialStatePropertyAll(
                                   CircleBorder(),
                                 ),
-                                backgroundColor: const WidgetStatePropertyAll(
+                                backgroundColor: const MaterialStatePropertyAll(
                                   Color(0xff01301C),
                                 ),
                               ),
@@ -150,15 +150,15 @@ class _CounterPageState extends State<CounterPage> {
                               right: 0,
                               child: IconButton(
                                 style: ButtonStyle(
-                                  overlayColor: WidgetStatePropertyAll(
+                                  overlayColor: MaterialStatePropertyAll(
                                       Colors.white.withOpacity(0.5)),
-                                  shape: const WidgetStatePropertyAll(
+                                  shape: const MaterialStatePropertyAll(
                                     CircleBorder(
                                       side: BorderSide(
                                           color: Colors.white, width: 3),
                                     ),
                                   ),
-                                  backgroundColor: const WidgetStatePropertyAll(
+                                  backgroundColor: const MaterialStatePropertyAll(
                                     Color(0xff01301C),
                                   ),
                                 ),
