@@ -47,6 +47,7 @@ dependencies:
   adhan: ^2.0.0+1
   intl: ^0.20.2
   location: 5.0.0
+  url_launcher: ^6.3.1
 
 
 flutter_icons:

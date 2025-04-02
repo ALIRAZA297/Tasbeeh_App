@@ -6,10 +6,11 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tasbeeh_app/Components/animated_loader.dart';
 import 'package:tasbeeh_app/Components/animation.dart';
-import 'package:tasbeeh_app/Controller/masnoon_dua_controller.dart';
 import 'package:tasbeeh_app/Controller/prayer_controller.dart';
-import 'package:tasbeeh_app/View/Home%20Items/Asma%20ul%20Husna/Allah_names.dart';
 import 'package:tasbeeh_app/View/Home%20Items/About%20us/about_page.dart';
+import 'package:tasbeeh_app/View/Home%20Items/Asma%20ul%20Husna/Allah_names.dart';
+import 'package:tasbeeh_app/View/Home%20Items/Ibadat/ibadat.dart';
+import 'package:tasbeeh_app/View/Home%20Items/Kalama/kalma.dart';
 import 'package:tasbeeh_app/View/Home%20Items/Masnoon%20Dua/category_wise_dua.dart';
 import 'package:tasbeeh_app/View/Home%20Items/Quran/quran_view.dart';
 import 'package:tasbeeh_app/View/Home%20Items/Tasbeeh/tasbeeh_screen.dart';
@@ -24,6 +25,7 @@ class PrayerScreen extends StatelessWidget {
     final PrayerController controller = Get.find<PrayerController>();
     return Scaffold(
       appBar: AppBar(
+        scrolledUnderElevation: 0,
         title: Text(
           'Prayer Times',
           style: GoogleFonts.poppins(
@@ -125,21 +127,32 @@ class PrayerScreen extends StatelessWidget {
                     subtitle: 'مسنون دعائیں',
                     onTap: () {
                       // Get.find<DuaController>().clearStorageOnce();
-                      Get.to(()=> const DuaCategoryScreen());
+                      Get.to(() => const DuaCategoryScreen());
+                    },
+                  ),
+                  // _buildListTile(
+                  //   icon: FlutterIslamicIcons.solidKaaba,
+                  //   title: 'Qibla Direction',
+                  //   subtitle: 'قبلہ رخ',
+                  //   onTap: () {
+                  //     // Get.to(()=> const QiblaScreen());
+                  //   },
+                  // ),
+
+                  _buildListTile(
+                    icon: FlutterIslamicIcons.solidSajadah,
+                    title: 'Ibadat',
+                    subtitle: 'عبادت',
+                    onTap: () {
+                      Get.to(() => IbadatScreen());
                     },
                   ),
                   _buildListTile(
-                    icon: Icons.mosque,
-                    title: 'Ibadat',
-                    subtitle: 'عبادت',
-                    onTap: () {},
-                  ),
-                  _buildListTile(
-                    icon: FlutterIslamicIcons.solidKaaba,
-                    title: 'Qibla Direction',
-                    subtitle: 'قبلہ رخ',
+                    icon: FlutterIslamicIcons.islam,
+                    title: 'Six Kalimas',
+                    subtitle: 'چھ کلمے',
                     onTap: () {
-                      // Get.to(()=> const QiblaScreen());
+                      Get.to(() => KalimaScreen());
                     },
                   ),
                   _buildListTile(

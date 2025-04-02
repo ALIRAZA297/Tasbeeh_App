@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tasbeeh_app/Components/animation.dart';
 import 'package:tasbeeh_app/Controller/masnoon_dua_controller.dart';
 import 'package:tasbeeh_app/Model/masnoon_dua_model.dart';
+
 import 'masnoon_dua_view.dart';
 
 class DuaCategoryScreen extends StatelessWidget {
@@ -33,41 +35,48 @@ class DuaCategoryScreen extends StatelessWidget {
           itemCount: duaController.categories.length,
           itemBuilder: (context, index) {
             final category = duaController.categories[index];
-            return Container(
-              margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.green.shade50,
-              ),
-              child: ListTile(
-                title: Text(
-                  category.name,
-                  style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
+            return AppButtonAnimation(
+              child: Container(
+                margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.green.shade50,
                 ),
-                trailing: category.isUserAdded
-                    ? Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          IconButton(
-                            icon: const Icon(Icons.delete, color: Colors.red),
-                            onPressed: () =>
-                                duaController.showDeleteCategoryDialog(
-                                    context, category.name),
-                          ),
-                          IconButton(
-                            icon: const Icon(Icons.edit, color: Colors.blue),
-                            onPressed: () => duaController
-                                .showEditCategoryDialog(context, category.name),
-                          ),
-                        ],
-                      )
-                    : const Icon(Icons.arrow_forward_ios_rounded),
-                onTap: () {
-                  Get.to(() => DuaScreen(categoryName: category.name));
-                },
+                child: ListTile(
+                  shape: ContinuousRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  splashColor: Colors.transparent,
+                  title: Text(
+                    category.name,
+                    style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                  trailing: category.isUserAdded
+                      ? Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            IconButton(
+                              icon: const Icon(Icons.delete, color: Colors.red),
+                              onPressed: () =>
+                                  duaController.showDeleteCategoryDialog(
+                                      context, category.name),
+                            ),
+                            IconButton(
+                              icon: const Icon(Icons.edit, color: Colors.blue),
+                              onPressed: () =>
+                                  duaController.showEditCategoryDialog(
+                                      context, category.name),
+                            ),
+                          ],
+                        )
+                      : const Icon(Icons.arrow_forward_ios_rounded),
+                  onTap: () {
+                    Get.to(() => DuaScreen(categoryName: category.name));
+                  },
+                ),
               ),
             );
           },

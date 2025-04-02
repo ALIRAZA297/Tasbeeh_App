@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 
@@ -24,21 +25,21 @@ class ApiService {
   /// GET Hadiths with pagination
   static Future<Map<String, dynamic>?> getHadiths(int page) async {
     final url = "$baseUrl/hadiths/?apiKey=$apiKey&page=$page";
-    print("Calling API: $url");
+    log("Calling API: $url");
 
     try {
       final response = await http.get(Uri.parse(url));
 
       if (response.statusCode == 200) {
-        print(
+        log(
             "API Response: ${response.body.substring(0, 300)}..."); // Print part of response
         return json.decode(response.body);
       } else {
-        print("API Error: ${response.statusCode}, ${response.body}");
+        log("API Error: ${response.statusCode}, ${response.body}");
         return null;
       }
     } catch (e) {
-      print("Network Error: $e");
+      log("Network Error: $e");
       return null;
     }
   }

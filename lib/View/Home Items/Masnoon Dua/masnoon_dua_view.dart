@@ -54,7 +54,30 @@ class _DuaScreenState extends State<DuaScreen> {
                   );
                 },
               )
-            : const Center(child: Text("No Duas Available"));
+            : Align(
+                alignment: Alignment.center,
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: Get.height * 0.2,
+                    ),
+                    Icon(
+                      Icons.search_off,
+                      size: 50,
+                      color: Colors.grey.shade500,
+                    ),
+                    Text(
+                      'No Tasbeeh available',
+                      style: GoogleFonts.poppins(
+                        fontSize: 18,
+                        height: 2,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey.shade500,
+                      ),
+                    ),
+                  ],
+                ),
+              );
       }),
       floatingActionButton: Obx(
         () {

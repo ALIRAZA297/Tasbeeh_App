@@ -83,8 +83,7 @@ class _CounterPageState extends State<CounterPage> {
                           ),
                         ),
                         const SizedBox(height: 20),
-                        if (widget.tasbeeh['count'] != null ||
-                            widget.tasbeeh['count'] != 0)
+                        if (widget.tasbeeh['count'] != null)
                           Text(
                             'Count ${widget.tasbeeh['count'].toString()}',
                             textAlign: TextAlign.center,
@@ -94,8 +93,7 @@ class _CounterPageState extends State<CounterPage> {
                               height: 2,
                             ),
                           ),
-                        if (widget.tasbeeh['count'] != null ||
-                            widget.tasbeeh['count'] != 0)
+                        if (widget.tasbeeh['count'] != null)
                           const SizedBox(height: 20),
                       ],
                     ),
@@ -158,7 +156,8 @@ class _CounterPageState extends State<CounterPage> {
                                           color: Colors.white, width: 3),
                                     ),
                                   ),
-                                  backgroundColor: const MaterialStatePropertyAll(
+                                  backgroundColor:
+                                      const MaterialStatePropertyAll(
                                     Color(0xff01301C),
                                   ),
                                 ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
@@ -102,17 +103,17 @@ class AboutPage extends StatelessWidget {
                 "Tasbeeh Counter",
                 "Recite Tasbeehat with Urdu translation and create your own custom Tasbeeh for personal use.",
               ),
-              _buildFeatureItem(
-                "Qibla Direction",
-                "Find the accurate Qibla direction based on your location, making it easy to pray anywhere.",
-              ),
+              // _buildFeatureItem(
+              //   "Qibla Direction",
+              //   "Find the accurate Qibla direction based on your location, making it easy to pray anywhere.",
+              // ),
               _buildFeatureItem(
                 "Masnoon Duas",
                 "A collection of authentic supplications for daily life situations, including eating, sleeping, traveling, and more.",
               ),
               _buildFeatureItem(
                 "Ibaadaat Guide",
-                "Learn about essential worship practices such as Salah (Namaz), fasting, Namaz-e-Janaza, and other religious rituals.",
+                "Learn about essential worship practices such as Salah (Namaz), Namaz-e-Janaza, and other religious rituals.",
               ),
               _buildFeatureItem(
                 "Namaz Timing",
@@ -150,13 +151,24 @@ class AboutPage extends StatelessWidget {
                       horizontal: 24,
                     ),
                   ),
-                  onPressed: () {
-                    // Add contact/support action (e.g., open email)
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                          content:
-                              Text("Contact support: linkplayer78@email.com")),
+                  onPressed: () async {
+                    final Uri emailLaunchUri = Uri(
+                      scheme: 'mailto',
+                      path: 'linkplayer78@email.com',
+                      queryParameters: {
+                        'subject': 'Support_Request_Tasbeeh_&_Quran_App'
+                      },
                     );
+
+                    if (await canLaunchUrl(emailLaunchUri)) {
+                      await launchUrl(emailLaunchUri);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("Could not open email app"),
+                        ),
+                      );
+                    }
                   },
                   child: Text(
                     "Contact Us",
