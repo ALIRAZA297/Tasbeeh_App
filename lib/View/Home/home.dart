@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_islamic_icons/flutter_islamic_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:tasbeeh_app/Components/animated_loader.dart';
 import 'package:tasbeeh_app/Components/animation.dart';
 import 'package:tasbeeh_app/Controller/prayer_controller.dart';
@@ -14,6 +15,7 @@ import 'package:tasbeeh_app/View/Home%20Items/Kalama/kalma.dart';
 import 'package:tasbeeh_app/View/Home%20Items/Masnoon%20Dua/category_wise_dua.dart';
 import 'package:tasbeeh_app/View/Home%20Items/Quran/quran_view.dart';
 import 'package:tasbeeh_app/View/Home%20Items/Tasbeeh/tasbeeh_screen.dart';
+import 'package:hijri/hijri_calendar.dart';
 
 class PrayerScreen extends StatelessWidget {
   PrayerScreen({super.key});
@@ -41,53 +43,215 @@ class PrayerScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
-                height: 300,
-                width: double.infinity,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(
-                      'assets/images/mosque at night with fireworks_preview.gif',
+              Obx(
+                () {
+                  final bool isMorning = controller.isMorning();
+                  final Map<String, String> currentPrayerTime =
+                      controller.getCurrentPrayerTime();
+                  final String startTime = currentPrayerTime["start"] ?? "";
+                  final String endTime = currentPrayerTime["end"] ?? "";
+
+                  return Container(
+                    height: 320,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(
+                          isMorning
+                              ? 'assets/images/morning.png'
+                              : 'assets/images/evening.png',
+                        ),
+                        fit: BoxFit.fill,
+                      ),
                     ),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                child: Container(
-                  color: Colors.black.withOpacity(0.5),
-                  child: Center(
-                    child: Obx(
-                      () => controller.isLoading.value
-                          ? const AnimatedLoader(color: Colors.white)
-                          : controller.prayerTimes.value == null
-                              ? const Text(
-                                  'Unable to fetch prayer times',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
+                    child: Stack(
+                      children: [
+                        // Overlay Color
+                        Container(
+                          color: Colors.black.withOpacity(0.2),
+                        ),
+
+                        // Prayer Time Text
+                        Positioned(
+                            bottom: 10,
+                            right: 10,
+                            child: controller.isLoading.value
+                                ? const AnimatedLoader(color: Colors.white)
+                                : Text.rich(
+                                    TextSpan(
+                                      children: [
+                                        // "Prayer Time" (Less Bold)
+                                        TextSpan(
+                                          text: 'Prayer Time \n',
+                                          style: GoogleFonts.poppins(
+                                            color: Colors.white,
+                                            fontSize: 18, // Slightly smaller
+                                            fontWeight:
+                                                FontWeight.w500, // Medium Bold
+                                          ),
+                                        ),
+
+                                        // Prayer Name (More Bold)
+                                        TextSpan(
+                                          text:
+                                              '${controller.currentPrayer.value.toString().replaceAll("Prayer.", "").capitalize}\n',
+                                          style: GoogleFonts.poppins(
+                                            color: Colors.white,
+                                            fontSize: 22, // Bigger size
+                                            fontWeight:
+                                                FontWeight.w900, // Extra Bold
+                                          ),
+                                        ),
+
+                                        // "Start:" (Less Bold)
+                                        TextSpan(
+                                          text: 'Start:\n',
+                                          style: GoogleFonts.poppins(
+                                            color: Colors.white,
+                                            fontSize: 16, // Smaller size
+                                            fontWeight:
+                                                FontWeight.w500, // Medium Bold
+                                          ),
+                                        ),
+
+                                        // Start Time (More Bold)
+                                        TextSpan(
+                                          text: '$startTime\n',
+                                          style: GoogleFonts.poppins(
+                                            color: Colors.white,
+                                            fontSize: 20, // Bigger size
+                                            fontWeight: FontWeight.w800, // Bold
+                                          ),
+                                        ),
+
+                                        // "End:" (Less Bold)
+                                        TextSpan(
+                                          text: 'End:\n',
+                                          style: GoogleFonts.poppins(
+                                            color: Colors.white,
+                                            fontSize: 16, // Smaller size
+                                            fontWeight:
+                                                FontWeight.w500, // Medium Bold
+                                          ),
+                                        ),
+
+                                        // End Time (More Bold)
+                                        TextSpan(
+                                          text: endTime,
+                                          style: GoogleFonts.poppins(
+                                            color: Colors.white,
+                                            fontSize: 20, // Bigger size
+                                            fontWeight: FontWeight.w800, // Bold
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    textAlign: TextAlign.left,
+                                  )),
+
+                        // Date Display in Bottom Right Corner
+                        Positioned(
+                          left: 10,
+                          top: 10,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              // // Islamic Date
+                              // Text(
+                              //   '${HijriCalendar.now().toFormat("dd MMMM yyyy")} AH',
+                              //   style: GoogleFonts.poppins(
+                              //     color: Colors.white,
+                              //     fontSize: 16,
+                              //     fontWeight: FontWeight.bold,
+                              //   ),
+                              // ),
+                              // // Gregorian Date
+                              // Text(
+                              //   DateFormat('EEEE, dd MMMM yyyy')
+                              //       .format(DateTime.now()),
+                              //   style: GoogleFonts.poppins(
+                              //     color: Colors.white,
+                              //     fontSize: 16,
+                              //     fontWeight: FontWeight.bold,
+                              //   ),
+                              // ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  // Hijri Date
+                                  RichText(
+                                    text: TextSpan(
+                                      children: [
+                                        TextSpan(
+                                          text: 'Hijri Date:\n',
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                        TextSpan(
+                                          text:
+                                              '${HijriCalendar.now().toFormat("dd").padLeft(2, '0')} ', // Day on a separate line
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight
+                                                  .w900), // Bigger font for day
+                                        ),
+                                        TextSpan(
+                                          text:
+                                              '${HijriCalendar.now().toFormat("MMMM yyyy")} AH', // Month & Year on next line
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight
+                                                  .w900), // Bigger font for day
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                )
-                              : Text(
-                                  'Fajr: ${controller.formatTime(controller.prayerTimes.value!.fajr)} - '
-                                  '${controller.formatTime(controller.calculateEndTime(controller.prayerTimes.value!.fajr, Prayer.dhuhr))}\n\n'
-                                  'Dhuhr: ${controller.formatTime(controller.prayerTimes.value!.dhuhr)} - '
-                                  '${controller.formatTime(controller.calculateEndTime(controller.prayerTimes.value!.dhuhr, Prayer.asr))}\n\n'
-                                  'Asr: ${controller.formatTime(controller.prayerTimes.value!.asr)} - '
-                                  '${controller.formatTime(controller.calculateEndTime(controller.prayerTimes.value!.asr, Prayer.maghrib))}\n\n'
-                                  'Maghrib: ${controller.formatTime(controller.prayerTimes.value!.maghrib)} - '
-                                  '${controller.formatTime(controller.calculateEndTime(controller.prayerTimes.value!.maghrib, Prayer.isha))}\n\n'
-                                  'Isha: ${controller.formatTime(controller.prayerTimes.value!.isha)} - '
-                                  '${controller.formatTime(controller.calculateEndTime(controller.prayerTimes.value!.isha, Prayer.fajr))}',
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
+
+                                  const SizedBox(
+                                      height: 8), // Spacing between dates
+
+                                  // Gregorian Date
+                                  RichText(
+                                    text: TextSpan(
+                                      children: [
+                                        TextSpan(
+                                          text: 'Gregorian Date:\n',
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                        TextSpan(
+                                          text:
+                                              '${DateFormat('dd').format(DateTime.now())} ', // Day on a separate line
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight
+                                                  .w900), // Bigger font for day
+                                        ),
+                                        TextSpan(
+                                          text: DateFormat('EEEE, MMMM yyyy')
+                                              .format(
+                                            DateTime.now(),
+                                          ), // Day Name, Month, Year
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w900),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  textAlign: TextAlign.justify,
-                                ),
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ),
+                  );
+                },
               ),
               ListView(
                 controller: scrollController,
