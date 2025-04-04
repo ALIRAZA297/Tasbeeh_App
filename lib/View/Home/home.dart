@@ -1,4 +1,3 @@
-import 'package:adhan/adhan.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_islamic_icons/flutter_islamic_icons.dart';
@@ -46,10 +45,15 @@ class PrayerScreen extends StatelessWidget {
               Obx(
                 () {
                   final bool isMorning = controller.isMorning();
-                  final Map<String, String> currentPrayerTime =
-                      controller.getCurrentPrayerTime();
-                  final String startTime = currentPrayerTime["start"] ?? "";
-                  final String endTime = currentPrayerTime["end"] ?? "";
+                  final currentPrayerTime = controller.getCurrentPrayerTime();
+                  if (currentPrayerTime == null || currentPrayerTime.isEmpty) {
+                    return const Center(
+                        child: AnimatedLoader(
+                            color: Colors.white)); // Prevents crash
+                  }
+
+                  final String startTime = currentPrayerTime["start"] ?? "N/A";
+                  final String endTime = currentPrayerTime["end"] ?? "N/A";
 
                   return Container(
                     height: 320,
@@ -80,21 +84,24 @@ class PrayerScreen extends StatelessWidget {
                                 : Text.rich(
                                     TextSpan(
                                       children: [
-                                        // "Prayer Time" (Less Bold)
-                                        TextSpan(
-                                          text: 'Prayer Time \n',
-                                          style: GoogleFonts.poppins(
-                                            color: Colors.white,
-                                            fontSize: 18, // Slightly smaller
-                                            fontWeight:
-                                                FontWeight.w500, // Medium Bold
-                                          ),
-                                        ),
-
-                                        // Prayer Name (More Bold)
                                         TextSpan(
                                           text:
-                                              '${controller.currentPrayer.value.toString().replaceAll("Prayer.", "").capitalize}\n',
+                                              controller.currentPrayer.value !=
+                                                      null
+                                                  ? 'Prayer Time \n'
+                                                  : 'Upcoming Prayer \n',
+                                          style: GoogleFonts.poppins(
+                                            color: Colors.white,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                        TextSpan(
+                                          text: controller
+                                                      .currentPrayer.value !=
+                                                  null
+                                              ? '${controller.currentPrayer.value.toString().replaceAll("Prayer.", "").capitalize}\n'
+                                              : '${controller.getUpcomingPrayer().toString().replaceAll("Prayer.", "").capitalize}\n',
                                           style: GoogleFonts.poppins(
                                             color: Colors.white,
                                             fontSize: 22, // Bigger size

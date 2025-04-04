@@ -1,83 +1,3 @@
-// import 'dart:developer';
-
-// import 'package:get/get.dart';
-// import 'package:adhan/adhan.dart';
-// import 'package:location/location.dart';
-// import 'package:intl/intl.dart';
-
-// class PrayerController extends GetxController {
-//   Rx<PrayerTimes?> prayerTimes = Rx<PrayerTimes?>(null);
-//   final Location location = Location();
-//   RxBool isLoading = true.obs;
-
-//   @override
-//   void onInit() {
-//     super.onInit();
-//     getLocationAndPrayerTimes();
-//   }
-
-//   Future<void> getLocationAndPrayerTimes() async {
-//     try {
-//       // Check if location service is enabled
-//       bool serviceEnabled = await location.serviceEnabled();
-//       if (!serviceEnabled) {
-//         serviceEnabled = await location.requestService();
-//         if (!serviceEnabled) return;
-//       }
-
-//       // Check/request location permission
-//       PermissionStatus permissionGranted = await location.hasPermission();
-//       if (permissionGranted == PermissionStatus.denied) {
-//         permissionGranted = await location.requestPermission();
-//         if (permissionGranted != PermissionStatus.granted) return;
-//       }
-
-//       // Get current location
-//       LocationData locationData = await location.getLocation();
-//       final coordinates = Coordinates(locationData.latitude!, locationData.longitude!);
-
-//       // Calculate prayer times
-//       final params = CalculationMethod.muslim_world_league.getParameters();
-//       params.madhab = Madhab.shafi;
-
-//       prayerTimes.value = PrayerTimes.today(coordinates, params);
-//     } catch (e) {
-//       log('Error getting location: $e');
-//     } finally {
-//       isLoading.value = false;
-//     }
-//   }
-
-//   String formatTime(DateTime time) {
-//     return DateFormat.jm().format(time);
-//   }
-
-//   DateTime calculateEndTime(DateTime startTime, Prayer nextPrayer) {
-//     if (prayerTimes.value == null) return startTime;
-
-//     DateTime endTime;
-//     switch (nextPrayer) {
-//       case Prayer.dhuhr:
-//         endTime = prayerTimes.value!.sunrise;
-//         break;
-//       case Prayer.asr:
-//         endTime = prayerTimes.value!.asr;
-//         break;
-//       case Prayer.maghrib:
-//         endTime = prayerTimes.value!.maghrib;
-//         break;
-//       case Prayer.isha:
-//         endTime = prayerTimes.value!.isha;
-//         break;
-//       case Prayer.fajr:
-//         endTime = prayerTimes.value!.fajr;
-//         break;
-//       default:
-//         endTime = startTime.add(const Duration(hours: 1));
-//     }
-//     return endTime.subtract(const Duration(minutes: 5));
-//   }
-// }
 
 import 'dart:developer';
 
@@ -152,39 +72,135 @@ class PrayerController extends GetxController {
     return true;
   }
 
-  void updateCurrentPrayer() {
-    final now = DateTime.now();
 
-    Prayer? lastPrayer;
-    for (var prayer in Prayer.values) {
-      final start = getPrayerStartTime(prayer);
-      final end = getPrayerEndTime(prayer);
+// void updateCurrentPrayer() {
+//   final now = DateTime.now();
 
-      if (now.isAfter(start) && now.isBefore(end)) {
-        currentPrayer.value = prayer;
-        return;
-      }
-      lastPrayer = prayer; // Store last valid prayer
+//   for (var prayer in Prayer.values) {
+//     if (prayer == Prayer.none || prayer == Prayer.sunrise) continue; // ✅ Skip invalid ones
+
+//     final start = getPrayerStartTime(prayer);
+//     final end = getPrayerEndTime(prayer);
+
+//     if (now.isAfter(start) && now.isBefore(end)) {
+//       currentPrayer.value = prayer;
+//       return;
+//     }
+//   }
+
+//   // If no current prayer, fallback to closest previous one (like Isha at night)
+//   if (now.isAfter(prayerTimes!.isha)) {
+//     currentPrayer.value = Prayer.isha;
+//   } else {
+//     currentPrayer.value = Prayer.fajr;
+//   }
+// }
+
+
+void updateCurrentPrayer() {
+  if (prayerTimes == null) {
+    log("❌ No prayer times available yet!");
+    return;
+  }
+  final now = DateTime.now();
+
+  Prayer? activePrayer;
+  Prayer? nextPrayer;
+
+  for (var prayer in Prayer.values) {
+    if (prayer == Prayer.none || prayer == Prayer.sunrise) continue; // ✅ Skip invalid ones
+
+    final start = getPrayerStartTime(prayer);
+    final end = getPrayerEndTime(prayer);
+
+        log("🕌 Checking ${prayer.toString().split('.').last}: Start: ${formatTime(start)}, End: ${formatTime(end)}");
+
+
+    if (now.isAfter(start) && now.isBefore(end)) {
+      activePrayer = prayer; // ✅ If the prayer is ongoing, set it
+      break;
     }
 
-    // If no prayer is currently active, set the last completed one
-    currentPrayer.value = lastPrayer;
+    if (now.isBefore(start) && nextPrayer == null) {
+      nextPrayer = prayer; // ✅ Set the first upcoming prayer
+    }
   }
 
-  Map<String, String> getCurrentPrayerTime() {
-    if (currentPrayer.value == null) return {"start": "", "end": ""};
+  // ✅ If no active prayer, set the next upcoming prayer
+  if (activePrayer != null) {
+    log("✅ Current Active Prayer: ${activePrayer.toString().split('.').last}");
+    currentPrayer.value = activePrayer;
+  } else {
+    log("⏭ Next Upcoming Prayer: ${nextPrayer.toString().split('.').last}");
+    currentPrayer.value = null; // ✅ Only set next prayer if no active one
+  }
+}
 
-    final startTime = getPrayerStartTime(currentPrayer.value!);
-    final endTime = getPrayerEndTime(currentPrayer.value!);
+
+Prayer getUpcomingPrayer() {
+  final now = DateTime.now();
+
+  for (var prayer in Prayer.values) {
+    if (prayer == Prayer.none) continue;
+
+    final start = getPrayerStartTime(prayer);
+    if (now.isBefore(start)) {
+      return prayer;
+    }
+  }
+
+  return Prayer.fajr; // Default to next Fajr after Isha
+}
+
+
+//   Map<String, String> getCurrentPrayerTime() {
+// if (currentPrayer.value == null) {
+//   Prayer nextPrayer = getUpcomingPrayer();
+//   return {
+//     "name": nextPrayer.toString().split('.').last,
+//     "start": formatTime(getPrayerStartTime(nextPrayer)),
+//     "end": formatTime(getPrayerEndTime(nextPrayer)),
+//   };
+// }
+
+//     final startTime = getPrayerStartTime(currentPrayer.value!);
+//     final endTime = getPrayerEndTime(currentPrayer.value!);
+
+//     log("📌 Current Prayer: ${currentPrayer.value}");
+//     log("   Start: ${formatTime(startTime)}, End: ${formatTime(endTime)}");
+
+//     return {
+//   "name": currentPrayer.value.toString().split('.').last,
+//   "start": formatTime(startTime),
+//   "end": formatTime(endTime),
+// };
+
+//   }
+
+
+Map<String, String> getCurrentPrayerTime() {
+  if (currentPrayer.value == null) {
+    Prayer nextPrayer = getUpcomingPrayer(); // ✅ Show next prayer
+    return {
+      "name": nextPrayer.toString().split('.').last,
+      "start": formatTime(getPrayerStartTime(nextPrayer)),
+      "end": formatTime(getPrayerEndTime(nextPrayer)),
+    };
+  }
+
+  final startTime = getPrayerStartTime(currentPrayer.value!);
+  final endTime = getPrayerEndTime(currentPrayer.value!);
 
     log("📌 Current Prayer: ${currentPrayer.value}");
     log("   Start: ${formatTime(startTime)}, End: ${formatTime(endTime)}");
 
-    return {
-      "start": formatTime(startTime),
-      "end": formatTime(endTime),
-    };
-  }
+  return {
+    "name": currentPrayer.value.toString().split('.').last,
+    "start": formatTime(startTime),
+    "end": formatTime(endTime),
+  };
+}
+
 
   bool isMorning() {
     if (prayerTimes == null) {
@@ -196,6 +212,9 @@ class PrayerController extends GetxController {
   }
 
   DateTime getPrayerStartTime(Prayer prayer) {
+     if (prayerTimes == null) {
+    return DateTime.now(); // Return current time if null
+  }
     switch (prayer) {
       case Prayer.fajr:
         return prayerTimes!.fajr;
@@ -213,6 +232,9 @@ class PrayerController extends GetxController {
   }
 
   DateTime getPrayerEndTime(Prayer prayer) {
+      if (prayerTimes == null) {
+    return DateTime.now(); // Return current time if null
+  }
     switch (prayer) {
       case Prayer.fajr:
         return prayerTimes!.sunrise;
