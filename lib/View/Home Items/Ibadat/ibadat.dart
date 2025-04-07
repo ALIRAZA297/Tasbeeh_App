@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:tasbeeh_app/Controller/ibadat_controller.dart';
 
 import 'ibadat_detail.dart';
-import 'namaz_detail_screen.dart'; // Import NamazDetailScreen
+import 'namaz_detail_screen.dart';
 
 class IbadatScreen extends StatelessWidget {
   final IbadatController controller = Get.put(IbadatController());

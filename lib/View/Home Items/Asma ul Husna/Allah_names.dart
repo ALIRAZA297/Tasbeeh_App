@@ -68,15 +68,9 @@ class _AsmaulHusnaScreenState extends State<AsmaulHusnaScreen> {
                 itemCount: namesOfAllah.length,
                 itemBuilder: (context, index) {
                   final name = namesOfAllah[index];
-
                   return Container(
                     margin: const EdgeInsets.all(2),
-                    // elevation: 3,
-                    // shape: RoundedRectangleBorder(
-                    //   borderRadius: BorderRadius.circular(12),
-                    // ),
                     decoration: BoxDecoration(
-                      
                       borderRadius: BorderRadius.circular(12),
                       color: Colors.white,
                       image: const DecorationImage(

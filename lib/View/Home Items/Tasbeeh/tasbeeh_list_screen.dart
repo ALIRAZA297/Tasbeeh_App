@@ -236,9 +236,9 @@ class TasbeehListScreen extends StatelessWidget {
               keyboardType: TextInputType.number,
               inputFormatters: [
                 FilteringTextInputFormatter
-                    .digitsOnly, // Allows only digits (no decimal points)
+                    .digitsOnly,
                 LengthLimitingTextInputFormatter(
-                    5), // Limits input to 5 digits max
+                    5),
               ],
             ),
           ],

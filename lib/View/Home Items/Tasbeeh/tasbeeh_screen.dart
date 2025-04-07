@@ -51,10 +51,10 @@ class _TasbeehScreenState extends State<TasbeehScreen>
         child: Column(
           children: [
             Image.asset(
-              'assets/images/quran-verse_388877-10.avif', // Replace with your image asset path
-              height: 170, // Adjust height as needed
+              'assets/images/quran-verse_388877-10.avif',
+              height: 170,
               width: double.infinity,
-              fit: BoxFit.cover, // Ensures it covers the area properly
+              fit: BoxFit.cover,
             ),
             const SizedBox(
               height: 10,

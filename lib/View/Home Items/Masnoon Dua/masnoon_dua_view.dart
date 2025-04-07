@@ -38,47 +38,49 @@ class _DuaScreenState extends State<DuaScreen> {
         backgroundColor: Colors.white,
       ),
       backgroundColor: Colors.white,
-      body: Obx(() {
-        final category = duaController.categories
-            .firstWhereOrNull((c) => c.name == widget.categoryName);
-        return category != null
-            ? ListView.builder(
-                physics: const BouncingScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: category.duas.length,
-                itemBuilder: (context, index) {
-                  return DuaCard(
-                    dua: category.duas[index],
-                    index: index,
-                    category: widget.categoryName,
-                  );
-                },
-              )
-            : Align(
-                alignment: Alignment.center,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: Get.height * 0.2,
-                    ),
-                    Icon(
-                      Icons.search_off,
-                      size: 50,
-                      color: Colors.grey.shade500,
-                    ),
-                    Text(
-                      'No Dua available',
-                      style: GoogleFonts.poppins(
-                        fontSize: 18,
-                        height: 2,
-                        fontWeight: FontWeight.bold,
+      body: Obx(
+        () {
+          final category = duaController.categories
+              .firstWhereOrNull((c) => c.name == widget.categoryName);
+          return category != null
+              ? ListView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: category.duas.length,
+                  itemBuilder: (context, index) {
+                    return DuaCard(
+                      dua: category.duas[index],
+                      index: index,
+                      category: widget.categoryName,
+                    );
+                  },
+                )
+              : Align(
+                  alignment: Alignment.center,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: Get.height * 0.2,
+                      ),
+                      Icon(
+                        Icons.search_off,
+                        size: 50,
                         color: Colors.grey.shade500,
                       ),
-                    ),
-                  ],
-                ),
-              );
-      }),
+                      Text(
+                        'No Dua available',
+                        style: GoogleFonts.poppins(
+                          fontSize: 18,
+                          height: 2,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey.shade500,
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+        },
+      ),
       floatingActionButton: Obx(
         () {
           final category = duaController.categories

@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -137,9 +136,9 @@ class TasbeehController extends GetxController {
             keyboardType: TextInputType.number,
             inputFormatters: [
               FilteringTextInputFormatter
-                  .digitsOnly, // Allows only digits (no decimal points)
+                  .digitsOnly, 
               LengthLimitingTextInputFormatter(
-                  5), // Limits input to 5 digits max
+                  5),
             ],
           ),
         ],

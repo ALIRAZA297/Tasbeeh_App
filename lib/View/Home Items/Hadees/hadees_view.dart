@@ -35,66 +35,70 @@ class _HadithsViewState extends State<HadithsView> {
         centerTitle: true,
         backgroundColor: Colors.green.shade700,
       ),
-      body: Obx(() {
-        if (controller.isLoading.value && controller.filteredHadiths.isEmpty) {
-          return const Center(child: CircularProgressIndicator());
-        }
+      body: Obx(
+        () {
+          if (controller.isLoading.value &&
+              controller.filteredHadiths.isEmpty) {
+            return const Center(child: CircularProgressIndicator());
+          }
 
-        return Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                padding: const EdgeInsets.all(10),
-                itemCount: controller.filteredHadiths.length,
-                itemBuilder: (context, index) {
-                  final hadith = controller.filteredHadiths[index];
+          return Column(
+            children: [
+              Expanded(
+                child: ListView.builder(
+                  padding: const EdgeInsets.all(10),
+                  itemCount: controller.filteredHadiths.length,
+                  itemBuilder: (context, index) {
+                    final hadith = controller.filteredHadiths[index];
 
-                  return Card(
-                    margin: const EdgeInsets.symmetric(vertical: 8),
-                    child: ListTile(
-                      title: Text(
-                        hadith.headingEnglish,
-                        style: GoogleFonts.poppins(
-                            fontSize: 16, fontWeight: FontWeight.bold),
-                      ),
-                      subtitle: Text(
-                        hadith.headingUrdu,
-                        style: GoogleFonts.amiri(fontSize: 18),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-
-            // 📌 Load More Button
-            if (controller.hasMore.value)
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green.shade700,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 40, vertical: 15),
-                  ),
-                  onPressed: () {
-                    controller.fetchHadiths(widget.bookSlug, widget.chapterId);
-                    setState(() {}); // Force UI Update
-                  },
-                  child: controller.isLoading.value
-                      ? const CircularProgressIndicator(color: Colors.white)
-                      : Text(
-                          "Load More",
+                    return Card(
+                      margin: const EdgeInsets.symmetric(vertical: 8),
+                      child: ListTile(
+                        title: Text(
+                          hadith.headingEnglish,
                           style: GoogleFonts.poppins(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
+                              fontSize: 16, fontWeight: FontWeight.bold),
                         ),
+                        subtitle: Text(
+                          hadith.headingUrdu,
+                          style: GoogleFonts.amiri(fontSize: 18),
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ),
-          ],
-        );
-      }),
+
+              // 📌 Load More Button
+              if (controller.hasMore.value)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green.shade700,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 40, vertical: 15),
+                    ),
+                    onPressed: () {
+                      controller.fetchHadiths(
+                          widget.bookSlug, widget.chapterId);
+                      setState(() {});
+                    },
+                    child: controller.isLoading.value
+                        ? const CircularProgressIndicator(color: Colors.white)
+                        : Text(
+                            "Load More",
+                            style: GoogleFonts.poppins(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                  ),
+                ),
+            ],
+          );
+        },
+      ),
     );
   }
 }
