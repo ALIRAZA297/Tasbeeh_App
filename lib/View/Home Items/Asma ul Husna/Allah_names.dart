@@ -103,7 +103,7 @@ class _AsmaulHusnaScreenState extends State<AsmaulHusnaScreen> {
                           Text(
                             name['arabic'] ?? '',
                             style: GoogleFonts.amiri(
-                              fontSize: 24,
+                              fontSize: 26,
                               fontWeight: FontWeight.bold,
                               color: Colors.green.shade700,
                             ),

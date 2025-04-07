@@ -127,7 +127,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:tasbeeh_app/Components/animated_loader.dart';
 import 'package:tasbeeh_app/Components/animation.dart';
 import 'package:tasbeeh_app/Controller/quran_controller.dart';
-import 'package:tasbeeh_app/View/Home%20Items/Quran/surah_view.dart';
+import 'package:tasbeeh_app/View/Home%20Items/Quran/surah_detail_view.dart';
 
 class QuranView extends StatelessWidget {
   const QuranView({super.key});
@@ -239,8 +239,8 @@ class QuranView extends StatelessWidget {
                         ),
                         trailing: Text(
                           surah.name,
-                          style: GoogleFonts.amiriQuran(
-                            fontSize: 22,
+                          style: GoogleFonts.amiri(
+                            fontSize: 26,
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
                           ),

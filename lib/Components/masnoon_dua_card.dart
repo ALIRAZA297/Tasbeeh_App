@@ -209,7 +209,7 @@ class DuaCard extends StatelessWidget {
               dua.dua,
               textAlign: TextAlign.right,
               style: GoogleFonts.amiri(
-                fontSize: 24,
+                fontSize: 26,
                 height: 2,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,

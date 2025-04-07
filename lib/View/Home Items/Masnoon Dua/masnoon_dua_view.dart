@@ -67,7 +67,7 @@ class _DuaScreenState extends State<DuaScreen> {
                       color: Colors.grey.shade500,
                     ),
                     Text(
-                      'No Tasbeeh available',
+                      'No Dua available',
                       style: GoogleFonts.poppins(
                         fontSize: 18,
                         height: 2,

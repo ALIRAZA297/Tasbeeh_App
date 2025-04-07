@@ -115,7 +115,7 @@ class TasbeehListScreen extends StatelessWidget {
                   fontSize: 18,
                   height: 2,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: Colors.green,
                 ),
               ),
             ),
@@ -127,8 +127,8 @@ class TasbeehListScreen extends StatelessWidget {
                   child: Text(
                     tasbeeh['zikr'],
                     textAlign: TextAlign.right,
-                    style: GoogleFonts.amiriQuran(
-                      fontSize: 22,
+                    style: GoogleFonts.amiri(
+                      fontSize: 26,
                       height: 2,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,

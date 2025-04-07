@@ -51,7 +51,7 @@ class KalimaScreen extends StatelessWidget {
                       kalima['arabic']!,
                       textAlign: TextAlign.right,
                       style: GoogleFonts.amiri(
-                        fontSize: 24,
+                        fontSize: 26,
                         fontWeight: FontWeight.bold,
                         height: 2,
                         color: Colors.black,
