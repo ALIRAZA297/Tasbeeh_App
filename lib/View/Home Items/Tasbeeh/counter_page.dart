@@ -22,13 +22,13 @@ class _CounterPageState extends State<CounterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Text(
           widget.tasbeeh['title'],
           style: GoogleFonts.notoNastaliqUrdu(
-            color: Colors.black,
+            color: Get.isDarkMode ? Colors.white : Colors.black,
             fontWeight: FontWeight.bold,
             fontSize: 20,
           ),
@@ -49,7 +49,7 @@ class _CounterPageState extends State<CounterPage> {
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: const Color(0xff01301C),
+                        color:Get.isDarkMode ? Colors.white : const Color(0xff01301C),
                         width: 2,
                       ),
                       image: const DecorationImage(
@@ -68,6 +68,7 @@ class _CounterPageState extends State<CounterPage> {
                           textAlign: TextAlign.center,
                           style: GoogleFonts.amiriQuran(
                             fontSize: 30,
+                            color: Colors.black,
                             fontWeight: FontWeight.bold,
                             height: 2,
                           ),
@@ -104,14 +105,17 @@ class _CounterPageState extends State<CounterPage> {
                     style: GoogleFonts.poppins(
                       fontSize: 30.0,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                      color: Get.isDarkMode ? Colors.white : Colors.black,
                     ),
                   ),
                   const SizedBox(height: 20.0),
                   ElevatedButton(
-                    style: const ButtonStyle(
+                    style: ButtonStyle(
                       side: MaterialStatePropertyAll(
-                        BorderSide(color: Color(0xff01301C)),
+                        BorderSide(
+                            color: Get.isDarkMode
+                                ? Colors.white
+                                : const Color(0xff01301C)),
                       ),
                     ),
                     onPressed: controller.reset,
@@ -129,7 +133,10 @@ class _CounterPageState extends State<CounterPage> {
                                 overlayColor: MaterialStatePropertyAll(
                                     Colors.white.withOpacity(0.5)),
                                 shape: const MaterialStatePropertyAll(
-                                  CircleBorder(),
+                                  CircleBorder(
+                                      side: BorderSide(
+                                          color: Colors.white, width: 3),
+                                  ),
                                 ),
                                 backgroundColor: const MaterialStatePropertyAll(
                                   Color(0xff01301C),

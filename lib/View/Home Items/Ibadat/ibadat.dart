@@ -14,15 +14,15 @@ class IbadatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         centerTitle: true,
         title: Text(
           "Ibadat",
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
-            color: Colors.black,
+            color: Get.isDarkMode ? Colors.white : Colors.black,
           ),
         ),
       ),
@@ -45,6 +45,8 @@ class IbadatScreen extends StatelessWidget {
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
+                    color: Colors.black,
+                    height: 2,
                   ),
                 ),
                 subtitle: Text(

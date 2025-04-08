@@ -35,14 +35,14 @@ class _TasbeehScreenState extends State<TasbeehScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Text(
           'Tasbeehat',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
-            color: Colors.black,
+            color: Get.isDarkMode ? Colors.white : Colors.black,
           ),
         ),
         centerTitle: true,

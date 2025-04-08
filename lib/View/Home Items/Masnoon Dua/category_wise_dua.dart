@@ -15,71 +15,74 @@ class DuaCategoryScreen extends StatelessWidget {
     final DuaController duaController = Get.find<DuaController>();
 
     return Scaffold(
-      backgroundColor: Colors.white,
+backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         scrolledUnderElevation: 0,
-        backgroundColor: Colors.white,
+backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Text(
           "Dua Categories",
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
-            color: Colors.black,
+            color: Get.isDarkMode ? Colors.white : Colors.black,
           ),
         ),
         centerTitle: true,
       ),
       body: Obx(() {
-        return ListView.builder(
-          shrinkWrap: true,
-          physics: const BouncingScrollPhysics(),
-          itemCount: duaController.categories.length,
-          itemBuilder: (context, index) {
-            final category = duaController.categories[index];
-            return AppButtonAnimation(
-              child: Container(
-                margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.green.shade50,
-                ),
-                child: ListTile(
-                  shape: ContinuousRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 70.0),
+          child: ListView.builder(
+            shrinkWrap: true,
+            physics: const BouncingScrollPhysics(),
+            itemCount: duaController.categories.length,
+            itemBuilder: (context, index) {
+              final category = duaController.categories[index];
+              return AppButtonAnimation(
+                child: Container(
+                  margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.green.shade50,
                   ),
-                  splashColor: Colors.transparent,
-                  title: Text(
-                    category.name,
-                    style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                  child: ListTile(
+                    shape: ContinuousRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
                     ),
+                    splashColor: Colors.transparent,
+                    title: Text(
+                      category.name,
+                      style: GoogleFonts.poppins(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                    trailing: category.isUserAdded
+                        ? Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              IconButton(
+                                icon: const Icon(Icons.delete, color: Colors.red),
+                                onPressed: () =>
+                                    duaController.showDeleteCategoryDialog(
+                                        context, category.name),
+                              ),
+                              IconButton(
+                                icon: const Icon(Icons.edit, color: Colors.blue),
+                                onPressed: () =>
+                                    duaController.showEditCategoryDialog(
+                                        context, category.name),
+                              ),
+                            ],
+                          )
+                        : const Icon(Icons.arrow_forward_ios_rounded),
+                    onTap: () {
+                      Get.to(() => DuaScreen(categoryName: category.name));
+                    },
                   ),
-                  trailing: category.isUserAdded
-                      ? Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            IconButton(
-                              icon: const Icon(Icons.delete, color: Colors.red),
-                              onPressed: () =>
-                                  duaController.showDeleteCategoryDialog(
-                                      context, category.name),
-                            ),
-                            IconButton(
-                              icon: const Icon(Icons.edit, color: Colors.blue),
-                              onPressed: () =>
-                                  duaController.showEditCategoryDialog(
-                                      context, category.name),
-                            ),
-                          ],
-                        )
-                      : const Icon(Icons.arrow_forward_ios_rounded),
-                  onTap: () {
-                    Get.to(() => DuaScreen(categoryName: category.name));
-                  },
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         );
       }),
       floatingActionButton: FloatingActionButton(
@@ -94,7 +97,7 @@ class DuaCategoryScreen extends StatelessWidget {
       BuildContext context, DuaController duaController) {
     final TextEditingController categoryController = TextEditingController();
     Get.defaultDialog(
-      backgroundColor: Colors.white,
+      backgroundColor:Get.isDarkMode ? Colors.grey.shade800 : Colors.white,
       title: "Add New Category",
       content: Column(
         children: [

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -8,18 +9,18 @@ class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         scrolledUnderElevation: 0,
         title: Text(
           "About us",
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
-            color: Colors.black,
+            color: Get.isDarkMode ? Colors.white : Colors.black,
           ),
         ),
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0, // Flat look consistent with QuranView
       ),
       body: Padding(
@@ -42,14 +43,14 @@ class AboutPage extends StatelessWidget {
                       style: GoogleFonts.poppins(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                        color: Get.isDarkMode ? Colors.white : Colors.black,
                       ),
                     ),
                     Text(
-                      "Version 1.0.0", // Replace with your app version
+                      "Version 1.0.1", // Replace with your app version
                       style: GoogleFonts.poppins(
                         fontSize: 16,
-                        color: Colors.grey.shade700,
+                        color: Get.isDarkMode ? Colors.white70 : Colors.grey.shade700,
                       ),
                     ),
                   ],
@@ -63,7 +64,7 @@ class AboutPage extends StatelessWidget {
                 style: GoogleFonts.poppins(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: Get.isDarkMode ? Colors.white : Colors.black,
                 ),
               ),
               const SizedBox(height: 10),
@@ -71,7 +72,7 @@ class AboutPage extends StatelessWidget {
                 "Tasbeeh & Quran is a simple and elegant app designed to help Muslims connect with the Quran and enhance their spiritual practice. It provides easy access to the full text of the Holy Quran with English translations, allowing users to read, resume their last reading, and save their progress effortlessly.",
                 style: GoogleFonts.poppins(
                   fontSize: 16,
-                  color: Colors.grey.shade800,
+                  color: Get.isDarkMode ? Colors.white70: Colors.grey.shade800,
                 ),
                 textAlign: TextAlign.justify,
               ),
@@ -83,7 +84,7 @@ class AboutPage extends StatelessWidget {
                 style: GoogleFonts.poppins(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: Get.isDarkMode ? Colors.white : Colors.black,
                 ),
               ),
               const SizedBox(height: 10),
@@ -127,7 +128,7 @@ class AboutPage extends StatelessWidget {
                 style: GoogleFonts.poppins(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: Get.isDarkMode ? Colors.white : Colors.black,
                 ),
               ),
               const SizedBox(height: 10),
@@ -136,7 +137,7 @@ class AboutPage extends StatelessWidget {
                 "Special thanks to the open-source community for tools and resources.",
                 style: GoogleFonts.poppins(
                   fontSize: 16,
-                  color: Colors.grey.shade800,
+                  color:Get.isDarkMode ? Colors.white70 :  Colors.grey.shade800,
                 ),
               ),
               const SizedBox(height: 30),
@@ -207,14 +208,14 @@ class AboutPage extends StatelessWidget {
                   style: GoogleFonts.poppins(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
-                    color: Colors.black,
+                    color: Get.isDarkMode ? Colors.white : Colors.black,
                   ),
                 ),
                 Text(
                   description,
                   style: GoogleFonts.poppins(
                     fontSize: 14,
-                    color: Colors.grey.shade700,
+                    color: Get.isDarkMode ? Colors.white70 : Colors.grey.shade700,
                   ),
                 ),
               ],

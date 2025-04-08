@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:tasbeeh_app/Components/animated_loader.dart';
 import 'package:tasbeeh_app/Components/animation.dart';
+import 'package:tasbeeh_app/Components/custom_toggle_btn.dart';
 import 'package:tasbeeh_app/Controller/counter_controller.dart';
 import 'package:tasbeeh_app/Controller/prayer_controller.dart';
 import 'package:tasbeeh_app/View/Home%20Items/About%20us/about_page.dart';
@@ -26,19 +27,19 @@ class PrayerScreen extends StatelessWidget {
     // Initialize controller
     final PrayerController controller = Get.find<PrayerController>();
     return Scaffold(
-      appBar: AppBar(
-        scrolledUnderElevation: 0,
-        title: Text(
-          'Prayer Times',
-          style: GoogleFonts.poppins(
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-      ),
-      backgroundColor: Colors.white,
+      // appBar: AppBar(
+      //   scrolledUnderElevation: 0,
+      //   title: Text(
+      //     'Prayer Times',
+      //     style: GoogleFonts.poppins(
+      //       fontWeight: FontWeight.bold,
+      //       color: Colors.black,
+      //     ),
+      //   ),
+      //   centerTitle: true,
+      //   backgroundColor: Colors.white,
+      // ),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -165,25 +166,6 @@ class PrayerScreen extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              // // Islamic Date
-                              // Text(
-                              //   '${HijriCalendar.now().toFormat("dd MMMM yyyy")} AH',
-                              //   style: GoogleFonts.poppins(
-                              //     color: Colors.white,
-                              //     fontSize: 16,
-                              //     fontWeight: FontWeight.bold,
-                              //   ),
-                              // ),
-                              // // Gregorian Date
-                              // Text(
-                              //   DateFormat('EEEE, dd MMMM yyyy')
-                              //       .format(DateTime.now()),
-                              //   style: GoogleFonts.poppins(
-                              //     color: Colors.white,
-                              //     fontSize: 16,
-                              //     fontWeight: FontWeight.bold,
-                              //   ),
-                              // ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -257,6 +239,11 @@ class PrayerScreen extends StatelessWidget {
                             ],
                           ),
                         ),
+                        const Positioned(
+                          right: 10,
+                          top: 10,
+                          child: ThemeToggleSwitch(),
+                        )
                       ],
                     ),
                   );
@@ -385,6 +372,7 @@ class PrayerScreen extends StatelessWidget {
           title: Text(
             title,
             style: GoogleFonts.poppins(
+              color: Colors.black,
               fontWeight: FontWeight.bold,
               fontSize: 18,
             ),

@@ -48,16 +48,18 @@ class _SurahDetailViewState extends State<SurahDetailView> {
   }
 
   void _startScrollingToLastReadAyah() {
-    if (!_scrollController.hasClients || widget.lastReadAyah == null || widget.lastReadAyah! <= 0) {
+    if (!_scrollController.hasClients ||
+        widget.lastReadAyah == null ||
+        widget.lastReadAyah! <= 0) {
       log('Scroll aborted: invalid conditions');
       return;
     }
 
     _isScrolling = true;
-    
+
     // Pixels to scroll per step
-    const double scrollIncrement = 150.0; 
-    
+    const double scrollIncrement = 150.0;
+
     const Duration scrollInterval = Duration(milliseconds: 50);
 
     void scrollToNextPosition() {
@@ -73,7 +75,8 @@ class _SurahDetailViewState extends State<SurahDetailView> {
       final targetIndex = widget.lastReadAyah! - 1;
       final targetKey = _ayahKeys[targetIndex];
       if (targetKey != null && targetKey.currentContext != null) {
-        final RenderBox? renderBox = targetKey.currentContext!.findRenderObject() as RenderBox?;
+        final RenderBox? renderBox =
+            targetKey.currentContext!.findRenderObject() as RenderBox?;
         if (renderBox != null) {
           final position = renderBox.localToGlobal(Offset.zero);
           final screenHeight = MediaQuery.of(context).size.height;
@@ -83,7 +86,8 @@ class _SurahDetailViewState extends State<SurahDetailView> {
           // Stop if target is visible
           if (targetTop >= 0 && targetBottom <= screenHeight * 0.8) {
             _isScrolling = false;
-            final centeredOffset = currentPosition - (screenHeight * 0.5 - renderBox.size.height / 2);
+            final centeredOffset = currentPosition -
+                (screenHeight * 0.5 - renderBox.size.height / 2);
             _scrollController.animateTo(
               centeredOffset > 0 ? centeredOffset : currentPosition,
               duration: const Duration(milliseconds: 300),
@@ -120,14 +124,17 @@ class _SurahDetailViewState extends State<SurahDetailView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         scrolledUnderElevation: 0,
         title: Text(
           widget.surah.englishName,
-          style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(
+            fontWeight: FontWeight.bold,
+            color: Get.isDarkMode ? Colors.white : Colors.black,
+          ),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         centerTitle: true,
       ),
       body: ListView.builder(

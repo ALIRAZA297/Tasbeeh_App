@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class IbadatDetailScreen extends StatelessWidget {
@@ -10,13 +11,17 @@ class IbadatDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+
       appBar: AppBar(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+
         centerTitle: true,
         title: Text(
           prayer["title"]!,
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
-            color: Colors.black,
+            color: Get.isDarkMode ? Colors.white : Colors.black,
           ),
         ),
       ),

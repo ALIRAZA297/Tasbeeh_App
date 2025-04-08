@@ -1289,6 +1289,7 @@ class DuaController extends GetxController {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          backgroundColor: Get.isDarkMode ? Colors.grey.shade800 : Colors.black,
           title: const Text("Delete Dua"),
           content: const Text("Are you sure you want to delete this Dua?"),
           actions: [
@@ -1323,7 +1324,7 @@ class DuaController extends GetxController {
         TextEditingController();
 
     Get.defaultDialog(
-      backgroundColor: Colors.white,
+      backgroundColor: Get.isDarkMode ? Colors.grey.shade800 : Colors.black,
       title: "Add New Dua",
       content: Form(
         key: formKey,

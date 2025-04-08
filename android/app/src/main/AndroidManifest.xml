@@ -8,7 +8,7 @@
 
 
     <application
-        android:label="tasbeeh_app"
+        android:label="Tasbeeh &#38; Quran"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class NamazDetailScreen extends StatelessWidget {
@@ -84,16 +86,16 @@ class NamazDetailScreen extends StatelessWidget {
     ];
 
     return Scaffold(
-      backgroundColor: Colors.white,
+backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         scrolledUnderElevation: 0,
         centerTitle: true,
-        backgroundColor: Colors.white,
+backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Text(
           "Namaz",
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
-            color: Colors.black,
+            color: Get.isDarkMode ? Colors.white : Colors.black,
           ),
         ),
       ),
@@ -113,7 +115,7 @@ class NamazDetailScreen extends StatelessWidget {
                       style: GoogleFonts.poppins(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black87,
+                        color: Get.isDarkMode ? Colors.white : Colors.black87,
                       ),
                     ),
                   ),

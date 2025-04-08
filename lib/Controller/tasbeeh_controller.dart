@@ -119,6 +119,7 @@ class TasbeehController extends GetxController {
         TextEditingController(text: tasbeeh?['count']?.toString() ?? '');
 
     Get.defaultDialog(
+      backgroundColor: Get.isDarkMode ? Colors.grey.shade800 : Colors.black,
       title: index == null ? 'Add Tasbeeh' : 'Edit Tasbeeh',
       content: Column(
         children: [

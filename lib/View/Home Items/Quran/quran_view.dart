@@ -14,18 +14,18 @@ class QuranView extends StatelessWidget {
     final QuranController controller = Get.find<QuranController>();
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         scrolledUnderElevation: 0,
         title: Text(
           "Al-Quran",
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
-            color: Colors.black,
+            color: Get.isDarkMode ? Colors.white : Colors.black,
           ),
         ),
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
       body: Column(
         children: [
@@ -106,8 +106,10 @@ class QuranView extends StatelessWidget {
                         ),
                         title: Text(
                           surah.englishName,
-                          style:
-                              GoogleFonts.poppins(fontWeight: FontWeight.bold),
+                          style: GoogleFonts.poppins(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
                         ),
                         subtitle: Text(
                           surah.englishNameTranslation,

@@ -1,5 +1,7 @@
 import 'package:asmaulhusna/asmaulhusna.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tasbeeh_app/Components/animated_loader.dart';
 
@@ -37,18 +39,18 @@ class _AsmaulHusnaScreenState extends State<AsmaulHusnaScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         scrolledUnderElevation: 0,
         title: Text(
           "99 Names of Allah",
-           style: GoogleFonts.poppins(
+          style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
-            color: Colors.black,
+            color: Get.isDarkMode ? Colors.white : Colors.black,
           ),
         ),
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
       body: namesOfAllah.isEmpty
           ? const Center(
@@ -81,13 +83,11 @@ class _AsmaulHusnaScreenState extends State<AsmaulHusnaScreen> {
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.green.shade100,
-                          blurRadius: 2.0,
+color: Get.isDarkMode ? Colors.white : Colors.green.shade100,                           blurRadius: 2.0,
                           spreadRadius: 1.0,
                         ),
                       ],
                     ),
-
                     child: Padding(
                       padding: const EdgeInsets.all(10),
                       child: Column(

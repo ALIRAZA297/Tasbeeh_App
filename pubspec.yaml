@@ -49,6 +49,7 @@ dependencies:
   location: 5.0.0
   url_launcher: ^6.3.1
   hijri: ^3.0.0
+  flutter_switch: ^0.3.2
 
 
 flutter_icons:

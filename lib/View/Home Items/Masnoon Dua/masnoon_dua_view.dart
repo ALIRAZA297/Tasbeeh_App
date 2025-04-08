@@ -26,18 +26,19 @@ class _DuaScreenState extends State<DuaScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        
         scrolledUnderElevation: 0,
         centerTitle: true,
         title: Text(
           widget.categoryName,
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
-            color: Colors.black,
+            color: Get.isDarkMode ? Colors.white : Colors.black,
           ),
         ),
-        backgroundColor: Colors.white,
+backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
-      backgroundColor: Colors.white,
+backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Obx(
         () {
           final category = duaController.categories
