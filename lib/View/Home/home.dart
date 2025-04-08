@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:tasbeeh_app/Components/animated_loader.dart';
 import 'package:tasbeeh_app/Components/animation.dart';
+import 'package:tasbeeh_app/Controller/counter_controller.dart';
 import 'package:tasbeeh_app/Controller/prayer_controller.dart';
 import 'package:tasbeeh_app/View/Home%20Items/About%20us/about_page.dart';
 import 'package:tasbeeh_app/View/Home%20Items/Asma%20ul%20Husna/Allah_names.dart';
@@ -46,6 +47,7 @@ class PrayerScreen extends StatelessWidget {
                 () {
                   final bool isMorning = controller.isMorning();
                   final currentPrayerTime = controller.getCurrentPrayerTime();
+                  // ignore: unnecessary_null_comparison
                   if (currentPrayerTime == null || currentPrayerTime.isEmpty) {
                     return const Center(
                         child: AnimatedLoader(
@@ -332,6 +334,14 @@ class PrayerScreen extends StatelessWidget {
                     subtitle: 'ہمارے بارے میں',
                     onTap: () {
                       Get.to(() => const AboutPage());
+                    },
+                  ),
+                  _buildListTile(
+                    icon: CupertinoIcons.star_fill,
+                    title: 'Rate us',
+                    subtitle: 'ریٹ اس',
+                    onTap: () {
+                      Get.find<CounterController>().launchReviewPage();
                     },
                   ),
                 ],

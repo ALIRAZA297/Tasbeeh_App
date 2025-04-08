@@ -61,25 +61,27 @@ class TasbeehController extends GetxController {
     {
       'title': "روزانہ ذکر",
       'zikr': "لَا إِلَهَ إِلَّا اللهُ الْمَلِكُ الْحَقُّ الْمُبِينُ",
-      'translation': "اللّٰہ کے سوا کوئی معبود نہیں  جوحقیقی بادشاہت  کا  مالک ہے",
+      'translation':
+          "اللّٰہ کے سوا کوئی معبود نہیں  جوحقیقی بادشاہت  کا  مالک ہے",
     },
-    
     {
       'title': "روزانہ ذکر",
-      'zikr': "اللَّهُمَّ صَلِّ عَلٰی سَيِّدِنَا مُحَمَّدٍ وَّعَلٰٓی اٰلِہٖ وَسَلِّمُ",
+      'zikr':
+          "اللَّهُمَّ صَلِّ عَلٰی سَيِّدِنَا مُحَمَّدٍ وَّعَلٰٓی اٰلِہٖ وَسَلِّمُ",
       'translation': "درود شریف",
     },
     {
       'title': "آیت کریمہ",
-      'zikr': "لَآ اِلٰهَ اِلَّآ اَنتَ سُبحٰنَکَ اِنِّی کُنتُ مِنَ الظَّالِمِینَ",
-      'translation': "اے اللہ! تیرے سوا کویٔی معبود نہیں ہے، تو پاک ہے، بے شک میں ظالموں سے ہوں",
+      'zikr':
+          "لَآ اِلٰهَ اِلَّآ اَنتَ سُبحٰنَکَ اِنِّی کُنتُ مِنَ الظَّالِمِینَ",
+      'translation':
+          "اے اللہ! تیرے سوا کویٔی معبود نہیں ہے، تو پاک ہے، بے شک میں ظالموں سے ہوں",
     },
     {
-      'title' : "مشکل وقت کے لیے دعا",
-      'zikr' : "رَبِّ اَنِّیۡ مَغْلُوبٌ فَانْتَصِرْ",
-      'translation' : "اے میرے اللہ میں بے بس ہوں میری مدد فرما",
+      'title': "مشکل وقت کے لیے دعا",
+      'zikr': "رَبِّ اَنِّیۡ مَغْلُوبٌ فَانْتَصِرْ",
+      'translation': "اے میرے اللہ میں بے بس ہوں میری مدد فرما",
     }
-    
   ].obs;
 
   @override
@@ -121,24 +123,25 @@ class TasbeehController extends GetxController {
       content: Column(
         children: [
           TextField(
-              controller: titleController,
-              decoration: const InputDecoration(labelText: 'Title')),
+            controller: titleController,
+            decoration: const InputDecoration(labelText: 'Title'),
+          ),
           TextField(
-              controller: zikrController,
-              decoration: const InputDecoration(labelText: 'Zikr')),
+            controller: zikrController,
+            decoration: const InputDecoration(labelText: 'Zikr'),
+          ),
           TextField(
-              controller: translationController,
-              decoration: const InputDecoration(labelText: 'Translation')),
+            controller: translationController,
+            decoration: const InputDecoration(labelText: 'Translation'),
+          ),
           TextField(
             controller: countController,
             decoration: const InputDecoration(
                 labelText: 'Count (optional)', hintText: 'e.g: 33'),
             keyboardType: TextInputType.number,
             inputFormatters: [
-              FilteringTextInputFormatter
-                  .digitsOnly, 
-              LengthLimitingTextInputFormatter(
-                  5),
+              FilteringTextInputFormatter.digitsOnly,
+              LengthLimitingTextInputFormatter(5),
             ],
           ),
         ],
