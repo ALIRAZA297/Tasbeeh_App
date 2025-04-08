@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_islamic_icons/flutter_islamic_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hijri/hijri_calendar.dart';
 import 'package:intl/intl.dart';
 import 'package:tasbeeh_app/Components/animated_loader.dart';
 import 'package:tasbeeh_app/Components/animation.dart';
@@ -16,7 +17,6 @@ import 'package:tasbeeh_app/View/Home%20Items/Kalama/kalma.dart';
 import 'package:tasbeeh_app/View/Home%20Items/Masnoon%20Dua/category_wise_dua.dart';
 import 'package:tasbeeh_app/View/Home%20Items/Quran/quran_view.dart';
 import 'package:tasbeeh_app/View/Home%20Items/Tasbeeh/tasbeeh_screen.dart';
-import 'package:hijri/hijri_calendar.dart';
 
 class PrayerScreen extends StatelessWidget {
   PrayerScreen({super.key});
@@ -80,84 +80,83 @@ class PrayerScreen extends StatelessWidget {
 
                         // Prayer Time Text
                         Positioned(
-                            bottom: 10,
-                            right: 10,
-                            child: controller.isLoading.value
-                                ? const AnimatedLoader(color: Colors.white)
-                                : Text.rich(
-                                    TextSpan(
-                                      children: [
-                                        TextSpan(
-                                          text:
-                                              controller.currentPrayer.value !=
-                                                      null
-                                                  ? 'Prayer Time \n'
-                                                  : 'Upcoming Prayer \n',
-                                          style: GoogleFonts.poppins(
-                                            color: Colors.white,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w500,
-                                          ),
+                          bottom: 10,
+                          right: 10,
+                          child: controller.isLoading.value
+                              ? const AnimatedLoader(color: Colors.white)
+                              : Text.rich(
+                                  TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text: controller.currentPrayer.value !=
+                                                null
+                                            ? 'Prayer Time \n'
+                                            : 'Upcoming Prayer \n',
+                                        style: GoogleFonts.poppins(
+                                          color: Colors.white,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500,
                                         ),
-                                        TextSpan(
-                                          text: controller
-                                                      .currentPrayer.value !=
-                                                  null
-                                              ? '${controller.currentPrayer.value.toString().replaceAll("Prayer.", "").capitalize}\n'
-                                              : '${controller.getUpcomingPrayer().toString().replaceAll("Prayer.", "").capitalize}\n',
-                                          style: GoogleFonts.poppins(
-                                            color: Colors.white,
-                                            fontSize: 22, // Bigger size
-                                            fontWeight:
-                                                FontWeight.w900, // Extra Bold
-                                          ),
+                                      ),
+                                      TextSpan(
+                                        text: controller.currentPrayer.value !=
+                                                null
+                                            ? '${controller.currentPrayer.value.toString().replaceAll("Prayer.", "").capitalize}\n'
+                                            : '${controller.getUpcomingPrayer().toString().replaceAll("Prayer.", "").capitalize}\n',
+                                        style: GoogleFonts.poppins(
+                                          color: Colors.white,
+                                          fontSize: 22, // Bigger size
+                                          fontWeight:
+                                              FontWeight.w900, // Extra Bold
                                         ),
+                                      ),
 
-                                        // "Start:" (Less Bold)
-                                        TextSpan(
-                                          text: 'Start:\n',
-                                          style: GoogleFonts.poppins(
-                                            color: Colors.white,
-                                            fontSize: 16, // Smaller size
-                                            fontWeight:
-                                                FontWeight.w500, // Medium Bold
-                                          ),
+                                      // "Start:" (Less Bold)
+                                      TextSpan(
+                                        text: 'Start:\n',
+                                        style: GoogleFonts.poppins(
+                                          color: Colors.white,
+                                          fontSize: 16, // Smaller size
+                                          fontWeight:
+                                              FontWeight.w500, // Medium Bold
                                         ),
+                                      ),
 
-                                        // Start Time (More Bold)
-                                        TextSpan(
-                                          text: '$startTime\n',
-                                          style: GoogleFonts.poppins(
-                                            color: Colors.white,
-                                            fontSize: 20, // Bigger size
-                                            fontWeight: FontWeight.w800, // Bold
-                                          ),
+                                      // Start Time (More Bold)
+                                      TextSpan(
+                                        text: '$startTime\n',
+                                        style: GoogleFonts.poppins(
+                                          color: Colors.white,
+                                          fontSize: 20, // Bigger size
+                                          fontWeight: FontWeight.w800, // Bold
                                         ),
+                                      ),
 
-                                        // "End:" (Less Bold)
-                                        TextSpan(
-                                          text: 'End:\n',
-                                          style: GoogleFonts.poppins(
-                                            color: Colors.white,
-                                            fontSize: 16, // Smaller size
-                                            fontWeight:
-                                                FontWeight.w500, // Medium Bold
-                                          ),
+                                      // "End:" (Less Bold)
+                                      TextSpan(
+                                        text: 'End:\n',
+                                        style: GoogleFonts.poppins(
+                                          color: Colors.white,
+                                          fontSize: 16, // Smaller size
+                                          fontWeight:
+                                              FontWeight.w500, // Medium Bold
                                         ),
+                                      ),
 
-                                        // End Time (More Bold)
-                                        TextSpan(
-                                          text: endTime,
-                                          style: GoogleFonts.poppins(
-                                            color: Colors.white,
-                                            fontSize: 20, // Bigger size
-                                            fontWeight: FontWeight.w800, // Bold
-                                          ),
+                                      // End Time (More Bold)
+                                      TextSpan(
+                                        text: endTime,
+                                        style: GoogleFonts.poppins(
+                                          color: Colors.white,
+                                          fontSize: 20, // Bigger size
+                                          fontWeight: FontWeight.w800, // Bold
                                         ),
-                                      ],
-                                    ),
-                                    textAlign: TextAlign.left,
-                                  )),
+                                      ),
+                                    ],
+                                  ),
+                                  textAlign: TextAlign.left,
+                                ),
+                        ),
 
                         // Date Display in Bottom Right Corner
                         Positioned(
@@ -240,8 +239,8 @@ class PrayerScreen extends StatelessWidget {
                           ),
                         ),
                         const Positioned(
-                          right: 10,
-                          top: 10,
+                          left: 10,
+                          bottom: 10,
                           child: ThemeToggleSwitch(),
                         )
                       ],
