@@ -1,8 +1,10 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tasbeeh_app/Api/notification_service.dart';
 
 class TasbeehController extends GetxController {
   RxList<Map<String, dynamic>> myTasbeehList = <Map<String, dynamic>>[].obs;
@@ -88,6 +90,7 @@ class TasbeehController extends GetxController {
   void onInit() {
     super.onInit();
     loadMyTasbeeh();
+    scheduleDailyZikr();
   }
 
   Future<void> loadMyTasbeeh() async {
@@ -178,4 +181,15 @@ class TasbeehController extends GetxController {
     myTasbeehList.add({...tasbeeh});
     saveMyTasbeeh();
   }
+
+void scheduleDailyZikr() {
+  final now = DateTime.now();
+  var reminderTime = DateTime(now.year, now.month, now.day, 10, 00, 400); // 10 AM
+  if (reminderTime.isBefore(now)) {
+    reminderTime = reminderTime.add(const Duration(days: 1));
+  }
+  log("Planning Zikr Reminder for: $reminderTime");
+  NotificationService.scheduleZikrReminder(reminderTime);
+}
+
 }
