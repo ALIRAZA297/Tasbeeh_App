@@ -74,12 +74,13 @@ void main() async {
 
   NotificationService.cancelAll();
 
-final isAllowed = await AwesomeNotifications().isNotificationAllowed();
+  final isAllowed = await AwesomeNotifications().isNotificationAllowed();
   log("Initial notification permission status: $isAllowed");
   if (!isAllowed) {
     log("Requesting notification permission...");
     await AwesomeNotifications().requestPermissionToSendNotifications();
-    final permissionAfterRequest = await AwesomeNotifications().isNotificationAllowed();
+    final permissionAfterRequest =
+        await AwesomeNotifications().isNotificationAllowed();
     log("Permission after request: $permissionAfterRequest");
   }
 
@@ -108,7 +109,12 @@ final isAllowed = await AwesomeNotifications().isNotificationAllowed();
     ],
   );
 
-  // Ask for permissions if not granted
+  AwesomeNotifications().setListeners(
+    onActionReceivedMethod: (ReceivedAction receivedAction) async {
+      // Clear the badge when a notification is tapped
+      await AwesomeNotifications().resetGlobalBadge();
+    },
+  );
 
   Get.put(ThemeController());
   Get.put(PrayerController());

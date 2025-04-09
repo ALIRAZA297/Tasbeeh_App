@@ -1,58 +1,3 @@
-// import 'package:awesome_notifications/awesome_notifications.dart';
-
-// class NotificationService {
-//   // 🔁 Zikr Daily at Specific Time
-//   static Future<void> scheduleZikrReminder({int hour = 11, int minute = 30}) async {
-//     await AwesomeNotifications().createNotification(
-//       content: NotificationContent(
-//         id: 100,
-//         channelKey: 'zikr_channel',
-//         title: 'Zikr Reminder',
-//         body: 'Time for your daily Zikr 🕋',
-//         notificationLayout: NotificationLayout.Default,
-//       ),
-//       schedule: NotificationCalendar(
-//         hour: hour,
-//         minute: minute,
-//         second: 0,
-//         millisecond: 0,
-//         repeats: true,
-//       ),
-//     );
-//   }
-
-//   // 🕌 Namaz at Specific Time
-//   static Future<void> scheduleNamazReminder({
-//     required int id,
-//     required String title,
-//     required int hour,
-//     required int minute,
-//   }) async {
-//     await AwesomeNotifications().createNotification(
-//       content: NotificationContent(
-//         id: id,
-//         channelKey: 'prayer_channel',
-//         title: title,
-//         body: 'It\'s time for $title 🙏',
-//         notificationLayout: NotificationLayout.Default,
-//       ),
-//       schedule: NotificationCalendar(
-//         hour: hour,
-//         minute: minute,
-//         second: 0,
-//         millisecond: 0,
-//         repeats: true,
-//       ),
-//     );
-//   }
-
-//   static Future<void> cancelAllNotifications() async {
-//     await AwesomeNotifications().cancelAll();
-//   }
-// }
-
-
-
 import 'dart:developer';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
@@ -64,7 +9,7 @@ class NotificationService {
     log("All notifications cancelled");
   }
 
-   static Future<void> scheduleZikrReminder(DateTime dateTime) async {
+  static Future<void> scheduleZikrReminder(DateTime dateTime) async {
     try {
       final now = DateTime.now();
       if (dateTime.isBefore(now)) {
@@ -74,17 +19,11 @@ class NotificationService {
 
       log("Scheduling Zikr reminder for: $dateTime");
 
-      // Verify channel exists
-      // final channelExists = await AwesomeNotifications()
-      //     .listScheduledNotifications()
-      //     .then((list) =>
-      //         list.any((n) => n.content?.channelKey == 'zikr_channel'));
-      // log("Channel 'zikr_channel' exists: ${channelExists.toString()}");
-
-final channels = await AwesomeNotifications().listScheduledNotifications();
-final exists = channels.any((c) => c.content?.channelKey == 'zikr_channel');
-log("Channel exists: $exists");
-
+      final channels =
+          await AwesomeNotifications().listScheduledNotifications();
+      final exists =
+          channels.any((c) => c.content?.channelKey == 'zikr_channel');
+      log("Channel exists: $exists");
 
       // Check permission
       final hasPermission =
@@ -114,7 +53,7 @@ log("Channel exists: $exists");
         schedule: NotificationCalendar.fromDate(
           date: dateTime,
           repeats: true,
-          preciseAlarm: true,
+          // preciseAlarm: true,
           allowWhileIdle: true,
         ),
       );
@@ -161,5 +100,4 @@ log("Channel exists: $exists");
       log("Error scheduling $title prayer notification: $e");
     }
   }
-
 }

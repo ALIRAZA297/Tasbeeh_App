@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -182,14 +183,14 @@ class TasbeehController extends GetxController {
     saveMyTasbeeh();
   }
 
-void scheduleDailyZikr() {
-  final now = DateTime.now();
-  var reminderTime = DateTime(now.year, now.month, now.day, 10, 00, 400); // 10 AM
-  if (reminderTime.isBefore(now)) {
-    reminderTime = reminderTime.add(const Duration(days: 1));
+  void scheduleDailyZikr() {
+    final now = DateTime.now();
+    var reminderTime =
+        DateTime(now.year, now.month, now.day, 23, 58, 00); // 10 AM
+    if (reminderTime.isBefore(now)) {
+      reminderTime = reminderTime.add(const Duration(days: 1));
+    }
+    log("Planning Zikr Reminder for: $reminderTime");
+    NotificationService.scheduleZikrReminder(reminderTime);
   }
-  log("Planning Zikr Reminder for: $reminderTime");
-  NotificationService.scheduleZikrReminder(reminderTime);
-}
-
 }

@@ -47,10 +47,12 @@ class AboutPage extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "Version 1.0.2",
+                      "Version 1.0.4",
                       style: GoogleFonts.poppins(
                         fontSize: 16,
-                        color: Get.isDarkMode ? Colors.white70 : Colors.grey.shade700,
+                        color: Get.isDarkMode
+                            ? Colors.white70
+                            : Colors.grey.shade700,
                       ),
                     ),
                   ],
@@ -72,7 +74,7 @@ class AboutPage extends StatelessWidget {
                 "Tasbeeh & Quran is a simple and elegant app designed to help Muslims connect with the Quran and enhance their spiritual practice. It provides easy access to the full text of the Holy Quran with English translations, allowing users to read, resume their last reading, and save their progress effortlessly.",
                 style: GoogleFonts.poppins(
                   fontSize: 16,
-                  color: Get.isDarkMode ? Colors.white70: Colors.grey.shade800,
+                  color: Get.isDarkMode ? Colors.white70 : Colors.grey.shade800,
                 ),
                 textAlign: TextAlign.justify,
               ),
@@ -137,7 +139,7 @@ class AboutPage extends StatelessWidget {
                 "Special thanks to the open-source community for tools and resources.",
                 style: GoogleFonts.poppins(
                   fontSize: 16,
-                  color:Get.isDarkMode ? Colors.white70 :  Colors.grey.shade800,
+                  color: Get.isDarkMode ? Colors.white70 : Colors.grey.shade800,
                 ),
               ),
               const SizedBox(height: 30),
@@ -215,7 +217,8 @@ class AboutPage extends StatelessWidget {
                   description,
                   style: GoogleFonts.poppins(
                     fontSize: 14,
-                    color: Get.isDarkMode ? Colors.white70 : Colors.grey.shade700,
+                    color:
+                        Get.isDarkMode ? Colors.white70 : Colors.grey.shade700,
                   ),
                 ),
               ],
