@@ -128,6 +128,13 @@ void main() async {
   runApp(const MyApp());
 }
 
+@pragma("vm:entry-point")
+Future<void> onActionReceivedMethod(ReceivedAction receivedAction) async {
+  // handle the action here
+  debugPrint(
+      'Notification action received: ${receivedAction.buttonKeyPressed}');
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 

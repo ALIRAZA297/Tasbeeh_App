@@ -51,7 +51,6 @@ class PrayerController extends GetxController {
 
       // Schedule daily notifications
       scheduleDailyPrayerNotifications();
-
     } catch (e) {
       log('❌ Error fetching prayer times: $e');
       Get.snackbar(
@@ -263,27 +262,23 @@ class PrayerController extends GetxController {
     log("   Isha: ${formatTime(prayerTimes!.isha)}");
   }
 
+  void scheduleDailyPrayerNotifications() {
+    if (prayerTimes == null) return;
 
-void scheduleDailyPrayerNotifications() {
-  if (prayerTimes == null) return;
+    final prayers = {
+      0: {'title': 'Fajr', 'time': prayerTimes!.fajr},
+      1: {'title': 'Dhuhr', 'time': prayerTimes!.dhuhr},
+      2: {'title': 'Asr', 'time': prayerTimes!.asr},
+      3: {'title': 'Maghrib', 'time': prayerTimes!.maghrib},
+      4: {'title': 'Isha', 'time': prayerTimes!.isha},
+    };
 
-
-  final prayers = {
-    0: {'title': 'Fajr', 'time': prayerTimes!.fajr},
-    1: {'title': 'Dhuhr', 'time': prayerTimes!.dhuhr},
-    2: {'title': 'Asr', 'time': prayerTimes!.asr},
-    3: {'title': 'Maghrib', 'time': prayerTimes!.maghrib},
-    4: {'title': 'Isha', 'time': prayerTimes!.isha},
-  };
-
-  prayers.forEach((id, data) {
-    NotificationService.schedulePrayerNotification(
-      id: id,
-      title: data['title'] as String,
-      dateTime: data['time'] as DateTime,
-    );
-  });
-}
-
-
+    prayers.forEach((id, data) {
+      NotificationService.schedulePrayerNotification(
+        id: id,
+        title: data['title'] as String,
+        dateTime: data['time'] as DateTime,
+      );
+    });
+  }
 }
