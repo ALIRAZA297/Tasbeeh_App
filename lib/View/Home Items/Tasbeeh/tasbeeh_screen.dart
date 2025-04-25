@@ -35,9 +35,9 @@ class _TasbeehScreenState extends State<TasbeehScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Text(
           'Tasbeehat',
           style: GoogleFonts.poppins(
@@ -60,7 +60,9 @@ backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               height: 10,
             ),
             TabBar(
+              indicatorColor: Get.isDarkMode ? Colors.white : Colors.black,
               controller: _tabController,
+              labelColor: Get.isDarkMode ? Colors.white : Colors.black,
               tabs: const [
                 Tab(text: 'Popular Tasbeeh'),
                 Tab(text: 'My Tasbeeh'),
@@ -80,9 +82,10 @@ backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
       floatingActionButton: Obx(() {
         return currentTabIndex.value == 1
-            ? FloatingActionButton(backgroundColor: Colors.green.shade900,
+            ? FloatingActionButton(
+                backgroundColor: Colors.green.shade900,
                 onPressed: () => controller.showTasbeehDialog(context),
-                child:  const Icon(Icons.add, color: Colors.white),
+                child: const Icon(Icons.add, color: Colors.white),
               )
             : const SizedBox.shrink();
       }),

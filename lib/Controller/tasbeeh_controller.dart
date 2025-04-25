@@ -112,6 +112,7 @@ class TasbeehController extends GetxController {
   }
 
   void showTasbeehDialog(BuildContext context,
+
       {int? index, Map<String, dynamic>? tasbeeh}) {
     TextEditingController titleController =
         TextEditingController(text: tasbeeh?['title'] ?? '');
@@ -123,7 +124,7 @@ class TasbeehController extends GetxController {
         TextEditingController(text: tasbeeh?['count']?.toString() ?? '');
 
     Get.defaultDialog(
-      backgroundColor: Get.isDarkMode ? Colors.grey.shade800 : Colors.black,
+      backgroundColor: Get.isDarkMode ? Colors.grey.shade800 : Colors.white,
       title: index == null ? 'Add Tasbeeh' : 'Edit Tasbeeh',
       content: Column(
         children: [
@@ -186,7 +187,7 @@ class TasbeehController extends GetxController {
   void scheduleDailyZikr() {
     final now = DateTime.now();
     var reminderTime =
-        DateTime(now.year, now.month, now.day, 23, 58, 00); // 10 AM
+        DateTime(now.year, now.month, now.day, 10, 00, 00); // 10 AM
     if (reminderTime.isBefore(now)) {
       reminderTime = reminderTime.add(const Duration(days: 1));
     }
