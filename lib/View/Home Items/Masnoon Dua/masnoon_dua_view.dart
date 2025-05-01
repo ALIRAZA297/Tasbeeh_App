@@ -26,7 +26,6 @@ class _DuaScreenState extends State<DuaScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        
         scrolledUnderElevation: 0,
         centerTitle: true,
         title: Text(
@@ -36,9 +35,9 @@ class _DuaScreenState extends State<DuaScreen> {
             color: Get.isDarkMode ? Colors.white : Colors.black,
           ),
         ),
-backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
-backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Obx(
         () {
           final category = duaController.categories

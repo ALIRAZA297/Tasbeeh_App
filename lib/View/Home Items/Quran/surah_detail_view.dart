@@ -1,4 +1,5 @@
 import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -177,7 +178,7 @@ class _SurahDetailViewState extends State<SurahDetailView> {
                 children: [
                   const SizedBox(height: 25),
                   Text(
-                    "Ayah ${ayah.numberInSurah} | Page ${ayah.page}",
+                    "Ayah ${ayah.numberInSurah} | Page ${ayah.page} | Juz ${ayah.juz} | Manzil ${ayah.manzil}",
                     textAlign: TextAlign.left,
                     style: GoogleFonts.poppins(
                       fontSize: 14,

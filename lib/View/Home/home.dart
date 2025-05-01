@@ -448,7 +448,7 @@ class PrayerScreen extends StatelessWidget {
                   final String endTime = currentPrayerTime["end"] ?? "N/A";
 
                   return SizedBox(
-                    height: screenHeight * 0.5,
+                    height: screenHeight * 0.4,
                     width: double.infinity,
                     child: Stack(
                       children: [

@@ -113,6 +113,7 @@ void main() async {
     onActionReceivedMethod: (ReceivedAction receivedAction) async {
       // Clear the badge when a notification is tapped
       await AwesomeNotifications().resetGlobalBadge();
+      await AwesomeNotifications().decrementGlobalBadgeCounter();
     },
   );
 
