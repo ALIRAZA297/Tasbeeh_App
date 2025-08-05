@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:tasbeeh_app/Controller/quran_controller.dart';
 import 'package:tasbeeh_app/Controller/surah_controller.dart';
 import 'package:tasbeeh_app/Model/quran_model.dart';
+import 'package:tasbeeh_app/Utils/app_colors.dart';
 
 class SurahDetailView extends StatefulWidget {
   final Surah surah;
@@ -132,7 +133,7 @@ class _SurahDetailViewState extends State<SurahDetailView> {
           widget.surah.englishName,
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
-            color: Get.isDarkMode ? Colors.white : Colors.black,
+            color: Get.isDarkMode ? white : black,
           ),
         ),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -153,12 +154,12 @@ class _SurahDetailViewState extends State<SurahDetailView> {
               borderRadius: BorderRadius.circular(12),
               color: (widget.lastReadAyah != null &&
                       ayah.numberInSurah == widget.lastReadAyah)
-                  ? Colors.green.shade200
-                  : Colors.green.shade50,
+                  ? primary200
+                  : secondary,
             ),
             margin: const EdgeInsets.symmetric(vertical: 5),
             child: ListTile(
-              splashColor: Colors.transparent,
+              splashColor: transparent,
               shape: BeveledRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
@@ -170,7 +171,7 @@ class _SurahDetailViewState extends State<SurahDetailView> {
                   fontSize: 26,
                   height: 2.5,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: black,
                 ),
               ),
               subtitle: Column(
@@ -182,7 +183,7 @@ class _SurahDetailViewState extends State<SurahDetailView> {
                     textAlign: TextAlign.left,
                     style: GoogleFonts.poppins(
                       fontSize: 14,
-                      color: Colors.green.shade700,
+                      color: primary700,
                     ),
                   ),
                 ],
@@ -194,8 +195,8 @@ class _SurahDetailViewState extends State<SurahDetailView> {
                   "Saved",
                   "Reading progress updated",
                   snackPosition: SnackPosition.TOP,
-                  backgroundColor: Colors.green,
-                  colorText: Colors.white,
+                  backgroundColor: primary,
+                  colorText: white,
                 );
               },
             ),

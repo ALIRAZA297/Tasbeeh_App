@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:get/get.dart';
 import 'package:tasbeeh_app/Controller/theme_controller.dart';
+import 'package:tasbeeh_app/Utils/app_colors.dart';
 
 class ThemeToggleSwitch extends StatelessWidget {
   const ThemeToggleSwitch({super.key});
@@ -22,12 +23,12 @@ class ThemeToggleSwitch extends StatelessWidget {
         value: isDark,
         borderRadius: 30.0,
         padding: 4.0,
-        activeToggleColor: Colors.white,
-        inactiveToggleColor: Colors.orange,
+        activeToggleColor: white,
+        inactiveToggleColor: orange,
         activeColor: Colors.grey.shade600,
         inactiveColor: Colors.grey.shade300,
-        activeIcon: const Icon(Icons.nightlight, color: Colors.black, size: 18),
-        inactiveIcon: const Icon(Icons.wb_sunny, color: Colors.white, size: 18),
+        activeIcon: const Icon(Icons.nightlight, color: black, size: 18),
+        inactiveIcon: const Icon(Icons.wb_sunny, color: white, size: 18),
         onToggle: (val) {
           controller.toggleTheme(val);
         },

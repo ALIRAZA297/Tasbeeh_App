@@ -1,0 +1,24 @@
+import 'package:flutter/material.dart';
+
+const Color primary = Colors.teal;
+const Color transparent = Colors.transparent;
+Color secondary = Colors.teal.shade50;
+Color primary100 = Colors.teal.shade100;
+Color primary200 = Colors.teal.shade200;
+Color primary300 = Colors.teal.shade300;
+Color primary700 = Colors.teal.shade700;
+Color primary900 = Colors.teal.shade900;
+const Color blue = Colors.blue;
+const Color white = Colors.white;
+Color white70 = Colors.white70;
+const Color black = Colors.black;
+const Color black54 = Colors.black54;
+const Color black45 = Colors.black45;
+const Color black87 = Colors.black87;
+const Color grey = Colors.grey;
+Color grey700 = Colors.grey.shade700;
+Color grey800 = Colors.grey.shade800;
+Color grey500 = Colors.grey.shade500;
+Color grey300 = Colors.grey.shade300;
+const Color red = Colors.red;
+const Color orange = Colors.orange;

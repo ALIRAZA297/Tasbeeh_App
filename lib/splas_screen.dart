@@ -1,6 +1,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:tasbeeh_app/Utils/app_colors.dart';
 import 'package:tasbeeh_app/View/Home/home.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -14,8 +15,8 @@ class SplashScreen extends StatelessWidget {
       splashTransition: SplashTransition.sizeTransition,
       pageTransitionType: PageTransitionType.bottomToTop,
       animationDuration: const Duration(seconds: 1),
-      backgroundColor: Colors.green.shade50,
-      nextScreen:  PrayerScreen(),
+      backgroundColor: secondary,
+      nextScreen: PrayerScreen(),
       splash: Column(
         children: [
           SizedBox(

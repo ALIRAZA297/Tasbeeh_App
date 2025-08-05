@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tasbeeh_app/Api/notification_service.dart';
+import 'package:tasbeeh_app/Utils/app_colors.dart';
 
 class TasbeehController extends GetxController {
   RxList<Map<String, dynamic>> myTasbeehList = <Map<String, dynamic>>[].obs;
@@ -112,7 +113,6 @@ class TasbeehController extends GetxController {
   }
 
   void showTasbeehDialog(BuildContext context,
-
       {int? index, Map<String, dynamic>? tasbeeh}) {
     TextEditingController titleController =
         TextEditingController(text: tasbeeh?['title'] ?? '');
@@ -124,7 +124,7 @@ class TasbeehController extends GetxController {
         TextEditingController(text: tasbeeh?['count']?.toString() ?? '');
 
     Get.defaultDialog(
-      backgroundColor: Get.isDarkMode ? Colors.grey.shade800 : Colors.white,
+      backgroundColor: Get.isDarkMode ? grey800 : white,
       title: index == null ? 'Add Tasbeeh' : 'Edit Tasbeeh',
       content: Column(
         children: [

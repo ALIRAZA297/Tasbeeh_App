@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tasbeeh_app/Utils/app_colors.dart';
 
 class SurahController extends GetxController {
   var doNotShowAgain = false.obs; // Checkbox state
@@ -32,17 +33,17 @@ class SurahController extends GetxController {
     Get.dialog(
       Theme(
         data: ThemeData(
-          dialogBackgroundColor: Colors.white,
-          colorSchemeSeed: Colors.white,
+          dialogBackgroundColor: white,
+          colorSchemeSeed: white,
         ),
         child: AlertDialog(
-          backgroundColor: Colors.white,
+          backgroundColor: white,
           title: Text(
             "Save Your Reading Progress",
             style: GoogleFonts.poppins(
               fontSize: 22,
               fontWeight: FontWeight.bold,
-              color: Colors.black,
+              color: black,
             ),
           ),
           content: Column(
@@ -64,7 +65,7 @@ class SurahController extends GetxController {
                 style: GoogleFonts.poppins(
                   fontSize: 16,
                   fontWeight: FontWeight.normal,
-                  color: Colors.black,
+                  color: black,
                 ),
               ),
               const SizedBox(height: 10),
@@ -83,7 +84,7 @@ class SurahController extends GetxController {
                       style: GoogleFonts.poppins(
                         fontSize: 14,
                         fontWeight: FontWeight.normal,
-                        color: Colors.black,
+                        color: black,
                       ),
                     ),
                   ],
@@ -94,9 +95,8 @@ class SurahController extends GetxController {
           actions: [
             TextButton(
               style: const ButtonStyle(
-                minimumSize:
-                    MaterialStatePropertyAll(Size(double.infinity, 35)),
-                backgroundColor: MaterialStatePropertyAll(Colors.green),
+                minimumSize: WidgetStatePropertyAll(Size(double.infinity, 35)),
+                backgroundColor: WidgetStatePropertyAll(primary),
               ),
               onPressed: () {
                 if (doNotShowAgain.value) {
@@ -109,7 +109,7 @@ class SurahController extends GetxController {
                 "OK",
                 style: GoogleFonts.poppins(
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color: white,
                 ),
               ),
             ),

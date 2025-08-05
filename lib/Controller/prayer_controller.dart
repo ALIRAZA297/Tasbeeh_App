@@ -257,6 +257,10 @@ class PrayerController extends GetxController {
   late Coordinates coordinates;
   PrayerTimes? prayerTimes;
   var currentPrayer = Rxn<Prayer>();
+  var upcomingPrayer =
+      Rxn<Prayer>(); // Add separate tracking for upcoming prayer
+  var isCurrentPrayerActive =
+      false.obs; // Track if current prayer is actually active
   final Location location = Location();
 
   @override
@@ -331,6 +335,7 @@ class PrayerController extends GetxController {
     Prayer? activePrayer;
     Prayer? nextPrayer;
 
+    // Check all prayers to find active and upcoming ones
     for (var prayer in Prayer.values) {
       if (prayer == Prayer.none || prayer == Prayer.sunrise) {
         continue; // Skip invalid ones
@@ -341,36 +346,64 @@ class PrayerController extends GetxController {
 
       log("🕌 Checking ${prayer.toString().split('.').last}: Start: ${formatTime(start)}, End: ${formatTime(end)}");
 
+      // Check if prayer is currently active (within prayer window)
       if (now.isAfter(start) && now.isBefore(end)) {
-        activePrayer = prayer; // If the prayer is ongoing, set it
-        break;
+        activePrayer = prayer;
+        break; // Found active prayer, no need to continue
       }
 
+      // Find the next upcoming prayer
       if (now.isBefore(start) && nextPrayer == null) {
-        nextPrayer = prayer; // Set the first upcoming prayer
+        nextPrayer = prayer;
       }
     }
 
-    // If no active prayer, set the next upcoming prayer
+    // Set current prayer and active status
     if (activePrayer != null) {
       log("✅ Current Active Prayer: ${activePrayer.toString().split('.').last}");
       currentPrayer.value = activePrayer;
+      isCurrentPrayerActive.value = true;
+      upcomingPrayer.value = getNextPrayerAfter(activePrayer);
     } else {
+      // No active prayer right now
       if (nextPrayer != null) {
         log("⏭ Next Upcoming Prayer: ${nextPrayer.toString().split('.').last}");
-        currentPrayer.value = nextPrayer;
+        currentPrayer.value = null; // No current active prayer
+        upcomingPrayer.value = nextPrayer;
+        isCurrentPrayerActive.value = false;
       } else {
-        log("⏭ Defaulting to Fajr (next day)");
-        currentPrayer.value = Prayer.fajr;
+        // After Isha, next prayer is tomorrow's Fajr
+        log("⏭ All prayers completed for today, next is tomorrow's Fajr");
+        currentPrayer.value = null;
+        upcomingPrayer.value = Prayer.fajr;
+        isCurrentPrayerActive.value = false;
       }
     }
+  }
+
+  Prayer? getNextPrayerAfter(Prayer currentPrayer) {
+    final prayers = [
+      Prayer.fajr,
+      Prayer.dhuhr,
+      Prayer.asr,
+      Prayer.maghrib,
+      Prayer.isha
+    ];
+    final currentIndex = prayers.indexOf(currentPrayer);
+
+    if (currentIndex != -1 && currentIndex < prayers.length - 1) {
+      return prayers[currentIndex + 1];
+    }
+
+    // If it's Isha, next is tomorrow's Fajr
+    return Prayer.fajr;
   }
 
   Prayer getUpcomingPrayer() {
     final now = DateTime.now();
 
     for (var prayer in Prayer.values) {
-      if (prayer == Prayer.none) continue;
+      if (prayer == Prayer.none || prayer == Prayer.sunrise) continue;
 
       final start = getPrayerStartTime(prayer);
       if (now.isBefore(start)) {
@@ -382,23 +415,71 @@ class PrayerController extends GetxController {
   }
 
   Map<String, String> getCurrentPrayerTime() {
-    if (currentPrayer.value == null) {
-      Prayer nextPrayer = getUpcomingPrayer();
+    // If there's an active prayer, return its details
+    if (isCurrentPrayerActive.value && currentPrayer.value != null) {
+      final startTime = getPrayerStartTime(currentPrayer.value!);
+      final endTime = getPrayerEndTime(currentPrayer.value!);
+
+      log("📌 Current Active Prayer: ${currentPrayer.value}");
+      log("   Start: ${formatTime(startTime)}, End: ${formatTime(endTime)}");
+
       return {
-        "name": nextPrayer.toString().split('.').last,
-        "start": formatTime(getPrayerStartTime(nextPrayer)),
-        "end": formatTime(getPrayerEndTime(nextPrayer)),
+        "name": currentPrayer.value.toString().split('.').last,
+        "start": formatTime(startTime),
+        "end": formatTime(endTime),
+        "status": "current", // Indicate this is the current active prayer
       };
     }
 
-    final startTime = getPrayerStartTime(currentPrayer.value!);
-    final endTime = getPrayerEndTime(currentPrayer.value!);
+    // If no active prayer, return upcoming prayer details
+    if (upcomingPrayer.value != null) {
+      final startTime = getPrayerStartTime(upcomingPrayer.value!);
+      final endTime = getPrayerEndTime(upcomingPrayer.value!);
 
-    log("📌 Current Prayer: ${currentPrayer.value}");
-    log("   Start: ${formatTime(startTime)}, End: ${formatTime(endTime)}");
+      log("📌 Upcoming Prayer: ${upcomingPrayer.value}");
+      log("   Start: ${formatTime(startTime)}, End: ${formatTime(endTime)}");
+
+      return {
+        "name": upcomingPrayer.value.toString().split('.').last,
+        "start": formatTime(startTime),
+        "end": formatTime(endTime),
+        "status": "upcoming", // Indicate this is the upcoming prayer
+      };
+    }
+
+    // Fallback
+    Prayer nextPrayer = getUpcomingPrayer();
+    return {
+      "name": nextPrayer.toString().split('.').last,
+      "start": formatTime(getPrayerStartTime(nextPrayer)),
+      "end": formatTime(getPrayerEndTime(nextPrayer)),
+      "status": "upcoming",
+    };
+  }
+
+  // New method to get specifically the current active prayer (or null if none)
+  Map<String, String>? getActivePrayerTime() {
+    if (isCurrentPrayerActive.value && currentPrayer.value != null) {
+      final startTime = getPrayerStartTime(currentPrayer.value!);
+      final endTime = getPrayerEndTime(currentPrayer.value!);
+
+      return {
+        "name": currentPrayer.value.toString().split('.').last,
+        "start": formatTime(startTime),
+        "end": formatTime(endTime),
+      };
+    }
+    return null;
+  }
+
+  // New method to get specifically the upcoming prayer
+  Map<String, String> getUpcomingPrayerTime() {
+    final upcoming = upcomingPrayer.value ?? getUpcomingPrayer();
+    final startTime = getPrayerStartTime(upcoming);
+    final endTime = getPrayerEndTime(upcoming);
 
     return {
-      "name": currentPrayer.value.toString().split('.').last,
+      "name": upcoming.toString().split('.').last,
       "start": formatTime(startTime),
       "end": formatTime(endTime),
     };

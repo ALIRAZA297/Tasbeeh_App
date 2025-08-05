@@ -67,6 +67,7 @@ import 'package:tasbeeh_app/Controller/prayer_controller.dart';
 import 'package:tasbeeh_app/Controller/quran_controller.dart';
 import 'package:tasbeeh_app/Controller/tasbeeh_controller.dart';
 import 'package:tasbeeh_app/Controller/theme_controller.dart';
+import 'package:tasbeeh_app/Utils/app_colors.dart';
 import 'package:tasbeeh_app/splas_screen.dart';
 
 void main() async {
@@ -91,7 +92,7 @@ void main() async {
         channelKey: 'zikr_channel',
         channelName: 'Zikr Notifications',
         channelDescription: 'Daily zikr reminders',
-        defaultColor: Colors.green,
+        defaultColor: primary,
         importance: NotificationImportance.Max,
         playSound: true,
         enableLights: true,
@@ -102,7 +103,7 @@ void main() async {
         channelKey: 'prayer_channel',
         channelName: 'Prayer Notifications',
         channelDescription: 'Daily Namaz reminders',
-        defaultColor: Colors.blue,
+        defaultColor: blue,
         importance: NotificationImportance.Max,
         channelShowBadge: true,
       ),

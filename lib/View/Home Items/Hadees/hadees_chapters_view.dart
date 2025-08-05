@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:tasbeeh_app/Components/animated_loader.dart';
 import 'package:tasbeeh_app/Components/animation.dart';
 import 'package:tasbeeh_app/Controller/hadees_chapters.dart';
+import 'package:tasbeeh_app/Utils/app_colors.dart';
 import 'package:tasbeeh_app/View/Home%20Items/Hadees/hadees_view.dart';
 
 class HadithChaptersView extends StatelessWidget {
@@ -18,20 +19,20 @@ class HadithChaptersView extends StatelessWidget {
     controller.fetchHadithChapters(bookSlug);
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: white,
       appBar: AppBar(
         title: Text(
           "Chapters of $bookSlug",
           style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: white,
       ),
       body: Obx(() {
         if (controller.isLoading.value) {
           return const Center(
               child: AnimatedLoader(
-            color: Colors.green,
+            color: primary,
           ));
         }
 
@@ -46,11 +47,11 @@ class HadithChaptersView extends StatelessWidget {
               child: AppButtonAnimation(
                 child: ListTile(
                   leading: CircleAvatar(
-                    backgroundColor: Colors.green.shade700,
+                    backgroundColor: primary700,
                     child: Text(
                       chapter.chapterNumber,
                       style: const TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold),
+                          color: white, fontWeight: FontWeight.bold),
                     ),
                   ),
                   title: Text(

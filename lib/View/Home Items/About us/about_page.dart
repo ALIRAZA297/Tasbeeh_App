@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tasbeeh_app/Utils/app_colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AboutPage extends StatelessWidget {
@@ -16,7 +17,7 @@ class AboutPage extends StatelessWidget {
           "About us",
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
-            color: Get.isDarkMode ? Colors.white : Colors.black,
+            color: Get.isDarkMode ? white : black,
           ),
         ),
         centerTitle: true,
@@ -43,16 +44,14 @@ class AboutPage extends StatelessWidget {
                       style: GoogleFonts.poppins(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
-                        color: Get.isDarkMode ? Colors.white : Colors.black,
+                        color: Get.isDarkMode ? white : black,
                       ),
                     ),
                     Text(
                       "Version 1.0.9",
                       style: GoogleFonts.poppins(
                         fontSize: 16,
-                        color: Get.isDarkMode
-                            ? Colors.white70
-                            : Colors.grey.shade700,
+                        color: Get.isDarkMode ? white70 : grey700,
                       ),
                     ),
                   ],
@@ -66,7 +65,7 @@ class AboutPage extends StatelessWidget {
                 style: GoogleFonts.poppins(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: Get.isDarkMode ? Colors.white : Colors.black,
+                  color: Get.isDarkMode ? white : black,
                 ),
               ),
               const SizedBox(height: 10),
@@ -74,7 +73,7 @@ class AboutPage extends StatelessWidget {
                 "Tasbeeh & Quran is a simple and elegant app designed to help Muslims connect with the Quran and enhance their spiritual practice. It provides easy access to the full text of the Holy Quran with English translations, allowing users to read, resume their last reading, and save their progress effortlessly.",
                 style: GoogleFonts.poppins(
                   fontSize: 16,
-                  color: Get.isDarkMode ? Colors.white70 : Colors.grey.shade800,
+                  color: Get.isDarkMode ? white70 : grey800,
                 ),
                 textAlign: TextAlign.justify,
               ),
@@ -86,7 +85,7 @@ class AboutPage extends StatelessWidget {
                 style: GoogleFonts.poppins(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: Get.isDarkMode ? Colors.white : Colors.black,
+                  color: Get.isDarkMode ? white : black,
                 ),
               ),
               const SizedBox(height: 10),
@@ -130,7 +129,7 @@ class AboutPage extends StatelessWidget {
                 style: GoogleFonts.poppins(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: Get.isDarkMode ? Colors.white : Colors.black,
+                  color: Get.isDarkMode ? white : black,
                 ),
               ),
               const SizedBox(height: 10),
@@ -139,7 +138,7 @@ class AboutPage extends StatelessWidget {
                 "Special thanks to the open-source community for tools and resources.",
                 style: GoogleFonts.poppins(
                   fontSize: 16,
-                  color: Get.isDarkMode ? Colors.white70 : Colors.grey.shade800,
+                  color: Get.isDarkMode ? white70 : grey800,
                 ),
               ),
               const SizedBox(height: 30),
@@ -148,7 +147,7 @@ class AboutPage extends StatelessWidget {
               Center(
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green.shade700,
+                    backgroundColor: primary700,
                     padding: const EdgeInsets.symmetric(
                       vertical: 12,
                       horizontal: 24,
@@ -176,7 +175,7 @@ class AboutPage extends StatelessWidget {
                   child: Text(
                     "Contact Us",
                     style: GoogleFonts.poppins(
-                      color: Colors.white,
+                      color: white,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -197,7 +196,7 @@ class AboutPage extends StatelessWidget {
         children: [
           Icon(
             Icons.check_circle,
-            color: Colors.green.shade700,
+            color: primary700,
             size: 20,
           ),
           const SizedBox(width: 10),
@@ -210,15 +209,14 @@ class AboutPage extends StatelessWidget {
                   style: GoogleFonts.poppins(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
-                    color: Get.isDarkMode ? Colors.white : Colors.black,
+                    color: Get.isDarkMode ? white : black,
                   ),
                 ),
                 Text(
                   description,
                   style: GoogleFonts.poppins(
                     fontSize: 14,
-                    color:
-                        Get.isDarkMode ? Colors.white70 : Colors.grey.shade700,
+                    color: Get.isDarkMode ? white70 : grey700,
                   ),
                 ),
               ],

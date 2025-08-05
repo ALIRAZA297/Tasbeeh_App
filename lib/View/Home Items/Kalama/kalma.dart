@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tasbeeh_app/Controller/kalma_controller.dart';
+import 'package:tasbeeh_app/Utils/app_colors.dart';
 
 class KalimaScreen extends StatelessWidget {
   final KalimaController controller = Get.find<KalimaController>();
@@ -27,7 +28,7 @@ class KalimaScreen extends StatelessWidget {
             return Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: Colors.green.shade50,
+                color: secondary,
               ),
               margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
               child: Padding(
@@ -42,7 +43,7 @@ class KalimaScreen extends StatelessWidget {
                         style: GoogleFonts.poppins(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: Colors.green,
+                          color: primary,
                         ),
                       ),
                     ),
@@ -54,7 +55,7 @@ class KalimaScreen extends StatelessWidget {
                         fontSize: 26,
                         fontWeight: FontWeight.bold,
                         height: 2,
-                        color: Colors.black,
+                        color: black,
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -64,7 +65,7 @@ class KalimaScreen extends StatelessWidget {
                       style: GoogleFonts.notoNastaliqUrdu(
                         height: 2,
                         fontSize: 20,
-                        color: Colors.black45,
+                        color: black45,
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -73,7 +74,7 @@ class KalimaScreen extends StatelessWidget {
                       textAlign: TextAlign.left,
                       style: GoogleFonts.poppins(
                         fontSize: 18,
-                        color: Colors.black45,
+                        color: black45,
                       ),
                     ),
                   ],

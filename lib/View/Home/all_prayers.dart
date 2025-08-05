@@ -6,6 +6,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tasbeeh_app/Controller/prayer_controller.dart';
+import 'package:tasbeeh_app/Utils/app_colors.dart';
 
 class AllPrayersScreen extends StatelessWidget {
   AllPrayersScreen({super.key});
@@ -23,7 +24,7 @@ class AllPrayersScreen extends StatelessWidget {
         title: Text(
           'Prayer Times',
           style: GoogleFonts.poppins(
-            color: Get.isDarkMode ? Colors.white : Colors.black,
+            color: Get.isDarkMode ? white : black,
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
@@ -54,21 +55,21 @@ class AllPrayersScreen extends StatelessWidget {
                         opacity: value,
                         child: Container(
                           height: 100,
-                          color: Colors.green.shade700.withOpacity(0.2),
+                          color: primary700.withOpacity(0.2),
                           child: Center(
                             child: indicatorController.isLoading
                                 ? Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       SpinKitFadingCircle(
-                                        color: Colors.green.shade700,
+                                        color: primary700,
                                         size: 50.0,
                                       ),
                                       const SizedBox(height: 8),
                                       Text(
                                         "Fetching Prayer Times...",
                                         style: GoogleFonts.poppins(
-                                          color: Colors.green.shade700,
+                                          color: primary700,
                                           fontSize: 14,
                                           fontWeight: FontWeight.w500,
                                         ),
@@ -80,7 +81,7 @@ class AllPrayersScreen extends StatelessWidget {
                                     children: [
                                       Icon(
                                         FlutterIslamicIcons.solidMosque,
-                                        color: Colors.green.shade700,
+                                        color: primary700,
                                         size: 40 * value,
                                       ),
                                       const SizedBox(height: 8),
@@ -89,7 +90,7 @@ class AllPrayersScreen extends StatelessWidget {
                                             ? "Pull to refresh"
                                             : "Release to refresh",
                                         style: GoogleFonts.poppins(
-                                          color: Colors.green.shade700,
+                                          color: primary700,
                                           fontSize: 14,
                                           fontWeight: FontWeight.w500,
                                         ),
@@ -117,7 +118,7 @@ class AllPrayersScreen extends StatelessWidget {
                 () => controller.isLoading.value
                     ? Center(
                         child: SpinKitFadingCircle(
-                          color: Colors.green.shade700,
+                          color: primary700,
                           size: 50.0,
                         ),
                       )
@@ -206,14 +207,14 @@ class AllPrayersScreen extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
         side: BorderSide(
-          color: isCurrent ? Colors.green.shade700 : Colors.grey.shade300,
+          color: isCurrent ? primary700 : grey300,
           width: isCurrent ? 2 : 1,
         ),
       ),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
-          color: Colors.white,
+          color: white,
           image: const DecorationImage(
             fit: BoxFit.cover,
             image: AssetImage(
@@ -222,7 +223,7 @@ class AllPrayersScreen extends StatelessWidget {
           ),
           boxShadow: [
             BoxShadow(
-              color: Get.isDarkMode ? Colors.white : Colors.green.shade100,
+              color: Get.isDarkMode ? white : primary100,
               blurRadius: 2.0,
               spreadRadius: 1.0,
             ),
@@ -233,13 +234,13 @@ class AllPrayersScreen extends StatelessWidget {
               const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           leading: Icon(
             icon,
-            color: Colors.green.shade700,
+            color: primary700,
             size: 30,
           ),
           title: Text(
             prayerName,
             style: GoogleFonts.poppins(
-              color: Colors.black,
+              color: black,
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
@@ -247,14 +248,14 @@ class AllPrayersScreen extends StatelessWidget {
           subtitle: Text(
             'Start: $startTime\nEnd: $endTime',
             style: GoogleFonts.poppins(
-              color: Colors.black54,
+              color: black54,
               fontSize: 14,
             ),
           ),
           trailing: isCurrent
               ? Icon(
                   Icons.check_circle,
-                  color: Colors.green.shade700,
+                  color: primary700,
                   size: 24,
                 )
               : null,

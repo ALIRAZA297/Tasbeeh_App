@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:tasbeeh_app/Components/animated_loader.dart';
 import 'package:tasbeeh_app/Components/animation.dart';
 import 'package:tasbeeh_app/Controller/quran_controller.dart';
+import 'package:tasbeeh_app/Utils/app_colors.dart';
 import 'package:tasbeeh_app/View/Home%20Items/Quran/surah_detail_view.dart';
 
 class QuranView extends StatelessWidget {
@@ -21,7 +22,7 @@ class QuranView extends StatelessWidget {
           "Al-Quran",
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
-            color: Get.isDarkMode ? Colors.white : Colors.black,
+            color: Get.isDarkMode ? white : black,
           ),
         ),
         centerTitle: true,
@@ -38,7 +39,7 @@ class QuranView extends StatelessWidget {
                 padding: const EdgeInsets.all(10.0),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green.shade700,
+                    backgroundColor: primary700,
                     padding: const EdgeInsets.symmetric(
                         vertical: 15, horizontal: 20),
                   ),
@@ -54,7 +55,7 @@ class QuranView extends StatelessWidget {
                     );
                   },
                   child: const Text("Resume Last Reading",
-                      style: TextStyle(color: Colors.white)),
+                      style: TextStyle(color: white)),
                 ),
               );
             } else {
@@ -66,7 +67,7 @@ class QuranView extends StatelessWidget {
               if (controller.isLoading.value) {
                 return const Center(
                   child: AnimatedLoader(
-                    color: Colors.green,
+                    color: primary,
                   ),
                 );
               }
@@ -84,22 +85,22 @@ class QuranView extends StatelessWidget {
                   return AppButtonAnimation(
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Colors.green.shade50,
+                        color: secondary,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       margin: const EdgeInsets.symmetric(
                           horizontal: 12, vertical: 5),
                       child: ListTile(
-                        splashColor: Colors.transparent,
+                        splashColor: transparent,
                         shape: BeveledRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
                         leading: CircleAvatar(
-                          backgroundColor: Colors.green.shade700,
+                          backgroundColor: primary700,
                           child: Text(
                             surah.number.toString(),
                             style: GoogleFonts.poppins(
-                              color: Colors.white,
+                              color: white,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -108,20 +109,19 @@ class QuranView extends StatelessWidget {
                           surah.englishName,
                           style: GoogleFonts.poppins(
                             fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                            color: black,
                           ),
                         ),
                         subtitle: Text(
                           surah.englishNameTranslation,
-                          style:
-                              GoogleFonts.poppins(color: Colors.grey.shade700),
+                          style: GoogleFonts.poppins(color: grey700),
                         ),
                         trailing: Text(
                           surah.name,
                           style: GoogleFonts.amiri(
                             fontSize: 26,
                             fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                            color: black,
                           ),
                         ),
                         onTap: () =>

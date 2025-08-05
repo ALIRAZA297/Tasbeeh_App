@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tasbeeh_app/Components/masnoon_dua_card.dart';
 import 'package:tasbeeh_app/Controller/masnoon_dua_controller.dart';
+import 'package:tasbeeh_app/Utils/app_colors.dart';
 
 class DuaScreen extends StatefulWidget {
   final String categoryName;
@@ -32,7 +33,7 @@ class _DuaScreenState extends State<DuaScreen> {
           widget.categoryName,
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
-            color: Get.isDarkMode ? Colors.white : Colors.black,
+            color: Get.isDarkMode ? white : black,
           ),
         ),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -65,7 +66,7 @@ class _DuaScreenState extends State<DuaScreen> {
                       Icon(
                         Icons.search_off,
                         size: 50,
-                        color: Colors.grey.shade500,
+                        color: grey500,
                       ),
                       Text(
                         'No Dua available',
@@ -73,7 +74,7 @@ class _DuaScreenState extends State<DuaScreen> {
                           fontSize: 18,
                           height: 2,
                           fontWeight: FontWeight.bold,
-                          color: Colors.grey.shade500,
+                          color: grey500,
                         ),
                       ),
                     ],
@@ -91,8 +92,8 @@ class _DuaScreenState extends State<DuaScreen> {
                     context,
                     widget.categoryName,
                   ),
-                  backgroundColor: Colors.green,
-                  child: const Icon(Icons.add, color: Colors.white),
+                  backgroundColor: primary,
+                  child: const Icon(Icons.add, color: white),
                 )
               : const SizedBox.shrink();
         },

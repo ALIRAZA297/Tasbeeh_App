@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tasbeeh_app/Controller/hadees_controller.dart';
+import 'package:tasbeeh_app/Utils/app_colors.dart';
 
 class HadithsView extends StatefulWidget {
   final String bookSlug;
@@ -33,7 +34,7 @@ class _HadithsViewState extends State<HadithsView> {
         title: Text("Hadiths",
             style: GoogleFonts.poppins(fontWeight: FontWeight.bold)),
         centerTitle: true,
-        backgroundColor: Colors.green.shade700,
+        backgroundColor: primary700,
       ),
       body: Obx(
         () {
@@ -75,7 +76,7 @@ class _HadithsViewState extends State<HadithsView> {
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green.shade700,
+                      backgroundColor: primary700,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 40, vertical: 15),
                     ),
@@ -85,13 +86,13 @@ class _HadithsViewState extends State<HadithsView> {
                       setState(() {});
                     },
                     child: controller.isLoading.value
-                        ? const CircularProgressIndicator(color: Colors.white)
+                        ? const CircularProgressIndicator(color: white)
                         : Text(
                             "Load More",
                             style: GoogleFonts.poppins(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.white),
+                                color: white),
                           ),
                   ),
                 ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tasbeeh_app/Components/animated_loader.dart';
+import 'package:tasbeeh_app/Utils/app_colors.dart';
 
 class AsmaulHusnaScreen extends StatefulWidget {
   const AsmaulHusnaScreen({super.key});
@@ -45,7 +46,7 @@ class _AsmaulHusnaScreenState extends State<AsmaulHusnaScreen> {
           "99 Names of Allah",
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
-            color: Get.isDarkMode ? Colors.white : Colors.black,
+            color: Get.isDarkMode ? white : black,
           ),
         ),
         centerTitle: true,
@@ -54,7 +55,7 @@ class _AsmaulHusnaScreenState extends State<AsmaulHusnaScreen> {
       body: namesOfAllah.isEmpty
           ? const Center(
               child: AnimatedLoader(
-                color: Colors.green,
+                color: primary,
               ),
             )
           : Padding(
@@ -73,7 +74,7 @@ class _AsmaulHusnaScreenState extends State<AsmaulHusnaScreen> {
                     margin: const EdgeInsets.all(2),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
-                      color: Colors.white,
+                      color: white,
                       image: const DecorationImage(
                         fit: BoxFit.cover,
                         image: AssetImage(
@@ -82,7 +83,8 @@ class _AsmaulHusnaScreenState extends State<AsmaulHusnaScreen> {
                       ),
                       boxShadow: [
                         BoxShadow(
-color: Get.isDarkMode ? Colors.white : Colors.green.shade100,                           blurRadius: 2.0,
+                          color: Get.isDarkMode ? white : primary100,
+                          blurRadius: 2.0,
                           spreadRadius: 1.0,
                         ),
                       ],
@@ -98,7 +100,7 @@ color: Get.isDarkMode ? Colors.white : Colors.green.shade100,                   
                             style: GoogleFonts.amiri(
                               fontSize: 26,
                               fontWeight: FontWeight.bold,
-                              color: Colors.green.shade700,
+                              color: primary700,
                             ),
                             textAlign: TextAlign.center,
                           ),
@@ -110,7 +112,7 @@ color: Get.isDarkMode ? Colors.white : Colors.green.shade100,                   
                             style: GoogleFonts.poppins(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                              color: black,
                             ),
                           ),
                           // Description
@@ -118,7 +120,7 @@ color: Get.isDarkMode ? Colors.white : Colors.green.shade100,                   
                             name['description'] ?? '',
                             style: GoogleFonts.poppins(
                               fontSize: 14,
-                              color: Colors.grey.shade700,
+                              color: grey700,
                             ),
                             textAlign: TextAlign.center,
                           ),

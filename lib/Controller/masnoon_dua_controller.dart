@@ -6,6 +6,7 @@ import 'package:flutter_islamic_icons/flutter_islamic_icons.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tasbeeh_app/Model/masnoon_dua_model.dart';
+import 'package:tasbeeh_app/Utils/app_colors.dart';
 
 class DuaController extends GetxController {
   var categories = <DuaCategoryModel>[].obs;
@@ -1275,7 +1276,7 @@ class DuaController extends GetxController {
                 Get.snackbar("Success", "Dua updated successfully",
                     snackPosition: SnackPosition.TOP);
               },
-              child: const Text("Save", style: TextStyle(color: Colors.green)),
+              child: const Text("Save", style: TextStyle(color: primary)),
             ),
           ],
         );
@@ -1289,7 +1290,7 @@ class DuaController extends GetxController {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: Get.isDarkMode ? Colors.grey.shade800 : Colors.white,
+          backgroundColor: Get.isDarkMode ? grey800 : white,
           title: const Text("Delete Dua"),
           content: const Text("Are you sure you want to delete this Dua?"),
           actions: [
@@ -1306,7 +1307,7 @@ class DuaController extends GetxController {
                 Get.snackbar("Success", "Dua deleted successfully",
                     snackPosition: SnackPosition.TOP);
               },
-              child: const Text("Delete", style: TextStyle(color: Colors.red)),
+              child: const Text("Delete", style: TextStyle(color: red)),
             ),
           ],
         );
@@ -1324,7 +1325,7 @@ class DuaController extends GetxController {
         TextEditingController();
 
     Get.defaultDialog(
-      backgroundColor: Get.isDarkMode ? Colors.grey.shade800 : Colors.white,
+      backgroundColor: Get.isDarkMode ? grey800 : white,
       title: "Add New Dua",
       content: Form(
         key: formKey,
@@ -1409,7 +1410,7 @@ class DuaController extends GetxController {
                 Get.snackbar("Success", "Category deleted successfully",
                     snackPosition: SnackPosition.TOP);
               },
-              child: const Text("Delete", style: TextStyle(color: Colors.red)),
+              child: const Text("Delete", style: TextStyle(color: red)),
             ),
           ],
         );
@@ -1454,7 +1455,7 @@ class DuaController extends GetxController {
                       snackPosition: SnackPosition.TOP);
                 }
               },
-              child: const Text("Save", style: TextStyle(color: Colors.green)),
+              child: const Text("Save", style: TextStyle(color: primary)),
             ),
           ],
         );

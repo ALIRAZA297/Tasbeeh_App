@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tasbeeh_app/Utils/app_colors.dart';
 
 class NamazDetailScreen extends StatelessWidget {
   const NamazDetailScreen({super.key});
@@ -86,16 +87,16 @@ class NamazDetailScreen extends StatelessWidget {
     ];
 
     return Scaffold(
-backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         scrolledUnderElevation: 0,
         centerTitle: true,
-backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Text(
           "Namaz",
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
-            color: Get.isDarkMode ? Colors.white : Colors.black,
+            color: Get.isDarkMode ? white : black,
           ),
         ),
       ),
@@ -115,7 +116,7 @@ backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                       style: GoogleFonts.poppins(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: Get.isDarkMode ? Colors.white : Colors.black87,
+                        color: Get.isDarkMode ? white : black87,
                       ),
                     ),
                   ),
@@ -133,7 +134,7 @@ backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                       //     offset: Offset(2, 2),
                       //   ),
                       // ],
-                      color: Colors.white,
+                      color: white,
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),

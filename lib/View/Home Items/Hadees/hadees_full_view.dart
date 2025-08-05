@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tasbeeh_app/Model/hadees_model.dart';
+import 'package:tasbeeh_app/Utils/app_colors.dart';
 
 class FullHadithView extends StatelessWidget {
   final Hadith hadith;
@@ -16,7 +17,7 @@ class FullHadithView extends StatelessWidget {
           style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
-        backgroundColor: Colors.green.shade700,
+        backgroundColor: primary700,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
@@ -30,7 +31,7 @@ class FullHadithView extends StatelessWidget {
               style: GoogleFonts.amiri(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: Colors.green.shade700,
+                color: primary700,
               ),
             ),
             const SizedBox(height: 10),
@@ -40,7 +41,7 @@ class FullHadithView extends StatelessWidget {
               style: GoogleFonts.notoNaskhArabic(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
+                color: black,
               ),
             ),
             const SizedBox(height: 10),
@@ -49,7 +50,7 @@ class FullHadithView extends StatelessWidget {
               style: GoogleFonts.poppins(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
+                color: black,
               ),
             ),
             const Divider(thickness: 2, height: 20),
@@ -61,7 +62,7 @@ class FullHadithView extends StatelessWidget {
               style: GoogleFonts.amiri(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
+                color: black,
               ),
             ),
             const SizedBox(height: 20),
@@ -72,7 +73,7 @@ class FullHadithView extends StatelessWidget {
               textAlign: TextAlign.right,
               style: GoogleFonts.notoNaskhArabic(
                 fontSize: 18,
-                color: Colors.black,
+                color: black,
               ),
             ),
             const SizedBox(height: 20),
@@ -82,7 +83,7 @@ class FullHadithView extends StatelessWidget {
               hadith.hadithEnglish,
               style: GoogleFonts.poppins(
                 fontSize: 18,
-                color: Colors.black,
+                color: black,
               ),
             ),
           ],

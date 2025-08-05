@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:tasbeeh_app/Components/animation.dart';
 import 'package:tasbeeh_app/Controller/masnoon_dua_controller.dart';
 import 'package:tasbeeh_app/Model/masnoon_dua_model.dart';
+import 'package:tasbeeh_app/Utils/app_colors.dart';
 
 import 'masnoon_dua_view.dart';
 
@@ -15,15 +16,15 @@ class DuaCategoryScreen extends StatelessWidget {
     final DuaController duaController = Get.find<DuaController>();
 
     return Scaffold(
-backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         scrolledUnderElevation: 0,
-backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Text(
           "Dua Categories",
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
-            color: Get.isDarkMode ? Colors.white : Colors.black,
+            color: Get.isDarkMode ? white : black,
           ),
         ),
         centerTitle: true,
@@ -39,21 +40,22 @@ backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               final category = duaController.categories[index];
               return AppButtonAnimation(
                 child: Container(
-                  margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
+                  margin:
+                      const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.green.shade50,
+                    color: secondary,
                   ),
                   child: ListTile(
                     shape: ContinuousRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    splashColor: Colors.transparent,
+                    splashColor: transparent,
                     title: Text(
                       category.name,
                       style: GoogleFonts.poppins(
                         fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                        color: black,
                       ),
                     ),
                     trailing: category.isUserAdded
@@ -61,13 +63,13 @@ backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               IconButton(
-                                icon: const Icon(Icons.delete, color: Colors.red),
+                                icon: const Icon(Icons.delete, color: red),
                                 onPressed: () =>
                                     duaController.showDeleteCategoryDialog(
                                         context, category.name),
                               ),
                               IconButton(
-                                icon: const Icon(Icons.edit, color: Colors.blue),
+                                icon: const Icon(Icons.edit, color: blue),
                                 onPressed: () =>
                                     duaController.showEditCategoryDialog(
                                         context, category.name),
@@ -87,8 +89,8 @@ backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       }),
       floatingActionButton: FloatingActionButton(
         onPressed: () => showAddCategoryDialog(context, duaController),
-        backgroundColor: Colors.green,
-        child: const Icon(Icons.add, color: Colors.white),
+        backgroundColor: primary,
+        child: const Icon(Icons.add, color: white),
       ),
     );
   }
@@ -97,7 +99,7 @@ backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       BuildContext context, DuaController duaController) {
     final TextEditingController categoryController = TextEditingController();
     Get.defaultDialog(
-      backgroundColor:Get.isDarkMode ? Colors.grey.shade800 : Colors.white,
+      backgroundColor: Get.isDarkMode ? grey800 : white,
       title: "Add New Category",
       content: Column(
         children: [
@@ -112,7 +114,7 @@ backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           const SizedBox(height: 10),
           ElevatedButton(
             style: const ButtonStyle(
-              backgroundColor: MaterialStatePropertyAll(Colors.green),
+              backgroundColor: WidgetStatePropertyAll(primary),
             ),
             onPressed: () {
               if (categoryController.text.isNotEmpty) {
@@ -128,7 +130,7 @@ backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             child: const Text(
               "Add Category",
               style: TextStyle(
-                color: Colors.white,
+                color: white,
               ),
             ),
           ),

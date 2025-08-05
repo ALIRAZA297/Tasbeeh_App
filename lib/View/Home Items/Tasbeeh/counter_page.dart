@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tasbeeh_app/Controller/counter_controller.dart';
+import 'package:tasbeeh_app/Utils/app_colors.dart';
 
 class CounterPage extends StatefulWidget {
   final Map<String, dynamic> tasbeeh;
@@ -28,7 +29,7 @@ class _CounterPageState extends State<CounterPage> {
         title: Text(
           widget.tasbeeh['title'],
           style: GoogleFonts.notoNastaliqUrdu(
-            color: Get.isDarkMode ? Colors.white : Colors.black,
+            color: Get.isDarkMode ? white : black,
             fontWeight: FontWeight.bold,
             fontSize: 20,
           ),
@@ -49,7 +50,7 @@ class _CounterPageState extends State<CounterPage> {
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color:Get.isDarkMode ? Colors.white : const Color(0xff01301C),
+                        color: Get.isDarkMode ? white : const Color(0xff01301C),
                         width: 2,
                       ),
                       image: const DecorationImage(
@@ -58,7 +59,7 @@ class _CounterPageState extends State<CounterPage> {
                           "assets/images/bg image.jpg",
                         ),
                       ),
-                      color: Colors.white,
+                      color: white,
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Column(
@@ -68,7 +69,7 @@ class _CounterPageState extends State<CounterPage> {
                           textAlign: TextAlign.center,
                           style: GoogleFonts.amiriQuran(
                             fontSize: 30,
-                            color: Colors.black,
+                            color: black,
                             fontWeight: FontWeight.bold,
                             height: 2,
                           ),
@@ -79,7 +80,7 @@ class _CounterPageState extends State<CounterPage> {
                           textAlign: TextAlign.center,
                           style: GoogleFonts.notoNastaliqUrdu(
                             fontSize: 18,
-                            color: Colors.grey,
+                            color: grey,
                             height: 2,
                           ),
                         ),
@@ -105,16 +106,16 @@ class _CounterPageState extends State<CounterPage> {
                     style: GoogleFonts.poppins(
                       fontSize: 30.0,
                       fontWeight: FontWeight.bold,
-                      color: Get.isDarkMode ? Colors.white : Colors.black,
+                      color: Get.isDarkMode ? white : black,
                     ),
                   ),
                   const SizedBox(height: 20.0),
                   ElevatedButton(
                     style: ButtonStyle(
-                      side: MaterialStatePropertyAll(
+                      side: WidgetStatePropertyAll(
                         BorderSide(
                             color: Get.isDarkMode
-                                ? Colors.white
+                                ? white
                                 : const Color(0xff01301C)),
                       ),
                     ),
@@ -130,15 +131,14 @@ class _CounterPageState extends State<CounterPage> {
                           children: [
                             IconButton(
                               style: ButtonStyle(
-                                overlayColor: MaterialStatePropertyAll(
-                                    Colors.white.withOpacity(0.5)),
-                                shape: const MaterialStatePropertyAll(
+                                overlayColor: WidgetStatePropertyAll(
+                                    white.withOpacity(0.5)),
+                                shape: const WidgetStatePropertyAll(
                                   CircleBorder(
-                                      side: BorderSide(
-                                          color: Colors.white, width: 3),
+                                    side: BorderSide(color: white, width: 3),
                                   ),
                                 ),
-                                backgroundColor: const MaterialStatePropertyAll(
+                                backgroundColor: const WidgetStatePropertyAll(
                                   Color(0xff01301C),
                                 ),
                               ),
@@ -155,16 +155,14 @@ class _CounterPageState extends State<CounterPage> {
                               right: 0,
                               child: IconButton(
                                 style: ButtonStyle(
-                                  overlayColor: MaterialStatePropertyAll(
-                                      Colors.white.withOpacity(0.5)),
-                                  shape: const MaterialStatePropertyAll(
+                                  overlayColor: WidgetStatePropertyAll(
+                                      white.withOpacity(0.5)),
+                                  shape: const WidgetStatePropertyAll(
                                     CircleBorder(
-                                      side: BorderSide(
-                                          color: Colors.white, width: 3),
+                                      side: BorderSide(color: white, width: 3),
                                     ),
                                   ),
-                                  backgroundColor:
-                                      const MaterialStatePropertyAll(
+                                  backgroundColor: const WidgetStatePropertyAll(
                                     Color(0xff01301C),
                                   ),
                                 ),

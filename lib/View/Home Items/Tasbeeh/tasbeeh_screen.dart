@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tasbeeh_app/Controller/tasbeeh_controller.dart';
+import 'package:tasbeeh_app/Utils/app_colors.dart';
 import 'package:tasbeeh_app/View/Home%20Items/Tasbeeh/tasbeeh_list_screen.dart';
 
 class TasbeehScreen extends StatefulWidget {
@@ -42,7 +43,7 @@ class _TasbeehScreenState extends State<TasbeehScreen>
           'Tasbeehat',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
-            color: Get.isDarkMode ? Colors.white : Colors.black,
+            color: Get.isDarkMode ? white : black,
           ),
         ),
         centerTitle: true,
@@ -60,9 +61,9 @@ class _TasbeehScreenState extends State<TasbeehScreen>
               height: 10,
             ),
             TabBar(
-              indicatorColor: Get.isDarkMode ? Colors.white : Colors.black,
+              indicatorColor: Get.isDarkMode ? white : black,
               controller: _tabController,
-              labelColor: Get.isDarkMode ? Colors.white : Colors.black,
+              labelColor: Get.isDarkMode ? white : black,
               tabs: const [
                 Tab(text: 'Popular Tasbeeh'),
                 Tab(text: 'My Tasbeeh'),
@@ -83,9 +84,9 @@ class _TasbeehScreenState extends State<TasbeehScreen>
       floatingActionButton: Obx(() {
         return currentTabIndex.value == 1
             ? FloatingActionButton(
-                backgroundColor: Colors.green.shade900,
+                backgroundColor: primary900,
                 onPressed: () => controller.showTasbeehDialog(context),
-                child: const Icon(Icons.add, color: Colors.white),
+                child: const Icon(Icons.add, color: white),
               )
             : const SizedBox.shrink();
       }),

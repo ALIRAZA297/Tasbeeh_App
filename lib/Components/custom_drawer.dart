@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_islamic_icons/flutter_islamic_icons.dart';
 import 'package:get/get.dart';
+import 'package:tasbeeh_app/Utils/app_colors.dart';
 import 'package:tasbeeh_app/View/Home%20Items/Asma%20ul%20Husna/Allah_names.dart';
 import 'package:tasbeeh_app/View/Home%20Items/About%20us/about_page.dart';
 import 'package:tasbeeh_app/View/Home%20Items/Quran/quran_view.dart';
@@ -11,7 +12,7 @@ class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.white,
+      backgroundColor: white,
       child: Column(
         children: [
           const SizedBox(
@@ -37,11 +38,10 @@ class CustomDrawer extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Container(
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: Colors.green.shade100),
+                  borderRadius: BorderRadius.circular(15), color: primary100),
               child: ListTile(
-                leading: const Icon(FlutterIslamicIcons.solidQuran,
-                    color: Colors.green),
+                leading:
+                    const Icon(FlutterIslamicIcons.solidQuran, color: primary),
                 title: const Text("Read Quran"),
                 onTap: () => Get.to(() => const QuranView()),
               ),
@@ -70,12 +70,11 @@ class CustomDrawer extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Container(
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: Colors.green.shade100),
+                  borderRadius: BorderRadius.circular(15), color: primary100),
               child: ListTile(
                   leading: const Icon(
                     FlutterIslamicIcons.allah99,
-                    color: Colors.green,
+                    color: primary,
                   ),
                   title: const Text("Asmaul Husna "),
                   onTap: () {
@@ -91,10 +90,9 @@ class CustomDrawer extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Container(
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: Colors.green.shade100),
+                  borderRadius: BorderRadius.circular(15), color: primary100),
               child: ListTile(
-                  leading: const Icon(Icons.info, color: Colors.green),
+                  leading: const Icon(Icons.info, color: primary),
                   title: const Text("About"),
                   onTap: () {
                     Get.back();

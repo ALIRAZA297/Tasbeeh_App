@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:tasbeeh_app/Components/animated_loader.dart';
 import 'package:tasbeeh_app/Components/animation.dart';
 import 'package:tasbeeh_app/Controller/hadees_books_controller.dart';
+import 'package:tasbeeh_app/Utils/app_colors.dart';
 import 'package:tasbeeh_app/View/Home%20Items/Hadees/hadees_chapters_view.dart';
 
 class HadithBooksView extends StatelessWidget {
@@ -14,12 +15,12 @@ class HadithBooksView extends StatelessWidget {
     final HadithBooksController controller = Get.put(HadithBooksController());
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: white,
       appBar: AppBar(
         title: Text("Hadith Books",
             style: GoogleFonts.poppins(fontWeight: FontWeight.bold)),
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: white,
         scrolledUnderElevation: 0,
       ),
       body: Obx(
@@ -27,7 +28,7 @@ class HadithBooksView extends StatelessWidget {
           if (controller.isLoading.value) {
             return const Center(
               child: AnimatedLoader(
-                color: Colors.green,
+                color: primary,
               ),
             );
           }
@@ -44,11 +45,11 @@ class HadithBooksView extends StatelessWidget {
                   margin: const EdgeInsets.symmetric(vertical: 8),
                   child: ListTile(
                     leading: CircleAvatar(
-                      backgroundColor: Colors.green.shade700,
+                      backgroundColor: primary700,
                       child: Text(
                         book.id.toString(),
                         style: const TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
+                            color: white, fontWeight: FontWeight.bold),
                       ),
                     ),
                     title: Text(
@@ -64,7 +65,7 @@ class HadithBooksView extends StatelessWidget {
                         Text(
                             "Chapters: ${book.chaptersCount} | Hadiths: ${book.hadithsCount}",
                             style: GoogleFonts.poppins(
-                                fontSize: 12, color: Colors.grey.shade700)),
+                                fontSize: 12, color: grey700)),
                       ],
                     ),
                     onTap: () => Get.to(

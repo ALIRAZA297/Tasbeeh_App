@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tasbeeh_app/Controller/ibadat_controller.dart';
+import 'package:tasbeeh_app/Utils/app_colors.dart';
 
 import 'ibadat_detail.dart';
 import 'namaz_detail_screen.dart';
@@ -22,7 +23,7 @@ class IbadatScreen extends StatelessWidget {
           "Ibadat",
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
-            color: Get.isDarkMode ? Colors.white : Colors.black,
+            color: Get.isDarkMode ? white : black,
           ),
         ),
       ),
@@ -37,7 +38,7 @@ class IbadatScreen extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: Colors.green.shade50,
+                color: secondary,
               ),
               child: ListTile(
                 title: Text(
@@ -45,14 +46,14 @@ class IbadatScreen extends StatelessWidget {
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
-                    color: Colors.black,
+                    color: black,
                     height: 2,
                   ),
                 ),
                 subtitle: Text(
                   controller.ibadats[index]["subtitle"]!,
                   style: GoogleFonts.notoNastaliqUrdu(
-                    color: Colors.black45,
+                    color: black45,
                     height: 2,
                   ),
                 ),

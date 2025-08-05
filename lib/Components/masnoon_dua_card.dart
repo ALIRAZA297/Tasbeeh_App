@@ -142,6 +142,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tasbeeh_app/Controller/masnoon_dua_controller.dart';
 import 'package:tasbeeh_app/Model/masnoon_dua_model.dart';
+import 'package:tasbeeh_app/Utils/app_colors.dart';
 
 class DuaCard extends StatelessWidget {
   final DuaModel dua;
@@ -163,7 +164,7 @@ class DuaCard extends StatelessWidget {
       margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: Colors.green.shade50,
+        color: secondary,
       ),
       child: Padding(
         padding: const EdgeInsets.all(15.0),
@@ -185,7 +186,7 @@ class DuaCard extends StatelessWidget {
             /// **Title Row with Icon**
             Row(
               children: [
-                Icon(dua.icon, color: Colors.green, size: 30),
+                Icon(dua.icon, color: primary, size: 30),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Text(
@@ -195,7 +196,7 @@ class DuaCard extends StatelessWidget {
                       fontSize: 18,
                       height: 2,
                       fontWeight: FontWeight.bold,
-                      color: Colors.green,
+                      color: primary,
                     ),
                   ),
                 ),
@@ -212,7 +213,7 @@ class DuaCard extends StatelessWidget {
                 fontSize: 26,
                 height: 2,
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
+                color: black,
               ),
             ),
 
@@ -232,7 +233,7 @@ class DuaCard extends StatelessWidget {
                         fontSize: 18,
                         height: 2,
                         fontWeight: FontWeight.w500,
-                        color: Colors.grey,
+                        color: grey,
                       ),
                     ),
                   ),
@@ -260,7 +261,7 @@ class DuaCard extends StatelessWidget {
                   fontSize: 16,
                   height: 1.5,
                   fontWeight: FontWeight.w500,
-                  color: Colors.grey,
+                  color: grey,
                 ),
               ),
 
@@ -269,14 +270,14 @@ class DuaCard extends StatelessWidget {
               Row(
                 children: [
                   IconButton(
-                    icon: const Icon(Icons.edit, color: Colors.blue),
+                    icon: const Icon(Icons.edit, color: blue),
                     onPressed: () {
                       duaController.showEditDuaDialog(
                           context, category, index, dua);
                     },
                   ),
                   IconButton(
-                    icon: const Icon(CupertinoIcons.delete, color: Colors.red),
+                    icon: const Icon(CupertinoIcons.delete, color: red),
                     onPressed: () {
                       duaController.showDeleteConfirmationDialog(
                           context, category, index);

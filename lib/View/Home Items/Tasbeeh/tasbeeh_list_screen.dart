@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tasbeeh_app/Components/animation.dart';
 import 'package:tasbeeh_app/Controller/tasbeeh_controller.dart';
+import 'package:tasbeeh_app/Utils/app_colors.dart';
 import 'package:tasbeeh_app/View/Home%20Items/Tasbeeh/counter_page.dart';
 
 class TasbeehListScreen extends StatelessWidget {
@@ -17,7 +18,7 @@ class TasbeehListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -37,7 +38,7 @@ backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                         Icon(
                           Icons.search_off,
                           size: 50,
-                          color: Colors.grey.shade500,
+                          color: grey500,
                         ),
                         Text(
                           'No Tasbeeh available',
@@ -45,7 +46,7 @@ backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                             fontSize: 18,
                             height: 2,
                             fontWeight: FontWeight.bold,
-                            color: Colors.grey.shade500,
+                            color: grey500,
                           ),
                         ),
                       ],
@@ -100,7 +101,7 @@ backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             horizontal: 10,
           ),
           decoration: BoxDecoration(
-            color: Colors.green.shade50,
+            color: secondary,
             borderRadius: BorderRadius.circular(12),
           ),
           child: ListTile(
@@ -115,7 +116,7 @@ backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                   fontSize: 18,
                   height: 2,
                   fontWeight: FontWeight.bold,
-                  color: Colors.green,
+                  color: primary,
                 ),
               ),
             ),
@@ -131,7 +132,7 @@ backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                       fontSize: 26,
                       height: 2,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                      color: black,
                     ),
                   ),
                 ),
@@ -144,7 +145,7 @@ backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                       height: 2,
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: Colors.grey,
+                      color: grey,
                     ),
                   ),
                 ),
@@ -154,7 +155,7 @@ backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                     style: GoogleFonts.poppins(
                       fontSize: 14,
                       height: 2,
-                      color: Colors.grey,
+                      color: grey,
                     ),
                   ),
               ],
@@ -165,7 +166,7 @@ backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                 IconButton(
                   icon: Icon(
                     isMyTasbeeh ? Icons.edit : CupertinoIcons.add_circled,
-                    color: Colors.green,
+                    color: primary,
                   ),
                   onPressed: () {
                     if (isMyTasbeeh) {
@@ -178,7 +179,7 @@ backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                 ),
                 if (isMyTasbeeh)
                   IconButton(
-                    icon: const Icon(CupertinoIcons.delete, color: Colors.red),
+                    icon: const Icon(CupertinoIcons.delete, color: red),
                     onPressed: () {
                       Get.defaultDialog(
                         title: 'Confirm Deletion',
@@ -186,7 +187,7 @@ backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                             'Are you sure you want to delete this tasbeeh?'),
                         textConfirm: 'Delete',
                         textCancel: 'Cancel',
-                        confirmTextColor: Colors.white,
+                        confirmTextColor: white,
                         onConfirm: () {
                           controller.deleteTasbeeh(index); // Perform deletion
                           Get.back(); // Close the dialog
@@ -235,10 +236,8 @@ backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                   labelText: 'Count (optional)', hintText: 'e.g: 33'),
               keyboardType: TextInputType.number,
               inputFormatters: [
-                FilteringTextInputFormatter
-                    .digitsOnly,
-                LengthLimitingTextInputFormatter(
-                    5),
+                FilteringTextInputFormatter.digitsOnly,
+                LengthLimitingTextInputFormatter(5),
               ],
             ),
           ],
