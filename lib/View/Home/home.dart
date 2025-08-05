@@ -405,6 +405,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:intl/intl.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:tasbeeh_app/Components/animated_loader.dart';
 import 'package:tasbeeh_app/Components/animation.dart';
 import 'package:tasbeeh_app/Components/custom_toggle_btn.dart';
@@ -413,160 +414,245 @@ import 'package:tasbeeh_app/Controller/prayer_controller.dart';
 import 'package:tasbeeh_app/View/Home%20Items/About%20us/about_page.dart';
 import 'package:tasbeeh_app/View/Home%20Items/Asma%20ul%20Husna/Allah_names.dart';
 import 'package:tasbeeh_app/View/Home%20Items/Ibadat/ibadat.dart';
-import 'package:tasbeeh_app/View/Home%20Items/Kalama/kalma.dart';
 import 'package:tasbeeh_app/View/Home%20Items/Masnoon%20Dua/category_wise_dua.dart';
 import 'package:tasbeeh_app/View/Home%20Items/Quran/quran_view.dart';
 import 'package:tasbeeh_app/View/Home%20Items/Tasbeeh/tasbeeh_screen.dart';
+import 'package:tasbeeh_app/View/Home/all_prayers.dart';
+
+import '../Home Items/Kalama/kalma.dart';
 
 class PrayerScreen extends StatelessWidget {
   PrayerScreen({super.key});
+
   final ScrollController scrollController = ScrollController();
+  final RefreshController refreshController =
+      RefreshController(initialRefresh: false);
 
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
-
     final PrayerController controller = Get.find<PrayerController>();
 
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Obx(
-                () {
-                  final bool isMorning = controller.isMorning();
-                  final currentPrayerTime = controller.getCurrentPrayerTime();
-
-                  if (currentPrayerTime.isEmpty) {
-                    return const Center(
-                        child: AnimatedLoader(color: Colors.white));
-                  }
-
-                  final String startTime = currentPrayerTime["start"] ?? "N/A";
-                  final String endTime = currentPrayerTime["end"] ?? "N/A";
-
-                  return SizedBox(
-                    height: screenHeight * 0.4,
-                    width: double.infinity,
-                    child: Stack(
-                      children: [
-                        // Background image
-                        Positioned.fill(
-                          child: Image.asset(
-                            isMorning
-                                ? 'assets/images/morning.png'
-                                : 'assets/images/evening.png',
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-
-                        // Overlay
-                        Positioned.fill(
-                          child: Container(
-                            color: Colors.black.withOpacity(0.2),
-                          ),
-                        ),
-
-                        // Date on Top Left
-                        Positioned(
-                          left: 10,
-                          top: 8,
-                          right: MediaQuery.of(context).size.width *
-                              0.45, // Push it away from right
-                          child: ConstrainedBox(
-                            constraints: BoxConstraints(
-                              maxWidth: MediaQuery.of(context).size.width * 0.5,
-                            ),
-                            child: _buildDateColumn(),
-                          ),
-                        ),
-
-                        // Prayer Info on Bottom Right
-                        Positioned(
-                          bottom: 8,
-                          right: 10,
-                          left: MediaQuery.of(context).size.width *
-                              0.55, // Push it away from left
-                          child: ConstrainedBox(
-                            constraints: BoxConstraints(
-                              maxWidth: MediaQuery.of(context).size.width * 0.4,
-                            ),
-                            child: _buildPrayerInfo(
-                                controller, startTime, endTime),
-                          ),
-                        ),
-
-                        const Positioned(
-                          left: 10,
-                          bottom: 10,
-                          child: ThemeToggleSwitch(),
-                        ),
-                      ],
+        child: SmartRefresher(
+          controller: refreshController,
+          enablePullDown: true,
+          header: CustomHeader(
+            builder: (context, mode) {
+              Widget body;
+              if (mode == RefreshStatus.idle) {
+                body = Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(FlutterIslamicIcons.solidMosque,
+                        color: Colors.green.shade700, size: 30),
+                    const SizedBox(width: 10),
+                    Text(
+                      "Pull to refresh prayer times",
+                      style: GoogleFonts.poppins(
+                        color: Colors.green.shade700,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                  );
-                },
-              ),
-              ListView(
-                controller: scrollController,
-                shrinkWrap: true,
-                physics: const BouncingScrollPhysics(),
-                children: [
-                  const SizedBox(height: 5),
-                  _buildListTile(
-                    icon: FlutterIslamicIcons.solidAllah,
-                    title: 'Asma ul Husna',
-                    subtitle: 'اسماء الحسنہ',
-                    onTap: () => Get.to(() => const AsmaulHusnaScreen()),
+                  ],
+                );
+              } else if (mode == RefreshStatus.refreshing) {
+                body = Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    AnimatedLoader(color: Colors.green.shade700),
+                    const SizedBox(height: 10.0),
+                    Text(
+                      "Fetching Prayer Times...",
+                      style: GoogleFonts.poppins(
+                        color: Colors.green.shade700,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                );
+              } else if (mode == RefreshStatus.completed) {
+                body = Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.check_circle,
+                        color: Colors.green.shade700, size: 30),
+                    const SizedBox(width: 10),
+                    Text(
+                      "Prayer times updated!",
+                      style: GoogleFonts.poppins(
+                        color: Colors.green.shade700,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                );
+              } else {
+                body = Text(
+                  "Release to refresh",
+                  style: GoogleFonts.poppins(
+                    color: Colors.green.shade700,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
                   ),
-                  _buildListTile(
-                    icon: FlutterIslamicIcons.solidQuran2,
-                    title: 'Quran',
-                    subtitle: 'قرآن',
-                    onTap: () => Get.to(() => const QuranView()),
-                  ),
-                  _buildListTile(
-                    icon: FlutterIslamicIcons.solidTasbih,
-                    title: 'Tasbeeh',
-                    subtitle: 'تسبیح',
-                    onTap: () => Get.to(() => const TasbeehScreen()),
-                  ),
-                  _buildListTile(
-                    icon: FlutterIslamicIcons.solidLantern,
-                    title: 'Masnoon Duas',
-                    subtitle: 'مسنون دعائیں',
-                    onTap: () => Get.to(() => const DuaCategoryScreen()),
-                  ),
-                  _buildListTile(
-                    icon: FlutterIslamicIcons.solidSajadah,
-                    title: 'Ibadat',
-                    subtitle: 'عبادت',
-                    onTap: () => Get.to(() => IbadatScreen()),
-                  ),
-                  _buildListTile(
-                    icon: FlutterIslamicIcons.islam,
-                    title: 'Six Kalimas',
-                    subtitle: 'چھ کلمے',
-                    onTap: () => Get.to(() => KalimaScreen()),
-                  ),
-                  _buildListTile(
-                    icon: CupertinoIcons.info_circle_fill,
-                    title: 'About us',
-                    subtitle: 'ہمارے بارے میں',
-                    onTap: () => Get.to(() => const AboutPage()),
-                  ),
-                  _buildListTile(
-                    icon: CupertinoIcons.star_fill,
-                    title: 'Rate us',
-                    subtitle: 'ریٹ اس',
-                    onTap: () =>
-                        Get.find<CounterController>().launchReviewPage(),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 10),
-            ],
+                );
+              }
+              return Container(
+                height: 110,
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                child: Center(child: body),
+              );
+            },
+          ),
+          onRefresh: () async {
+            await controller.fetchPrayerTimes();
+            refreshController.refreshCompleted();
+          },
+          child: SingleChildScrollView(
+            controller: scrollController,
+            child: Column(
+              children: [
+                Obx(
+                  () {
+                    final bool isMorning = controller.isMorning();
+                    final currentPrayerTime = controller.getCurrentPrayerTime();
+
+                    if (currentPrayerTime.isEmpty) {
+                      return const Center(
+                          child: AnimatedLoader(color: Colors.white));
+                    }
+
+                    final String startTime =
+                        currentPrayerTime["start"] ?? "N/A";
+                    final String endTime = currentPrayerTime["end"] ?? "N/A";
+
+                    return InkWell(
+                      onTap: () {
+                        Get.to(() => AllPrayersScreen());
+                      },
+                      child: SizedBox(
+                        height: screenHeight * 0.4,
+                        width: double.infinity,
+                        child: Stack(
+                          children: [
+                            // Background image
+                            Positioned.fill(
+                              child: Image.asset(
+                                isMorning
+                                    ? 'assets/images/morning.png'
+                                    : 'assets/images/evening.png',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            // Overlay
+                            Positioned.fill(
+                              child: Container(
+                                color: Colors.black.withOpacity(0.2),
+                              ),
+                            ),
+                            // Date on Top Left
+                            Positioned(
+                              left: 10,
+                              top: 8,
+                              right: MediaQuery.of(context).size.width * 0.45,
+                              child: ConstrainedBox(
+                                constraints: BoxConstraints(
+                                  maxWidth:
+                                      MediaQuery.of(context).size.width * 0.5,
+                                ),
+                                child: _buildDateColumn(),
+                              ),
+                            ),
+                            // Prayer Info on Bottom Right
+                            Positioned(
+                              bottom: 8,
+                              right: 10,
+                              left: MediaQuery.of(context).size.width * 0.55,
+                              child: ConstrainedBox(
+                                constraints: BoxConstraints(
+                                  maxWidth:
+                                      MediaQuery.of(context).size.width * 0.4,
+                                ),
+                                child: _buildPrayerInfo(
+                                    controller, startTime, endTime),
+                              ),
+                            ),
+                            const Positioned(
+                              left: 10,
+                              bottom: 10,
+                              child: ThemeToggleSwitch(),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+                ListView(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: [
+                    const SizedBox(height: 5),
+                    _buildListTile(
+                      icon: FlutterIslamicIcons.solidAllah,
+                      title: 'Asma ul Husna',
+                      subtitle: 'اسماء الحسنہ',
+                      onTap: () => Get.to(() => const AsmaulHusnaScreen()),
+                    ),
+                    _buildListTile(
+                      icon: FlutterIslamicIcons.solidQuran2,
+                      title: 'Quran',
+                      subtitle: 'قرآن',
+                      onTap: () => Get.to(() => const QuranView()),
+                    ),
+                    _buildListTile(
+                      icon: FlutterIslamicIcons.solidTasbih,
+                      title: 'Tasbeeh',
+                      subtitle: 'تسبیح',
+                      onTap: () => Get.to(() => const TasbeehScreen()),
+                    ),
+                    _buildListTile(
+                      icon: FlutterIslamicIcons.solidLantern,
+                      title: 'Masnoon Duas',
+                      subtitle: 'مسنون دعائیں',
+                      onTap: () => Get.to(() => const DuaCategoryScreen()),
+                    ),
+                    _buildListTile(
+                      icon: FlutterIslamicIcons.solidSajadah,
+                      title: 'Ibadat',
+                      subtitle: 'عبادت',
+                      onTap: () => Get.to(() => IbadatScreen()),
+                    ),
+                    _buildListTile(
+                      icon: FlutterIslamicIcons.islam,
+                      title: 'Six Kalimas',
+                      subtitle: 'چھ کلمے',
+                      onTap: () => Get.to(() => KalimaScreen()),
+                    ),
+                    _buildListTile(
+                      icon: CupertinoIcons.info_circle_fill,
+                      title: 'About us',
+                      subtitle: 'ہمارے بارے میں',
+                      onTap: () => Get.to(() => const AboutPage()),
+                    ),
+                    _buildListTile(
+                      icon: CupertinoIcons.star_fill,
+                      title: 'Rate us',
+                      subtitle: 'ریٹ اس',
+                      onTap: () =>
+                          Get.find<CounterController>().launchReviewPage(),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+              ],
+            ),
           ),
         ),
       ),
@@ -586,7 +672,7 @@ class PrayerScreen extends StatelessWidget {
           children: [
             TextSpan(
               text: controller.currentPrayer.value != null
-                  ? 'Prayer Time\n'
+                  ? 'Current Prayer\n'
                   : 'Upcoming Prayer\n',
               style: GoogleFonts.poppins(
                 color: Colors.white,

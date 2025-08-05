@@ -47,7 +47,7 @@ class AboutPage extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "Version 1.0.8",
+                      "Version 1.0.9",
                       style: GoogleFonts.poppins(
                         fontSize: 16,
                         color: Get.isDarkMode
