@@ -13,6 +13,7 @@ import 'package:tasbeeh_app/Controller/counter_controller.dart';
 import 'package:tasbeeh_app/Controller/prayer_controller.dart';
 import 'package:tasbeeh_app/Utils/app_colors.dart';
 import 'package:tasbeeh_app/View/Home/all_prayers.dart';
+
 import '../Home Items/About us/about_page.dart';
 import '../Home Items/Asma ul Husna/Allah_names.dart';
 import '../Home Items/Ibadat/ibadat.dart';
@@ -137,7 +138,7 @@ class PrayerScreen extends StatelessWidget {
                     return GestureDetector(
                       onTap: () => Get.to(() => AllPrayersScreen()),
                       child: Container(
-                        height: screenHeight * 0.3,
+                        height: screenHeight * 0.4,
                         margin: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
@@ -339,7 +340,7 @@ class PrayerScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
-        color: white.withOpacity(0.2),
+        color: white.withOpacity(0.3),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
@@ -370,7 +371,6 @@ class PrayerScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 12),
       decoration: BoxDecoration(
-        // color: white.withOpacity(0.2),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
