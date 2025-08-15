@@ -112,8 +112,10 @@ class _QiblaScreenState extends State<QiblaScreen>
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         body: SingleChildScrollView(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              _buildBody(screenHeight, screenWidth),
+              Center(child: _buildBody(screenHeight, screenWidth)),
             ],
           ),
         ));
@@ -338,10 +340,10 @@ class _QiblaScreenState extends State<QiblaScreen>
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 20, vertical: 10),
                               decoration: BoxDecoration(
-                                gradient: LinearGradient(
+                                gradient: const LinearGradient(
                                   colors: [
-                                    const Color(0xFFFFD700),
-                                    const Color(0xFFFFA500),
+                                    Color(0xFFFFD700),
+                                    Color(0xFFFFA500),
                                   ],
                                 ),
                                 borderRadius: BorderRadius.circular(25),
@@ -409,10 +411,10 @@ class _QiblaScreenState extends State<QiblaScreen>
                       width: double.infinity,
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
-                        gradient: LinearGradient(
+                        gradient: const LinearGradient(
                           colors: [
-                            const Color(0xFFFEF3C7),
-                            const Color(0xFFFDE68A),
+                            Color(0xFFFEF3C7),
+                            Color(0xFFFDE68A),
                           ],
                         ),
                         borderRadius: BorderRadius.circular(20),
@@ -428,8 +430,8 @@ class _QiblaScreenState extends State<QiblaScreen>
                         children: [
                           Container(
                             padding: const EdgeInsets.all(12),
-                            decoration: BoxDecoration(
-                              color: const Color(0xFFF59E0B),
+                            decoration: const BoxDecoration(
+                              color: Color(0xFFF59E0B),
                               shape: BoxShape.circle,
                             ),
                             child: const Icon(

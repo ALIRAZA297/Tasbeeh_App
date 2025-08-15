@@ -15,7 +15,7 @@ class AllPrayersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final PrayerController controller = Get.find<PrayerController>();
+    final HomeController controller = Get.find<HomeController>();
 
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,

@@ -252,7 +252,7 @@ import 'package:intl/intl.dart';
 import 'package:location/location.dart';
 import 'package:tasbeeh_app/Api/notification_service.dart';
 
-class PrayerController extends GetxController {
+class HomeController extends GetxController {
   var isLoading = true.obs;
   late Coordinates coordinates;
   PrayerTimes? prayerTimes;

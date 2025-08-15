@@ -2,7 +2,8 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:tasbeeh_app/Utils/app_colors.dart';
-import 'package:tasbeeh_app/View/Home/home.dart';
+
+import 'View/Home/bottom_nav_bar.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -16,7 +17,7 @@ class SplashScreen extends StatelessWidget {
       pageTransitionType: PageTransitionType.bottomToTop,
       animationDuration: const Duration(seconds: 1),
       backgroundColor: secondary,
-      nextScreen: PrayerScreen(),
+      nextScreen: const BottomNavigationScreen(),
       splash: Column(
         children: [
           SizedBox(
@@ -25,7 +26,7 @@ class SplashScreen extends StatelessWidget {
             child: Image.asset("assets/images/row.png"),
           ),
           const Text(
-            "Tasbeeh",
+            "Tasbeeh & Quran",
             style: TextStyle(
               color: Color(0xff00EA86),
               fontSize: 40,

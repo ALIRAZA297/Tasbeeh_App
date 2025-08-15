@@ -119,7 +119,7 @@ void main() async {
   );
 
   Get.put(ThemeController());
-  Get.put(PrayerController());
+  Get.put(HomeController());
   Get.put(QuranController());
   Get.put(CounterController());
   Get.put(TasbeehController());

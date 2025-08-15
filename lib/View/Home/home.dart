@@ -8,23 +8,18 @@ import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:tasbeeh_app/Components/animated_loader.dart';
 import 'package:tasbeeh_app/Components/animation.dart';
-import 'package:tasbeeh_app/Components/custom_toggle_btn.dart';
-import 'package:tasbeeh_app/Controller/counter_controller.dart';
 import 'package:tasbeeh_app/Controller/prayer_controller.dart';
 import 'package:tasbeeh_app/Utils/app_colors.dart';
 import 'package:tasbeeh_app/View/Home/all_prayers.dart';
-
-import '../Home Items/About us/about_page.dart';
 import '../Home Items/Asma ul Husna/Allah_names.dart';
 import '../Home Items/Ibadat/ibadat.dart';
 import '../Home Items/Kalama/kalma.dart';
 import '../Home Items/Masnoon Dua/category_wise_dua.dart';
-import '../Home Items/Qibla Direction/qibla_direction.dart';
 import '../Home Items/Quran/quran_view.dart';
-import '../Home Items/Tasbeeh/tasbeeh_screen.dart';
+import '../Home Items/Wadu/wadu_screen.dart';
 
-class PrayerScreen extends StatelessWidget {
-  PrayerScreen({super.key});
+class HomeScreen extends StatelessWidget {
+  HomeScreen({super.key});
 
   final ScrollController scrollController = ScrollController();
   final RefreshController refreshController =
@@ -33,7 +28,7 @@ class PrayerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
-    final PrayerController controller = Get.find<PrayerController>();
+    final HomeController controller = Get.find<HomeController>();
 
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -130,7 +125,6 @@ class PrayerScreen extends StatelessWidget {
                             const Center(child: AnimatedLoader(color: white)),
                       );
                     }
-
                     final String startTime =
                         currentPrayerTime["start"] ?? "N/A";
                     final String endTime = currentPrayerTime["end"] ?? "N/A";
@@ -164,7 +158,7 @@ class PrayerScreen extends StatelessWidget {
                         ),
                         child: Stack(
                           children: [
-                            // Prayer Info
+                            // Prayer Info (Left Side)
                             Positioned(
                               bottom: 12,
                               left: 12,
@@ -180,11 +174,11 @@ class PrayerScreen extends StatelessWidget {
                               child: _buildDateColumn(),
                             ),
                             // Theme Toggle
-                            const Positioned(
-                              right: 12,
-                              top: 12, // Adjusted to avoid overlap with clock
-                              child: ThemeToggleSwitch(),
-                            ),
+                            // const Positioned(
+                            //   right: 12,
+                            //   top: 12, // Adjusted to avoid overlap with clock
+                            //   child: ThemeToggleSwitch(),
+                            // ),
                           ],
                         ),
                       ),
@@ -227,17 +221,23 @@ class PrayerScreen extends StatelessWidget {
                         subtitle: 'قرآن',
                         onTap: () => Get.to(() => const QuranView()),
                       ),
-                      _buildGridTile(
-                        icon: FlutterIslamicIcons.solidTasbih,
-                        title: 'Tasbeeh',
-                        subtitle: 'تسبیح',
-                        onTap: () => Get.to(() => const TasbeehScreen()),
-                      ),
+                      // _buildGridTile(
+                      //   icon: FlutterIslamicIcons.solidTasbih,
+                      //   title: 'Tasbeeh',
+                      //   subtitle: 'تسبیح',
+                      //   onTap: () => Get.to(() => const TasbeehScreen()),
+                      // ),
                       _buildGridTile(
                         icon: FlutterIslamicIcons.solidLantern,
                         title: 'Masnoon Duas',
                         subtitle: 'مسنون دعائیں',
                         onTap: () => Get.to(() => const DuaCategoryScreen()),
+                      ),
+                      _buildGridTile(
+                        icon: FlutterIslamicIcons.solidWudhu,
+                        title: 'Steps of Wudu',
+                        subtitle: 'وضو کے مراحل',
+                        onTap: () => Get.to(() => const WuduScreen()),
                       ),
                       _buildGridTile(
                         icon: FlutterIslamicIcons.solidSajadah,
@@ -251,25 +251,25 @@ class PrayerScreen extends StatelessWidget {
                         subtitle: 'چھ کلمے',
                         onTap: () => Get.to(() => KalimaScreen()),
                       ),
-                      _buildGridTile(
-                        icon: FlutterIslamicIcons.solidKaaba,
-                        title: 'Qibla Direction',
-                        subtitle: 'قبلہ سمت',
-                        onTap: () => Get.to(() => const QiblaScreen()),
-                      ),
-                      _buildGridTile(
-                        icon: CupertinoIcons.info_circle_fill,
-                        title: 'About us',
-                        subtitle: 'ہمارے بارے میں',
-                        onTap: () => Get.to(() => const AboutPage()),
-                      ),
-                      _buildGridTile(
-                        icon: CupertinoIcons.star_fill,
-                        title: 'Rate us',
-                        subtitle: 'ریٹ اس',
-                        onTap: () =>
-                            Get.find<CounterController>().launchReviewPage(),
-                      ),
+                      // _buildGridTile(
+                      //   icon: FlutterIslamicIcons.solidKaaba,
+                      //   title: 'Qibla Direction',
+                      //   subtitle: 'قبلہ سمت',
+                      //   onTap: () => Get.to(() => const QiblaScreen()),
+                      // ),
+                      // _buildGridTile(
+                      //   icon: CupertinoIcons.info_circle_fill,
+                      //   title: 'About us',
+                      //   subtitle: 'ہمارے بارے میں',
+                      //   onTap: () => Get.to(() => const AboutPage()),
+                      // ),
+                      // _buildGridTile(
+                      //   icon: CupertinoIcons.star_fill,
+                      //   title: 'Rate us',
+                      //   subtitle: 'ریٹ اس',
+                      //   onTap: () =>
+                      //       Get.find<CounterController>().launchReviewPage(),
+                      // ),
                     ],
                   ),
                 ),
@@ -283,7 +283,7 @@ class PrayerScreen extends StatelessWidget {
   }
 
   Widget _buildPrayerInfo(
-      PrayerController controller, String startTime, String endTime) {
+      HomeController controller, String startTime, String endTime) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
@@ -379,13 +379,13 @@ class PrayerScreen extends StatelessWidget {
           Row(
             children: [
               Icon(FlutterIslamicIcons.solidCrescentMoon,
-                  color: white70, size: 16),
+                  color: white70, size: 22),
               const SizedBox(width: 8),
               Text(
                 'Hijri',
                 style: GoogleFonts.poppins(
                   color: white70,
-                  fontSize: 12,
+                  fontSize: 20,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -395,20 +395,24 @@ class PrayerScreen extends StatelessWidget {
             '${HijriCalendar.now().toFormat("dd MMMM yyyy")} AH',
             style: GoogleFonts.poppins(
               color: white,
-              fontSize: 14,
+              fontSize: 16,
               fontWeight: FontWeight.w600,
             ),
           ),
           const SizedBox(height: 8),
           Row(
             children: [
-              Icon(CupertinoIcons.calendar, color: white70, size: 16),
+              Icon(
+                CupertinoIcons.calendar,
+                color: white70,
+                size: 22,
+              ),
               const SizedBox(width: 8),
               Text(
                 'Gregorian',
                 style: GoogleFonts.poppins(
                   color: white70,
-                  fontSize: 12,
+                  fontSize: 20,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -418,7 +422,7 @@ class PrayerScreen extends StatelessWidget {
             DateFormat('dd MMMM yyyy').format(DateTime.now()),
             style: GoogleFonts.poppins(
               color: white,
-              fontSize: 14,
+              fontSize: 16,
               fontWeight: FontWeight.w600,
             ),
           ),
