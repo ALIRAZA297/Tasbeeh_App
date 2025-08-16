@@ -1,0 +1,352 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+
+import '../../../Controller/prayer_tracker_controller.dart';
+import '../../../Utils/app_colors.dart';
+import '../../../Utils/prayer_tracker_status.dart';
+import 'monthly_prayer_tracker.dart';
+
+class PrayerTrackerScreen extends StatelessWidget {
+  const PrayerTrackerScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final PrayerTrackerController controller =
+        Get.put(PrayerTrackerController());
+
+    return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          'Prayer Tracker',
+          style: GoogleFonts.poppins(
+            fontWeight: FontWeight.bold,
+            color: isDarkMode ? white : black,
+          ),
+        ),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        scrolledUnderElevation: 0,
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.bar_chart,
+              color: isDarkMode ? white : grey800,
+            ),
+            onPressed: () {
+              Get.to(
+                () => MonthlyPrayerReportScreen(
+                  initialMonth: controller.selectedMonth.value,
+                ),
+              );
+            },
+          ),
+        ],
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildCalendarView(controller, isDarkMode),
+              const SizedBox(height: 4),
+              Text(
+                'Prayers',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: isDarkMode ? white : grey800,
+                  fontWeight: FontWeight.bold,
+                ),
+              ).paddingOnly(left: 8),
+              const SizedBox(height: 8),
+              _buildPrayerList(controller, isDarkMode),
+              const SizedBox(height: 12),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCalendarView(
+      PrayerTrackerController controller, bool isDarkMode) {
+    return Obx(() {
+      final now = DateTime.now();
+      final isCurrentOrFutureMonth =
+          controller.selectedMonth.value.year > now.year ||
+              (controller.selectedMonth.value.year == now.year &&
+                  controller.selectedMonth.value.month >= now.month);
+      final startOfWeek = controller.selectedDate.value
+          .subtract(Duration(days: controller.selectedDate.value.weekday - 1));
+      final days = List.generate(14, (i) => startOfWeek.add(Duration(days: i)));
+      final weekdayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+      return Container(
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  DateFormat('MMMM yyyy')
+                      .format(controller.selectedMonth.value),
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: isDarkMode ? white : grey800,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const Spacer(),
+                InkWell(
+                  splashColor: transparent,
+                  onTap: () => controller.changeMonth(-1),
+                  child: Container(
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+                    decoration: BoxDecoration(
+                      color: primary,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: const Icon(
+                      Icons.arrow_left,
+                      color: white,
+                      size: 24,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                InkWell(
+                  splashColor: transparent,
+                  onTap: isCurrentOrFutureMonth
+                      ? null
+                      : () => controller.changeMonth(1),
+                  child: Container(
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+                    decoration: BoxDecoration(
+                      color: isCurrentOrFutureMonth ? grey300 : primary,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Icon(
+                      Icons.arrow_right,
+                      color: isCurrentOrFutureMonth ? grey700 : white,
+                      size: 24,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: weekdayNames.map((name) {
+                return SizedBox(
+                  width: 40,
+                  child: Center(
+                    child: Text(
+                      name,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: isDarkMode ? white60 : grey700,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                );
+              }).toList(),
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: days
+                  .sublist(0, 7)
+                  .map((date) => _buildDateTile(controller, date, isDarkMode))
+                  .toList(),
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: days
+                  .sublist(7, 14)
+                  .map((date) => _buildDateTile(controller, date, isDarkMode))
+                  .toList(),
+            ),
+          ],
+        ),
+      );
+    });
+  }
+
+  Widget _buildDateTile(
+      PrayerTrackerController controller, DateTime date, bool isDarkMode) {
+    return Obx(() {
+      final now = DateTime.now();
+      final isFutureDate = date.isAfter(DateTime(now.year, now.month, now.day));
+      final isSelected = date.day == controller.selectedDate.value.day &&
+          date.month == controller.selectedDate.value.month &&
+          date.year == controller.selectedDate.value.year;
+      final isToday = date.day == now.day &&
+          date.month == now.month &&
+          date.year == now.year;
+      final isInSelectedMonth =
+          date.month == controller.selectedMonth.value.month;
+
+      return GestureDetector(
+        onTap: isFutureDate ? null : () => controller.loadStatusesForDate(date),
+        child: Container(
+          width: 40,
+          height: 40,
+          decoration: BoxDecoration(
+            color: isSelected ? (isDarkMode ? white : secondary) : transparent,
+            border: isToday ? Border.all(color: primary, width: 2) : null,
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Center(
+            child: Text(
+              DateFormat('d').format(date),
+              style: TextStyle(
+                color: isFutureDate
+                    ? (isDarkMode ? white60 : grey500)
+                    : isSelected
+                        ? (isDarkMode ? black : grey800)
+                        : isInSelectedMonth
+                            ? (isDarkMode ? white : grey800)
+                            : (isDarkMode ? white60 : grey700),
+                fontWeight: isToday ? FontWeight.bold : FontWeight.normal,
+                fontSize: 16,
+                // opacity: isFutureDate ? 0.5 : 1.0,
+              ),
+            ),
+          ),
+        ),
+      );
+    });
+  }
+
+  Widget _buildPrayerList(PrayerTrackerController controller, bool isDarkMode) {
+    return Obx(() {
+      final now = DateTime.now();
+      final isFutureDate = controller.selectedDate.value
+          .isAfter(DateTime(now.year, now.month, now.day));
+
+      return ListView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: controller.prayers.length,
+        itemBuilder: (context, index) {
+          final prayer = controller.prayers[index];
+          return Obx(() {
+            final status = controller.prayerStatuses[prayer];
+            return Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: isDarkMode ? secondary : white,
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(
+                  color: isDarkMode ? white38 : grey300,
+                  width: 1,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: isDarkMode
+                        ? black.withOpacity(0.1)
+                        : grey500.withOpacity(0.1),
+                    blurRadius: 20,
+                    offset: const Offset(0, 10),
+                  ),
+                ],
+              ),
+              margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        prayer,
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: grey800,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      if (status != null) ...[
+                        const SizedBox(width: 10),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 4),
+                          decoration: BoxDecoration(
+                            color: status.color.withOpacity(0.2),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Text(
+                            status.displayName,
+                            style: TextStyle(
+                              color: status.color,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: PrayerStatus.values.map((prayerStatus) {
+                      return InkWell(
+                        splashColor: transparent,
+                        highlightColor: transparent,
+                        onTap: isFutureDate
+                            ? null
+                            : () {
+                                controller.updatePrayerStatus(
+                                    prayer,
+                                    prayerStatus == status
+                                        ? null
+                                        : prayerStatus);
+                              },
+                        child: Container(
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: status == prayerStatus
+                                ? prayerStatus.color
+                                : (isDarkMode
+                                    ? white.withOpacity(0.1)
+                                    : grey300),
+                            borderRadius: BorderRadius.circular(15),
+                            border: Border.all(
+                              color: status == prayerStatus
+                                  ? prayerStatus.color
+                                  : grey300,
+                              width: 1,
+                            ),
+                          ),
+                          child: Text(
+                            prayerStatus.displayName,
+                            style: TextStyle(
+                              color: status == prayerStatus
+                                  ? white
+                                  : (isDarkMode ? grey500 : grey800),
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ],
+              ),
+            );
+          });
+        },
+      );
+    });
+  }
+}

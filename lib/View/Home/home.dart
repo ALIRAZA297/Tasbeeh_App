@@ -10,7 +10,9 @@ import 'package:tasbeeh_app/Components/animated_loader.dart';
 import 'package:tasbeeh_app/Components/animation.dart';
 import 'package:tasbeeh_app/Controller/prayer_controller.dart';
 import 'package:tasbeeh_app/Utils/app_colors.dart';
+import 'package:tasbeeh_app/View/Home%20Items/Nurani%20Qaida/nurani_qaida.dart';
 import 'package:tasbeeh_app/View/Home/all_prayers.dart';
+
 import '../Home Items/Asma ul Husna/Allah_names.dart';
 import '../Home Items/Ibadat/ibadat.dart';
 import '../Home Items/Kalama/kalma.dart';
@@ -250,6 +252,12 @@ class HomeScreen extends StatelessWidget {
                         title: 'Six Kalimas',
                         subtitle: 'چھ کلمے',
                         onTap: () => Get.to(() => KalimaScreen()),
+                      ),
+                      _buildGridTile(
+                        icon: FlutterIslamicIcons.solidQuran,
+                        title: 'Noorani Qaida',
+                        subtitle: 'نورانی قائدہ',
+                        onTap: () => Get.to(() => const NooraniQaida()),
                       ),
                       // _buildGridTile(
                       //   icon: FlutterIslamicIcons.solidKaaba,

@@ -8,6 +8,8 @@ import 'package:tasbeeh_app/Controller/surah_controller.dart';
 import 'package:tasbeeh_app/Model/quran_model.dart';
 import 'package:tasbeeh_app/Utils/app_colors.dart';
 
+import '../../../Controller/quran_audio_controller.dart';
+
 class SurahDetailView extends StatefulWidget {
   final Surah surah;
   final int? lastReadAyah;
@@ -139,70 +141,166 @@ class _SurahDetailViewState extends State<SurahDetailView> {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         centerTitle: true,
       ),
-      body: ListView.builder(
-        controller: _scrollController,
-        physics: const BouncingScrollPhysics(),
-        padding: const EdgeInsets.all(12),
-        itemCount: widget.surah.ayahs.length,
-        cacheExtent: 3000.0,
-        itemBuilder: (context, index) {
-          final ayah = widget.surah.ayahs[index];
+      body: GetBuilder<QuranAudioController>(
+        init: QuranAudioController(),
+        builder: (audioController) {
+          return ListView.builder(
+            controller: _scrollController,
+            physics: const BouncingScrollPhysics(),
+            padding: const EdgeInsets.all(12),
+            itemCount: widget.surah.ayahs.length,
+            cacheExtent: 3000.0,
+            itemBuilder: (context, index) {
+              final ayah = widget.surah.ayahs[index];
+              final isLastRead = widget.lastReadAyah != null &&
+                  ayah.numberInSurah == widget.lastReadAyah;
 
-          return Container(
-            key: _ayahKeys[index],
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: (widget.lastReadAyah != null &&
-                      ayah.numberInSurah == widget.lastReadAyah)
-                  ? primary200
-                  : secondary,
-            ),
-            margin: const EdgeInsets.symmetric(vertical: 5),
-            child: ListTile(
-              splashColor: transparent,
-              shape: BeveledRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              contentPadding: const EdgeInsets.all(16),
-              title: Text(
-                ayah.text,
-                textAlign: TextAlign.right,
-                style: GoogleFonts.amiri(
-                  fontSize: 26,
-                  height: 2.5,
-                  fontWeight: FontWeight.bold,
-                  color: black,
-                ),
-              ),
-              subtitle: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 25),
-                  Text(
-                    "Ayah ${ayah.numberInSurah} | Page ${ayah.page} | Juz ${ayah.juz} | Manzil ${ayah.manzil}",
-                    textAlign: TextAlign.left,
-                    style: GoogleFonts.poppins(
-                      fontSize: 14,
-                      color: primary700,
-                    ),
+              return Container(
+                key: _ayahKeys[index],
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: isLastRead ? primary200 : secondary,
+                  border: Border.all(
+                    color: isLastRead
+                        ? primary700.withOpacity(0.3)
+                        : Colors.transparent,
+                    width: 1,
                   ),
-                ],
-              ),
-              onTap: () {
-                controller.saveLastRead(
-                    widget.surah.number, ayah.numberInSurah);
-                Get.snackbar(
-                  "Saved",
-                  "Reading progress updated",
-                  snackPosition: SnackPosition.TOP,
-                  backgroundColor: primary,
-                  colorText: white,
-                );
-              },
-            ),
+                ),
+                margin: const EdgeInsets.symmetric(vertical: 5),
+                child: Column(
+                  children: [
+                    // Main Ayah Content
+                    ListTile(
+                      splashColor: transparent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      contentPadding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+                      title: Text(
+                        ayah.text,
+                        textAlign: TextAlign.right,
+                        style: GoogleFonts.amiri(
+                          fontSize: 26,
+                          height: 2.5,
+                          fontWeight: FontWeight.bold,
+                          color: Get.isDarkMode ? white : black,
+                        ),
+                      ),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 20),
+                          Text(
+                            "Ayah ${ayah.numberInSurah} | Page ${ayah.page} | Juz ${ayah.juz} | Manzil ${ayah.manzil}",
+                            textAlign: TextAlign.left,
+                            style: GoogleFonts.poppins(
+                              fontSize: 14,
+                              color: primary700,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                      onTap: () {
+                        controller.saveLastRead(
+                            widget.surah.number, ayah.numberInSurah);
+                        Get.snackbar(
+                          "Saved",
+                          "Reading progress updated",
+                          snackPosition: SnackPosition.TOP,
+                          backgroundColor: primary,
+                          colorText: white,
+                        );
+                      },
+                    ),
+
+                    // Audio Controls Row
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: Container(
+                        padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+                        child: InkWell(
+                          onTap: () {
+                            audioController.fetchAndPlayAudio(
+                                index, widget.surah.number);
+                          },
+                          borderRadius: BorderRadius.circular(25),
+                          child: Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: audioController.isPlaying(index)
+                                  ? primary700
+                                  : audioController.isLoadingAudio(index)
+                                      ? Colors.orange.withOpacity(0.2)
+                                      : Get.isDarkMode
+                                          ? Colors.white.withOpacity(0.1)
+                                          : Colors.black.withOpacity(0.05),
+                              shape: BoxShape.circle,
+                              boxShadow: audioController.isPlaying(index)
+                                  ? [
+                                      BoxShadow(
+                                        color: primary700.withOpacity(0.3),
+                                        blurRadius: 8,
+                                        offset: const Offset(0, 2),
+                                      ),
+                                    ]
+                                  : null,
+                            ),
+                            child: _buildAudioIcon(audioController, index),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
           );
         },
       ),
+    );
+  }
+
+  Widget _buildAudioIcon(QuranAudioController audioController, int index) {
+    if (audioController.isDownloadingAudio(index)) {
+      return SizedBox(
+        width: 20,
+        height: 20,
+        child: CircularProgressIndicator(
+          strokeWidth: 2,
+          valueColor: AlwaysStoppedAnimation<Color>(
+            Get.isDarkMode ? Colors.white70 : primary700,
+          ),
+        ),
+      );
+    }
+
+    if (audioController.isBufferingAudio(index)) {
+      return SizedBox(
+        width: 20,
+        height: 20,
+        child: CircularProgressIndicator(
+          strokeWidth: 2,
+          valueColor: AlwaysStoppedAnimation<Color>(
+            audioController.isPlaying(index) ? white : primary700,
+          ),
+        ),
+      );
+    }
+
+    if (audioController.isPlaying(index)) {
+      return const Icon(
+        Icons.pause,
+        size: 20,
+        color: white,
+      );
+    }
+
+    return Icon(
+      Icons.play_arrow,
+      size: 20,
+      color: Get.isDarkMode ? Colors.white70 : primary700,
     );
   }
 }

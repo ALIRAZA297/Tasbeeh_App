@@ -31,8 +31,7 @@ class ApiService {
       final response = await http.get(Uri.parse(url));
 
       if (response.statusCode == 200) {
-        log(
-            "API Response: ${response.body.substring(0, 300)}..."); // Print part of response
+        log("API Response: ${response.body.substring(0, 300)}..."); // Print part of response
         return json.decode(response.body);
       } else {
         log("API Error: ${response.statusCode}, ${response.body}");

@@ -1,8 +1,8 @@
 import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tasbeeh_app/Utils/app_colors.dart';
 
 class QiblaCompassPainter extends CustomPainter {
   final double direction; // Device heading (0-360°)
@@ -23,22 +23,22 @@ class QiblaCompassPainter extends CustomPainter {
 
     // Draw outer metallic ring
     final outerRingPaint = Paint()
-      ..shader = RadialGradient(
+      ..shader = const RadialGradient(
         colors: [
-          const Color(0xFF8E8E93),
-          const Color(0xFF48484A),
-          const Color(0xFF8E8E93),
+          Color(0xFF8E8E93),
+          Color(0xFF48484A),
+          Color(0xFF8E8E93),
         ],
-        stops: const [0.0, 0.5, 1.0],
+        stops: [0.0, 0.5, 1.0],
       ).createShader(Rect.fromCircle(center: center, radius: radius + 15));
     canvas.drawCircle(center, radius + 15, outerRingPaint);
 
     // Draw inner bezel
     final bezelPaint = Paint()
-      ..shader = RadialGradient(
+      ..shader = const RadialGradient(
         colors: [
-          const Color(0xFF2C2C2E),
-          const Color(0xFF1C1C1E),
+          Color(0xFF2C2C2E),
+          Color(0xFF1C1C1E),
         ],
       ).createShader(Rect.fromCircle(center: center, radius: radius + 5));
     canvas.drawCircle(center, radius + 5, bezelPaint);
@@ -55,9 +55,6 @@ class QiblaCompassPainter extends CustomPainter {
     canvas.drawCircle(center, radius, facePaint);
 
     // Draw degree markings (every 10 degrees)
-    final degreeMarkPaint = Paint()
-      ..color = Get.isDarkMode ? Colors.white.withOpacity(0.6) : Colors.black54
-      ..strokeWidth = 1;
 
     for (int i = 0; i < 36; i++) {
       final angle = i * 10 * pi / 180 - pi / 2;
@@ -65,7 +62,7 @@ class QiblaCompassPainter extends CustomPainter {
       final isMajorMark = i % 3 == 0; // Every 30 degrees
 
       final startRadius = isMainDirection ? 0.75 : (isMajorMark ? 0.85 : 0.9);
-      final endRadius = 0.95;
+      const endRadius = 0.95;
 
       final start = center +
           Offset(cos(angle) * radius * startRadius,
@@ -155,7 +152,7 @@ class QiblaCompassPainter extends CustomPainter {
     // North needle (red with white outline)
     final northNeedlePath = Path();
     final needleLength = radius * 0.4;
-    final needleWidth = 8;
+    const needleWidth = 8;
 
     // Create north needle shape
     northNeedlePath.moveTo(
@@ -238,8 +235,8 @@ class QiblaCompassPainter extends CustomPainter {
 
     // Draw Qibla arrow with Islamic styling (relative to rotated canvas)
     final qiblaPath = Path();
-    final arrowLength = 25;
-    final arrowWidth = 12;
+    const arrowLength = 25;
+    const arrowWidth = 12;
 
     final qiblaPoint =
         Offset(0, -qiblaIndicatorRadius); // Point upward in rotated space
@@ -319,10 +316,10 @@ class QiblaCompassPainter extends CustomPainter {
     canvas.drawCircle(center + const Offset(2, 2), 12, centerShadowPaint);
 
     final centerPaint = Paint()
-      ..shader = RadialGradient(
+      ..shader = const RadialGradient(
         colors: [
-          const Color(0xFF8E8E93),
-          const Color(0xFF48484A),
+          Color(0xFF8E8E93),
+          Color(0xFF48484A),
         ],
       ).createShader(Rect.fromCircle(center: center, radius: 12));
     canvas.drawCircle(center, 12, centerPaint);

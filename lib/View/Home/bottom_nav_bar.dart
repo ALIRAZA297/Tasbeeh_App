@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_islamic_icons/flutter_islamic_icons.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tasbeeh_app/Utils/app_colors.dart';
 
 import '../../Controller/navigation_controller.dart';
@@ -68,8 +68,13 @@ class BottomNavigationScreen extends StatelessWidget {
                 label: 'Tasbeeh',
               ),
               BottomNavigationBarItem(
-                icon: _buildNavIcon(CupertinoIcons.settings,
+                icon: _buildNavIcon(FlutterIslamicIcons.prayingPerson,
                     controller.currentIndex.value == 3),
+                label: 'Prayer Tracker',
+              ),
+              BottomNavigationBarItem(
+                icon: _buildNavIcon(CupertinoIcons.settings,
+                    controller.currentIndex.value == 4),
                 label: 'Settings',
               ),
             ],

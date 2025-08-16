@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tasbeeh_app/View/Home%20Items/Prayer%20Tracker/prayer_tracker.dart';
 import 'package:tasbeeh_app/View/Home%20Items/Tasbeeh/tasbeeh_screen.dart';
 import 'package:tasbeeh_app/View/Home/home.dart';
 
@@ -15,6 +16,7 @@ class NavigationController extends GetxController {
     HomeScreen(),
     const QiblaScreen(),
     const TasbeehScreen(),
+    const PrayerTrackerScreen(),
     const SettingsScreen(),
   ];
 

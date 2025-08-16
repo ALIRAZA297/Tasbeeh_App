@@ -125,4 +125,5 @@ class SurahController extends GetxController {
   //   await prefs.clear(); // Clears all stored data
   //   log("SharedPreferences cleared!");
   // }
+  
 }
