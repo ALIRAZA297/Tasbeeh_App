@@ -184,7 +184,7 @@ class _SurahDetailViewState extends State<SurahDetailView> {
                           fontSize: 26,
                           height: 2.5,
                           fontWeight: FontWeight.bold,
-                          color: Get.isDarkMode ? white : black,
+                          color: black,
                         ),
                       ),
                       subtitle: Column(
@@ -233,9 +233,7 @@ class _SurahDetailViewState extends State<SurahDetailView> {
                                   ? primary700
                                   : audioController.isLoadingAudio(index)
                                       ? Colors.orange.withOpacity(0.2)
-                                      : Get.isDarkMode
-                                          ? Colors.white.withOpacity(0.1)
-                                          : Colors.black.withOpacity(0.05),
+                                      : Colors.black.withOpacity(0.15),
                               shape: BoxShape.circle,
                               boxShadow: audioController.isPlaying(index)
                                   ? [

@@ -185,15 +185,20 @@ class PrayerTrackerScreen extends StatelessWidget {
       PrayerTrackerController controller, DateTime date, bool isDarkMode) {
     return Obx(() {
       final now = DateTime.now();
-      final isFutureDate = date.isAfter(DateTime(now.year, now.month, now.day));
-      final isSelected = date.day == controller.selectedDate.value.day &&
-          date.month == controller.selectedDate.value.month &&
-          date.year == controller.selectedDate.value.year;
-      final isToday = date.day == now.day &&
-          date.month == now.month &&
-          date.year == now.year;
+      final currentDay = DateTime(now.year, now.month, now.day);
+
+      // Normalize everything (drop hours/minutes/seconds)
+      final normalizedDate = DateTime(date.year, date.month, date.day);
+      final normalizedSelected = DateTime(
+          controller.selectedDate.value.year,
+          controller.selectedDate.value.month,
+          controller.selectedDate.value.day);
+
+      final isFutureDate = normalizedDate.isAfter(currentDay);
+      final isSelected = normalizedDate == normalizedSelected;
+      final isToday = normalizedDate == currentDay;
       final isInSelectedMonth =
-          date.month == controller.selectedMonth.value.month;
+          normalizedDate.month == controller.selectedMonth.value.month;
 
       return GestureDetector(
         onTap: isFutureDate ? null : () => controller.loadStatusesForDate(date),
@@ -218,7 +223,6 @@ class PrayerTrackerScreen extends StatelessWidget {
                             : (isDarkMode ? white60 : grey700),
                 fontWeight: isToday ? FontWeight.bold : FontWeight.normal,
                 fontSize: 16,
-                // opacity: isFutureDate ? 0.5 : 1.0,
               ),
             ),
           ),

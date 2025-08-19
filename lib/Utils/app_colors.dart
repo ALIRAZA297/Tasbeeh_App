@@ -13,6 +13,7 @@ const Color white = Colors.white;
 Color white70 = Colors.white70;
 Color white60 = Colors.white60;
 Color white38 = Colors.white38;
+Color white12 = Colors.white12;
 
 const Color black = Colors.black;
 const Color black54 = Colors.black54;
@@ -35,4 +36,6 @@ const Color purple = Color(0xFF4F46E5);
 const Color yellow = Colors.yellow;
 const Color cyan = Colors.cyan;
 Color green = Colors.green.shade500;
+Color green700 = Colors.green.shade700;
+
 const Color kAccentColor = Color(0xFF185ADB);

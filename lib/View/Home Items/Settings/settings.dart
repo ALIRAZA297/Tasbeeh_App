@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_islamic_icons/flutter_islamic_icons.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tasbeeh_app/Utils/app_colors.dart';
 
 import '../../../Components/custom_toggle_btn.dart';
@@ -27,7 +27,6 @@ class SettingsScreen extends StatelessWidget {
             color: Get.isDarkMode ? white : black87,
           ),
         ),
-        // backgroundColor: white,
         elevation: 0,
       ),
       body: SingleChildScrollView(
@@ -51,7 +50,15 @@ class SettingsScreen extends StatelessWidget {
               icon: Icons.language,
               title: 'Language',
               subtitle: 'Change app language',
-              // onTap: controller.changeLanguage,
+              onTap: () {
+                Get.snackbar(
+                  "Coming Soon",
+                  "This Functionality will come soon",
+                  snackPosition: SnackPosition.TOP,
+                  colorText: white,
+                  backgroundColor: red,
+                );
+              },
             ),
             //All Prayer Times
             _buildSettingCard(

@@ -30,13 +30,30 @@ class PrayerTrackerController extends GetxController {
     loadStatusesForDate(DateTime.now());
   }
 
+  // void loadStatusesForDate(DateTime date) {
+  //   selectedDate.value = date;
+  //   selectedMonth.value = DateTime(date.year, date.month, 1);
+  //   prayerStatuses.clear();
+
+  //   for (var prayer in prayers) {
+  //     String key = '${DateFormat('yyyy-MM-dd').format(date)}_$prayer';
+  //     String? status = _storage.read(key);
+  //     prayerStatuses[prayer] = status != null
+  //         ? PrayerStatus.values.firstWhere(
+  //             (e) => e.toString() == status,
+  //             orElse: () => PrayerStatus.notPrayed,
+  //           )
+  //         : null;
+  //   }
+  // }
   void loadStatusesForDate(DateTime date) {
-    selectedDate.value = date;
-    selectedMonth.value = DateTime(date.year, date.month, 1);
+    final normalized = DateTime(date.year, date.month, date.day);
+    selectedDate.value = normalized;
+    selectedMonth.value = DateTime(normalized.year, normalized.month, 1);
     prayerStatuses.clear();
 
     for (var prayer in prayers) {
-      String key = '${DateFormat('yyyy-MM-dd').format(date)}_$prayer';
+      String key = '${DateFormat('yyyy-MM-dd').format(normalized)}_$prayer';
       String? status = _storage.read(key);
       prayerStatuses[prayer] = status != null
           ? PrayerStatus.values.firstWhere(
@@ -58,13 +75,23 @@ class PrayerTrackerController extends GetxController {
     prayerStatuses[prayer] = status;
   }
 
+  // void changeMonth(int increment) {
+  //   selectedMonth.value = DateTime(
+  //       selectedMonth.value.year, selectedMonth.value.month + increment, 1);
+  //   selectedDate.value = DateTime(
+  //       selectedMonth.value.year,
+  //       selectedMonth.value.month,
+  //       selectedDate.value.day > 28 ? 1 : selectedDate.value.day);
+  //   loadStatusesForDate(selectedDate.value);
+  // }
+
   void changeMonth(int increment) {
     selectedMonth.value = DateTime(
         selectedMonth.value.year, selectedMonth.value.month + increment, 1);
-    selectedDate.value = DateTime(
-        selectedMonth.value.year,
-        selectedMonth.value.month,
-        selectedDate.value.day > 28 ? 1 : selectedDate.value.day);
+
+    // Reset selectedDate to the 1st of the new month (instead of keeping old day number)
+    selectedDate.value = selectedMonth.value;
+
     loadStatusesForDate(selectedDate.value);
   }
 

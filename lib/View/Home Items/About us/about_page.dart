@@ -48,7 +48,7 @@ class AboutPage extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "Version 1.0.9",
+                      "Version 1.0.10",
                       style: GoogleFonts.poppins(
                         fontSize: 16,
                         color: Get.isDarkMode ? white70 : grey700,
@@ -105,10 +105,10 @@ class AboutPage extends StatelessWidget {
                 "Tasbeeh Counter",
                 "Recite Tasbeehat with Urdu translation and create your own custom Tasbeeh for personal use.",
               ),
-              // _buildFeatureItem(
-              //   "Qibla Direction",
-              //   "Find the accurate Qibla direction based on your location, making it easy to pray anywhere.",
-              // ),
+              _buildFeatureItem(
+                "Qibla Direction",
+                "Find the accurate Qibla direction based on your location, making it easy to pray anywhere.",
+              ),
               _buildFeatureItem(
                 "Masnoon Duas",
                 "A collection of authentic supplications for daily life situations, including eating, sleeping, traveling, and more.",
@@ -121,6 +121,16 @@ class AboutPage extends StatelessWidget {
                 "Namaz Timing",
                 "Get accurate prayer timings based on your location.",
               ),
+              _buildFeatureItem(
+                "Dark & Light Theme",
+                "Switch seamlessly between dark and light themes for a better experience.",
+              ),
+
+              _buildFeatureItem(
+                "Prayer Tracker",
+                "Track your daily prayers and monitor consistency with detailed reports.",
+              ),
+
               const SizedBox(height: 20),
 
               // Credits Section
