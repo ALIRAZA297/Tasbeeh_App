@@ -12,6 +12,8 @@ class NooraniQaida extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
+        centerTitle: true,
+        scrolledUnderElevation: 0,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Text(
           'Noorani Qaida',
@@ -20,7 +22,6 @@ class NooraniQaida extends StatelessWidget {
             color: Get.isDarkMode ? white : black,
           ),
         ),
-        iconTheme: const IconThemeData(color: primary),
       ),
       body: SfPdfViewer.asset('assets/norani_qaida.pdf'),
     );

@@ -10,6 +10,7 @@ import 'package:tasbeeh_app/Components/animated_loader.dart';
 import 'package:tasbeeh_app/Components/animation.dart';
 import 'package:tasbeeh_app/Controller/prayer_controller.dart';
 import 'package:tasbeeh_app/Utils/app_colors.dart';
+import 'package:tasbeeh_app/View/Home%20Items/Iman%20Bases/iman_bases.dart';
 import 'package:tasbeeh_app/View/Home%20Items/Nurani%20Qaida/nurani_qaida.dart';
 import 'package:tasbeeh_app/View/Home%20Items/Quiz/quiz.dart';
 import 'package:tasbeeh_app/View/Home/all_prayers.dart';
@@ -18,7 +19,7 @@ import '../Home Items/Asma ul Husna/Allah_names.dart';
 import '../Home Items/Ibadat/ibadat.dart';
 import '../Home Items/Kalama/kalma.dart';
 import '../Home Items/Masnoon Dua/category_wise_dua.dart';
-import '../Home Items/Quran/quran_view.dart';
+import '../Home Items/Quran/all_surah.dart';
 import '../Home Items/Wadu/wadu_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -222,7 +223,7 @@ class HomeScreen extends StatelessWidget {
                         icon: FlutterIslamicIcons.solidQuran2,
                         title: 'Quran',
                         subtitle: 'قرآن',
-                        onTap: () => Get.to(() => const QuranView()),
+                        onTap: () => Get.to(() => const SurahScreen()),
                       ),
                       // _buildGridTile(
                       //   icon: FlutterIslamicIcons.solidTasbih,
@@ -266,6 +267,14 @@ class HomeScreen extends StatelessWidget {
                         subtitle: 'کوئز',
                         onTap: () => Get.to(() => const QuizScreen()),
                       ),
+
+                      _buildGridTile(
+                        icon: FlutterIslamicIcons.solidMinaret,
+                        title: 'Iman Bases',
+                        subtitle: 'ایمان کی بنیادیں',
+                        onTap: () => Get.to(() => const CombinedImanScreen()),
+                      ),
+
                       // _buildGridTile(
                       //   icon: FlutterIslamicIcons.solidKaaba,
                       //   title: 'Qibla Direction',

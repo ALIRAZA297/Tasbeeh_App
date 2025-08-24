@@ -120,7 +120,8 @@ void main() async {
 
   Get.put(ThemeController());
   Get.put(HomeController());
-  Get.put(QuranController());
+  // Get.put(QuranController());
+  Get.put(AllQuranController());
   Get.put(CounterController());
   Get.put(TasbeehController());
   Get.put(DuaController());

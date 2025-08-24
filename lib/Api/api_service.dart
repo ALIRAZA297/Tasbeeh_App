@@ -3,6 +3,9 @@ import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 
+import '../Model/surah_e_quran_model.dart';
+import 'api_method.dart';
+
 class ApiService {
   static const String baseUrl = "https://hadithapi.com/api";
   static const String apiKey =
@@ -41,5 +44,30 @@ class ApiService {
       log("Network Error: $e");
       return null;
     }
+  }
+
+  static Future<List<Surah>> getSurah(int id, String lang) async {
+    List<Surah> surah = [];
+    final url = 'https://quranenc.com/api/v1/translation/sura/$lang/$id';
+    log("Fetching Surah from: $url");
+
+    try {
+      final response = await ApiMethod(true).get(url);
+
+      log("Raw API Response: $response");
+
+      if (response != null && response["result"] != null) {
+        response["result"].forEach((e) {
+          surah.add(Surah.fromJson(e));
+        });
+        log("Fetched Ayats: ${surah.length}");
+      } else {
+        log("No result found in API response");
+      }
+    } catch (e) {
+      log('Error fetching Surah: $e');
+    }
+
+    return surah;
   }
 }

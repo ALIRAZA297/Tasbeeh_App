@@ -16,7 +16,13 @@ class KalimaScreen extends StatelessWidget {
       appBar: AppBar(
         scrolledUnderElevation: 0,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        title: const Text("Six Kalimas"),
+        title: Text(
+          "Six Kalimas",
+          style: GoogleFonts.poppins(
+            fontWeight: FontWeight.bold,
+            color: Get.isDarkMode ? white : black,
+          ),
+        ),
         centerTitle: true,
       ),
       body: Padding(

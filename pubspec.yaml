@@ -64,6 +64,10 @@ dependencies:
   flutter_screenutil: ^5.9.3
   fl_chart: 0.68.0
   syncfusion_flutter_pdfviewer: 26.1.35
+  flutter_svg: ^2.1.0
+  visibility_detector: ^0.4.0+2
+  scrollable_positioned_list: ^0.3.8
+  modal_progress_hud_nsn: ^0.5.1
 
 
 flutter_icons:
