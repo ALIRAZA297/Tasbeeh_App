@@ -14,6 +14,7 @@ Color white70 = Colors.white70;
 Color white60 = Colors.white60;
 Color white38 = Colors.white38;
 Color white12 = Colors.white12;
+Color white54 = Colors.white54;
 
 const Color black = Colors.black;
 const Color black54 = Colors.black54;

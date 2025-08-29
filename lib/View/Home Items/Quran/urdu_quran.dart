@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:tasbeeh_app/Utils/app_colors.dart';
-import 'package:tasbeeh_app/View/Home%20Items/Quran/fav_controller.dart';
+import 'package:tasbeeh_app/Controller/fav_controller.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 import '../../../Controller/quran_controller.dart';
