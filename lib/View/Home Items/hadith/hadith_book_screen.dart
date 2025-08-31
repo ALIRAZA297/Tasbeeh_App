@@ -1,7 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../Api/hadith_api_service.dart';
 import '../../../Utils/app_colors.dart';
@@ -78,13 +79,14 @@ class _HadithBooksScreenState extends State<HadithBooksScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
+        centerTitle: true,
+        scrolledUnderElevation: 0,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        title: const Text(
+        title: Text(
           'Hadith Books',
-          style: TextStyle(
-            fontSize: 20,
-            color: white,
+          style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
+            color: Get.isDarkMode ? white : black,
           ),
         ),
       ),
@@ -97,6 +99,7 @@ class _HadithBooksScreenState extends State<HadithBooksScreen> {
       return const Center(
         child: CircularProgressIndicator(
           strokeWidth: 4,
+          color: primary,
         ),
       );
     }
@@ -122,7 +125,7 @@ class _HadithBooksScreenState extends State<HadithBooksScreen> {
             ),
             const SizedBox(height: 8),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 32.w),
+              padding: const EdgeInsets.symmetric(horizontal: 32),
               child: Text(
                 errorMessage!,
                 textAlign: TextAlign.center,
@@ -173,7 +176,7 @@ class _HadithBooksScreenState extends State<HadithBooksScreen> {
       color: grey100,
       backgroundColor: secondary,
       child: ListView.builder(
-        padding: EdgeInsets.all(16.w),
+        padding: const EdgeInsets.all(16),
         itemCount: collections.keys.length,
         itemBuilder: (context, index) {
           final collectionName = collections.keys.elementAt(index);
@@ -191,7 +194,8 @@ class _HadithBooksScreenState extends State<HadithBooksScreen> {
   Widget _buildCollectionCard(
       String collectionName, List<HadithEdition> editions, String displayName) {
     return Card(
-      color: primary100,
+      elevation: 1,
+      color: secondary,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
@@ -201,7 +205,7 @@ class _HadithBooksScreenState extends State<HadithBooksScreen> {
           side: BorderSide(color: white.withOpacity(0.2), width: 1),
           borderRadius: BorderRadius.circular(10),
         ),
-        contentPadding: EdgeInsets.symmetric(vertical: 4, horizontal: 16.w),
+        contentPadding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
         leading: Container(
           width: 50,
           height: 50,
@@ -209,21 +213,21 @@ class _HadithBooksScreenState extends State<HadithBooksScreen> {
             borderRadius: BorderRadius.circular(8),
             color: grey100.withOpacity(0.2),
             border: Border.all(
-              color: grey100,
+              color: primary,
               width: 1.5,
             ),
           ),
-          child: Icon(
+          child: const Icon(
             Icons.menu_book_rounded,
-            color: grey100,
+            color: primary,
             size: 28,
           ),
         ),
         title: Text(
           // editions.isNotEmpty ? editions.first.name : collectionName, // Use the first edition's book name or collection name
           displayName, // Use the display name here
-          style: const TextStyle(
-            color: white,
+          style: GoogleFonts.poppins(
+            color: primary,
             fontSize: 18,
             fontWeight: FontWeight.w600,
           ),
@@ -235,20 +239,21 @@ class _HadithBooksScreenState extends State<HadithBooksScreen> {
             children: [
               Text(
                 _getCollectionDescription(collectionName),
-                style: TextStyle(
-                  color: white.withOpacity(0.7),
+                style: GoogleFonts.poppins(
+                  color: black54,
                   fontSize: 14,
                   height: 1.3,
                 ),
               ),
-              const SizedBox(height: 6),
+              const SizedBox(height: 10),
               Row(
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Container(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                     decoration: BoxDecoration(
-                      color: grey100.withOpacity(0.2),
+                      color: black.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(
                         color: grey100.withOpacity(0.5),
@@ -256,8 +261,8 @@ class _HadithBooksScreenState extends State<HadithBooksScreen> {
                     ),
                     child: Text(
                       '${editions.length} Translation${editions.length > 1 ? 's' : ''}',
-                      style: TextStyle(
-                        color: grey100,
+                      style: GoogleFonts.poppins(
+                        color: black54,
                         fontSize: 12,
                         fontWeight: FontWeight.w500,
                       ),
@@ -268,28 +273,9 @@ class _HadithBooksScreenState extends State<HadithBooksScreen> {
             ],
           ),
         ),
-        // trailing: Container(
-        //   padding: EdgeInsets.all(8.w),
-        //   decoration: BoxDecoration(
-        //     color:  white.withOpacity(0.1),
-        //     borderRadius: BorderRadius.circular(8),
-        //   ),
-        //   child: Icon(
-        //     Icons.arrow_forward_ios_rounded,
-        //     color:  white.withOpacity(0.7),
-        //     size: 16,
-        //   ),
-        // ),
         onTap: () {
           showHadithTranslationsBottomSheet(
               context, collectionName, displayName, editions);
-          // Get.to(
-          //   () => HadithTranslationsScreen(
-          //     collectionName: collectionName,
-          //     displayName: displayName, // Pass the display name
-          //     editions: editions,
-          // )
-          // );
         },
       ),
     );

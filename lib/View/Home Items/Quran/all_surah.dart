@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../Controller/quran_controller.dart';
-import '../../../Model/surah_model.dart';
+import 'Model/surah_model.dart';
 import '../../../Utils/app_colors.dart';
 import '../../../Controller/fav_controller.dart';
 import 'urdu_quran.dart';

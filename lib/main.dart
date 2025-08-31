@@ -61,6 +61,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tasbeeh_app/Api/notification_service.dart';
 import 'package:tasbeeh_app/Controller/counter_controller.dart';
+import 'package:tasbeeh_app/Controller/fav_controller.dart';
 import 'package:tasbeeh_app/Controller/kalma_controller.dart';
 import 'package:tasbeeh_app/Controller/masnoon_dua_controller.dart';
 import 'package:tasbeeh_app/Controller/prayer_controller.dart';
@@ -121,6 +122,7 @@ void main() async {
   Get.put(ThemeController());
   Get.put(HomeController());
   // Get.put(QuranController());
+  Get.put(FavoritesController);
   Get.put(AllQuranController());
   Get.put(CounterController());
   Get.put(TasbeehController());

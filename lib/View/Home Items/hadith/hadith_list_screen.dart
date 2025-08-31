@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-import '../../../Utils/app_colors.dart';
-import '../../../Controller/fav_controller.dart';
-import 'hadit_detail_screen.dart';
 import '../../../Api/hadith_api_service.dart';
+import '../../../Controller/fav_controller.dart';
+import '../../../Utils/app_colors.dart';
+import 'hadit_detail_screen.dart';
 
 class HadithListScreen extends StatefulWidget {
   final String editionName;
@@ -103,10 +104,13 @@ class _HadithListScreenState extends State<HadithListScreen> {
         title: isSearching
             ? TextField(
                 controller: _searchController,
-                style: const TextStyle(color: white, fontSize: 18),
+                style: GoogleFonts.poppins(
+                    color: Get.isDarkMode ? white : black, fontSize: 18),
                 decoration: InputDecoration(
                   hintText: 'Search hadiths...',
-                  hintStyle: TextStyle(color: white60),
+                  hintStyle: GoogleFonts.poppins(
+                    color: Get.isDarkMode ? white60 : black54,
+                  ),
                   border: InputBorder.none,
                 ),
                 autofocus: true,
@@ -115,9 +119,9 @@ class _HadithListScreenState extends State<HadithListScreen> {
                 widget.section.name.length > 25
                     ? '${widget.section.name.substring(0, 25)}...'
                     : widget.section.name,
-                style: const TextStyle(
+                style: GoogleFonts.poppins(
                   fontSize: 18,
-                  color: white,
+                  color: Get.isDarkMode ? white : black,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -127,7 +131,7 @@ class _HadithListScreenState extends State<HadithListScreen> {
             onPressed: _toggleSearch,
             icon: Icon(
               isSearching ? Icons.close : Icons.search,
-              color: white,
+              color: Get.isDarkMode ? white : black,
               size: 24,
             ),
           ),
@@ -141,7 +145,7 @@ class _HadithListScreenState extends State<HadithListScreen> {
               width: double.infinity,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: secondary,
+                color: Get.isDarkMode ? transparent : primary,
                 borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(16),
                   bottomRight: Radius.circular(16),
@@ -155,7 +159,9 @@ class _HadithListScreenState extends State<HadithListScreen> {
                     children: [
                       Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 12, vertical: 6),
+                          horizontal: 12,
+                          vertical: 6,
+                        ),
                         decoration: BoxDecoration(
                           color: grey100.withOpacity(0.2),
                           borderRadius: BorderRadius.circular(16),
@@ -165,7 +171,7 @@ class _HadithListScreenState extends State<HadithListScreen> {
                         ),
                         child: Text(
                           'Section ${widget.section.sectionNumber}',
-                          style: TextStyle(
+                          style: GoogleFonts.poppins(
                             fontWeight: FontWeight.w600,
                             fontSize: 12,
                             color: grey100,
@@ -185,7 +191,7 @@ class _HadithListScreenState extends State<HadithListScreen> {
                         ),
                         child: Text(
                           widget.language,
-                          style: TextStyle(
+                          style: GoogleFonts.poppins(
                             fontWeight: FontWeight.w600,
                             fontSize: 12,
                             color: grey100,
@@ -200,7 +206,7 @@ class _HadithListScreenState extends State<HadithListScreen> {
                   if (widget.section.arabicName.isNotEmpty) ...[
                     Text(
                       widget.section.arabicName,
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         fontSize: 18,
                         color: grey100,
                         fontWeight: FontWeight.w600,
@@ -214,7 +220,7 @@ class _HadithListScreenState extends State<HadithListScreen> {
                   // English title
                   Text(
                     widget.section.name,
-                    style: const TextStyle(
+                    style: GoogleFonts.poppins(
                       fontSize: 16,
                       color: white,
                       fontWeight: FontWeight.w600,
@@ -233,7 +239,7 @@ class _HadithListScreenState extends State<HadithListScreen> {
                       const SizedBox(width: 4),
                       Text(
                         '${widget.section.hadithCount} Hadiths',
-                        style: TextStyle(
+                        style: GoogleFonts.poppins(
                           fontSize: 12,
                           color: grey100,
                           fontWeight: FontWeight.w500,
@@ -249,7 +255,7 @@ class _HadithListScreenState extends State<HadithListScreen> {
                         const SizedBox(width: 4),
                         Text(
                           'Range: ${widget.section.rangeText}',
-                          style: TextStyle(
+                          style: GoogleFonts.poppins(
                             fontSize: 12,
                             color: white70,
                           ),
@@ -276,7 +282,7 @@ class _HadithListScreenState extends State<HadithListScreen> {
     if (isLoading) {
       return const Center(
         child: CircularProgressIndicator(
-          color: white,
+          color: primary,
         ),
       );
     }
@@ -288,14 +294,14 @@ class _HadithListScreenState extends State<HadithListScreen> {
           children: [
             Icon(
               Icons.error_outline,
-              color: white54,
+              color: Get.isDarkMode ? white54 : black54,
               size: 48,
             ),
             const SizedBox(height: 16),
-            const Text(
+            Text(
               'Error loading hadiths',
-              style: TextStyle(
-                color: white,
+              style: GoogleFonts.poppins(
+                color: Get.isDarkMode ? white : black,
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
               ),
@@ -306,8 +312,8 @@ class _HadithListScreenState extends State<HadithListScreen> {
               child: Text(
                 errorMessage!,
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: white70,
+                style: GoogleFonts.poppins(
+                  color: Get.isDarkMode ? white70 : black54,
                   fontSize: 12,
                 ),
               ),
@@ -318,9 +324,11 @@ class _HadithListScreenState extends State<HadithListScreen> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: grey100,
               ),
-              child: const Text(
+              child: Text(
                 'Retry',
-                style: TextStyle(color: white),
+                style: GoogleFonts.poppins(
+                  color: Get.isDarkMode ? white : black,
+                ),
               ),
             ),
           ],
@@ -335,14 +343,14 @@ class _HadithListScreenState extends State<HadithListScreen> {
           children: [
             Icon(
               isSearching ? Icons.search_off : Icons.book_outlined,
-              color: white54,
+              color: Get.isDarkMode ? white54 : black54,
               size: 48,
             ),
             const SizedBox(height: 16),
             Text(
               isSearching ? 'No hadiths found' : 'No hadiths available',
-              style: TextStyle(
-                color: white70,
+              style: GoogleFonts.poppins(
+                color: Get.isDarkMode ? white70 : black54,
                 fontSize: 16,
               ),
             ),
@@ -350,8 +358,8 @@ class _HadithListScreenState extends State<HadithListScreen> {
               const SizedBox(height: 8),
               Text(
                 'Try different search terms',
-                style: TextStyle(
-                  color: white54,
+                style: GoogleFonts.poppins(
+                  color: Get.isDarkMode ? white54 : black54,
                   fontSize: 14,
                 ),
               ),
@@ -364,7 +372,7 @@ class _HadithListScreenState extends State<HadithListScreen> {
     return RefreshIndicator(
       onRefresh: _loadHadiths,
       color: grey100,
-      backgroundColor: secondary,
+      backgroundColor: primary,
       child: ListView.builder(
         itemCount: filteredHadiths.length,
         padding: const EdgeInsets.all(12),
@@ -468,9 +476,9 @@ class _HadithTileState extends State<HadithTile> {
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (context) => Center(
+      builder: (context) => const Center(
         child: CircularProgressIndicator(
-          color: grey100,
+          color: primary,
         ),
       ),
     );
@@ -502,26 +510,27 @@ class _HadithTileState extends State<HadithTile> {
       });
 
       // Show success message
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-              isFavorite ? 'Added to favorites' : 'Removed from favorites'),
-          backgroundColor: isFavorite ? secondary : red,
-          duration: const Duration(seconds: 2),
-        ),
-      );
+      //   ScaffoldMessenger.of(context).showSnackBar(
+      //     SnackBar(
+      //       content: Text(
+      //           isFavorite ? 'Added to favorites' : 'Removed from favorites',
+      //           style: GoogleFonts.poppins(color: white)),
+      //       backgroundColor: isFavorite ? primary : red,
+      //       duration: const Duration(seconds: 2),
+      //     ),
+      //   );
     } catch (e) {
-      // Close loading dialog
-      Navigator.pop(context);
+      //   // Close loading dialog
+      //   Navigator.pop(context);
 
-      // Show error
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Failed to toggle favorite: $e'),
-          backgroundColor: red,
-          duration: const Duration(seconds: 2),
-        ),
-      );
+      //   // Show error
+      //   ScaffoldMessenger.of(context).showSnackBar(
+      //     SnackBar(
+      //       content: Text('Failed to toggle favorite: $e'),
+      //       backgroundColor: red,
+      //       duration: const Duration(seconds: 2),
+      //     ),
+      //   );
     }
   }
 
@@ -551,18 +560,18 @@ class _HadithTileState extends State<HadithTile> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                   decoration: BoxDecoration(
-                    color: grey100.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(12),
+                    color: black.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(8),
                     border: Border.all(
                       color: grey100.withOpacity(0.5),
                     ),
                   ),
                   child: Text(
                     'Hadith ${widget.hadithItem.hadithNumber}',
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                       fontWeight: FontWeight.w600,
                       fontSize: 12,
-                      color: grey100,
+                      color: black54,
                     ),
                   ),
                 ),
@@ -586,7 +595,7 @@ class _HadithTileState extends State<HadithTile> {
                         ),
                         child: Text(
                           widget.hadithItem.primaryGrade,
-                          style: TextStyle(
+                          style: GoogleFonts.poppins(
                             fontSize: 10,
                             color:
                                 _getGradeColor(widget.hadithItem.primaryGrade),
@@ -606,7 +615,7 @@ class _HadithTileState extends State<HadithTile> {
                           isFavorite
                               ? Icons.favorite
                               : Icons.favorite_border_outlined,
-                          color: isFavorite ? grey100 : white54,
+                          color: isFavorite ? red : black45,
                           size: 20,
                         ),
                       ),
@@ -620,14 +629,15 @@ class _HadithTileState extends State<HadithTile> {
 
             // Text preview
             Text(
+              textAlign: TextAlign.center,
               widget.hadithItem.text.length > 150
                   ? '"${widget.hadithItem.text.substring(0, 150)}..."'
                   : '"${widget.hadithItem.text}"',
-              style: TextStyle(
-                fontWeight: FontWeight.w400,
+              style: GoogleFonts.poppins(
+                fontWeight: FontWeight.w500,
                 fontSize: 14,
-                color: white70,
-                height: 1.5,
+                color: primary,
+                height: 2,
               ),
             ),
 
@@ -639,15 +649,15 @@ class _HadithTileState extends State<HadithTile> {
               children: [
                 Text(
                   'Tap to read full hadith',
-                  style: TextStyle(
+                  style: GoogleFonts.poppins(
                     fontSize: 12,
-                    color: white54,
+                    color: primary,
                     fontStyle: FontStyle.italic,
                   ),
                 ),
-                Icon(
+                const Icon(
                   Icons.arrow_forward_ios_rounded,
-                  color: white54,
+                  color: primary,
                   size: 14,
                 ),
               ],

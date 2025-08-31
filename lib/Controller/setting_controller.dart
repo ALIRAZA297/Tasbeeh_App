@@ -5,6 +5,7 @@ import 'package:tasbeeh_app/View/Home/all_prayers.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../View/Home Items/About us/about_page.dart';
+import '../View/Home Items/Favorite/favorite_screen.dart';
 
 class SettingsController extends GetxController {
   // Reactive theme mode
@@ -36,6 +37,11 @@ class SettingsController extends GetxController {
   // View all prayer times
   void viewPrayerTimes() {
     Get.to(() => AllPrayersScreen());
+  }
+
+  // Favorite
+  void viewFavorite() {
+    Get.to(() => FavoriteScreen());
   }
 
   // Rate the app

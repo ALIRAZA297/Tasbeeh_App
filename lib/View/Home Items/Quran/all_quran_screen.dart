@@ -129,7 +129,7 @@ class QuranVerseCard extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: const [
                   Column(
                     children: [
                       Row(

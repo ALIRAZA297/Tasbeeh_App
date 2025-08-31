@@ -1,10 +1,11 @@
 import 'dart:developer';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 
-import '../../../Utils/app_colors.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 import '../../../Api/hadith_api_service.dart';
+import '../../../Utils/app_colors.dart';
 import 'hadith_sections_screen.dart';
 
 void showHadithTranslationsBottomSheet(
@@ -15,16 +16,18 @@ void showHadithTranslationsBottomSheet(
 ) {
   showModalBottomSheet(
     context: context,
-    backgroundColor: Colors.transparent,
+    backgroundColor: Get.isDarkMode ? black : transparent,
     isScrollControlled: true,
     builder: (context) => Container(
       height: MediaQuery.of(context).size.height * 0.50,
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(30.r)),
+        color: Get.isDarkMode ? black87 : white,
+        borderRadius: const BorderRadius.vertical(
+          top: Radius.circular(30),
+        ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: black.withOpacity(0.1),
             blurRadius: 20,
             spreadRadius: 5,
             offset: const Offset(0, -5),
@@ -33,24 +36,26 @@ void showHadithTranslationsBottomSheet(
       ),
       child: Column(
         children: [
-          SizedBox(height: 12.h),
+          const SizedBox(height: 12),
           Container(
-            width: 40.w,
-            height: 4.h,
+            width: 40,
+            height: 4,
             decoration: BoxDecoration(
-              color: Colors.grey[300],
-              borderRadius: BorderRadius.circular(2.r),
+              color: grey300,
+              borderRadius: BorderRadius.circular(2),
             ),
           ),
-          SizedBox(height: 20.h),
+          const SizedBox(height: 20),
           Container(
-            padding: EdgeInsets.all(16.r),
-            margin: EdgeInsets.symmetric(horizontal: 24.w),
+            padding: const EdgeInsets.all(16),
+            margin: const EdgeInsets.symmetric(horizontal: 24),
             decoration: BoxDecoration(
-              color: primary.withOpacity(0.05),
-              borderRadius: BorderRadius.circular(20.r),
+              color: Get.isDarkMode
+                  ? secondary.withOpacity(0.1)
+                  : primary.withOpacity(0.05),
+              borderRadius: BorderRadius.circular(20),
               border: Border.all(
-                color: primary.withOpacity(0.1),
+                color: Get.isDarkMode ? white : primary.withOpacity(0.1),
               ),
             ),
             child: Column(
@@ -64,19 +69,19 @@ void showHadithTranslationsBottomSheet(
                           Text(
                             displayName,
                             textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 22.sp,
+                            style: GoogleFonts.poppins(
+                              fontSize: 22,
                               color: primary,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          SizedBox(height: 8.h),
+                          const SizedBox(height: 8),
                           Text(
                             _getCollectionDescription(collectionName),
                             textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 14.sp,
-                              color: Colors.grey[800],
+                            style: GoogleFonts.poppins(
+                              fontSize: 14,
+                              color: Get.isDarkMode ? grey600 : grey800,
                               fontWeight: FontWeight.w500,
                               height: 1.4,
                             ),
@@ -86,35 +91,35 @@ void showHadithTranslationsBottomSheet(
                     ),
                   ],
                 ),
-                SizedBox(height: 16.h),
+                const SizedBox(height: 16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.translate_rounded,
-                      size: 16.sp,
+                      size: 16,
                       color: primary,
                     ),
-                    SizedBox(width: 4.w),
+                    const SizedBox(width: 4),
                     Text(
                       '${editions.length} Translations',
-                      style: TextStyle(
-                        fontSize: 14.sp,
+                      style: GoogleFonts.poppins(
+                        fontSize: 14,
                         color: primary,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    SizedBox(width: 16.w),
-                    Icon(
+                    const SizedBox(width: 16),
+                    const Icon(
                       Icons.language_rounded,
-                      size: 16.sp,
+                      size: 16,
                       color: primary,
                     ),
-                    SizedBox(width: 4.w),
+                    const SizedBox(width: 4),
                     Text(
                       'Multiple Languages',
-                      style: TextStyle(
-                        fontSize: 14.sp,
+                      style: GoogleFonts.poppins(
+                        fontSize: 14,
                         color: primary,
                         fontWeight: FontWeight.w500,
                       ),
@@ -124,19 +129,19 @@ void showHadithTranslationsBottomSheet(
               ],
             ),
           ),
-          SizedBox(height: 24.h),
+          const SizedBox(height: 24),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24.w),
+            padding: const EdgeInsets.symmetric(horizontal: 24),
             child: Text(
               "Choose Translation",
-              style: TextStyle(
-                fontSize: 16.sp,
-                color: Colors.grey[600],
+              style: GoogleFonts.poppins(
+                fontSize: 16,
+                color: grey600,
                 fontWeight: FontWeight.w500,
               ),
             ),
           ),
-          SizedBox(height: 16.h),
+          const SizedBox(height: 16),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
@@ -179,9 +184,9 @@ Widget _buildEnhancedTranslationButton(
   return InkWell(
     onTap: onTap,
     child: Container(
-      width: 100.w,
-      padding: EdgeInsets.symmetric(vertical: 16.h),
-      margin: EdgeInsets.only(right: 8.h, left: 8.h),
+      width: 100,
+      padding: const EdgeInsets.symmetric(vertical: 16),
+      margin: const EdgeInsets.only(right: 8, left: 8),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
@@ -191,7 +196,7 @@ Widget _buildEnhancedTranslationButton(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
-        borderRadius: BorderRadius.circular(15.r),
+        borderRadius: BorderRadius.circular(15),
         boxShadow: [
           BoxShadow(
             color: primary.withOpacity(0.3),
@@ -204,23 +209,23 @@ Widget _buildEnhancedTranslationButton(
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            padding: EdgeInsets.all(10.r),
+            padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.1),
+              color: white.withOpacity(0.1),
               shape: BoxShape.circle,
             ),
             child: Icon(
               icon,
-              color: Colors.white,
-              size: 24.sp,
+              color: white,
+              size: 24,
             ),
           ),
-          SizedBox(height: 8.h),
+          const SizedBox(height: 8),
           Text(
             text,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 14.sp,
+            style: GoogleFonts.poppins(
+              color: white,
+              fontSize: 14,
               fontWeight: FontWeight.w600,
               letterSpacing: 0.5,
             ),

@@ -7,9 +7,9 @@ import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:tasbeeh_app/Api/api_service.dart';
 
-import '../../../Model/audio_model.dart';
-import '../../../Model/surah_e_quran_model.dart';
-import 'quran_audios.dart';
+import '../../../../Model/audio_model.dart';
+import '../Model/surah_e_quran_model.dart';
+import '../../../../Utils/quran_audios.dart';
 
 class UrduQuranController extends GetxController {
   var surahList = <Surah>[].obs;

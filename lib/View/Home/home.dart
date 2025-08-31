@@ -13,6 +13,7 @@ import 'package:tasbeeh_app/Utils/app_colors.dart';
 import 'package:tasbeeh_app/View/Home%20Items/Iman%20Bases/iman_bases.dart';
 import 'package:tasbeeh_app/View/Home%20Items/Nurani%20Qaida/nurani_qaida.dart';
 import 'package:tasbeeh_app/View/Home%20Items/Quiz/quiz.dart';
+import 'package:tasbeeh_app/View/Home%20Items/hadith/hadith_book_screen.dart';
 import 'package:tasbeeh_app/View/Home/all_prayers.dart';
 
 import '../Home Items/Asma ul Husna/Allah_names.dart';
@@ -263,8 +264,8 @@ class HomeScreen extends StatelessWidget {
                       ),
                       _buildGridTile(
                         icon: Icons.quiz,
-                        title: 'Quiz',
-                        subtitle: 'کوئز',
+                        title: 'Islamic Quiz',
+                        subtitle: 'اسلامی کوئز',
                         onTap: () => Get.to(() => const QuizScreen()),
                       ),
 
@@ -273,6 +274,13 @@ class HomeScreen extends StatelessWidget {
                         title: 'Iman Bases',
                         subtitle: 'ایمان کی بنیادیں',
                         onTap: () => Get.to(() => const CombinedImanScreen()),
+                      ),
+
+                      _buildGridTile(
+                        icon: FlutterIslamicIcons.solidMohammad,
+                        title: 'Hadith Books',
+                        subtitle: 'حدیث کی کتابیں',
+                        onTap: () => Get.to(() => const HadithBooksScreen()),
                       ),
 
                       // _buildGridTile(

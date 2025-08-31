@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../../Utils/app_colors.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 import '../../../Api/hadith_api_service.dart';
+import '../../../Utils/app_colors.dart';
 import 'hadith_list_screen.dart';
 
 class HadithSectionsScreen extends StatefulWidget {
@@ -97,23 +98,28 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
+        centerTitle: true,
+        elevation: 0,
+        scrolledUnderElevation: 0,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: isSearching
             ? TextField(
                 controller: _searchController,
-                style: TextStyle(color: white, fontSize: 18.sp),
+                style: GoogleFonts.poppins(
+                    color: Get.isDarkMode ? white : black, fontSize: 18),
                 decoration: InputDecoration(
                   hintText: 'Search sections...',
-                  hintStyle: TextStyle(color: white60),
+                  hintStyle: GoogleFonts.poppins(
+                      color: Get.isDarkMode ? white60 : black45),
                   border: InputBorder.none,
                 ),
                 autofocus: true,
               )
             : Text(
                 'Sections',
-                style: TextStyle(
-                  fontSize: 20.sp,
-                  color: white,
+                style: GoogleFonts.poppins(
+                  fontSize: 20,
+                  color: Get.isDarkMode ? white : black,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -122,7 +128,7 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen> {
             onPressed: _toggleSearch,
             icon: Icon(
               isSearching ? Icons.close : Icons.search,
-              color: white,
+              color: Get.isDarkMode ? white : black,
               size: 24,
             ),
           ),
@@ -136,7 +142,7 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen> {
               width: double.infinity,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: secondary,
+                color: Get.isDarkMode ? transparent : primary,
                 borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(16),
                   bottomRight: Radius.circular(16),
@@ -164,20 +170,20 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen> {
                           size: 24,
                         ),
                       ),
-                      SizedBox(width: 12.w),
+                      const SizedBox(width: 12),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               widget.displayName,
-                              style: TextStyle(
-                                fontSize: 18.sp,
+                              style: GoogleFonts.poppins(
+                                fontSize: 18,
                                 color: white,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                            SizedBox(height: 4.h),
+                            const SizedBox(height: 4),
                             Row(
                               children: [
                                 Container(
@@ -192,14 +198,14 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen> {
                                   ),
                                   child: Text(
                                     widget.language,
-                                    style: TextStyle(
+                                    style: GoogleFonts.poppins(
                                       color: grey100,
-                                      fontSize: 11.sp,
+                                      fontSize: 11,
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
                                 ),
-                                SizedBox(width: 8.w),
+                                const SizedBox(width: 8),
                                 Container(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 8, vertical: 2),
@@ -212,9 +218,9 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen> {
                                   ),
                                   child: Text(
                                     '${sections.length} Sections',
-                                    style: TextStyle(
+                                    style: GoogleFonts.poppins(
                                       color: grey100,
-                                      fontSize: 11.sp,
+                                      fontSize: 11,
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
@@ -229,7 +235,7 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen> {
                 ],
               ),
             ),
-            SizedBox(height: 8.h),
+            const SizedBox(height: 8),
           ],
 
           // Sections list
@@ -245,7 +251,7 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen> {
     if (isLoading) {
       return const Center(
         child: CircularProgressIndicator(
-          color: white,
+          color: primary,
         ),
       );
     }
@@ -260,36 +266,37 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen> {
               color: white54,
               size: 48,
             ),
-            SizedBox(height: 16.h),
+            const SizedBox(height: 16),
             Text(
               'Error loading sections',
-              style: TextStyle(
-                color: white,
-                fontSize: 16.sp,
+              style: GoogleFonts.poppins(
+                color: Get.isDarkMode ? white : black,
+                fontSize: 16,
                 fontWeight: FontWeight.w600,
               ),
             ),
-            SizedBox(height: 8.h),
+            const SizedBox(height: 8),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
               child: Text(
                 errorMessage!,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: GoogleFonts.poppins(
                   color: white70,
-                  fontSize: 12.sp,
+                  fontSize: 12,
                 ),
               ),
             ),
-            SizedBox(height: 16.h),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: _loadSections,
               style: ElevatedButton.styleFrom(
                 backgroundColor: grey100,
               ),
-              child: const Text(
+              child: Text(
                 'Retry',
-                style: TextStyle(color: white),
+                style:
+                    GoogleFonts.poppins(color: Get.isDarkMode ? white : black),
               ),
             ),
           ],
@@ -304,24 +311,24 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen> {
           children: [
             Icon(
               isSearching ? Icons.search_off : Icons.book_outlined,
-              color: white54,
+              color: Get.isDarkMode ? white54 : black54,
               size: 48,
             ),
-            SizedBox(height: 16.h),
+            const SizedBox(height: 16),
             Text(
               isSearching ? 'No sections found' : 'No sections available',
-              style: TextStyle(
-                color: white70,
-                fontSize: 16.sp,
+              style: GoogleFonts.poppins(
+                color: Get.isDarkMode ? white70 : black54,
+                fontSize: 16,
               ),
             ),
             if (isSearching) ...[
-              SizedBox(height: 8.h),
+              const SizedBox(height: 8),
               Text(
                 'Try different search terms',
-                style: TextStyle(
-                  color: white54,
-                  fontSize: 14.sp,
+                style: GoogleFonts.poppins(
+                  color: Get.isDarkMode ? white54 : black54,
+                  fontSize: 14,
                 ),
               ),
             ],
@@ -333,7 +340,7 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen> {
     return RefreshIndicator(
       onRefresh: _loadSections,
       color: grey100,
-      backgroundColor: secondary,
+      backgroundColor: Get.isDarkMode ? secondary : primary,
       child: ListView.builder(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         itemCount: filteredSections.length,
@@ -389,57 +396,57 @@ class SectionTile extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
                   decoration: BoxDecoration(
-                    color: grey100.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(16),
+                    color: black.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(8),
                     border: Border.all(
                       color: grey100.withOpacity(0.5),
                     ),
                   ),
                   child: Text(
                     'Section ${section.sectionNumber}',
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                       fontWeight: FontWeight.w600,
-                      fontSize: 12.sp,
-                      color: grey100,
+                      fontSize: 12,
+                      color: black54,
                     ),
                   ),
                 ),
                 const Spacer(),
-                Icon(
+                const Icon(
                   Icons.arrow_forward_ios_rounded,
-                  color: white54,
+                  color: primary,
                   size: 16,
                 ),
               ],
             ),
-            SizedBox(height: 12.h),
+            const SizedBox(height: 12),
 
             // Arabic title
             if (section.arabicName.isNotEmpty) ...[
               Text(
                 section.arabicName,
-                style: TextStyle(
-                  fontSize: 18.sp,
+                style: GoogleFonts.poppins(
+                  fontSize: 18,
                   color: const Color(0xFFFFC107),
                   fontWeight: FontWeight.w600,
                   height: 1.5,
                 ),
                 textAlign: TextAlign.right,
               ),
-              SizedBox(height: 8.h),
+              const SizedBox(height: 8),
             ],
 
             // English title
             Text(
               section.name,
-              style: TextStyle(
-                fontSize: 16.sp,
-                color: white,
+              style: GoogleFonts.poppins(
+                fontSize: 16,
+                color: primary,
                 fontWeight: FontWeight.w600,
                 height: 1.3,
               ),
             ),
-            SizedBox(height: 12.h),
+            const SizedBox(height: 12),
 
             // Statistics
             Row(
@@ -447,14 +454,14 @@ class SectionTile extends StatelessWidget {
                 _buildStatItem(
                   Icons.format_list_numbered_rounded,
                   '${section.hadithCount} Hadiths',
-                  grey100,
+                  black54,
                 ),
-                SizedBox(width: 16.w),
+                const SizedBox(width: 16),
                 if (section.rangeText.isNotEmpty)
                   _buildStatItem(
                     Icons.numbers_rounded,
                     'Range: ${section.rangeText}',
-                    white54,
+                    black54,
                   ),
               ],
             ),
@@ -476,8 +483,8 @@ class SectionTile extends StatelessWidget {
         const SizedBox(width: 6),
         Text(
           text,
-          style: TextStyle(
-            fontSize: 12.sp,
+          style: GoogleFonts.poppins(
+            fontSize: 12,
             color: color,
             fontWeight: FontWeight.w500,
           ),

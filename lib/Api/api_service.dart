@@ -3,7 +3,7 @@ import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 
-import '../Model/surah_e_quran_model.dart';
+import '../View/Home Items/Quran/Model/surah_e_quran_model.dart';
 import 'api_method.dart';
 
 class ApiService {

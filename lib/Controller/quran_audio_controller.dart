@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 
 import '../Model/audio_model.dart';
-import '../View/Home Items/Quran/quran_audios.dart';
+import '../Utils/quran_audios.dart';
 
 class QuranAudioController extends GetxController {
   final RxBool isLoading = false.obs;

@@ -67,6 +67,13 @@ class SettingsScreen extends StatelessWidget {
               subtitle: 'View all prayer times',
               onTap: controller.viewPrayerTimes,
             ),
+            // Favorite
+            _buildSettingCard(
+              icon: Icons.favorite,
+              title: 'Favorites',
+              subtitle: 'View all your favorites',
+              onTap: controller.viewFavorite,
+            ),
             // About Us
             _buildSettingCard(
               icon: CupertinoIcons.info_circle_fill,

@@ -8,7 +8,7 @@ import 'package:tasbeeh_app/Controller/fav_controller.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 import '../../../Controller/quran_controller.dart';
-import 'urdu_quran_controller.dart';
+import 'Controller/urdu_quran_controller.dart';
 
 class UrduQuranScreen extends StatefulWidget {
   const UrduQuranScreen({

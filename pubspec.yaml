@@ -59,7 +59,7 @@ dependencies:
   flutter_qiblah: ^3.1.0+1
   share_plus: ^11.1.0
   path_provider: ^2.1.5
-  audioplayers: ^6.4.0
+  audioplayers: 
   get_storage: ^2.1.1
   flutter_screenutil: ^5.9.3
   fl_chart: 0.68.0
