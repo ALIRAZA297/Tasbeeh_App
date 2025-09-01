@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:tasbeeh_app/Utils/app_colors.dart';
@@ -146,7 +147,7 @@ class _UrduQuranScreenState extends State<UrduQuranScreen> {
                           widget.surahNameEng,
                           style: TextStyle(
                             fontSize: 20,
-                            color: Colors.grey[800],
+                            color: Get.isDarkMode ? grey400 : grey800,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -161,7 +162,7 @@ class _UrduQuranScreenState extends State<UrduQuranScreen> {
                     padding:
                         const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                     decoration: BoxDecoration(
-                      color: primary.withOpacity(0.1),
+                      color: Get.isDarkMode ? white : primary.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(
                         color: primary.withOpacity(0.3),
@@ -250,7 +251,7 @@ class _UrduQuranScreenState extends State<UrduQuranScreen> {
                           color: secondary,
                           margin: const EdgeInsets.symmetric(
                             horizontal: 8,
-                            vertical: 5,
+                            vertical: 8,
                           ),
                           elevation: 1,
                           shape: RoundedRectangleBorder(
@@ -261,8 +262,10 @@ class _UrduQuranScreenState extends State<UrduQuranScreen> {
                                 ? BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
-                                      color: primary.withOpacity(0.5),
-                                      width: 2,
+                                      color: Get.isDarkMode
+                                          ? red
+                                          : primary.withOpacity(0.5),
+                                      width: 3,
                                     ),
                                   )
                                 : null,
@@ -411,9 +414,10 @@ class _UrduQuranScreenState extends State<UrduQuranScreen> {
                                     child: Text(
                                       ayat.arabicText ?? '',
                                       textAlign: TextAlign.right,
-                                      style: const TextStyle(
+                                      style: GoogleFonts.amiri(
                                         color: primary,
                                         fontSize: 20,
+                                        height: 2,
                                       ),
                                     ),
                                   ),
@@ -426,8 +430,9 @@ class _UrduQuranScreenState extends State<UrduQuranScreen> {
                                       textAlign: widget.isLTR
                                           ? TextAlign.left
                                           : TextAlign.right,
-                                      style: const TextStyle(
+                                      style: GoogleFonts.poppins(
                                         fontSize: 18,
+                                        color: black87,
                                       ),
                                     ),
                                   ),

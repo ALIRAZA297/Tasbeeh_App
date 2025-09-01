@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tasbeeh_app/Components/animation.dart';
 
 import '../../../Api/hadith_api_service.dart';
 import '../../../Utils/app_colors.dart';
@@ -340,22 +341,24 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen> {
     return RefreshIndicator(
       onRefresh: _loadSections,
       color: grey100,
-      backgroundColor: Get.isDarkMode ? secondary : primary,
+      backgroundColor: primary,
       child: ListView.builder(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         itemCount: filteredSections.length,
         itemBuilder: (context, index) {
           final section = filteredSections[index];
-          return SectionTile(
-            section: section,
-            onTap: () {
-              Get.to(() => HadithListScreen(
-                    editionName: widget.editionName,
-                    section: section,
-                    displayName: widget.displayName,
-                    language: widget.language,
-                  ));
-            },
+          return AppButtonAnimation(
+            child: SectionTile(
+              section: section,
+              onTap: () {
+                Get.to(() => HadithListScreen(
+                      editionName: widget.editionName,
+                      section: section,
+                      displayName: widget.displayName,
+                      language: widget.language,
+                    ));
+              },
+            ),
           );
         },
       ),

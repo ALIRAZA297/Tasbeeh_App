@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tasbeeh_app/Components/animation.dart';
 
 import '../../../Api/hadith_api_service.dart';
 import '../../../Controller/fav_controller.dart';
@@ -101,6 +102,9 @@ class _HadithListScreenState extends State<HadithListScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
+        centerTitle: true,
+        elevation: 0,
+        scrolledUnderElevation: 0,
         title: isSearching
             ? TextField(
                 controller: _searchController,
@@ -378,54 +382,56 @@ class _HadithListScreenState extends State<HadithListScreen> {
         padding: const EdgeInsets.all(12),
         itemBuilder: (context, index) {
           final hadith = filteredHadiths[index];
-          return HadithTile(
-            hadithItem: hadith,
-            onTap: () async {
-              // Show loading dialog
-              showDialog(
-                context: context,
-                barrierDismissible: false,
-                builder: (context) => Center(
-                  child: CircularProgressIndicator(
-                    color: grey100,
-                  ),
-                ),
-              );
-
-              try {
-                // Fetch detailed hadith
-                final hadithDetail = await HadithApiService.getHadithDetail(
-                  widget.editionName,
-                  hadith.hadithNumber,
-                );
-
-                // Close loading dialog
-                Navigator.pop(context);
-
-                // Navigate to reading screen
-                Get.to(() => HadithDetailScreen(
-                      hadithDetail: hadithDetail,
-                      displayName: widget.displayName,
-                      language: widget.language,
-                      sectionName: widget.section.name,
-                    ));
-              } catch (e) {
-                // Close loading dialog
-                Navigator.pop(context);
-
-                // Show error
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Failed to load hadith details: $e'),
-                    backgroundColor: red,
+          return AppButtonAnimation(
+            child: HadithTile(
+              hadithItem: hadith,
+              onTap: () async {
+                // Show loading dialog
+                showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (context) => Center(
+                    child: CircularProgressIndicator(
+                      color: grey100,
+                    ),
                   ),
                 );
-              }
-            },
-            editionName: widget.editionName,
-            displayName: widget.displayName,
-            language: widget.language,
-            sectionName: widget.section.name,
+
+                try {
+                  // Fetch detailed hadith
+                  final hadithDetail = await HadithApiService.getHadithDetail(
+                    widget.editionName,
+                    hadith.hadithNumber,
+                  );
+
+                  // Close loading dialog
+                  Navigator.pop(context);
+
+                  // Navigate to reading screen
+                  Get.to(() => HadithDetailScreen(
+                        hadithDetail: hadithDetail,
+                        displayName: widget.displayName,
+                        language: widget.language,
+                        sectionName: widget.section.name,
+                      ));
+                } catch (e) {
+                  // Close loading dialog
+                  Navigator.pop(context);
+
+                  // Show error
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Failed to load hadith details: $e'),
+                      backgroundColor: red,
+                    ),
+                  );
+                }
+              },
+              editionName: widget.editionName,
+              displayName: widget.displayName,
+              language: widget.language,
+              sectionName: widget.section.name,
+            ),
           );
         },
       ),
@@ -584,8 +590,7 @@ class _HadithTileState extends State<HadithTile> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 2),
                         decoration: BoxDecoration(
-                          color: _getGradeColor(widget.hadithItem.primaryGrade)
-                              .withOpacity(0.2),
+                          color: white,
                           borderRadius: BorderRadius.circular(8),
                           border: Border.all(
                             color:

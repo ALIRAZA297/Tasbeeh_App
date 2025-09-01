@@ -1,139 +1,6 @@
-// import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
-
-// import '../../../Api/hadith_api_service.dart';
-// import '../../../Controller/fav_controller.dart';
-// import '../../../Utils/app_colors.dart';
-// import '../hadith/hadit_detail_screen.dart';
-// import '../hadith/hadith_list_screen.dart';
-
-// class FavoriteScreen extends StatelessWidget {
-//   const FavoriteScreen({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final FavoritesController favoritesController =
-//         Get.put(FavoritesController());
-
-//     return Scaffold(
-//       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-//       appBar: AppBar(
-//         centerTitle: true,
-//         scrolledUnderElevation: 0,
-//         elevation: 0,
-//         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-//         title: Text(
-//           'Favorites',
-//           style: TextStyle(
-//             fontSize: 18,
-//             color: Get.isDarkMode ? white : black,
-//             fontWeight: FontWeight.bold,
-//           ),
-//         ),
-//         actions: [
-//           IconButton(
-//             onPressed: () {
-//               favoritesController.clearAllHadithFavorites();
-//             },
-//             icon: Icon(
-//               Icons.delete_sweep,
-//               color: Get.isDarkMode ? white : black,
-//               size: 24,
-//             ),
-//           ),
-//         ],
-//       ),
-//       body: Obx(
-//         () => favoritesController.favoriteHadiths.isEmpty
-//             ? Center(
-//                 child: Column(
-//                   mainAxisAlignment: MainAxisAlignment.center,
-//                   children: [
-//                     Icon(
-//                       Icons.bookmark_border,
-//                       color: white54,
-//                       size: 48,
-//                     ),
-//                     const SizedBox(height: 16),
-//                     Text(
-//                       'No favorite hadiths',
-//                       style: TextStyle(
-//                         color: white70,
-//                         fontSize: 16,
-//                       ),
-//                     ),
-//                     Text(
-//                       'Add hadiths to your favorites',
-//                       style: TextStyle(
-//                         color: white54,
-//                         fontSize: 14,
-//                       ),
-//                     ),
-//                   ],
-//                 ),
-//               )
-//             : ListView.builder(
-//                 padding: const EdgeInsets.all(12),
-//                 itemCount: favoritesController.favoriteHadiths.length,
-//                 itemBuilder: (context, index) {
-//                   final hadith = favoritesController.favoriteHadiths[index];
-//                   return HadithTile(
-//                     hadithItem: HadithItem(
-//                       hadithNumber: (hadith['hadithNumber']),
-//                       text: hadith['text'],
-//                       editionName: hadith['editionName'],
-//                       grades: List<String>.from(hadith['grades']),
-//                     ),
-//                     onTap: () async {
-//                       showDialog(
-//                         context: context,
-//                         barrierDismissible: false,
-//                         builder: (context) => const Center(
-//                           child: CircularProgressIndicator(
-//                             color: primary,
-//                           ),
-//                         ),
-//                       );
-
-//                       try {
-//                         final hadithDetail =
-//                             await HadithApiService.getHadithDetail(
-//                           hadith['editionName'],
-//                           hadith['hadithNumber'],
-//                         );
-
-//                         Navigator.pop(context);
-
-//                         Get.to(() => HadithDetailScreen(
-//                               hadithDetail: hadithDetail,
-//                               displayName: hadith['displayName'],
-//                               language: hadith['language'],
-//                               sectionName: hadith['sectionName'],
-//                             ));
-//                       } catch (e) {
-//                         Navigator.pop(context);
-//                         ScaffoldMessenger.of(context).showSnackBar(
-//                           SnackBar(
-//                             content: Text('Failed to load hadith details: $e'),
-//                             backgroundColor: red,
-//                           ),
-//                         );
-//                       }
-//                     },
-//                     editionName: hadith['editionName'],
-//                     displayName: hadith['displayName'],
-//                     language: hadith['language'],
-//                     sectionName: hadith['sectionName'],
-//                   );
-//                 },
-//               ),
-//       ),
-//     );
-//   }
-// }
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../Api/hadith_api_service.dart';
 import '../../../Controller/fav_controller.dart';
@@ -162,7 +29,7 @@ class FavoriteScreen extends StatelessWidget {
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           title: Text(
             'Favorites',
-            style: TextStyle(
+            style: GoogleFonts.poppins(
               fontSize: 18,
               color: Get.isDarkMode ? white : black,
               fontWeight: FontWeight.bold,
@@ -171,9 +38,12 @@ class FavoriteScreen extends StatelessWidget {
           bottom: TabBar(
             labelColor: Get.isDarkMode ? white : black,
             unselectedLabelColor: Get.isDarkMode ? white54 : black54,
+            labelStyle: GoogleFonts.poppins(),
             indicatorColor: primary,
             tabs: const [
-              Tab(text: 'Ayats'),
+              Tab(
+                text: 'Ayats',
+              ),
               Tab(text: 'Hadiths'),
             ],
           ),
@@ -189,35 +59,22 @@ class FavoriteScreen extends StatelessWidget {
                         children: [
                           Icon(
                             Icons.bookmark_border,
-                            color: white54,
+                            color: Get.isDarkMode ? white54 : black54,
                             size: 48,
                           ),
                           const SizedBox(height: 16),
                           Text(
                             'No favorite ayats',
-                            style: TextStyle(
-                              color: white70,
+                            style: GoogleFonts.poppins(
+                              color: Get.isDarkMode ? white70 : black87,
                               fontSize: 16,
                             ),
                           ),
                           Text(
                             'Add ayats to your favorites',
-                            style: TextStyle(
-                              color: white54,
+                            style: GoogleFonts.poppins(
+                              color: Get.isDarkMode ? white54 : black54,
                               fontSize: 14,
-                            ),
-                          ),
-                          const SizedBox(height: 16),
-                          ElevatedButton(
-                            onPressed: () {
-                              favoritesController.clearAllAyatFavorites();
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: grey100,
-                            ),
-                            child: const Text(
-                              'Clear All',
-                              style: TextStyle(color: white),
                             ),
                           ),
                         ],
@@ -238,11 +95,7 @@ class FavoriteScreen extends StatelessWidget {
                                   surahNameEng: ayat.surahNameEng,
                                   lang: ayat.language,
                                   isLTR: true,
-
-                                  // ayatNumber: ayat.ayatNumber,
-                                  // arabicText: ayat.arabicText,
-                                  // translation: ayat.translation,
-                                  // language: ayat.language,
+                                  scrollToAyat: ayat.ayatNumber,
                                 ));
                           },
                         );
@@ -258,35 +111,22 @@ class FavoriteScreen extends StatelessWidget {
                         children: [
                           Icon(
                             Icons.bookmark_border,
-                            color: white54,
+                            color: Get.isDarkMode ? white54 : black54,
                             size: 48,
                           ),
                           const SizedBox(height: 16),
                           Text(
                             'No favorite hadiths',
-                            style: TextStyle(
-                              color: white70,
+                            style: GoogleFonts.poppins(
+                              color: Get.isDarkMode ? white70 : black87,
                               fontSize: 16,
                             ),
                           ),
                           Text(
                             'Add hadiths to your favorites',
-                            style: TextStyle(
-                              color: white54,
+                            style: GoogleFonts.poppins(
+                              color: Get.isDarkMode ? white54 : black54,
                               fontSize: 14,
-                            ),
-                          ),
-                          const SizedBox(height: 16),
-                          ElevatedButton(
-                            onPressed: () {
-                              favoritesController.clearAllHadithFavorites();
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: grey100,
-                            ),
-                            child: const Text(
-                              'Clear All',
-                              style: TextStyle(color: white),
                             ),
                           ),
                         ],
@@ -397,18 +237,18 @@ class AyatTile extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                   decoration: BoxDecoration(
-                    color: grey100.withOpacity(0.2),
+                    color: primary100.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
-                      color: grey100.withOpacity(0.5),
+                      color: primary.withOpacity(0.5),
                     ),
                   ),
                   child: Text(
                     '${ayat.surahNameEng} ${ayat.ayatNumber}',
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                       fontWeight: FontWeight.w600,
                       fontSize: 12,
-                      color: grey100,
+                      color: primary,
                     ),
                   ),
                 ),
@@ -420,19 +260,19 @@ class AyatTile extends StatelessWidget {
                       language: ayat.language,
                     );
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: const Text('Removed from favorites'),
+                      const SnackBar(
+                        content: Text('Removed from favorites'),
                         backgroundColor: red,
-                        duration: const Duration(seconds: 2),
+                        duration: Duration(seconds: 2),
                       ),
                     );
                   },
                   borderRadius: BorderRadius.circular(20),
-                  child: Padding(
-                    padding: const EdgeInsets.all(4),
+                  child: const Padding(
+                    padding: EdgeInsets.all(4),
                     child: Icon(
                       Icons.favorite,
-                      color: grey100,
+                      color: red,
                       size: 20,
                     ),
                   ),
@@ -441,16 +281,18 @@ class AyatTile extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             // Arabic text
-            Text(
-              ayat.arabicText,
-              style: TextStyle(
-                fontWeight: FontWeight.w400,
-                fontSize: 16,
-                color: white70,
-                height: 1.5,
-                fontFamily: 'Amiri', // Adjust font for Arabic if needed
+            Align(
+              alignment: Alignment.centerRight,
+              child: Text(
+                ayat.arabicText,
+                style: GoogleFonts.amiri(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
+                  color: primary,
+                  height: 2,
+                ),
+                textAlign: TextAlign.right,
               ),
-              textAlign: TextAlign.right,
             ),
             const SizedBox(height: 8),
             // Translation
@@ -458,12 +300,13 @@ class AyatTile extends StatelessWidget {
               ayat.translation.length > 150
                   ? '"${ayat.translation.substring(0, 150)}..."'
                   : '"${ayat.translation}"',
-              style: TextStyle(
+              style: GoogleFonts.poppins(
                 fontWeight: FontWeight.w400,
                 fontSize: 14,
-                color: white70,
+                color: black,
                 height: 1.5,
               ),
+              textAlign: TextAlign.center,
             ),
             const SizedBox(height: 12),
             // Footer
@@ -472,15 +315,15 @@ class AyatTile extends StatelessWidget {
               children: [
                 Text(
                   'Tap to read full ayat',
-                  style: TextStyle(
+                  style: GoogleFonts.poppins(
                     fontSize: 12,
-                    color: white54,
+                    color: primary,
                     fontStyle: FontStyle.italic,
                   ),
                 ),
-                Icon(
+                const Icon(
                   Icons.arrow_forward_ios_rounded,
-                  color: white54,
+                  color: primary,
                   size: 14,
                 ),
               ],

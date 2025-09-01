@@ -5,7 +5,8 @@ class DuaCategoryModel {
   List<DuaModel> duas;
   bool isUserAdded;
 
-  DuaCategoryModel({required this.name, required this.duas, this.isUserAdded = false});
+  DuaCategoryModel(
+      {required this.name, required this.duas, this.isUserAdded = false});
 
   Map<String, dynamic> toJson() {
     return {
@@ -18,7 +19,8 @@ class DuaCategoryModel {
   factory DuaCategoryModel.fromJson(Map<String, dynamic> json) {
     return DuaCategoryModel(
       name: json['name'],
-      duas: (json['duas'] as List).map((dua) => DuaModel.fromJson(dua)).toList(),
+      duas:
+          (json['duas'] as List).map((dua) => DuaModel.fromJson(dua)).toList(),
       isUserAdded: json['isUserAdded'] ?? false,
     );
   }

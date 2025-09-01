@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../Controller/quran_controller.dart';
 import 'Model/surah_model.dart';
@@ -41,7 +42,7 @@ class _SurahScreenState extends State<SurahScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Get.isDarkMode ? black : primary,
+      backgroundColor: primary,
       body: SafeArea(
         child: Column(
           children: [
@@ -73,8 +74,8 @@ class _SurahScreenState extends State<SurahScreen>
                             opacity: _animationController,
                             child: Text(
                               "Al-Quran",
-                              style: TextStyle(
-                                color: white.withOpacity(0.7),
+                              style: GoogleFonts.poppins(
+                                color: white.withOpacity(0.65),
                                 fontSize: 14,
                                 letterSpacing: 4,
                                 fontWeight: FontWeight.w500,
@@ -90,9 +91,9 @@ class _SurahScreenState extends State<SurahScreen>
                               parent: _animationController,
                               curve: Curves.easeOut,
                             )),
-                            child: const Text(
+                            child: Text(
                               'The Holy Quran',
-                              style: TextStyle(
+                              style: GoogleFonts.poppins(
                                 fontSize: 32,
                                 fontWeight: FontWeight.bold,
                                 color: white,
@@ -131,7 +132,7 @@ class _SurahScreenState extends State<SurahScreen>
             Expanded(
               child: Container(
                 decoration: BoxDecoration(
-                  color: white,
+                  color: Get.isDarkMode ? black : white,
                   borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(30),
                     topRight: Radius.circular(30),
@@ -197,9 +198,9 @@ class _SurahScreenState extends State<SurahScreen>
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          const Text(
+                                          Text(
                                             "Resume Reading",
-                                            style: TextStyle(
+                                            style: GoogleFonts.poppins(
                                               color: white,
                                               fontSize: 18,
                                               fontWeight: FontWeight.bold,
@@ -208,7 +209,7 @@ class _SurahScreenState extends State<SurahScreen>
                                           const SizedBox(height: 4),
                                           Text(
                                             "${lastRead['surahNameEng']} - Ayat ${lastRead['ayatNumber']}",
-                                            style: TextStyle(
+                                            style: GoogleFonts.poppins(
                                               color: white.withOpacity(0.9),
                                               fontSize: 14,
                                               fontWeight: FontWeight.w500,
@@ -218,7 +219,7 @@ class _SurahScreenState extends State<SurahScreen>
                                           Text(
                                             quranController
                                                 .getTimeSinceLastRead(),
-                                            style: TextStyle(
+                                            style: GoogleFonts.poppins(
                                               color: white.withOpacity(0.7),
                                               fontSize: 12,
                                             ),
@@ -230,7 +231,7 @@ class _SurahScreenState extends State<SurahScreen>
                                       padding: const EdgeInsets.all(8),
                                       child: Text(
                                         lastRead['surahNameAr'] ?? '',
-                                        style: const TextStyle(
+                                        style: GoogleFonts.amiri(
                                           color: white,
                                           fontSize: 20,
                                           fontWeight: FontWeight.w600,
@@ -250,21 +251,36 @@ class _SurahScreenState extends State<SurahScreen>
                     // Enhanced Statistics Row
                     Container(
                       margin: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 10),
+                        horizontal: 20,
+                        vertical: 10,
+                      ),
                       padding: const EdgeInsets.symmetric(
-                          vertical: 16, horizontal: 20),
+                        vertical: 16,
+                        horizontal: 20,
+                      ),
                       decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            primary.withOpacity(0.1),
-                            primary.withOpacity(0.05),
-                          ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
+                        gradient: Get.isDarkMode
+                            ? LinearGradient(
+                                colors: [
+                                  white.withOpacity(0.2),
+                                  white.withOpacity(0.1),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              )
+                            : LinearGradient(
+                                colors: [
+                                  primary.withOpacity(0.1),
+                                  primary.withOpacity(0.05),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(
-                          color: primary.withOpacity(0.1),
+                          color: Get.isDarkMode
+                              ? secondary
+                              : primary.withOpacity(0.1),
                         ),
                       ),
                       child: Row(
@@ -315,7 +331,9 @@ class _SurahScreenState extends State<SurahScreen>
     return Container(
       height: 30,
       width: 1,
-      color: primary.withOpacity(0.2),
+      color: Get.isDarkMode
+          ? secondary.withOpacity(0.5)
+          : primary.withOpacity(0.2),
     );
   }
 
@@ -324,14 +342,14 @@ class _SurahScreenState extends State<SurahScreen>
       children: [
         Icon(
           icon,
-          color: primary,
+          color: Get.isDarkMode ? primary200 : primary,
           size: 20,
         ),
         const SizedBox(height: 6),
         Text(
           value,
-          style: const TextStyle(
-            color: primary,
+          style: GoogleFonts.poppins(
+            color: Get.isDarkMode ? primary200 : primary,
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),
@@ -339,8 +357,8 @@ class _SurahScreenState extends State<SurahScreen>
         const SizedBox(height: 2),
         Text(
           label,
-          style: TextStyle(
-            color: grey700,
+          style: GoogleFonts.poppins(
+            color: Get.isDarkMode ? grey400 : grey700,
             fontSize: 10,
             fontWeight: FontWeight.w500,
           ),
@@ -405,7 +423,7 @@ class _SurahScreenState extends State<SurahScreen>
                       child: Center(
                         child: Text(
                           surah.index.toString(),
-                          style: const TextStyle(
+                          style: GoogleFonts.poppins(
                             color: primary,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -420,7 +438,7 @@ class _SurahScreenState extends State<SurahScreen>
                         children: [
                           Text(
                             surah.title,
-                            style: const TextStyle(
+                            style: GoogleFonts.poppins(
                               fontSize: 18,
                               fontWeight: FontWeight.w600,
                               color: black87,
@@ -438,7 +456,7 @@ class _SurahScreenState extends State<SurahScreen>
                             ),
                             child: Text(
                               "${surah.count} Verses • ${surah.place}",
-                              style: const TextStyle(
+                              style: GoogleFonts.poppins(
                                 fontSize: 12,
                                 color: primary,
                                 fontWeight: FontWeight.w500,
@@ -453,7 +471,7 @@ class _SurahScreenState extends State<SurahScreen>
                       padding: const EdgeInsets.all(8),
                       child: Text(
                         surah.titleAr,
-                        style: const TextStyle(
+                        style: GoogleFonts.amiri(
                           color: primary,
                           fontSize: 24,
                           fontWeight: FontWeight.w500,
@@ -466,33 +484,33 @@ class _SurahScreenState extends State<SurahScreen>
             ),
           ),
           // Add favorite button
-          Obx(() => Positioned(
-                right: 5,
-                top: 0,
-                child: InkWell(
-                  onTap: () => favoritesController.toggleSurahFavorite(
-                    index: int.tryParse(surah.index.toString()) ?? 0,
-                    title: surah.title,
-                    titleAr: surah.titleAr,
-                    place: surah.place,
-                    count: surah.count,
-                  ),
-                  child: Container(
-                    padding: const EdgeInsets.all(8),
-                    child: Icon(
-                      favoritesController.isSurahFavorite(
-                              int.tryParse(surah.index.toString()) ?? 0)
-                          ? Icons.favorite
-                          : Icons.favorite_border,
-                      color: favoritesController.isSurahFavorite(
-                              int.tryParse(surah.index.toString()) ?? 0)
-                          ? red
-                          : primary.withOpacity(0.5),
-                      size: 22,
-                    ),
-                  ),
-                ),
-              )),
+          // Obx(() => Positioned(
+          //       right: 5,
+          //       top: 0,
+          //       child: InkWell(
+          //         onTap: () => favoritesController.toggleSurahFavorite(
+          //           index: int.tryParse(surah.index.toString()) ?? 0,
+          //           title: surah.title,
+          //           titleAr: surah.titleAr,
+          //           place: surah.place,
+          //           count: surah.count,
+          //         ),
+          //         child: Container(
+          //           padding: const EdgeInsets.all(8),
+          //           child: Icon(
+          //             favoritesController.isSurahFavorite(
+          //                     int.tryParse(surah.index.toString()) ?? 0)
+          //                 ? Icons.favorite
+          //                 : Icons.favorite_border,
+          //             color: favoritesController.isSurahFavorite(
+          //                     int.tryParse(surah.index.toString()) ?? 0)
+          //                 ? red
+          //                 : primary.withOpacity(0.5),
+          //             size: 22,
+          //           ),
+          //         ),
+          //       ),
+          //     )),
         ],
       ),
     );
@@ -550,7 +568,7 @@ class _SurahScreenState extends State<SurahScreen>
                           children: [
                             Text(
                               surah.titleAr,
-                              style: const TextStyle(
+                              style: GoogleFonts.amiri(
                                 fontSize: 32,
                                 color: primary,
                                 fontWeight: FontWeight.bold,
@@ -559,7 +577,7 @@ class _SurahScreenState extends State<SurahScreen>
                             const SizedBox(height: 8),
                             Text(
                               surah.title,
-                              style: TextStyle(
+                              style: GoogleFonts.poppins(
                                 fontSize: 20,
                                 color: grey800,
                                 fontWeight: FontWeight.w500,
@@ -582,7 +600,7 @@ class _SurahScreenState extends State<SurahScreen>
                       const SizedBox(width: 4),
                       Text(
                         surah.place,
-                        style: const TextStyle(
+                        style: GoogleFonts.poppins(
                           fontSize: 14,
                           color: primary,
                           fontWeight: FontWeight.w500,
@@ -597,7 +615,7 @@ class _SurahScreenState extends State<SurahScreen>
                       const SizedBox(width: 4),
                       Text(
                         "${surah.count} Verses",
-                        style: const TextStyle(
+                        style: GoogleFonts.poppins(
                           fontSize: 14,
                           color: primary,
                           fontWeight: FontWeight.w500,
@@ -613,7 +631,7 @@ class _SurahScreenState extends State<SurahScreen>
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Text(
                 "Choose Translation",
-                style: TextStyle(
+                style: GoogleFonts.poppins(
                   fontSize: 16,
                   color: grey700,
                   fontWeight: FontWeight.w500,
@@ -754,7 +772,7 @@ class _SurahScreenState extends State<SurahScreen>
             const SizedBox(height: 8),
             Text(
               text,
-              style: const TextStyle(
+              style: GoogleFonts.poppins(
                 color: white,
                 fontSize: 14,
                 fontWeight: FontWeight.w600,

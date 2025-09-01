@@ -233,6 +233,13 @@ class HomeScreen extends StatelessWidget {
                       //   onTap: () => Get.to(() => const TasbeehScreen()),
                       // ),
                       _buildGridTile(
+                        icon: FlutterIslamicIcons.solidMohammad,
+                        title: 'Hadith Books',
+                        subtitle: 'حدیث کی کتابیں',
+                        onTap: () => Get.to(() => const HadithBooksScreen()),
+                      ),
+
+                      _buildGridTile(
                         icon: FlutterIslamicIcons.solidLantern,
                         title: 'Masnoon Duas',
                         subtitle: 'مسنون دعائیں',
@@ -274,13 +281,6 @@ class HomeScreen extends StatelessWidget {
                         title: 'Iman Bases',
                         subtitle: 'ایمان کی بنیادیں',
                         onTap: () => Get.to(() => const CombinedImanScreen()),
-                      ),
-
-                      _buildGridTile(
-                        icon: FlutterIslamicIcons.solidMohammad,
-                        title: 'Hadith Books',
-                        subtitle: 'حدیث کی کتابیں',
-                        onTap: () => Get.to(() => const HadithBooksScreen()),
                       ),
 
                       // _buildGridTile(

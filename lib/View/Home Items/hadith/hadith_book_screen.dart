@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tasbeeh_app/Components/animation.dart';
 
 import '../../../Api/hadith_api_service.dart';
 import '../../../Utils/app_colors.dart';
@@ -174,7 +175,7 @@ class _HadithBooksScreenState extends State<HadithBooksScreen> {
     return RefreshIndicator(
       onRefresh: _loadCollections,
       color: grey100,
-      backgroundColor: secondary,
+      backgroundColor: primary,
       child: ListView.builder(
         padding: const EdgeInsets.all(16),
         itemCount: collections.keys.length,
@@ -193,90 +194,93 @@ class _HadithBooksScreenState extends State<HadithBooksScreen> {
 
   Widget _buildCollectionCard(
       String collectionName, List<HadithEdition> editions, String displayName) {
-    return Card(
-      elevation: 1,
-      color: secondary,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      margin: const EdgeInsets.only(bottom: 12),
-      child: ListTile(
+    return AppButtonAnimation(
+      child: Card(
+        elevation: 1,
+        color: secondary,
         shape: RoundedRectangleBorder(
-          side: BorderSide(color: white.withOpacity(0.2), width: 1),
           borderRadius: BorderRadius.circular(10),
         ),
-        contentPadding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-        leading: Container(
-          width: 50,
-          height: 50,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            color: grey100.withOpacity(0.2),
-            border: Border.all(
+        margin: const EdgeInsets.only(bottom: 12),
+        child: ListTile(
+          shape: RoundedRectangleBorder(
+            side: BorderSide(color: white.withOpacity(0.2), width: 1),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          contentPadding:
+              const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+          leading: Container(
+            width: 50,
+            height: 50,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: grey100.withOpacity(0.2),
+              border: Border.all(
+                color: primary,
+                width: 1.5,
+              ),
+            ),
+            child: const Icon(
+              Icons.menu_book_rounded,
               color: primary,
-              width: 1.5,
+              size: 28,
             ),
           ),
-          child: const Icon(
-            Icons.menu_book_rounded,
-            color: primary,
-            size: 28,
+          title: Text(
+            // editions.isNotEmpty ? editions.first.name : collectionName, // Use the first edition's book name or collection name
+            displayName, // Use the display name here
+            style: GoogleFonts.poppins(
+              color: primary,
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+            ),
           ),
-        ),
-        title: Text(
-          // editions.isNotEmpty ? editions.first.name : collectionName, // Use the first edition's book name or collection name
-          displayName, // Use the display name here
-          style: GoogleFonts.poppins(
-            color: primary,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        subtitle: Padding(
-          padding: const EdgeInsets.only(top: 6),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                _getCollectionDescription(collectionName),
-                style: GoogleFonts.poppins(
-                  color: black54,
-                  fontSize: 14,
-                  height: 1.3,
-                ),
-              ),
-              const SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                    decoration: BoxDecoration(
-                      color: black.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(
-                        color: grey100.withOpacity(0.5),
-                      ),
-                    ),
-                    child: Text(
-                      '${editions.length} Translation${editions.length > 1 ? 's' : ''}',
-                      style: GoogleFonts.poppins(
-                        color: black54,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
+          subtitle: Padding(
+            padding: const EdgeInsets.only(top: 6),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  _getCollectionDescription(collectionName),
+                  style: GoogleFonts.poppins(
+                    color: black54,
+                    fontSize: 14,
+                    height: 1.3,
                   ),
-                ],
-              ),
-            ],
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 3),
+                      decoration: BoxDecoration(
+                        color: black.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(
+                          color: grey100.withOpacity(0.5),
+                        ),
+                      ),
+                      child: Text(
+                        '${editions.length} Translation${editions.length > 1 ? 's' : ''}',
+                        style: GoogleFonts.poppins(
+                          color: black54,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
+          onTap: () {
+            showHadithTranslationsBottomSheet(
+                context, collectionName, displayName, editions);
+          },
         ),
-        onTap: () {
-          showHadithTranslationsBottomSheet(
-              context, collectionName, displayName, editions);
-        },
       ),
     );
   }

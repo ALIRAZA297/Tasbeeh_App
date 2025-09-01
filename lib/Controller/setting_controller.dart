@@ -41,7 +41,7 @@ class SettingsController extends GetxController {
 
   // Favorite
   void viewFavorite() {
-    Get.to(() => FavoriteScreen());
+    Get.to(() => const FavoriteScreen());
   }
 
   // Rate the app
