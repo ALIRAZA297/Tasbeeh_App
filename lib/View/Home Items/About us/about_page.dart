@@ -48,7 +48,7 @@ class AboutPage extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "Version 1.0.11",
+                      "Version 1.0.12",
                       style: GoogleFonts.poppins(
                         fontSize: 16,
                         color: Get.isDarkMode ? white70 : grey700,
@@ -70,7 +70,11 @@ class AboutPage extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               Text(
-                "Tasbeeh & Quran is a simple and elegant app designed to help Muslims connect with the Quran and enhance their spiritual practice. It provides easy access to the full text of the Holy Quran with English translations, allowing users to read, resume their last reading, and save their progress effortlessly.",
+                "Tasbeeh & Quran is a simple and elegant app designed to help "
+                "Muslims connect with the Quran and enhance their spiritual practice."
+                " It provides easy access to the full text and audio of the Holy Quran with "
+                "multiple language translations, allowing users to read, resume their last "
+                "reading, and save their progress effortlessly.",
                 style: GoogleFonts.poppins(
                   fontSize: 16,
                   color: Get.isDarkMode ? white70 : grey800,
@@ -206,7 +210,7 @@ class AboutPage extends StatelessWidget {
         children: [
           Icon(
             Icons.check_circle,
-            color: primary700,
+            color: Get.isDarkMode ? primary300 : primary700,
             size: 20,
           ),
           const SizedBox(width: 10),
