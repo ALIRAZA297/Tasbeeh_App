@@ -149,7 +149,7 @@ class DuaController extends GetxController {
             translationUrdu:
                 "اے اللہ! مجھے گناہوں سے دھو دے اور مجھے خطاؤں سے پاک کر دے، جس طرح سفید کپڑے کو میل کچیل سے پاک کر دیا جاتا ہے۔ اے اللہ! مجھے توبہ کرنے والوں میں سے بنا دے اور مجھے پاکیزگی اختیار کرنے والوں میں شامل فرما۔",
             translationEnglish:
-                "O Allah! Wash away my sins and purify me from my mistakes, just as a white garment is cleansed from dirt. O Allah! Make me among those who repent often and make me among those who purify themselves.",
+                "O Allah! Wash away my sins and purify me from my mistakes, just as a AppColors.white garment is cleansed from dirt. O Allah! Make me among those who repent often and make me among those who purify themselves.",
             icon: Icons.shower,
           ),
           DuaModel(
@@ -1276,7 +1276,7 @@ class DuaController extends GetxController {
                 Get.snackbar("Success", "Dua updated successfully",
                     snackPosition: SnackPosition.TOP);
               },
-              child: const Text("Save", style: TextStyle(color: primary)),
+              child: Text("Save", style: TextStyle(color: AppColors.primary)),
             ),
           ],
         );
@@ -1290,7 +1290,7 @@ class DuaController extends GetxController {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: Get.isDarkMode ? grey800 : white,
+          backgroundColor: Get.isDarkMode ? AppColors.grey800 : AppColors.white,
           title: const Text("Delete Dua"),
           content: const Text("Are you sure you want to delete this Dua?"),
           actions: [
@@ -1307,7 +1307,8 @@ class DuaController extends GetxController {
                 Get.snackbar("Success", "Dua deleted successfully",
                     snackPosition: SnackPosition.TOP);
               },
-              child: const Text("Delete", style: TextStyle(color: red)),
+              child:
+                  const Text("Delete", style: TextStyle(color: AppColors.red)),
             ),
           ],
         );
@@ -1325,7 +1326,7 @@ class DuaController extends GetxController {
         TextEditingController();
 
     Get.defaultDialog(
-      backgroundColor: Get.isDarkMode ? grey800 : white,
+      backgroundColor: Get.isDarkMode ? AppColors.grey800 : AppColors.white,
       title: "Add New Dua",
       content: Form(
         key: formKey,
@@ -1410,7 +1411,8 @@ class DuaController extends GetxController {
                 Get.snackbar("Success", "Category deleted successfully",
                     snackPosition: SnackPosition.TOP);
               },
-              child: const Text("Delete", style: TextStyle(color: red)),
+              child:
+                  const Text("Delete", style: TextStyle(color: AppColors.red)),
             ),
           ],
         );
@@ -1455,7 +1457,7 @@ class DuaController extends GetxController {
                       snackPosition: SnackPosition.TOP);
                 }
               },
-              child: const Text("Save", style: TextStyle(color: primary)),
+              child: Text("Save", style: TextStyle(color: AppColors.primary)),
             ),
           ],
         );

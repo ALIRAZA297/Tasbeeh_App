@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
 
+import '../Utils/app_colors.dart';
+
 class NotificationService {
   // Cancel all scheduled notifications
   static Future<void> cancelAll() async {
@@ -80,6 +82,8 @@ class NotificationService {
 
       final result = await AwesomeNotifications().createNotification(
         content: NotificationContent(
+          wakeUpScreen: true,
+          backgroundColor: AppColors.white,
           id: id,
           channelKey: 'prayer_channel',
           title: 'Prayer Time',

@@ -1,105 +1,70 @@
-import 'dart:math';
+import 'dart:async';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:tasbeeh_app/Utils/app_colors.dart'; // for primary & secondary
 
-import 'package:flutter/cupertino.dart';
-import 'package:tasbeeh_app/Utils/app_colors.dart';
+class DigitalClock extends StatefulWidget {
+  const DigitalClock({super.key});
 
-class AnalogClock extends StatelessWidget {
-  final DateTime time;
+  @override
+  State<DigitalClock> createState() => _DigitalClockState();
+}
 
-  const AnalogClock({super.key, required this.time});
+class _DigitalClockState extends State<DigitalClock> {
+  late DateTime _time;
+  late Timer _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _time = DateTime.now();
+
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {
+        _time = DateTime.now();
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
+
+  String _formatTime(DateTime time) {
+    int hour = time.hour % 12 == 0 ? 12 : time.hour % 12;
+    String minute = time.minute.toString().padLeft(2, '0');
+    String second = time.second.toString().padLeft(2, '0');
+    String period = time.hour >= 12 ? "PM" : "AM";
+    return "$hour:$minute:$second $period";
+  }
 
   @override
   Widget build(BuildContext context) {
-    return CustomPaint(
-      painter: ClockPainter(time: time),
-      size: const Size(60, 60),
+    return Center(
+      child: ShaderMask(
+        shaderCallback: (bounds) => LinearGradient(
+          colors: [primary, primary100], // gradient from primary to secondary
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ).createShader(bounds),
+        child: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 600),
+          transitionBuilder: (child, animation) =>
+              FadeTransition(opacity: animation, child: child),
+          child: Text(
+            _formatTime(_time),
+            key: ValueKey(_time.second),
+            style: GoogleFonts.robotoMono(
+              fontSize: 46,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 3,
+              color: Colors.white, // required for ShaderMask
+            ),
+          ),
+        ),
+      ),
     );
   }
-}
-
-class ClockPainter extends CustomPainter {
-  final DateTime time;
-
-  ClockPainter({required this.time});
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final center = Offset(size.width / 2, size.height / 2);
-    final radius = size.width / 2;
-
-    // Clock face
-    final facePaint = Paint()
-      ..color = primary700.withOpacity(0.1)
-      ..style = PaintingStyle.fill;
-    canvas.drawCircle(center, radius, facePaint);
-
-    // Clock border
-    final borderPaint = Paint()
-      ..color = primary700
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 2;
-    canvas.drawCircle(center, radius, borderPaint);
-
-    // Hour markers
-    final markerPaint = Paint()
-      ..color = white
-      ..strokeWidth = 2;
-    for (int i = 0; i < 12; i++) {
-      final angle = i * 30 * pi / 180;
-      final start = center +
-          Offset(cos(angle) * radius * 0.85, sin(angle) * radius * 0.85);
-      final end = center +
-          Offset(cos(angle) * radius * 0.95, sin(angle) * radius * 0.95);
-      canvas.drawLine(start, end, markerPaint);
-    }
-
-    // Hour hand
-    final hourAngle = (time.hour % 12 + time.minute / 60) * 30 * pi / 180;
-    final hourHand = Paint()
-      ..color = white
-      ..strokeWidth = 3
-      ..strokeCap = StrokeCap.round;
-    canvas.drawLine(
-      center,
-      center +
-          Offset(cos(hourAngle - pi / 2) * radius * 0.5,
-              sin(hourAngle - pi / 2) * radius * 0.5),
-      hourHand,
-    );
-
-    // Minute hand
-    final minuteAngle = (time.minute + time.second / 60) * 6 * pi / 180;
-    final minuteHand = Paint()
-      ..color = white
-      ..strokeWidth = 2
-      ..strokeCap = StrokeCap.round;
-    canvas.drawLine(
-      center,
-      center +
-          Offset(cos(minuteAngle - pi / 2) * radius * 0.7,
-              sin(minuteAngle - pi / 2) * radius * 0.7),
-      minuteHand,
-    );
-
-    // Second hand
-    final secondAngle = time.second * 6 * pi / 180;
-    final secondHand = Paint()
-      ..color = primary300
-      ..strokeWidth = 1
-      ..strokeCap = StrokeCap.round;
-    canvas.drawLine(
-      center,
-      center +
-          Offset(cos(secondAngle - pi / 2) * radius * 0.8,
-              sin(secondAngle - pi / 2) * radius * 0.8),
-      secondHand,
-    );
-
-    // Center dot
-    final centerDot = Paint()..color = primary700;
-    canvas.drawCircle(center, 3, centerDot);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
 }

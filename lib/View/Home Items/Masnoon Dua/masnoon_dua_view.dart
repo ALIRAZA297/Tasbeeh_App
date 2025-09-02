@@ -33,7 +33,7 @@ class _DuaScreenState extends State<DuaScreen> {
           widget.categoryName,
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
-            color: Get.isDarkMode ? white : black,
+            color: Get.isDarkMode ? AppColors.white : AppColors.black,
           ),
         ),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -66,7 +66,7 @@ class _DuaScreenState extends State<DuaScreen> {
                       Icon(
                         Icons.search_off,
                         size: 50,
-                        color: grey500,
+                        color: AppColors.grey500,
                       ),
                       Text(
                         'No Dua available',
@@ -74,7 +74,7 @@ class _DuaScreenState extends State<DuaScreen> {
                           fontSize: 18,
                           height: 2,
                           fontWeight: FontWeight.bold,
-                          color: grey500,
+                          color: AppColors.grey500,
                         ),
                       ),
                     ],
@@ -93,7 +93,7 @@ class _DuaScreenState extends State<DuaScreen> {
                     widget.categoryName,
                   ),
                   backgroundColor: primary,
-                  child: const Icon(Icons.add, color: white),
+                  child: const Icon(Icons.add, color: AppColors.white),
                 )
               : const SizedBox.shrink();
         },

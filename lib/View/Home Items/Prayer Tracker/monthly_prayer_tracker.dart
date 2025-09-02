@@ -30,7 +30,7 @@ class MonthlyPrayerReportScreen extends StatelessWidget {
           'Monthly Prayer Report',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
-            color: isDarkMode ? white : black,
+            color: isDarkMode ? AppColors.white : AppColors.black,
           ),
         ),
         centerTitle: true,
@@ -80,7 +80,7 @@ class MonthlyPrayerReportScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             InkWell(
-              splashColor: transparent,
+              splashColor: AppColors.transparent,
               onTap: () => controller.changeMonth(-1),
               child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
@@ -88,31 +88,35 @@ class MonthlyPrayerReportScreen extends StatelessWidget {
                   color: primary700,
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: const Icon(Icons.arrow_left, color: white, size: 24),
+                child: const Icon(Icons.arrow_left,
+                    color: AppColors.white, size: 24),
               ),
             ),
             Text(
               DateFormat('MMMM yyyy').format(controller.selectedMonth.value),
               style: TextStyle(
                 fontSize: 20,
-                color: isDarkMode ? white : grey800,
+                color: isDarkMode ? AppColors.white : AppColors.grey800,
                 fontWeight: FontWeight.bold,
               ),
             ),
             InkWell(
-              splashColor: transparent,
+              splashColor: AppColors.transparent,
               onTap: isCurrentOrFutureMonth
                   ? null
                   : () => controller.changeMonth(1),
               child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
                 decoration: BoxDecoration(
-                  color: isCurrentOrFutureMonth ? grey300 : primary700,
+                  color:
+                      isCurrentOrFutureMonth ? AppColors.grey300 : primary700,
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Icon(
                   Icons.arrow_right,
-                  color: isCurrentOrFutureMonth ? grey700 : white,
+                  color: isCurrentOrFutureMonth
+                      ? AppColors.grey700
+                      : AppColors.white,
                   size: 24,
                 ),
               ),
@@ -133,16 +137,17 @@ class MonthlyPrayerReportScreen extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       margin: const EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
-        color: isDarkMode ? secondary : white,
+        color: isDarkMode ? secondary : AppColors.white,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: isDarkMode ? white38 : grey300,
+          color: isDarkMode ? AppColors.white38 : AppColors.grey300,
           width: 1,
         ),
         boxShadow: [
           BoxShadow(
-            color:
-                isDarkMode ? black.withOpacity(0.1) : grey500.withOpacity(0.1),
+            color: isDarkMode
+                ? AppColors.black.withOpacity(0.1)
+                : AppColors.grey500.withOpacity(0.1),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -155,7 +160,7 @@ class MonthlyPrayerReportScreen extends StatelessWidget {
             'Monthly Summary',
             style: TextStyle(
               fontSize: 18,
-              color: grey800,
+              color: AppColors.grey800,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -187,7 +192,7 @@ class MonthlyPrayerReportScreen extends StatelessWidget {
                             return BarTooltipItem(
                               '$label: ${value.toStringAsFixed(0)}%',
                               TextStyle(
-                                color: grey100,
+                                color: AppColors.grey100,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 14,
                               ),
@@ -208,7 +213,7 @@ class MonthlyPrayerReportScreen extends StatelessWidget {
                                 child: Text(
                                   titles[value.toInt()],
                                   style: TextStyle(
-                                    color: grey700,
+                                    color: AppColors.grey700,
                                     fontSize: 14,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -226,7 +231,7 @@ class MonthlyPrayerReportScreen extends StatelessWidget {
                               return Text(
                                 '${value.toInt()}%',
                                 style: TextStyle(
-                                  color: grey700,
+                                  color: AppColors.grey700,
                                   fontSize: 12,
                                 ),
                               );
@@ -245,8 +250,8 @@ class MonthlyPrayerReportScreen extends StatelessWidget {
                         getDrawingHorizontalLine: (value) {
                           return FlLine(
                             color: isDarkMode
-                                ? grey.withOpacity(0.3)
-                                : grey.withOpacity(0.2),
+                                ? AppColors.grey.withOpacity(0.3)
+                                : AppColors.grey.withOpacity(0.2),
                             strokeWidth: 1,
                           );
                         },
@@ -254,7 +259,9 @@ class MonthlyPrayerReportScreen extends StatelessWidget {
                       borderData: FlBorderData(
                         show: true,
                         border: Border.all(
-                          color: isDarkMode ? white38 : grey100,
+                          color: isDarkMode
+                              ? AppColors.white38
+                              : AppColors.grey100,
                           width: 2,
                         ),
                       ),
@@ -272,7 +279,9 @@ class MonthlyPrayerReportScreen extends StatelessWidget {
                               width: MediaQuery.of(context).size.width * 0.35,
                               borderRadius: BorderRadius.circular(6),
                               borderSide: BorderSide(
-                                color: isDarkMode ? white38 : grey300,
+                                color: isDarkMode
+                                    ? AppColors.white38
+                                    : AppColors.grey300,
                                 width: 1,
                               ),
                             ),
@@ -284,14 +293,16 @@ class MonthlyPrayerReportScreen extends StatelessWidget {
                             BarChartRodData(
                               toY: remaining > 0 ? remaining : 0.01,
                               gradient: LinearGradient(
-                                colors: [lightred, redDark],
+                                colors: [AppColors.lightred, AppColors.redDark],
                                 begin: Alignment.bottomCenter,
                                 end: Alignment.topCenter,
                               ),
                               width: MediaQuery.of(context).size.width * 0.35,
                               borderRadius: BorderRadius.circular(6),
                               borderSide: BorderSide(
-                                color: isDarkMode ? white38 : grey300,
+                                color: isDarkMode
+                                    ? AppColors.white38
+                                    : AppColors.grey300,
                                 width: 1,
                               ),
                             ),
@@ -309,14 +320,14 @@ class MonthlyPrayerReportScreen extends StatelessWidget {
                       'Consistency Score',
                       style: TextStyle(
                         fontSize: 16,
-                        color: grey700,
+                        color: AppColors.grey700,
                       ),
                     ),
                     Text(
                       'Unlogged/Missed',
                       style: TextStyle(
                         fontSize: 16,
-                        color: grey700,
+                        color: AppColors.grey700,
                       ),
                     ),
                   ],
@@ -335,7 +346,7 @@ class MonthlyPrayerReportScreen extends StatelessWidget {
                     '${summary['totalExpectedPrayers'] ?? 0}',
                     style: TextStyle(
                       fontSize: 24,
-                      color: grey800,
+                      color: AppColors.grey800,
                       fontWeight: FontWeight.w900,
                     ),
                   ),
@@ -343,7 +354,7 @@ class MonthlyPrayerReportScreen extends StatelessWidget {
                     'Total Expected',
                     style: TextStyle(
                       fontSize: 15,
-                      color: grey800,
+                      color: AppColors.grey800,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -356,7 +367,7 @@ class MonthlyPrayerReportScreen extends StatelessWidget {
                     '${summary['loggedPrayers'] ?? 0} (${summary['loggedPercentage'] ?? 0}%)',
                     style: TextStyle(
                       fontSize: 24,
-                      color: grey800,
+                      color: AppColors.grey800,
                       fontWeight: FontWeight.w900,
                     ),
                   ),
@@ -364,7 +375,7 @@ class MonthlyPrayerReportScreen extends StatelessWidget {
                     'Prayers Logged',
                     style: TextStyle(
                       fontSize: 15,
-                      color: grey800,
+                      color: AppColors.grey800,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -410,16 +421,17 @@ class MonthlyPrayerReportScreen extends StatelessWidget {
   ) {
     return Container(
       decoration: BoxDecoration(
-        color: isDarkMode ? grey800 : white,
+        color: isDarkMode ? AppColors.grey800 : AppColors.white,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: isDarkMode ? white38 : grey300,
+          color: isDarkMode ? AppColors.white38 : AppColors.grey300,
           width: 1,
         ),
         boxShadow: [
           BoxShadow(
-            color:
-                isDarkMode ? black.withOpacity(0.1) : grey500.withOpacity(0.1),
+            color: isDarkMode
+                ? AppColors.black.withOpacity(0.1)
+                : AppColors.grey500.withOpacity(0.1),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -434,7 +446,7 @@ class MonthlyPrayerReportScreen extends StatelessWidget {
           prayerName,
           style: TextStyle(
             fontSize: 16,
-            color: isDarkMode ? white70 : grey700,
+            color: isDarkMode ? AppColors.white70 : AppColors.grey700,
           ),
         ),
         trailing: Column(
@@ -443,7 +455,7 @@ class MonthlyPrayerReportScreen extends StatelessWidget {
             Text(
               ontime,
               style: TextStyle(
-                color: isDarkMode ? white : grey800,
+                color: isDarkMode ? AppColors.white : AppColors.grey800,
                 fontSize: 16,
                 fontWeight: FontWeight.w700,
               ),
@@ -451,7 +463,7 @@ class MonthlyPrayerReportScreen extends StatelessWidget {
             Text(
               percentage,
               style: TextStyle(
-                color: isDarkMode ? white : grey800,
+                color: isDarkMode ? AppColors.white : AppColors.grey800,
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
               ),
@@ -480,17 +492,17 @@ class MonthlyPrayerReportScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         margin: const EdgeInsets.symmetric(horizontal: 16),
         decoration: BoxDecoration(
-          color: isDarkMode ? secondary : white,
+          color: isDarkMode ? secondary : AppColors.white,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: isDarkMode ? white38 : grey300,
+            color: isDarkMode ? AppColors.white38 : AppColors.grey300,
             width: 1,
           ),
           boxShadow: [
             BoxShadow(
               color: isDarkMode
-                  ? black.withOpacity(0.1)
-                  : grey500.withOpacity(0.1),
+                  ? AppColors.black.withOpacity(0.1)
+                  : AppColors.grey500.withOpacity(0.1),
               blurRadius: 20,
               offset: const Offset(0, 10),
             ),
@@ -503,7 +515,7 @@ class MonthlyPrayerReportScreen extends StatelessWidget {
               'Monthly Overview',
               style: TextStyle(
                 fontSize: 18,
-                color: grey800,
+                color: AppColors.grey800,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -533,7 +545,9 @@ class MonthlyPrayerReportScreen extends StatelessWidget {
                             ? PrayerStatus.late.color
                             : PrayerStatus.notPrayed.color,
                     borderRadius: BorderRadius.circular(4),
-                    border: Border.all(color: isDarkMode ? white38 : grey300),
+                    border: Border.all(
+                        color:
+                            isDarkMode ? AppColors.white38 : AppColors.grey300),
                   ),
                   child: Center(
                     child: Text(
@@ -541,8 +555,10 @@ class MonthlyPrayerReportScreen extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 12,
                         color: score > 0.5
-                            ? (isDarkMode ? white : grey800)
-                            : (isDarkMode ? white70 : grey700),
+                            ? (isDarkMode ? AppColors.white : AppColors.grey800)
+                            : (isDarkMode
+                                ? AppColors.white70
+                                : AppColors.grey700),
                       ),
                     ),
                   ),
@@ -564,16 +580,17 @@ class MonthlyPrayerReportScreen extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       margin: const EdgeInsets.only(left: 16, right: 16, bottom: 20),
       decoration: BoxDecoration(
-        color: isDarkMode ? secondary : white,
+        color: isDarkMode ? secondary : AppColors.white,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: isDarkMode ? white38 : grey300,
+          color: isDarkMode ? AppColors.white38 : AppColors.grey300,
           width: 1,
         ),
         boxShadow: [
           BoxShadow(
-            color:
-                isDarkMode ? black.withOpacity(0.1) : grey500.withOpacity(0.1),
+            color: isDarkMode
+                ? AppColors.black.withOpacity(0.1)
+                : AppColors.grey500.withOpacity(0.1),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -586,7 +603,7 @@ class MonthlyPrayerReportScreen extends StatelessWidget {
             'Prayer Performance',
             style: TextStyle(
               fontSize: 18,
-              color: grey800,
+              color: AppColors.grey800,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -614,16 +631,17 @@ class MonthlyPrayerReportScreen extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: isDarkMode ? grey800 : white,
+        color: isDarkMode ? AppColors.grey800 : AppColors.white,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: isDarkMode ? white38 : grey300,
+          color: isDarkMode ? AppColors.white38 : AppColors.grey300,
           width: 1,
         ),
         boxShadow: [
           BoxShadow(
-            color:
-                isDarkMode ? black.withOpacity(0.1) : grey500.withOpacity(0.1),
+            color: isDarkMode
+                ? AppColors.black.withOpacity(0.1)
+                : AppColors.grey500.withOpacity(0.1),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -640,14 +658,14 @@ class MonthlyPrayerReportScreen extends StatelessWidget {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
-                    color: isDarkMode ? white : grey800,
+                    color: isDarkMode ? AppColors.white : AppColors.grey800,
                   ),
                 ),
               ),
               Text(
                 label,
                 style: TextStyle(
-                  color: isDarkMode ? white70 : grey700,
+                  color: isDarkMode ? AppColors.white70 : AppColors.grey700,
                   fontSize: 13,
                 ),
               ),
@@ -704,7 +722,7 @@ class MonthlyPrayerReportScreen extends StatelessWidget {
         Text(
           label,
           style: TextStyle(
-            color: isDarkMode ? white70 : grey700,
+            color: isDarkMode ? AppColors.white70 : AppColors.grey700,
             fontSize: 12,
           ),
         ),

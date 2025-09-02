@@ -59,6 +59,7 @@ import 'dart:developer';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:tasbeeh_app/Api/notification_service.dart';
 import 'package:tasbeeh_app/Controller/counter_controller.dart';
 import 'package:tasbeeh_app/Controller/kalma_controller.dart';
@@ -72,8 +73,8 @@ import 'package:tasbeeh_app/splas_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   NotificationService.cancelAll();
+  await GetStorage.init();
 
   final isAllowed = await AwesomeNotifications().isNotificationAllowed();
   log("Initial notification permission status: $isAllowed");
@@ -103,7 +104,7 @@ void main() async {
         channelKey: 'prayer_channel',
         channelName: 'Prayer Notifications',
         channelDescription: 'Daily Namaz reminders',
-        defaultColor: blue,
+        defaultColor: AppColors.blue,
         importance: NotificationImportance.Max,
         channelShowBadge: true,
       ),

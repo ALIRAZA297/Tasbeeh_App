@@ -149,7 +149,7 @@
 //     // Draw compass needle (North pointer)
 //     final needleAngle = -direction * pi / 180 - pi / 2;
 
-//     // North needle (red with white outline)
+//     // North needle (red withAppColors.white outline)
 //     final northNeedlePath = Path();
 //     final needleLength = radius * 0.4;
 //     const needleWidth = 8;
@@ -455,7 +455,7 @@ class _LoadingIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    return Center(
       child: CircularProgressIndicator(color: primary),
     );
   }

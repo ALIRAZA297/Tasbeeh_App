@@ -17,7 +17,7 @@ class AboutPage extends StatelessWidget {
           "About us",
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
-            color: Get.isDarkMode ? white : black,
+            color: Get.isDarkMode ? AppColors.white : AppColors.black,
           ),
         ),
         centerTitle: true,
@@ -44,14 +44,17 @@ class AboutPage extends StatelessWidget {
                       style: GoogleFonts.poppins(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
-                        color: Get.isDarkMode ? white : black,
+                        color:
+                            Get.isDarkMode ? AppColors.white : AppColors.black,
                       ),
                     ),
                     Text(
                       "Version 1.0.12",
                       style: GoogleFonts.poppins(
                         fontSize: 16,
-                        color: Get.isDarkMode ? white70 : grey700,
+                        color: Get.isDarkMode
+                            ? AppColors.white70
+                            : AppColors.grey700,
                       ),
                     ),
                   ],
@@ -65,7 +68,7 @@ class AboutPage extends StatelessWidget {
                 style: GoogleFonts.poppins(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: Get.isDarkMode ? white : black,
+                  color: Get.isDarkMode ? AppColors.white : AppColors.black,
                 ),
               ),
               const SizedBox(height: 10),
@@ -77,7 +80,7 @@ class AboutPage extends StatelessWidget {
                 "reading, and save their progress effortlessly.",
                 style: GoogleFonts.poppins(
                   fontSize: 16,
-                  color: Get.isDarkMode ? white70 : grey800,
+                  color: Get.isDarkMode ? AppColors.white70 : AppColors.grey800,
                 ),
                 textAlign: TextAlign.justify,
               ),
@@ -89,7 +92,7 @@ class AboutPage extends StatelessWidget {
                 style: GoogleFonts.poppins(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: Get.isDarkMode ? white : black,
+                  color: Get.isDarkMode ? AppColors.white : AppColors.black,
                 ),
               ),
               const SizedBox(height: 10),
@@ -143,7 +146,7 @@ class AboutPage extends StatelessWidget {
                 style: GoogleFonts.poppins(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: Get.isDarkMode ? white : black,
+                  color: Get.isDarkMode ? AppColors.white : AppColors.black,
                 ),
               ),
               const SizedBox(height: 10),
@@ -152,7 +155,7 @@ class AboutPage extends StatelessWidget {
                 "Special thanks to the open-source community for tools and resources.",
                 style: GoogleFonts.poppins(
                   fontSize: 16,
-                  color: Get.isDarkMode ? white70 : grey800,
+                  color: Get.isDarkMode ? AppColors.white70 : AppColors.grey800,
                 ),
               ),
               const SizedBox(height: 30),
@@ -189,7 +192,7 @@ class AboutPage extends StatelessWidget {
                   child: Text(
                     "Contact Us",
                     style: GoogleFonts.poppins(
-                      color: white,
+                      color: AppColors.white,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -223,14 +226,15 @@ class AboutPage extends StatelessWidget {
                   style: GoogleFonts.poppins(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
-                    color: Get.isDarkMode ? white : black,
+                    color: Get.isDarkMode ? AppColors.white : AppColors.black,
                   ),
                 ),
                 Text(
                   description,
                   style: GoogleFonts.poppins(
                     fontSize: 14,
-                    color: Get.isDarkMode ? white70 : grey700,
+                    color:
+                        Get.isDarkMode ? AppColors.white70 : AppColors.grey700,
                   ),
                 ),
               ],

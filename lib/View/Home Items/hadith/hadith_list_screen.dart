@@ -109,11 +109,13 @@ class _HadithListScreenState extends State<HadithListScreen> {
             ? TextField(
                 controller: _searchController,
                 style: GoogleFonts.poppins(
-                    color: Get.isDarkMode ? white : black, fontSize: 18),
+                    color: Get.isDarkMode ? AppColors.white : AppColors.black,
+                    fontSize: 18),
                 decoration: InputDecoration(
                   hintText: 'Search hadiths...',
                   hintStyle: GoogleFonts.poppins(
-                    color: Get.isDarkMode ? white60 : black54,
+                    color:
+                        Get.isDarkMode ? AppColors.white60 : AppColors.black54,
                   ),
                   border: InputBorder.none,
                 ),
@@ -125,7 +127,7 @@ class _HadithListScreenState extends State<HadithListScreen> {
                     : widget.section.name,
                 style: GoogleFonts.poppins(
                   fontSize: 18,
-                  color: Get.isDarkMode ? white : black,
+                  color: Get.isDarkMode ? AppColors.white : AppColors.black,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -135,7 +137,7 @@ class _HadithListScreenState extends State<HadithListScreen> {
             onPressed: _toggleSearch,
             icon: Icon(
               isSearching ? Icons.close : Icons.search,
-              color: Get.isDarkMode ? white : black,
+              color: Get.isDarkMode ? AppColors.white : AppColors.black,
               size: 24,
             ),
           ),
@@ -149,7 +151,7 @@ class _HadithListScreenState extends State<HadithListScreen> {
               width: double.infinity,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Get.isDarkMode ? transparent : primary,
+                color: Get.isDarkMode ? AppColors.transparent : primary,
                 borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(16),
                   bottomRight: Radius.circular(16),
@@ -167,10 +169,10 @@ class _HadithListScreenState extends State<HadithListScreen> {
                           vertical: 6,
                         ),
                         decoration: BoxDecoration(
-                          color: grey100.withOpacity(0.2),
+                          color: AppColors.grey100.withOpacity(0.2),
                           borderRadius: BorderRadius.circular(16),
                           border: Border.all(
-                            color: grey100,
+                            color: AppColors.grey100,
                           ),
                         ),
                         child: Text(
@@ -178,7 +180,7 @@ class _HadithListScreenState extends State<HadithListScreen> {
                           style: GoogleFonts.poppins(
                             fontWeight: FontWeight.w600,
                             fontSize: 12,
-                            color: grey100,
+                            color: AppColors.grey100,
                           ),
                         ),
                       ),
@@ -187,10 +189,10 @@ class _HadithListScreenState extends State<HadithListScreen> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 12, vertical: 6),
                         decoration: BoxDecoration(
-                          color: grey100.withOpacity(0.2),
+                          color: AppColors.grey100.withOpacity(0.2),
                           borderRadius: BorderRadius.circular(16),
                           border: Border.all(
-                            color: grey100.withOpacity(0.5),
+                            color: AppColors.grey100.withOpacity(0.5),
                           ),
                         ),
                         child: Text(
@@ -198,7 +200,7 @@ class _HadithListScreenState extends State<HadithListScreen> {
                           style: GoogleFonts.poppins(
                             fontWeight: FontWeight.w600,
                             fontSize: 12,
-                            color: grey100,
+                            color: AppColors.grey100,
                           ),
                         ),
                       ),
@@ -212,7 +214,7 @@ class _HadithListScreenState extends State<HadithListScreen> {
                       widget.section.arabicName,
                       style: GoogleFonts.poppins(
                         fontSize: 18,
-                        color: grey100,
+                        color: AppColors.grey100,
                         fontWeight: FontWeight.w600,
                         height: 1.5,
                       ),
@@ -226,7 +228,7 @@ class _HadithListScreenState extends State<HadithListScreen> {
                     widget.section.name,
                     style: GoogleFonts.poppins(
                       fontSize: 16,
-                      color: white,
+                      color: AppColors.white,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -237,7 +239,7 @@ class _HadithListScreenState extends State<HadithListScreen> {
                     children: [
                       Icon(
                         Icons.format_list_numbered_rounded,
-                        color: grey100,
+                        color: AppColors.grey100,
                         size: 16,
                       ),
                       const SizedBox(width: 4),
@@ -245,7 +247,7 @@ class _HadithListScreenState extends State<HadithListScreen> {
                         '${widget.section.hadithCount} Hadiths',
                         style: GoogleFonts.poppins(
                           fontSize: 12,
-                          color: grey100,
+                          color: AppColors.grey100,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -253,7 +255,7 @@ class _HadithListScreenState extends State<HadithListScreen> {
                         const SizedBox(width: 12),
                         Icon(
                           Icons.numbers_rounded,
-                          color: white70,
+                          color: AppColors.white70,
                           size: 16,
                         ),
                         const SizedBox(width: 4),
@@ -261,7 +263,7 @@ class _HadithListScreenState extends State<HadithListScreen> {
                           'Range: ${widget.section.rangeText}',
                           style: GoogleFonts.poppins(
                             fontSize: 12,
-                            color: white70,
+                            color: AppColors.white70,
                           ),
                         ),
                       ],
@@ -284,7 +286,7 @@ class _HadithListScreenState extends State<HadithListScreen> {
 
   Widget _buildHadithsContent() {
     if (isLoading) {
-      return const Center(
+      return Center(
         child: CircularProgressIndicator(
           color: primary,
         ),
@@ -298,14 +300,14 @@ class _HadithListScreenState extends State<HadithListScreen> {
           children: [
             Icon(
               Icons.error_outline,
-              color: Get.isDarkMode ? white54 : black54,
+              color: Get.isDarkMode ? AppColors.white54 : AppColors.black54,
               size: 48,
             ),
             const SizedBox(height: 16),
             Text(
               'Error loading hadiths',
               style: GoogleFonts.poppins(
-                color: Get.isDarkMode ? white : black,
+                color: Get.isDarkMode ? AppColors.white : AppColors.black,
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
               ),
@@ -317,7 +319,7 @@ class _HadithListScreenState extends State<HadithListScreen> {
                 errorMessage!,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.poppins(
-                  color: Get.isDarkMode ? white70 : black54,
+                  color: Get.isDarkMode ? AppColors.white70 : AppColors.black54,
                   fontSize: 12,
                 ),
               ),
@@ -326,12 +328,12 @@ class _HadithListScreenState extends State<HadithListScreen> {
             ElevatedButton(
               onPressed: _loadHadiths,
               style: ElevatedButton.styleFrom(
-                backgroundColor: grey100,
+                backgroundColor: AppColors.grey100,
               ),
               child: Text(
                 'Retry',
                 style: GoogleFonts.poppins(
-                  color: Get.isDarkMode ? white : black,
+                  color: Get.isDarkMode ? AppColors.white : AppColors.black,
                 ),
               ),
             ),
@@ -347,14 +349,14 @@ class _HadithListScreenState extends State<HadithListScreen> {
           children: [
             Icon(
               isSearching ? Icons.search_off : Icons.book_outlined,
-              color: Get.isDarkMode ? white54 : black54,
+              color: Get.isDarkMode ? AppColors.white54 : AppColors.black54,
               size: 48,
             ),
             const SizedBox(height: 16),
             Text(
               isSearching ? 'No hadiths found' : 'No hadiths available',
               style: GoogleFonts.poppins(
-                color: Get.isDarkMode ? white70 : black54,
+                color: Get.isDarkMode ? AppColors.white70 : AppColors.black54,
                 fontSize: 16,
               ),
             ),
@@ -363,7 +365,7 @@ class _HadithListScreenState extends State<HadithListScreen> {
               Text(
                 'Try different search terms',
                 style: GoogleFonts.poppins(
-                  color: Get.isDarkMode ? white54 : black54,
+                  color: Get.isDarkMode ? AppColors.white54 : AppColors.black54,
                   fontSize: 14,
                 ),
               ),
@@ -375,7 +377,7 @@ class _HadithListScreenState extends State<HadithListScreen> {
 
     return RefreshIndicator(
       onRefresh: _loadHadiths,
-      color: grey100,
+      color: AppColors.grey100,
       backgroundColor: primary,
       child: ListView.builder(
         itemCount: filteredHadiths.length,
@@ -392,7 +394,7 @@ class _HadithListScreenState extends State<HadithListScreen> {
                   barrierDismissible: false,
                   builder: (context) => Center(
                     child: CircularProgressIndicator(
-                      color: grey100,
+                      color: AppColors.grey100,
                     ),
                   ),
                 );
@@ -422,7 +424,7 @@ class _HadithListScreenState extends State<HadithListScreen> {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text('Failed to load hadith details: $e'),
-                      backgroundColor: red,
+                      backgroundColor: AppColors.red,
                     ),
                   );
                 }
@@ -482,7 +484,7 @@ class _HadithTileState extends State<HadithTile> {
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (context) => const Center(
+      builder: (context) => Center(
         child: CircularProgressIndicator(
           color: primary,
         ),
@@ -520,7 +522,7 @@ class _HadithTileState extends State<HadithTile> {
       //     SnackBar(
       //       content: Text(
       //           isFavorite ? 'Added to favorites' : 'Removed from favorites',
-      //           style: GoogleFonts.poppins(color: white)),
+      //           style: GoogleFonts.poppins(color:AppColors.white)),
       //       backgroundColor: isFavorite ? primary : red,
       //       duration: const Duration(seconds: 2),
       //     ),
@@ -543,8 +545,8 @@ class _HadithTileState extends State<HadithTile> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      splashColor: transparent,
-      highlightColor: transparent,
+      splashColor: AppColors.transparent,
+      highlightColor: AppColors.transparent,
       onTap: widget.onTap,
       borderRadius: BorderRadius.circular(12),
       child: Container(
@@ -553,7 +555,7 @@ class _HadithTileState extends State<HadithTile> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           color: secondary,
-          border: Border.all(color: white12),
+          border: Border.all(color: AppColors.white12),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -566,10 +568,10 @@ class _HadithTileState extends State<HadithTile> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                   decoration: BoxDecoration(
-                    color: black.withOpacity(0.1),
+                    color: AppColors.black.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(
-                      color: grey100.withOpacity(0.5),
+                      color: AppColors.grey100.withOpacity(0.5),
                     ),
                   ),
                   child: Text(
@@ -577,7 +579,7 @@ class _HadithTileState extends State<HadithTile> {
                     style: GoogleFonts.poppins(
                       fontWeight: FontWeight.w600,
                       fontSize: 12,
-                      color: black54,
+                      color: AppColors.black54,
                     ),
                   ),
                 ),
@@ -590,7 +592,7 @@ class _HadithTileState extends State<HadithTile> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 2),
                         decoration: BoxDecoration(
-                          color: white,
+                          color: AppColors.white,
                           borderRadius: BorderRadius.circular(8),
                           border: Border.all(
                             color:
@@ -620,7 +622,7 @@ class _HadithTileState extends State<HadithTile> {
                           isFavorite
                               ? Icons.favorite
                               : Icons.favorite_border_outlined,
-                          color: isFavorite ? red : black45,
+                          color: isFavorite ? AppColors.red : AppColors.black45,
                           size: 20,
                         ),
                       ),
@@ -660,7 +662,7 @@ class _HadithTileState extends State<HadithTile> {
                     fontStyle: FontStyle.italic,
                   ),
                 ),
-                const Icon(
+                Icon(
                   Icons.arrow_forward_ios_rounded,
                   color: primary,
                   size: 14,
@@ -676,13 +678,13 @@ class _HadithTileState extends State<HadithTile> {
   Color _getGradeColor(String grade) {
     final lowerGrade = grade.toLowerCase();
     if (lowerGrade.contains('sahih')) {
-      return green;
+      return AppColors.green;
     } else if (lowerGrade.contains('hasan')) {
-      return orange;
+      return AppColors.orange;
     } else if (lowerGrade.contains('daif') || lowerGrade.contains('weak')) {
-      return red;
+      return AppColors.red;
     } else {
-      return grey;
+      return AppColors.grey;
     }
   }
 }

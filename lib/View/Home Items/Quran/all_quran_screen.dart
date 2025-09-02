@@ -79,7 +79,7 @@ class QuranVerseCard extends StatelessWidget {
           ),
           // padding: EdgeInsets.all(Dimensions.defaultPaddingSize * 0.5),
           // decoration: BoxDecoration(
-          color: grey100,
+          color: AppColors.grey100,
           //   borderRadius: BorderRadius.circular(8 * 1.4),
           // ),
           child: Padding(
@@ -115,7 +115,7 @@ class QuranVerseCard extends StatelessWidget {
         ),
         Visibility(
           child: Card(
-            color: grey100,
+            color: AppColors.grey100,
             margin: EdgeInsets.symmetric(
               horizontal: 5,
               vertical: 3,
@@ -129,7 +129,7 @@ class QuranVerseCard extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Column(
                     children: [
                       Row(
@@ -142,7 +142,7 @@ class QuranVerseCard extends StatelessWidget {
                               color: primary,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           // Obx(
@@ -184,7 +184,7 @@ class QuranVerseCard extends StatelessWidget {
 //final
 
               return Card(
-                color: grey100,
+                color: AppColors.grey100,
                 margin: EdgeInsets.symmetric(
                   horizontal: 5,
                   vertical: 3,

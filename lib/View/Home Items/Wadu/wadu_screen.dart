@@ -22,13 +22,14 @@ class WuduScreen extends StatelessWidget {
           style: GoogleFonts.poppins(
             fontSize: 20,
             fontWeight: FontWeight.w700,
-            color: Get.isDarkMode ? white : black87,
+            color: Get.isDarkMode ? AppColors.white : AppColors.black87,
           ),
         ),
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Get.isDarkMode ? white : black87),
+          icon: Icon(Icons.arrow_back,
+              color: Get.isDarkMode ? AppColors.white : AppColors.black87),
           onPressed: () => Get.back(),
         ),
       ),
@@ -41,11 +42,11 @@ class WuduScreen extends StatelessWidget {
               // Container(
               //   padding: const EdgeInsets.all(16),
               //   decoration: BoxDecoration(
-              //     color: white,
+              //     color:AppColors.white,
               //     borderRadius: BorderRadius.circular(12),
               //     boxShadow: [
               //       BoxShadow(
-              //         color: black.withOpacity(0.15),
+              //         color:AppColors.black.withOpacity(0.15),
               //         blurRadius: 12,
               //         offset: const Offset(0, 4),
               //       ),
@@ -59,7 +60,7 @@ class WuduScreen extends StatelessWidget {
               //       Text(
               //         'How to Perform Wudu',
               //         style: GoogleFonts.poppins(
-              //           color: Get.isDarkMode ? white : black87,
+              //           color: Get.isDarkMode ?AppColors.white :AppColors.black87,
               //           fontSize: 18,
               //           fontWeight: FontWeight.w600,
               //         ),
@@ -120,7 +121,7 @@ class WuduScreen extends StatelessWidget {
                                     Text(
                                       step['title_ur']!,
                                       style: GoogleFonts.notoNastaliqUrdu(
-                                        color: black,
+                                        color: AppColors.black,
                                         fontSize: 14,
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -134,7 +135,7 @@ class WuduScreen extends StatelessWidget {
                           Text(
                             step['description_en']!,
                             style: GoogleFonts.poppins(
-                              color: black45,
+                              color: AppColors.black45,
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
                             ),
@@ -143,7 +144,7 @@ class WuduScreen extends StatelessWidget {
                           Text(
                             step['description_ur']!,
                             style: GoogleFonts.notoNastaliqUrdu(
-                              color: black45,
+                              color: AppColors.black45,
                               fontSize: 13,
                               fontWeight: FontWeight.w400,
                             ),

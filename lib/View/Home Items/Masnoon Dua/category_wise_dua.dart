@@ -24,7 +24,7 @@ class DuaCategoryScreen extends StatelessWidget {
           "Dua Categories",
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
-            color: Get.isDarkMode ? white : black,
+            color: Get.isDarkMode ? AppColors.white : AppColors.black,
           ),
         ),
         centerTitle: true,
@@ -50,12 +50,12 @@ class DuaCategoryScreen extends StatelessWidget {
                     shape: ContinuousRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    splashColor: transparent,
+                    splashColor: AppColors.transparent,
                     title: Text(
                       category.name,
                       style: GoogleFonts.poppins(
                         fontWeight: FontWeight.bold,
-                        color: black,
+                        color: AppColors.black,
                       ),
                     ),
                     trailing: category.isUserAdded
@@ -63,13 +63,15 @@ class DuaCategoryScreen extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               IconButton(
-                                icon: const Icon(Icons.delete, color: red),
+                                icon: const Icon(Icons.delete,
+                                    color: AppColors.red),
                                 onPressed: () =>
                                     duaController.showDeleteCategoryDialog(
                                         context, category.name),
                               ),
                               IconButton(
-                                icon: const Icon(Icons.edit, color: blue),
+                                icon: const Icon(Icons.edit,
+                                    color: AppColors.blue),
                                 onPressed: () =>
                                     duaController.showEditCategoryDialog(
                                         context, category.name),
@@ -90,7 +92,7 @@ class DuaCategoryScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () => showAddCategoryDialog(context, duaController),
         backgroundColor: primary,
-        child: const Icon(Icons.add, color: white),
+        child: const Icon(Icons.add, color: AppColors.white),
       ),
     );
   }
@@ -99,7 +101,7 @@ class DuaCategoryScreen extends StatelessWidget {
       BuildContext context, DuaController duaController) {
     final TextEditingController categoryController = TextEditingController();
     Get.defaultDialog(
-      backgroundColor: Get.isDarkMode ? grey800 : white,
+      backgroundColor: Get.isDarkMode ? AppColors.grey800 : AppColors.white,
       title: "Add New Category",
       content: Column(
         children: [
@@ -113,7 +115,7 @@ class DuaCategoryScreen extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           ElevatedButton(
-            style: const ButtonStyle(
+            style: ButtonStyle(
               backgroundColor: WidgetStatePropertyAll(primary),
             ),
             onPressed: () {
@@ -130,7 +132,7 @@ class DuaCategoryScreen extends StatelessWidget {
             child: const Text(
               "Add Category",
               style: TextStyle(
-                color: white,
+                color: AppColors.white,
               ),
             ),
           ),

@@ -43,7 +43,7 @@ class _TasbeehScreenState extends State<TasbeehScreen>
           'Tasbeehat',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
-            color: Get.isDarkMode ? white : black,
+            color: Get.isDarkMode ? AppColors.white : AppColors.black,
           ),
         ),
         centerTitle: true,
@@ -51,19 +51,12 @@ class _TasbeehScreenState extends State<TasbeehScreen>
       body: SafeArea(
         child: Column(
           children: [
-            Image.asset(
-              'assets/images/quran-verse_388877-10.avif',
-              height: 170,
-              width: double.infinity,
-              fit: BoxFit.cover,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
             TabBar(
-              indicatorColor: Get.isDarkMode ? white : black,
+              labelStyle: GoogleFonts.poppins(),
+              indicatorColor:
+                  Get.isDarkMode ? AppColors.white : AppColors.black,
               controller: _tabController,
-              labelColor: Get.isDarkMode ? white : black,
+              labelColor: Get.isDarkMode ? AppColors.white : AppColors.black,
               tabs: const [
                 Tab(text: 'Popular Tasbeeh'),
                 Tab(text: 'My Tasbeeh'),
@@ -86,7 +79,7 @@ class _TasbeehScreenState extends State<TasbeehScreen>
             ? FloatingActionButton(
                 backgroundColor: primary900,
                 onPressed: () => controller.showTasbeehDialog(context),
-                child: const Icon(Icons.add, color: white),
+                child: const Icon(Icons.add, color: AppColors.white),
               )
             : const SizedBox.shrink();
       }),

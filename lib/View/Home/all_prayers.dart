@@ -24,7 +24,7 @@ class AllPrayersScreen extends StatelessWidget {
         title: Text(
           'Prayer Times',
           style: GoogleFonts.poppins(
-            color: Get.isDarkMode ? white : black,
+            color: Get.isDarkMode ? AppColors.white : AppColors.black,
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
@@ -207,14 +207,14 @@ class AllPrayersScreen extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
         side: BorderSide(
-          color: isCurrent ? primary700 : grey300,
+          color: isCurrent ? primary700 : AppColors.grey300,
           width: isCurrent ? 2 : 1,
         ),
       ),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
-          color: white,
+          color: AppColors.white,
           image: const DecorationImage(
             fit: BoxFit.cover,
             image: AssetImage(
@@ -223,7 +223,7 @@ class AllPrayersScreen extends StatelessWidget {
           ),
           boxShadow: [
             BoxShadow(
-              color: Get.isDarkMode ? white : primary100,
+              color: Get.isDarkMode ? AppColors.white : primary100,
               blurRadius: 2.0,
               spreadRadius: 1.0,
             ),
@@ -240,7 +240,7 @@ class AllPrayersScreen extends StatelessWidget {
           title: Text(
             prayerName,
             style: GoogleFonts.poppins(
-              color: black,
+              color: AppColors.black,
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
@@ -248,7 +248,7 @@ class AllPrayersScreen extends StatelessWidget {
           subtitle: Text(
             'Start: $startTime\nEnd: $endTime',
             style: GoogleFonts.poppins(
-              color: black54,
+              color: AppColors.black54,
               fontSize: 14,
             ),
           ),

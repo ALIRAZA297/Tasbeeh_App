@@ -96,7 +96,7 @@ class NamazDetailScreen extends StatelessWidget {
           "Namaz",
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
-            color: Get.isDarkMode ? white : black,
+            color: Get.isDarkMode ? AppColors.white : AppColors.black,
           ),
         ),
       ),
@@ -116,7 +116,9 @@ class NamazDetailScreen extends StatelessWidget {
                       style: GoogleFonts.poppins(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: Get.isDarkMode ? white : black87,
+                        color: Get.isDarkMode
+                            ? AppColors.white
+                            : AppColors.black87,
                       ),
                     ),
                   ),
@@ -128,13 +130,13 @@ class NamazDetailScreen extends StatelessWidget {
                       // borderRadius: BorderRadius.circular(10),
                       // boxShadow: const [
                       //   BoxShadow(
-                      //     color: Colors.black12,
+                      //     color: Colors.AppColors.black12,
                       //     blurRadius: 4,
                       //     spreadRadius: 2,
                       //     offset: Offset(2, 2),
                       //   ),
                       // ],
-                      color: white,
+                      color: AppColors.white,
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),

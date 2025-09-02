@@ -33,17 +33,17 @@ class SurahController extends GetxController {
     Get.dialog(
       Theme(
         data: ThemeData(
-          dialogBackgroundColor: white,
-          colorSchemeSeed: white,
+          dialogBackgroundColor: AppColors.white,
+          colorSchemeSeed: AppColors.white,
         ),
         child: AlertDialog(
-          backgroundColor: white,
+          backgroundColor: AppColors.white,
           title: Text(
             "Save Your Reading Progress",
             style: GoogleFonts.poppins(
               fontSize: 22,
               fontWeight: FontWeight.bold,
-              color: black,
+              color: AppColors.black,
             ),
           ),
           content: Column(
@@ -65,7 +65,7 @@ class SurahController extends GetxController {
                 style: GoogleFonts.poppins(
                   fontSize: 16,
                   fontWeight: FontWeight.normal,
-                  color: black,
+                  color: AppColors.black,
                 ),
               ),
               const SizedBox(height: 10),
@@ -84,7 +84,7 @@ class SurahController extends GetxController {
                       style: GoogleFonts.poppins(
                         fontSize: 14,
                         fontWeight: FontWeight.normal,
-                        color: black,
+                        color: AppColors.black,
                       ),
                     ),
                   ],
@@ -94,9 +94,10 @@ class SurahController extends GetxController {
           ),
           actions: [
             TextButton(
-              style: const ButtonStyle(
-                minimumSize: WidgetStatePropertyAll(Size(double.infinity, 35)),
-                backgroundColor: WidgetStatePropertyAll(primary),
+              style: ButtonStyle(
+                minimumSize:
+                    const WidgetStatePropertyAll(Size(double.infinity, 35)),
+                backgroundColor: WidgetStatePropertyAll(AppColors.primary),
               ),
               onPressed: () {
                 if (doNotShowAgain.value) {
@@ -109,7 +110,7 @@ class SurahController extends GetxController {
                 "OK",
                 style: GoogleFonts.poppins(
                   fontWeight: FontWeight.bold,
-                  color: white,
+                  color: AppColors.white,
                 ),
               ),
             ),
@@ -125,5 +126,4 @@ class SurahController extends GetxController {
   //   await prefs.clear(); // Clears all stored data
   //   log("SharedPreferences cleared!");
   // }
-  
 }

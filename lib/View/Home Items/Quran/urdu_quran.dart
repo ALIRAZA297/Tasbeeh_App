@@ -114,7 +114,7 @@ class _UrduQuranScreenState extends State<UrduQuranScreen> {
 
       return ModalProgressHUD(
         inAsyncCall: quranTextController.isLoading.value,
-        progressIndicator: const CircularProgressIndicator(
+        progressIndicator: CircularProgressIndicator(
           color: primary,
         ),
         child: Scaffold(
@@ -147,7 +147,9 @@ class _UrduQuranScreenState extends State<UrduQuranScreen> {
                           widget.surahNameEng,
                           style: TextStyle(
                             fontSize: 20,
-                            color: Get.isDarkMode ? grey400 : grey800,
+                            color: Get.isDarkMode
+                                ? AppColors.grey400
+                                : AppColors.grey800,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -162,7 +164,9 @@ class _UrduQuranScreenState extends State<UrduQuranScreen> {
                     padding:
                         const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                     decoration: BoxDecoration(
-                      color: Get.isDarkMode ? white : primary.withOpacity(0.1),
+                      color: Get.isDarkMode
+                          ? AppColors.white
+                          : primary.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(
                         color: primary.withOpacity(0.3),
@@ -171,7 +175,7 @@ class _UrduQuranScreenState extends State<UrduQuranScreen> {
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Icon(
+                        Icon(
                           Icons.bookmark,
                           color: primary,
                           size: 16,
@@ -179,7 +183,7 @@ class _UrduQuranScreenState extends State<UrduQuranScreen> {
                         const SizedBox(width: 6),
                         Text(
                           'Resuming from Ayat ${widget.scrollToAyat}',
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: primary,
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
@@ -200,8 +204,8 @@ class _UrduQuranScreenState extends State<UrduQuranScreen> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
                         vertical: 15,
                         horizontal: 15,
                       ),
@@ -215,7 +219,7 @@ class _UrduQuranScreenState extends State<UrduQuranScreen> {
                               color: primary,
                             ),
                           ),
-                          SizedBox(height: 4),
+                          const SizedBox(height: 4),
                           Opacity(
                             opacity: 0.8,
                             child: Text(
@@ -263,7 +267,7 @@ class _UrduQuranScreenState extends State<UrduQuranScreen> {
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
                                       color: Get.isDarkMode
-                                          ? red
+                                          ? AppColors.red
                                           : primary.withOpacity(0.5),
                                       width: 3,
                                     ),
@@ -289,7 +293,7 @@ class _UrduQuranScreenState extends State<UrduQuranScreen> {
                                         ),
                                         child: Text(
                                           ayatNumber.toString(),
-                                          style: const TextStyle(
+                                          style: TextStyle(
                                             color: primary,
                                             fontWeight: FontWeight.bold,
                                             fontSize: 14,
@@ -355,7 +359,7 @@ class _UrduQuranScreenState extends State<UrduQuranScreen> {
                                                 );
                                               });
                                             },
-                                            child: const Icon(Icons.copy,
+                                            child: Icon(Icons.copy,
                                                 color: primary),
                                           ),
                                           const SizedBox(width: 10),
@@ -384,7 +388,7 @@ class _UrduQuranScreenState extends State<UrduQuranScreen> {
                                                           ayatNumber);
                                                     },
                                               child: isLoading
-                                                  ? const SizedBox(
+                                                  ? SizedBox(
                                                       width: 18,
                                                       height: 18,
                                                       child:
@@ -432,7 +436,7 @@ class _UrduQuranScreenState extends State<UrduQuranScreen> {
                                           : TextAlign.right,
                                       style: GoogleFonts.poppins(
                                         fontSize: 18,
-                                        color: black87,
+                                        color: AppColors.black87,
                                       ),
                                     ),
                                   ),

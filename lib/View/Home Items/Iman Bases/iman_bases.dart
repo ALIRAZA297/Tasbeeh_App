@@ -19,7 +19,7 @@ class CombinedImanScreen extends StatelessWidget {
           "Iman Basics",
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
-            color: Get.isDarkMode ? white : black,
+            color: Get.isDarkMode ? AppColors.white : AppColors.black,
           ),
         ),
       ),
@@ -130,10 +130,10 @@ class IslamicContentCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: secondary,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: white12),
+        border: Border.all(color: AppColors.white12),
         boxShadow: [
           BoxShadow(
-            color: black.withOpacity(0.2),
+            color: AppColors.black.withOpacity(0.2),
             blurRadius: 6,
             offset: const Offset(0, 3),
           ),
@@ -148,7 +148,7 @@ class IslamicContentCard extends StatelessWidget {
             style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
-              color: red,
+              color: AppColors.red,
             ),
           ),
           const SizedBox(height: 20),
@@ -171,14 +171,14 @@ class IslamicContentCard extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: black.withOpacity(0.05),
+              color: AppColors.black.withOpacity(0.05),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Text(
               transliteration,
               style: GoogleFonts.poppins(
                 fontSize: 16,
-                color: black54,
+                color: AppColors.black54,
                 fontStyle: FontStyle.italic,
               ),
             ),
@@ -190,7 +190,7 @@ class IslamicContentCard extends StatelessWidget {
             translation,
             style: GoogleFonts.poppins(
               fontSize: 14,
-              color: black54,
+              color: AppColors.black54,
               height: 1.4,
             ),
           ),
@@ -201,7 +201,7 @@ class IslamicContentCard extends StatelessWidget {
             urduTranslation,
             style: GoogleFonts.notoNastaliqUrdu(
               fontSize: 14,
-              color: black54,
+              color: AppColors.black54,
               height: 2,
             ),
             textDirection: TextDirection.rtl,
@@ -217,7 +217,7 @@ class IslamicContentCard extends StatelessWidget {
               style: GoogleFonts.poppins(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
-                color: red,
+                color: AppColors.red,
               ),
             ),
           ),
@@ -226,7 +226,7 @@ class IslamicContentCard extends StatelessWidget {
             meaningEnglish,
             style: GoogleFonts.poppins(
               fontSize: 14,
-              color: black54,
+              color: AppColors.black54,
             ),
           ),
           const SizedBox(height: 12),
@@ -235,7 +235,7 @@ class IslamicContentCard extends StatelessWidget {
             style: GoogleFonts.notoNastaliqUrdu(
               fontSize: 16,
               fontWeight: FontWeight.bold,
-              color: red,
+              color: AppColors.red,
             ),
           ),
           const SizedBox(height: 8),
@@ -243,7 +243,7 @@ class IslamicContentCard extends StatelessWidget {
             meaningUrdu,
             style: GoogleFonts.notoNastaliqUrdu(
               fontSize: 14,
-              color: black54,
+              color: AppColors.black54,
               height: 2,
             ),
             textDirection: TextDirection.rtl,
@@ -260,7 +260,7 @@ class IslamicContentCard extends StatelessWidget {
               style: GoogleFonts.poppins(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
-                color: red,
+                color: AppColors.red,
               ),
             ),
           ),
@@ -274,7 +274,7 @@ class IslamicContentCard extends StatelessWidget {
                   point,
                   style: GoogleFonts.poppins(
                     fontSize: 14,
-                    color: black54,
+                    color: AppColors.black54,
                   ),
                 ),
               ),
@@ -286,7 +286,7 @@ class IslamicContentCard extends StatelessWidget {
             style: GoogleFonts.notoNastaliqUrdu(
               fontSize: 16,
               fontWeight: FontWeight.bold,
-              color: red,
+              color: AppColors.red,
             ),
           ),
           const SizedBox(height: 8),
@@ -299,7 +299,7 @@ class IslamicContentCard extends StatelessWidget {
                 style: GoogleFonts.notoNastaliqUrdu(
                   fontSize: 14,
                   height: 2,
-                  color: black54,
+                  color: AppColors.black54,
                 ),
                 textDirection: TextDirection.rtl,
               ),

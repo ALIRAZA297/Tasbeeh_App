@@ -23,7 +23,7 @@ class IbadatScreen extends StatelessWidget {
           "Ibadat",
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
-            color: Get.isDarkMode ? white : black,
+            color: Get.isDarkMode ? AppColors.white : AppColors.black,
           ),
         ),
       ),
@@ -46,14 +46,14 @@ class IbadatScreen extends StatelessWidget {
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
-                    color: black,
+                    color: AppColors.black,
                     height: 2,
                   ),
                 ),
                 subtitle: Text(
                   controller.ibadats[index]["subtitle"]!,
                   style: GoogleFonts.notoNastaliqUrdu(
-                    color: black45,
+                    color: AppColors.black45,
                     height: 2,
                   ),
                 ),

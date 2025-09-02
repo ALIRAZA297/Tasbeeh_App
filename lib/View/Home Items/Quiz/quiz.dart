@@ -21,7 +21,7 @@ class QuizScreen extends StatelessWidget {
           'Islamic Quiz',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
-            color: isDarkMode ? white : black,
+            color: isDarkMode ? AppColors.white : AppColors.black,
           ),
         ),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -29,7 +29,7 @@ class QuizScreen extends StatelessWidget {
       ),
       body: Obx(() {
         if (controller.isLoading.value) {
-          return const Center(child: CircularProgressIndicator(color: primary));
+          return Center(child: CircularProgressIndicator(color: primary));
         }
         if (controller.selectedQuestions.isEmpty) {
           return Center(
@@ -37,7 +37,7 @@ class QuizScreen extends StatelessWidget {
               'No questions available. Please try again.',
               style: TextStyle(
                 fontSize: 18,
-                color: isDarkMode ? white : grey800,
+                color: isDarkMode ? AppColors.white : AppColors.grey800,
               ),
             ),
           );
@@ -67,14 +67,14 @@ class QuizScreen extends StatelessWidget {
                         width: 32,
                         height: 32,
                         decoration: const BoxDecoration(
-                          color: red,
+                          color: AppColors.red,
                           shape: BoxShape.circle,
                         ),
                         child: Center(
                           child: Text(
                             '${controller.currentQuestionIndex.value + 1}',
                             style: const TextStyle(
-                              color: white,
+                              color: AppColors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
                             ),
@@ -90,7 +90,7 @@ class QuizScreen extends StatelessWidget {
                               question['question'] ?? 'Question not available',
                               style: GoogleFonts.poppins(
                                 fontSize: 16,
-                                color: white,
+                                color: AppColors.white,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -100,7 +100,7 @@ class QuizScreen extends StatelessWidget {
                               textDirection: TextDirection.rtl,
                               style: GoogleFonts.notoNastaliqUrdu(
                                 fontSize: 18,
-                                color: white70,
+                                color: AppColors.white70,
                                 height: 2,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -128,14 +128,16 @@ class QuizScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: controller.showFeedback.value &&
                                 option == question['correctAnswer']
-                            ? green700
+                            ? AppColors.green700
                             : controller.showFeedback.value &&
                                     option != question['correctAnswer']
-                                ? red.withOpacity(0.6)
+                                ? AppColors.red.withOpacity(0.6)
                                 : secondary,
                         borderRadius: BorderRadius.circular(8),
-                        border:
-                            Border.all(color: isDarkMode ? white12 : grey300),
+                        border: Border.all(
+                            color: isDarkMode
+                                ? AppColors.white12
+                                : AppColors.grey300),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -146,8 +148,8 @@ class QuizScreen extends StatelessWidget {
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
                               color: controller.showFeedback.value
-                                  ? white
-                                  : grey800,
+                                  ? AppColors.white
+                                  : AppColors.grey800,
                             ),
                           ),
                           const SizedBox(height: 4),
@@ -157,8 +159,8 @@ class QuizScreen extends StatelessWidget {
                             style: GoogleFonts.notoNastaliqUrdu(
                               fontSize: 16,
                               color: controller.showFeedback.value
-                                  ? white70
-                                  : grey700,
+                                  ? AppColors.white70
+                                  : AppColors.grey700,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
@@ -179,7 +181,9 @@ class QuizScreen extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w500,
-                          color: isDarkMode ? white70 : grey800,
+                          color: isDarkMode
+                              ? AppColors.white70
+                              : AppColors.grey800,
                         ),
                       ),
                       const SizedBox(height: 6),
@@ -191,7 +195,7 @@ class QuizScreen extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: controller.nextQuestion,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: red,
+                        backgroundColor: AppColors.red,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
@@ -201,7 +205,7 @@ class QuizScreen extends StatelessWidget {
                         'Next Question',
                         style: TextStyle(
                           fontSize: 16,
-                          color: white,
+                          color: AppColors.white,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -222,7 +226,7 @@ class QuizScreen extends StatelessWidget {
                     'Quiz Complete! 🎉',
                     style: TextStyle(
                       fontSize: 24,
-                      color: isDarkMode ? white : grey800,
+                      color: isDarkMode ? AppColors.white : AppColors.grey800,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -230,19 +234,23 @@ class QuizScreen extends StatelessWidget {
                   Text(
                     'Your Score: ${controller.score.value}/10',
                     style: TextStyle(
-                        fontSize: 20, color: isDarkMode ? white70 : grey800),
+                        fontSize: 20,
+                        color:
+                            isDarkMode ? AppColors.white70 : AppColors.grey800),
                   ),
                   const SizedBox(height: 8),
                   Text(
                     'High Score: ${controller.highScore.value}/10',
                     style: TextStyle(
-                        fontSize: 20, color: isDarkMode ? white70 : grey800),
+                        fontSize: 20,
+                        color:
+                            isDarkMode ? AppColors.white70 : AppColors.grey800),
                   ),
                   const SizedBox(height: 24),
                   ElevatedButton(
                     onPressed: controller.resetQuiz,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: red,
+                      backgroundColor: AppColors.red,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
@@ -253,7 +261,7 @@ class QuizScreen extends StatelessWidget {
                       'Play Again',
                       style: TextStyle(
                         fontSize: 16,
-                        color: white,
+                        color: AppColors.white,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

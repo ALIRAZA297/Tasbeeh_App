@@ -25,7 +25,7 @@ class PrayerTrackerScreen extends StatelessWidget {
           'Prayer Tracker',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
-            color: isDarkMode ? white : black,
+            color: isDarkMode ? AppColors.white : AppColors.black,
           ),
         ),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -34,7 +34,7 @@ class PrayerTrackerScreen extends StatelessWidget {
           IconButton(
             icon: Icon(
               Icons.bar_chart,
-              color: isDarkMode ? white : grey800,
+              color: isDarkMode ? AppColors.white : AppColors.grey800,
             ),
             onPressed: () {
               Get.to(
@@ -57,7 +57,7 @@ class PrayerTrackerScreen extends StatelessWidget {
                 'Prayers',
                 style: TextStyle(
                   fontSize: 18,
-                  color: isDarkMode ? white : grey800,
+                  color: isDarkMode ? AppColors.white : AppColors.grey800,
                   fontWeight: FontWeight.bold,
                 ),
               ).paddingOnly(left: 8),
@@ -96,13 +96,13 @@ class PrayerTrackerScreen extends StatelessWidget {
                       .format(controller.selectedMonth.value),
                   style: TextStyle(
                     fontSize: 18,
-                    color: isDarkMode ? white : grey800,
+                    color: isDarkMode ? AppColors.white : AppColors.grey800,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 const Spacer(),
                 InkWell(
-                  splashColor: transparent,
+                  splashColor: AppColors.transparent,
                   onTap: () => controller.changeMonth(-1),
                   child: Container(
                     padding:
@@ -113,14 +113,14 @@ class PrayerTrackerScreen extends StatelessWidget {
                     ),
                     child: const Icon(
                       Icons.arrow_left,
-                      color: white,
+                      color: AppColors.white,
                       size: 24,
                     ),
                   ),
                 ),
                 const SizedBox(width: 10),
                 InkWell(
-                  splashColor: transparent,
+                  splashColor: AppColors.transparent,
                   onTap: isCurrentOrFutureMonth
                       ? null
                       : () => controller.changeMonth(1),
@@ -128,12 +128,15 @@ class PrayerTrackerScreen extends StatelessWidget {
                     padding:
                         const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
                     decoration: BoxDecoration(
-                      color: isCurrentOrFutureMonth ? grey300 : primary,
+                      color:
+                          isCurrentOrFutureMonth ? AppColors.grey300 : primary,
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Icon(
                       Icons.arrow_right,
-                      color: isCurrentOrFutureMonth ? grey700 : white,
+                      color: isCurrentOrFutureMonth
+                          ? AppColors.grey700
+                          : AppColors.white,
                       size: 24,
                     ),
                   ),
@@ -151,7 +154,8 @@ class PrayerTrackerScreen extends StatelessWidget {
                       name,
                       style: TextStyle(
                         fontSize: 14,
-                        color: isDarkMode ? white60 : grey700,
+                        color:
+                            isDarkMode ? AppColors.white60 : AppColors.grey700,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -206,7 +210,9 @@ class PrayerTrackerScreen extends StatelessWidget {
           width: 40,
           height: 40,
           decoration: BoxDecoration(
-            color: isSelected ? (isDarkMode ? white : secondary) : transparent,
+            color: isSelected
+                ? (isDarkMode ? AppColors.white : secondary)
+                : AppColors.transparent,
             border: isToday ? Border.all(color: primary, width: 2) : null,
             borderRadius: BorderRadius.circular(8),
           ),
@@ -215,12 +221,14 @@ class PrayerTrackerScreen extends StatelessWidget {
               DateFormat('d').format(date),
               style: TextStyle(
                 color: isFutureDate
-                    ? (isDarkMode ? white60 : grey500)
+                    ? (isDarkMode ? AppColors.white60 : AppColors.grey500)
                     : isSelected
-                        ? (isDarkMode ? black : grey800)
+                        ? (isDarkMode ? AppColors.black : AppColors.grey800)
                         : isInSelectedMonth
-                            ? (isDarkMode ? white : grey800)
-                            : (isDarkMode ? white60 : grey700),
+                            ? (isDarkMode ? AppColors.white : AppColors.grey800)
+                            : (isDarkMode
+                                ? AppColors.white60
+                                : AppColors.grey700),
                 fontWeight: isToday ? FontWeight.bold : FontWeight.normal,
                 fontSize: 16,
               ),
@@ -248,17 +256,17 @@ class PrayerTrackerScreen extends StatelessWidget {
             return Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: isDarkMode ? secondary : white,
+                color: isDarkMode ? secondary : AppColors.white,
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(
-                  color: isDarkMode ? white38 : grey300,
+                  color: isDarkMode ? AppColors.white38 : AppColors.grey300,
                   width: 1,
                 ),
                 boxShadow: [
                   BoxShadow(
                     color: isDarkMode
-                        ? black.withOpacity(0.1)
-                        : grey500.withOpacity(0.1),
+                        ? AppColors.black.withOpacity(0.1)
+                        : AppColors.grey500.withOpacity(0.1),
                     blurRadius: 20,
                     offset: const Offset(0, 10),
                   ),
@@ -275,7 +283,7 @@ class PrayerTrackerScreen extends StatelessWidget {
                         prayer,
                         style: TextStyle(
                           fontSize: 18,
-                          color: grey800,
+                          color: AppColors.grey800,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -305,8 +313,8 @@ class PrayerTrackerScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: PrayerStatus.values.map((prayerStatus) {
                       return InkWell(
-                        splashColor: transparent,
-                        highlightColor: transparent,
+                        splashColor: AppColors.transparent,
+                        highlightColor: AppColors.transparent,
                         onTap: isFutureDate
                             ? null
                             : () {
@@ -322,13 +330,13 @@ class PrayerTrackerScreen extends StatelessWidget {
                             color: status == prayerStatus
                                 ? prayerStatus.color
                                 : (isDarkMode
-                                    ? white.withOpacity(0.1)
-                                    : grey300),
+                                    ? AppColors.white.withOpacity(0.1)
+                                    : AppColors.grey300),
                             borderRadius: BorderRadius.circular(15),
                             border: Border.all(
                               color: status == prayerStatus
                                   ? prayerStatus.color
-                                  : grey300,
+                                  : AppColors.grey300,
                               width: 1,
                             ),
                           ),
@@ -336,8 +344,10 @@ class PrayerTrackerScreen extends StatelessWidget {
                             prayerStatus.displayName,
                             style: TextStyle(
                               color: status == prayerStatus
-                                  ? white
-                                  : (isDarkMode ? grey500 : grey800),
+                                  ? AppColors.white
+                                  : (isDarkMode
+                                      ? AppColors.grey500
+                                      : AppColors.grey800),
                               fontSize: 14,
                             ),
                           ),

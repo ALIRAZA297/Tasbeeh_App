@@ -25,10 +25,10 @@ class SplashScreen extends StatelessWidget {
             width: 200,
             child: Image.asset("assets/images/row.png"),
           ),
-          const Text(
+          Text(
             "Tasbeeh & Quran",
             style: TextStyle(
-              color: Color(0xff00EA86),
+              color: primary,
               fontSize: 40,
               fontWeight: FontWeight.w700,
             ),

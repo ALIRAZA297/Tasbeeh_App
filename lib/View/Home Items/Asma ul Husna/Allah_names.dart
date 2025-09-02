@@ -46,14 +46,14 @@ class _AsmaulHusnaScreenState extends State<AsmaulHusnaScreen> {
           "99 Names of Allah",
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
-            color: Get.isDarkMode ? white : black,
+            color: Get.isDarkMode ? AppColors.white : AppColors.black,
           ),
         ),
         centerTitle: true,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
       body: namesOfAllah.isEmpty
-          ? const Center(
+          ? Center(
               child: AnimatedLoader(
                 color: primary,
               ),
@@ -74,7 +74,7 @@ class _AsmaulHusnaScreenState extends State<AsmaulHusnaScreen> {
                     margin: const EdgeInsets.all(2),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
-                      color: white,
+                      color: AppColors.white,
                       image: const DecorationImage(
                         fit: BoxFit.cover,
                         image: AssetImage(
@@ -83,7 +83,7 @@ class _AsmaulHusnaScreenState extends State<AsmaulHusnaScreen> {
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: Get.isDarkMode ? white : primary100,
+                          color: Get.isDarkMode ? AppColors.white : primary100,
                           blurRadius: 2.0,
                           spreadRadius: 1.0,
                         ),
@@ -112,7 +112,7 @@ class _AsmaulHusnaScreenState extends State<AsmaulHusnaScreen> {
                             style: GoogleFonts.poppins(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
-                              color: black,
+                              color: AppColors.black,
                             ),
                           ),
                           // Description
@@ -120,7 +120,7 @@ class _AsmaulHusnaScreenState extends State<AsmaulHusnaScreen> {
                             name['description'] ?? '',
                             style: GoogleFonts.poppins(
                               fontSize: 14,
-                              color: grey700,
+                              color: AppColors.grey700,
                             ),
                             textAlign: TextAlign.center,
                           ),

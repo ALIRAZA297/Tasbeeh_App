@@ -87,7 +87,7 @@ class _HadithBooksScreenState extends State<HadithBooksScreen> {
           'Hadith Books',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
-            color: Get.isDarkMode ? white : black,
+            color: Get.isDarkMode ? AppColors.white : AppColors.black,
           ),
         ),
       ),
@@ -97,7 +97,7 @@ class _HadithBooksScreenState extends State<HadithBooksScreen> {
 
   Widget _buildBody() {
     if (isLoading) {
-      return const Center(
+      return Center(
         child: CircularProgressIndicator(
           strokeWidth: 4,
           color: primary,
@@ -112,14 +112,14 @@ class _HadithBooksScreenState extends State<HadithBooksScreen> {
           children: [
             Icon(
               Icons.error_outline,
-              color: white.withOpacity(0.54),
+              color: AppColors.white.withOpacity(0.54),
               size: 64,
             ),
             const SizedBox(height: 16),
             const Text(
               'Error Loading Books',
               style: TextStyle(
-                color: white,
+                color: AppColors.white,
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
               ),
@@ -131,7 +131,7 @@ class _HadithBooksScreenState extends State<HadithBooksScreen> {
                 errorMessage!,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: white.withOpacity(0.7),
+                  color: AppColors.white.withOpacity(0.7),
                   fontSize: 14,
                 ),
               ),
@@ -140,7 +140,7 @@ class _HadithBooksScreenState extends State<HadithBooksScreen> {
             ElevatedButton(
               onPressed: _loadCollections,
               style: ElevatedButton.styleFrom(
-                backgroundColor: grey100,
+                backgroundColor: AppColors.grey100,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                 shape: RoundedRectangleBorder(
@@ -150,7 +150,7 @@ class _HadithBooksScreenState extends State<HadithBooksScreen> {
               child: const Text(
                 'Retry',
                 style: TextStyle(
-                  color: white,
+                  color: AppColors.white,
                   fontSize: 16,
                 ),
               ),
@@ -165,7 +165,7 @@ class _HadithBooksScreenState extends State<HadithBooksScreen> {
         child: Text(
           'No books available',
           style: TextStyle(
-            color: white.withOpacity(0.7),
+            color: AppColors.white.withOpacity(0.7),
             fontSize: 16,
           ),
         ),
@@ -174,7 +174,7 @@ class _HadithBooksScreenState extends State<HadithBooksScreen> {
 
     return RefreshIndicator(
       onRefresh: _loadCollections,
-      color: grey100,
+      color: AppColors.grey100,
       backgroundColor: primary,
       child: ListView.builder(
         padding: const EdgeInsets.all(16),
@@ -204,7 +204,7 @@ class _HadithBooksScreenState extends State<HadithBooksScreen> {
         margin: const EdgeInsets.only(bottom: 12),
         child: ListTile(
           shape: RoundedRectangleBorder(
-            side: BorderSide(color: white.withOpacity(0.2), width: 1),
+            side: BorderSide(color: AppColors.white.withOpacity(0.2), width: 1),
             borderRadius: BorderRadius.circular(10),
           ),
           contentPadding:
@@ -214,13 +214,13 @@ class _HadithBooksScreenState extends State<HadithBooksScreen> {
             height: 50,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
-              color: grey100.withOpacity(0.2),
+              color: AppColors.grey100.withOpacity(0.2),
               border: Border.all(
                 color: primary,
                 width: 1.5,
               ),
             ),
-            child: const Icon(
+            child: Icon(
               Icons.menu_book_rounded,
               color: primary,
               size: 28,
@@ -243,7 +243,7 @@ class _HadithBooksScreenState extends State<HadithBooksScreen> {
                 Text(
                   _getCollectionDescription(collectionName),
                   style: GoogleFonts.poppins(
-                    color: black54,
+                    color: AppColors.black54,
                     fontSize: 14,
                     height: 1.3,
                   ),
@@ -256,16 +256,16 @@ class _HadithBooksScreenState extends State<HadithBooksScreen> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 3),
                       decoration: BoxDecoration(
-                        color: black.withOpacity(0.1),
+                        color: AppColors.black.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(8),
                         border: Border.all(
-                          color: grey100.withOpacity(0.5),
+                          color: AppColors.grey100.withOpacity(0.5),
                         ),
                       ),
                       child: Text(
                         '${editions.length} Translation${editions.length > 1 ? 's' : ''}',
                         style: GoogleFonts.poppins(
-                          color: black54,
+                          color: AppColors.black54,
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
                         ),

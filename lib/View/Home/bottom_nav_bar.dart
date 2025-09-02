@@ -24,11 +24,11 @@ class BottomNavigationScreen extends StatelessWidget {
       bottomNavigationBar: Obx(
         () => Container(
           decoration: BoxDecoration(
-            color: white,
+            color: AppColors.white,
             borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
             boxShadow: [
               BoxShadow(
-                color: black.withOpacity(0.15),
+                color: AppColors.black.withOpacity(0.15),
                 blurRadius: 12,
                 offset: const Offset(0, -4),
               ),
@@ -38,11 +38,11 @@ class BottomNavigationScreen extends StatelessWidget {
             currentIndex: controller.currentIndex.value,
             onTap: controller.changeTab,
             enableFeedback: true,
-            backgroundColor: transparent,
+            backgroundColor: AppColors.transparent,
             elevation: 0,
             type: BottomNavigationBarType.shifting,
             selectedItemColor: Get.isDarkMode ? primary100 : primary700,
-            unselectedItemColor: grey300,
+            unselectedItemColor: AppColors.grey300,
             selectedLabelStyle: GoogleFonts.poppins(
               fontSize: 12,
               fontWeight: FontWeight.w600,
@@ -88,13 +88,13 @@ class BottomNavigationScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: isSelected ? primary100 : grey500,
+        color: isSelected ? primary100 : AppColors.grey500,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Icon(
         icon,
         size: 24,
-        color: isSelected ? primary700 : white70,
+        color: isSelected ? primary700 : AppColors.white70,
       ),
     );
   }

@@ -31,13 +31,14 @@ class FavoriteScreen extends StatelessWidget {
             'Favorites',
             style: GoogleFonts.poppins(
               fontSize: 18,
-              color: Get.isDarkMode ? white : black,
+              color: Get.isDarkMode ? AppColors.white : AppColors.black,
               fontWeight: FontWeight.bold,
             ),
           ),
           bottom: TabBar(
-            labelColor: Get.isDarkMode ? white : black,
-            unselectedLabelColor: Get.isDarkMode ? white54 : black54,
+            labelColor: Get.isDarkMode ? AppColors.white : AppColors.black,
+            unselectedLabelColor:
+                Get.isDarkMode ? AppColors.white54 : AppColors.black54,
             labelStyle: GoogleFonts.poppins(),
             indicatorColor: primary,
             tabs: const [
@@ -59,21 +60,27 @@ class FavoriteScreen extends StatelessWidget {
                         children: [
                           Icon(
                             Icons.bookmark_border,
-                            color: Get.isDarkMode ? white54 : black54,
+                            color: Get.isDarkMode
+                                ? AppColors.white54
+                                : AppColors.black54,
                             size: 48,
                           ),
                           const SizedBox(height: 16),
                           Text(
                             'No favorite ayats',
                             style: GoogleFonts.poppins(
-                              color: Get.isDarkMode ? white70 : black87,
+                              color: Get.isDarkMode
+                                  ? AppColors.white70
+                                  : AppColors.black87,
                               fontSize: 16,
                             ),
                           ),
                           Text(
                             'Add ayats to your favorites',
                             style: GoogleFonts.poppins(
-                              color: Get.isDarkMode ? white54 : black54,
+                              color: Get.isDarkMode
+                                  ? AppColors.white54
+                                  : AppColors.black54,
                               fontSize: 14,
                             ),
                           ),
@@ -111,21 +118,27 @@ class FavoriteScreen extends StatelessWidget {
                         children: [
                           Icon(
                             Icons.bookmark_border,
-                            color: Get.isDarkMode ? white54 : black54,
+                            color: Get.isDarkMode
+                                ? AppColors.white54
+                                : AppColors.black54,
                             size: 48,
                           ),
                           const SizedBox(height: 16),
                           Text(
                             'No favorite hadiths',
                             style: GoogleFonts.poppins(
-                              color: Get.isDarkMode ? white70 : black87,
+                              color: Get.isDarkMode
+                                  ? AppColors.white70
+                                  : AppColors.black87,
                               fontSize: 16,
                             ),
                           ),
                           Text(
                             'Add hadiths to your favorites',
                             style: GoogleFonts.poppins(
-                              color: Get.isDarkMode ? white54 : black54,
+                              color: Get.isDarkMode
+                                  ? AppColors.white54
+                                  : AppColors.black54,
                               fontSize: 14,
                             ),
                           ),
@@ -150,7 +163,7 @@ class FavoriteScreen extends StatelessWidget {
                             showDialog(
                               context: context,
                               barrierDismissible: false,
-                              builder: (context) => const Center(
+                              builder: (context) => Center(
                                 child: CircularProgressIndicator(
                                   color: primary,
                                 ),
@@ -178,7 +191,7 @@ class FavoriteScreen extends StatelessWidget {
                                 SnackBar(
                                   content:
                                       Text('Failed to load hadith details: $e'),
-                                  backgroundColor: red,
+                                  backgroundColor: AppColors.red,
                                 ),
                               );
                             }
@@ -214,8 +227,8 @@ class AyatTile extends StatelessWidget {
         Get.find<FavoritesController>();
 
     return InkWell(
-      splashColor: transparent,
-      highlightColor: transparent,
+      splashColor: AppColors.transparent,
+      highlightColor: AppColors.transparent,
       onTap: onTap,
       borderRadius: BorderRadius.circular(12),
       child: Container(
@@ -224,7 +237,7 @@ class AyatTile extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           color: secondary,
-          border: Border.all(color: white12),
+          border: Border.all(color: AppColors.white12),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -262,7 +275,7 @@ class AyatTile extends StatelessWidget {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
                         content: Text('Removed from favorites'),
-                        backgroundColor: red,
+                        backgroundColor: AppColors.red,
                         duration: Duration(seconds: 2),
                       ),
                     );
@@ -272,7 +285,7 @@ class AyatTile extends StatelessWidget {
                     padding: EdgeInsets.all(4),
                     child: Icon(
                       Icons.favorite,
-                      color: red,
+                      color: AppColors.red,
                       size: 20,
                     ),
                   ),
@@ -303,7 +316,7 @@ class AyatTile extends StatelessWidget {
               style: GoogleFonts.poppins(
                 fontWeight: FontWeight.w400,
                 fontSize: 14,
-                color: black,
+                color: AppColors.black,
                 height: 1.5,
               ),
               textAlign: TextAlign.center,
@@ -321,7 +334,7 @@ class AyatTile extends StatelessWidget {
                     fontStyle: FontStyle.italic,
                   ),
                 ),
-                const Icon(
+                Icon(
                   Icons.arrow_forward_ios_rounded,
                   color: primary,
                   size: 14,

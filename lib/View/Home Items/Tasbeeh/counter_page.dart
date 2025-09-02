@@ -29,7 +29,7 @@ class _CounterPageState extends State<CounterPage> {
         title: Text(
           widget.tasbeeh['title'],
           style: GoogleFonts.notoNastaliqUrdu(
-            color: Get.isDarkMode ? white : black,
+            color: Get.isDarkMode ? AppColors.white : AppColors.black,
             fontWeight: FontWeight.bold,
             fontSize: 20,
           ),
@@ -50,7 +50,9 @@ class _CounterPageState extends State<CounterPage> {
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: Get.isDarkMode ? white : const Color(0xff01301C),
+                        color: Get.isDarkMode
+                            ? AppColors.white
+                            : const Color(0xff01301C),
                         width: 2,
                       ),
                       image: const DecorationImage(
@@ -59,7 +61,7 @@ class _CounterPageState extends State<CounterPage> {
                           "assets/images/bg image.jpg",
                         ),
                       ),
-                      color: white,
+                      color: AppColors.white,
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Column(
@@ -69,7 +71,7 @@ class _CounterPageState extends State<CounterPage> {
                           textAlign: TextAlign.center,
                           style: GoogleFonts.amiriQuran(
                             fontSize: 30,
-                            color: black,
+                            color: AppColors.black,
                             fontWeight: FontWeight.bold,
                             height: 2,
                           ),
@@ -80,7 +82,7 @@ class _CounterPageState extends State<CounterPage> {
                           textAlign: TextAlign.center,
                           style: GoogleFonts.notoNastaliqUrdu(
                             fontSize: 18,
-                            color: grey,
+                            color: AppColors.grey,
                             height: 2,
                           ),
                         ),
@@ -106,7 +108,7 @@ class _CounterPageState extends State<CounterPage> {
                     style: GoogleFonts.poppins(
                       fontSize: 30.0,
                       fontWeight: FontWeight.bold,
-                      color: Get.isDarkMode ? white : black,
+                      color: Get.isDarkMode ? AppColors.white : AppColors.black,
                     ),
                   ),
                   const SizedBox(height: 20.0),
@@ -115,12 +117,15 @@ class _CounterPageState extends State<CounterPage> {
                       side: WidgetStatePropertyAll(
                         BorderSide(
                             color: Get.isDarkMode
-                                ? white
+                                ? AppColors.white
                                 : const Color(0xff01301C)),
                       ),
                     ),
                     onPressed: controller.reset,
-                    child: const Text('Reset Count'),
+                    child: Text(
+                      'Reset Count',
+                      style: GoogleFonts.poppins(color: primary),
+                    ),
                   ),
                   const SizedBox(height: 50),
                   Column(
@@ -132,21 +137,22 @@ class _CounterPageState extends State<CounterPage> {
                             IconButton(
                               style: ButtonStyle(
                                 overlayColor: WidgetStatePropertyAll(
-                                    white.withOpacity(0.5)),
+                                    AppColors.white.withOpacity(0.5)),
                                 shape: const WidgetStatePropertyAll(
                                   CircleBorder(
-                                    side: BorderSide(color: white, width: 3),
+                                    side: BorderSide(
+                                        color: AppColors.white, width: 3),
                                   ),
                                 ),
-                                backgroundColor: const WidgetStatePropertyAll(
-                                  Color(0xff01301C),
+                                backgroundColor: WidgetStatePropertyAll(
+                                  primary700,
                                 ),
                               ),
                               onPressed: controller.increment,
-                              icon: const Icon(
+                              icon: Icon(
                                 Icons.keyboard_arrow_up_outlined,
                                 size: 180,
-                                color: Color(0xff00EA86),
+                                color: primary100,
                               ),
                             ),
                             Positioned(
@@ -156,21 +162,22 @@ class _CounterPageState extends State<CounterPage> {
                               child: IconButton(
                                 style: ButtonStyle(
                                   overlayColor: WidgetStatePropertyAll(
-                                      white.withOpacity(0.5)),
+                                      AppColors.white.withOpacity(0.5)),
                                   shape: const WidgetStatePropertyAll(
                                     CircleBorder(
-                                      side: BorderSide(color: white, width: 3),
+                                      side: BorderSide(
+                                          color: AppColors.white, width: 3),
                                     ),
                                   ),
-                                  backgroundColor: const WidgetStatePropertyAll(
-                                    Color(0xff01301C),
+                                  backgroundColor: WidgetStatePropertyAll(
+                                    primary700,
                                   ),
                                 ),
                                 onPressed: controller.decrement,
-                                icon: const Icon(
+                                icon: Icon(
                                   Icons.keyboard_arrow_down_outlined,
                                   size: 80,
-                                  color: Color(0xff00EA86),
+                                  color: primary100,
                                 ),
                               ),
                             ),

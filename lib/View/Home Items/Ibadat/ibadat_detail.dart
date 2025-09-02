@@ -20,7 +20,7 @@ class IbadatDetailScreen extends StatelessWidget {
           prayer["title"]!,
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
-            color: Get.isDarkMode ? white : black,
+            color: Get.isDarkMode ? AppColors.white : AppColors.black,
           ),
         ),
       ),

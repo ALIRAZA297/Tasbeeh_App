@@ -28,15 +28,15 @@ extension PrayerStatusExtension on PrayerStatus? {
   Color get color {
     switch (this) {
       case PrayerStatus.notPrayed:
-        return red;
+        return AppColors.red;
       case PrayerStatus.late:
-        return orange;
+        return AppColors.orange;
       case PrayerStatus.onTime:
         return primary;
       // case PrayerStatus.inJamaah:
       //   return Colors.blue;
       case null:
-        return Colors.grey;
+        return AppColors.grey;
     }
   }
 }

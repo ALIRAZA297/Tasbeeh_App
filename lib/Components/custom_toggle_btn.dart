@@ -23,12 +23,14 @@ class ThemeToggleSwitch extends StatelessWidget {
         value: isDark,
         borderRadius: 30.0,
         padding: 4.0,
-        activeToggleColor: white,
-        inactiveToggleColor: orange,
+        activeToggleColor: AppColors.white,
+        inactiveToggleColor: AppColors.orange,
         activeColor: Colors.grey.shade600,
         inactiveColor: Colors.grey.shade300,
-        activeIcon: const Icon(Icons.nightlight, color: black, size: 18),
-        inactiveIcon: const Icon(Icons.wb_sunny, color: white, size: 18),
+        activeIcon:
+            const Icon(Icons.nightlight, color: AppColors.black, size: 18),
+        inactiveIcon:
+            const Icon(Icons.wb_sunny, color: AppColors.white, size: 18),
         onToggle: (val) {
           controller.toggleTheme(val);
         },

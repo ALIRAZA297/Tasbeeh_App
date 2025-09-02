@@ -20,7 +20,7 @@ class KalimaScreen extends StatelessWidget {
           "Six Kalimas",
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
-            color: Get.isDarkMode ? white : black,
+            color: Get.isDarkMode ? AppColors.white : AppColors.black,
           ),
         ),
         centerTitle: true,
@@ -61,7 +61,7 @@ class KalimaScreen extends StatelessWidget {
                         fontSize: 26,
                         fontWeight: FontWeight.bold,
                         height: 2,
-                        color: black,
+                        color: AppColors.black,
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -71,7 +71,7 @@ class KalimaScreen extends StatelessWidget {
                       style: GoogleFonts.notoNastaliqUrdu(
                         height: 2,
                         fontSize: 20,
-                        color: black45,
+                        color: AppColors.black45,
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -80,7 +80,7 @@ class KalimaScreen extends StatelessWidget {
                       textAlign: TextAlign.left,
                       style: GoogleFonts.poppins(
                         fontSize: 18,
-                        color: black45,
+                        color: AppColors.black45,
                       ),
                     ),
                   ],

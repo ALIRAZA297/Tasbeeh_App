@@ -16,18 +16,18 @@ void showHadithTranslationsBottomSheet(
 ) {
   showModalBottomSheet(
     context: context,
-    backgroundColor: Get.isDarkMode ? black : transparent,
+    backgroundColor: Get.isDarkMode ? AppColors.black : AppColors.transparent,
     isScrollControlled: true,
     builder: (context) => Container(
       height: MediaQuery.of(context).size.height * 0.50,
       decoration: BoxDecoration(
-        color: Get.isDarkMode ? black87 : white,
+        color: Get.isDarkMode ? AppColors.black87 : AppColors.white,
         borderRadius: const BorderRadius.vertical(
           top: Radius.circular(30),
         ),
         boxShadow: [
           BoxShadow(
-            color: black.withOpacity(0.1),
+            color: AppColors.black.withOpacity(0.1),
             blurRadius: 20,
             spreadRadius: 5,
             offset: const Offset(0, -5),
@@ -41,7 +41,7 @@ void showHadithTranslationsBottomSheet(
             width: 40,
             height: 4,
             decoration: BoxDecoration(
-              color: grey300,
+              color: AppColors.grey300,
               borderRadius: BorderRadius.circular(2),
             ),
           ),
@@ -55,7 +55,8 @@ void showHadithTranslationsBottomSheet(
                   : primary.withOpacity(0.05),
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
-                color: Get.isDarkMode ? white : primary.withOpacity(0.1),
+                color:
+                    Get.isDarkMode ? AppColors.white : primary.withOpacity(0.1),
               ),
             ),
             child: Column(
@@ -81,7 +82,9 @@ void showHadithTranslationsBottomSheet(
                             textAlign: TextAlign.center,
                             style: GoogleFonts.poppins(
                               fontSize: 14,
-                              color: Get.isDarkMode ? grey600 : grey800,
+                              color: Get.isDarkMode
+                                  ? AppColors.grey600
+                                  : AppColors.grey800,
                               fontWeight: FontWeight.w500,
                               height: 1.4,
                             ),
@@ -95,7 +98,7 @@ void showHadithTranslationsBottomSheet(
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.translate_rounded,
                       size: 16,
                       color: primary,
@@ -110,7 +113,7 @@ void showHadithTranslationsBottomSheet(
                       ),
                     ),
                     const SizedBox(width: 16),
-                    const Icon(
+                    Icon(
                       Icons.language_rounded,
                       size: 16,
                       color: primary,
@@ -136,7 +139,7 @@ void showHadithTranslationsBottomSheet(
               "Choose Translation",
               style: GoogleFonts.poppins(
                 fontSize: 16,
-                color: grey600,
+                color: AppColors.grey600,
                 fontWeight: FontWeight.w500,
               ),
             ),
@@ -211,12 +214,12 @@ Widget _buildEnhancedTranslationButton(
           Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: white.withOpacity(0.1),
+              color: AppColors.white.withOpacity(0.1),
               shape: BoxShape.circle,
             ),
             child: Icon(
               icon,
-              color: white,
+              color: AppColors.white,
               size: 24,
             ),
           ),
@@ -224,7 +227,7 @@ Widget _buildEnhancedTranslationButton(
           Text(
             text,
             style: GoogleFonts.poppins(
-              color: white,
+              color: AppColors.white,
               fontSize: 14,
               fontWeight: FontWeight.w600,
               letterSpacing: 0.5,

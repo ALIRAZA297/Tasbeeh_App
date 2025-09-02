@@ -19,7 +19,7 @@ class NooraniQaida extends StatelessWidget {
           'Noorani Qaida',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
-            color: Get.isDarkMode ? white : black,
+            color: Get.isDarkMode ? AppColors.white : AppColors.black,
           ),
         ),
       ),

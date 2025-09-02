@@ -39,10 +39,12 @@ class QuizController extends GetxController {
 
   void checkAnswer(String selectedOption) {
     if (selectedQuestions.isEmpty ||
-        currentQuestionIndex.value >= selectedQuestions.length) return;
+        currentQuestionIndex.value >= selectedQuestions.length) {
+      return;
+    }
     showFeedback.value = true;
     if (selectedOption ==
-        selectedQuestions[currentQuestionIndex.value]['"correctAnswer"']) {
+        selectedQuestions[currentQuestionIndex.value]['correctAnswer']) {
       score.value++;
       feedbackMessage.value =
           "Correct! 🎉 ${selectedQuestions[currentQuestionIndex.value]['explanation']}";

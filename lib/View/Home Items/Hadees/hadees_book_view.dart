@@ -15,18 +15,18 @@ class HadithBooksView extends StatelessWidget {
     final HadithBooksController controller = Get.put(HadithBooksController());
 
     return Scaffold(
-      backgroundColor: white,
+      backgroundColor: AppColors.white,
       appBar: AppBar(
         title: Text("Hadith Books",
             style: GoogleFonts.poppins(fontWeight: FontWeight.bold)),
         centerTitle: true,
-        backgroundColor: white,
+        backgroundColor: AppColors.white,
         scrolledUnderElevation: 0,
       ),
       body: Obx(
         () {
           if (controller.isLoading.value) {
-            return const Center(
+            return Center(
               child: AnimatedLoader(
                 color: primary,
               ),
@@ -49,7 +49,8 @@ class HadithBooksView extends StatelessWidget {
                       child: Text(
                         book.id.toString(),
                         style: const TextStyle(
-                            color: white, fontWeight: FontWeight.bold),
+                            color: AppColors.white,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
                     title: Text(
@@ -65,7 +66,7 @@ class HadithBooksView extends StatelessWidget {
                         Text(
                             "Chapters: ${book.chaptersCount} | Hadiths: ${book.hadithsCount}",
                             style: GoogleFonts.poppins(
-                                fontSize: 12, color: grey700)),
+                                fontSize: 12, color: AppColors.grey700)),
                       ],
                     ),
                     onTap: () => Get.to(

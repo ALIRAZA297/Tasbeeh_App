@@ -86,13 +86,14 @@ class _HadithsViewState extends State<HadithsView> {
                       setState(() {});
                     },
                     child: controller.isLoading.value
-                        ? const CircularProgressIndicator(color: white)
+                        ? const CircularProgressIndicator(
+                            color: AppColors.white)
                         : Text(
                             "Load More",
                             style: GoogleFonts.poppins(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
-                                color: white),
+                                color: AppColors.white),
                           ),
                   ),
                 ),

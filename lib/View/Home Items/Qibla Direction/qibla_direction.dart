@@ -107,7 +107,7 @@
 //           "Qibla Direction",
 //           style: GoogleFonts.poppins(
 //             fontWeight: FontWeight.bold,
-//             color: Get.isDarkMode ? white : black,
+//             color: Get.isDarkMode ?AppColors.white :AppColors.black,
 //           ),
 //         ),
 //       ),
@@ -172,7 +172,7 @@
 //                     ),
 //                     child: const Icon(
 //                       FlutterIslamicIcons.solidKaaba,
-//                       color: white,
+//                       color:AppColors.white,
 //                       size: 35,
 //                     ),
 //                   ),
@@ -184,7 +184,7 @@
 //           Text(
 //             'Initializing Compass...',
 //             style: GoogleFonts.poppins(
-//               color: Get.isDarkMode ? white : black87,
+//               color: Get.isDarkMode ?AppColors.white :AppColors.black87,
 //               fontSize: 22,
 //               fontWeight: FontWeight.w600,
 //             ),
@@ -193,7 +193,7 @@
 //           Text(
 //             'Please hold your device steady',
 //             style: GoogleFonts.poppins(
-//               color: Get.isDarkMode ? white60 : black54,
+//               color: Get.isDarkMode ?AppColors.white60 :AppColors.black54,
 //               fontSize: 16,
 //             ),
 //           ),
@@ -265,14 +265,14 @@
 //                                 ]
 //                               : [
 //                                   const Color(0xFFF8FAFC),
-//                                   white,
+//                                  AppColors.white,
 //                                   const Color(0xFFE2E8F0),
 //                                 ],
 //                         ),
 //                         boxShadow: [
 //                           BoxShadow(
 //                             color: Get.isDarkMode
-//                                 ? black.withOpacity(0.3)
+//                                 ?AppColors.black.withOpacity(0.3)
 //                                 : primary700.withOpacity(0.15),
 //                             blurRadius: 25,
 //                             offset: const Offset(0, 10),
@@ -325,14 +325,14 @@
 //                                 children: [
 //                                   const Icon(
 //                                     FlutterIslamicIcons.solidKaaba,
-//                                     color: white,
+//                                     color:AppColors.white,
 //                                     size: 16,
 //                                   ),
 //                                   const SizedBox(width: 6),
 //                                   Text(
 //                                     '${qiblahDirection.qiblah.toStringAsFixed(1)}°',
 //                                     style: GoogleFonts.poppins(
-//                                       color: white,
+//                                       color:AppColors.white,
 //                                       fontSize: 14,
 //                                       fontWeight: FontWeight.bold,
 //                                     ),
@@ -350,14 +350,14 @@
 //                                   horizontal: 12, vertical: 6),
 //                               decoration: BoxDecoration(
 //                                 color: Get.isDarkMode
-//                                     ? white.withOpacity(0.1)
-//                                     : black.withOpacity(0.1),
+//                                     ?AppColors.white.withOpacity(0.1)
+//                                     :AppColors.black.withOpacity(0.1),
 //                                 borderRadius: BorderRadius.circular(15),
 //                               ),
 //                               child: Text(
 //                                 'Hold device flat',
 //                                 style: GoogleFonts.poppins(
-//                                   color: Get.isDarkMode ? white70 : black54,
+//                                   color: Get.isDarkMode ?AppColors.white70 :AppColors.black54,
 //                                   fontSize: 12,
 //                                   fontWeight: FontWeight.w500,
 //                                 ),
@@ -413,7 +413,7 @@
 //                         boxShadow: [
 //                           BoxShadow(
 //                             color: (Get.isDarkMode
-//                                     ? black
+//                                     ?AppColors.black
 //                                     : const Color(0xFFFDE68A))
 //                                 .withOpacity(0.2),
 //                             blurRadius: 10,
@@ -433,7 +433,7 @@
 //                             ),
 //                             child: const Icon(
 //                               Icons.info_outline,
-//                               color: white,
+//                               color:AppColors.white,
 //                               size: 20,
 //                             ),
 //                           ),
@@ -444,7 +444,7 @@
 //                               fontSize: 16,
 //                               fontWeight: FontWeight.bold,
 //                               color: Get.isDarkMode
-//                                   ? white
+//                                   ?AppColors.white
 //                                   : const Color(0xFF92400E),
 //                             ),
 //                           ),
@@ -453,11 +453,11 @@
 //                             '• Hold your device flat (parallel to ground)\n'
 //                             '• The red needle shows North direction\n'
 //                             '• The golden arrow points to Qibla\n'
-//                             '• Rotate until black needle align with golden arrow pointer',
+//                             '• Rotate untilAppColors.black needle align with golden arrow pointer',
 //                             style: GoogleFonts.poppins(
 //                               fontSize: 13,
 //                               color: Get.isDarkMode
-//                                   ? white70
+//                                   ?AppColors.white70
 //                                   : const Color(0xFF92400E),
 //                               fontWeight: FontWeight.w500,
 //                               height: 1.6,
@@ -507,14 +507,14 @@
 //               color: color,
 //               shape: BoxShape.circle,
 //             ),
-//             child: Icon(icon, color: white, size: 18),
+//             child: Icon(icon, color:AppColors.white, size: 18),
 //           ),
 //           const SizedBox(height: 10),
 //           Text(
 //             title,
 //             style: GoogleFonts.poppins(
 //               fontSize: 11,
-//               color: Get.isDarkMode ? white70 : black54,
+//               color: Get.isDarkMode ?AppColors.white70 :AppColors.black54,
 //               fontWeight: FontWeight.w500,
 //             ),
 //             textAlign: TextAlign.center,
@@ -524,7 +524,7 @@
 //             value,
 //             style: GoogleFonts.poppins(
 //               fontSize: 16,
-//               color: Get.isDarkMode ? white : black87,
+//               color: Get.isDarkMode ?AppColors.white :AppColors.black87,
 //               fontWeight: FontWeight.bold,
 //             ),
 //           ),
@@ -566,7 +566,7 @@
 //                 ),
 //                 child: const Icon(
 //                   FlutterIslamicIcons.solidMosque,
-//                   color: white,
+//                   color:AppColors.white,
 //                   size: 48,
 //                 ),
 //               ),
@@ -577,7 +577,7 @@
 //               style: GoogleFonts.poppins(
 //                 fontSize: 24,
 //                 fontWeight: FontWeight.bold,
-//                 color: Get.isDarkMode ? white : black87,
+//                 color: Get.isDarkMode ?AppColors.white :AppColors.black87,
 //               ),
 //             ),
 //             const SizedBox(height: 16),
@@ -587,7 +587,7 @@
 //                   : 'We need your location to calculate the precise Qibla direction. Your privacy is protected.',
 //               style: GoogleFonts.poppins(
 //                 fontSize: 16,
-//                 color: Get.isDarkMode ? white70 : black54,
+//                 color: Get.isDarkMode ?AppColors.white70 :AppColors.black54,
 //                 height: 1.5,
 //               ),
 //               textAlign: TextAlign.center,
@@ -614,7 +614,7 @@
 //                       !_isLocationServiceEnabled
 //                           ? Icons.location_on
 //                           : Icons.location_searching,
-//                       color: white,
+//                       color:AppColors.white,
 //                     ),
 //                     const SizedBox(width: 12),
 //                     Text(
@@ -624,7 +624,7 @@
 //                       style: GoogleFonts.poppins(
 //                         fontSize: 16,
 //                         fontWeight: FontWeight.w600,
-//                         color: white,
+//                         color:AppColors.white,
 //                       ),
 //                     ),
 //                   ],
@@ -674,7 +674,7 @@
 //               style: GoogleFonts.poppins(
 //                 fontSize: 24,
 //                 fontWeight: FontWeight.bold,
-//                 color: Get.isDarkMode ? white : black87,
+//                 color: Get.isDarkMode ?AppColors.white :AppColors.black87,
 //               ),
 //             ),
 //             const SizedBox(height: 16),
@@ -682,7 +682,7 @@
 //               message,
 //               style: GoogleFonts.poppins(
 //                 fontSize: 16,
-//                 color: Get.isDarkMode ? white70 : black54,
+//                 color: Get.isDarkMode ?AppColors.white70 :AppColors.black54,
 //                 height: 1.5,
 //               ),
 //               textAlign: TextAlign.center,
@@ -702,14 +702,14 @@
 //                 child: Row(
 //                   mainAxisAlignment: MainAxisAlignment.center,
 //                   children: [
-//                     const Icon(Icons.refresh, color: white),
+//                     const Icon(Icons.refresh, color:AppColors.white),
 //                     const SizedBox(width: 12),
 //                     Text(
 //                       'Try Again',
 //                       style: GoogleFonts.poppins(
 //                         fontSize: 16,
 //                         fontWeight: FontWeight.w600,
-//                         color: white,
+//                         color:AppColors.white,
 //                       ),
 //                     ),
 //                   ],
@@ -747,7 +747,7 @@
 //               style: GoogleFonts.poppins(
 //                 fontSize: 24,
 //                 fontWeight: FontWeight.bold,
-//                 color: Get.isDarkMode ? white : black87,
+//                 color: Get.isDarkMode ?AppColors.white :AppColors.black87,
 //               ),
 //             ),
 //             const SizedBox(height: 16),
@@ -755,7 +755,7 @@
 //               'Your device doesn\'t have the required magnetometer sensor for compass functionality. Please use a device with compass support.',
 //               style: GoogleFonts.poppins(
 //                 fontSize: 16,
-//                 color: Get.isDarkMode ? white70 : black54,
+//                 color: Get.isDarkMode ?AppColors.white70 :AppColors.black54,
 //                 height: 1.5,
 //               ),
 //               textAlign: TextAlign.center,
@@ -775,14 +775,14 @@
 //                 child: Row(
 //                   mainAxisAlignment: MainAxisAlignment.center,
 //                   children: [
-//                     const Icon(Icons.arrow_back, color: white),
+//                     const Icon(Icons.arrow_back, color:AppColors.white),
 //                     const SizedBox(width: 12),
 //                     Text(
 //                       'Go Back',
 //                       style: GoogleFonts.poppins(
 //                         fontSize: 16,
 //                         fontWeight: FontWeight.w600,
-//                         color: white,
+//                         color:AppColors.white,
 //                       ),
 //                     ),
 //                   ],
@@ -905,7 +905,7 @@
 //         "Qibla Direction",
 //         style: GoogleFonts.poppins(
 //           fontWeight: FontWeight.bold,
-//           color: Get.isDarkMode ? white : black,
+//           color: Get.isDarkMode ?AppColors.white :AppColors.black,
 //         ),
 //       ),
 //     );
@@ -940,7 +940,7 @@
 //           Text(
 //             'Initializing Compass...',
 //             style: GoogleFonts.poppins(
-//               color: Get.isDarkMode ? white : black87,
+//               color: Get.isDarkMode ?AppColors.white :AppColors.black87,
 //               fontSize: 22,
 //               fontWeight: FontWeight.w600,
 //             ),
@@ -949,7 +949,7 @@
 //           Text(
 //             'Please hold your device steady',
 //             style: GoogleFonts.poppins(
-//               color: Get.isDarkMode ? white60 : black54,
+//               color: Get.isDarkMode ?AppColors.white60 :AppColors.black54,
 //               fontSize: 16,
 //             ),
 //           ),
@@ -993,7 +993,7 @@
 //         ),
 //         child: const Icon(
 //           FlutterIslamicIcons.solidKaaba,
-//           color: white,
+//           color:AppColors.white,
 //           size: 35,
 //         ),
 //       ),
@@ -1085,12 +1085,12 @@
 //         end: Alignment.bottomRight,
 //         colors: Get.isDarkMode
 //             ? [const Color(0xFF2C2C2E), const Color(0xFF1C1C1E)]
-//             : [const Color(0xFFF8FAFC), white, const Color(0xFFE2E8F0)],
+//             : [const Color(0xFFF8FAFC),AppColors.white, const Color(0xFFE2E8F0)],
 //       ),
 //       boxShadow: [
 //         BoxShadow(
 //           color: Get.isDarkMode
-//               ? black.withOpacity(0.3)
+//               ?AppColors.black.withOpacity(0.3)
 //               : primary700.withOpacity(0.15),
 //           blurRadius: 25,
 //           offset: const Offset(0, 10),
@@ -1121,12 +1121,12 @@
 //         child: Row(
 //           mainAxisSize: MainAxisSize.min,
 //           children: [
-//             const Icon(FlutterIslamicIcons.solidKaaba, color: white, size: 16),
+//             const Icon(FlutterIslamicIcons.solidKaaba, color:AppColors.white, size: 16),
 //             const SizedBox(width: 6),
 //             Text(
 //               '${qiblaAngle.toStringAsFixed(1)}°',
 //               style: GoogleFonts.poppins(
-//                 color: white,
+//                 color:AppColors.white,
 //                 fontSize: 14,
 //                 fontWeight: FontWeight.bold,
 //               ),
@@ -1144,13 +1144,13 @@
 //         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
 //         decoration: BoxDecoration(
 //           color:
-//               Get.isDarkMode ? white.withOpacity(0.1) : black.withOpacity(0.1),
+//               Get.isDarkMode ?AppColors.white.withOpacity(0.1) :AppColors.black.withOpacity(0.1),
 //           borderRadius: BorderRadius.circular(15),
 //         ),
 //         child: Text(
 //           'Hold device flat',
 //           style: GoogleFonts.poppins(
-//             color: Get.isDarkMode ? white70 : black54,
+//             color: Get.isDarkMode ?AppColors.white70 :AppColors.black54,
 //             fontSize: 12,
 //             fontWeight: FontWeight.w500,
 //           ),
@@ -1205,20 +1205,20 @@
 //           CircleAvatar(
 //             backgroundColor: color,
 //             radius: 18,
-//             child: Icon(icon, color: white, size: 18),
+//             child: Icon(icon, color:AppColors.white, size: 18),
 //           ),
 //           const SizedBox(height: 10),
 //           Text(title,
 //               style: GoogleFonts.poppins(
 //                 fontSize: 11,
-//                 color: Get.isDarkMode ? white70 : black54,
+//                 color: Get.isDarkMode ?AppColors.white70 :AppColors.black54,
 //                 fontWeight: FontWeight.w500,
 //               )),
 //           const SizedBox(height: 4),
 //           Text(value,
 //               style: GoogleFonts.poppins(
 //                 fontSize: 16,
-//                 color: Get.isDarkMode ? white : black87,
+//                 color: Get.isDarkMode ?AppColors.white :AppColors.black87,
 //                 fontWeight: FontWeight.bold,
 //               )),
 //         ],
@@ -1239,7 +1239,7 @@
 //         borderRadius: BorderRadius.circular(20),
 //         boxShadow: [
 //           BoxShadow(
-//             color: (Get.isDarkMode ? black : const Color(0xFFFDE68A))
+//             color: (Get.isDarkMode ?AppColors.black : const Color(0xFFFDE68A))
 //                 .withOpacity(0.2),
 //             blurRadius: 10,
 //             offset: const Offset(0, 5),
@@ -1252,7 +1252,7 @@
 //             backgroundColor: Get.isDarkMode
 //                 ? const Color(0xFF10B981)
 //                 : const Color(0xFFF59E0B),
-//             child: const Icon(Icons.info_outline, color: white, size: 20),
+//             child: const Icon(Icons.info_outline, color:AppColors.white, size: 20),
 //           ),
 //           const SizedBox(height: 12),
 //           Text(
@@ -1260,7 +1260,7 @@
 //             style: GoogleFonts.poppins(
 //               fontSize: 16,
 //               fontWeight: FontWeight.bold,
-//               color: Get.isDarkMode ? white : const Color(0xFF92400E),
+//               color: Get.isDarkMode ?AppColors.white : const Color(0xFF92400E),
 //             ),
 //           ),
 //           const SizedBox(height: 8),
@@ -1268,10 +1268,10 @@
 //             '• Hold your device flat (parallel to ground)\n'
 //             '• The red needle shows North direction\n'
 //             '• The golden arrow points to Qibla\n'
-//             '• Rotate until black needle aligns with golden arrow',
+//             '• Rotate untilAppColors.black needle aligns with golden arrow',
 //             style: GoogleFonts.poppins(
 //               fontSize: 13,
-//               color: Get.isDarkMode ? white70 : const Color(0xFF92400E),
+//               color: Get.isDarkMode ?AppColors.white70 : const Color(0xFF92400E),
 //               fontWeight: FontWeight.w500,
 //               height: 1.6,
 //             ),
@@ -1295,7 +1295,7 @@
 //               style: GoogleFonts.poppins(
 //                 fontSize: 24,
 //                 fontWeight: FontWeight.bold,
-//                 color: Get.isDarkMode ? white : black87,
+//                 color: Get.isDarkMode ?AppColors.white :AppColors.black87,
 //               ),
 //             ),
 //             const SizedBox(height: 16),
@@ -1305,7 +1305,7 @@
 //                   : 'We need your location to calculate Qibla direction. Your privacy is protected.',
 //               style: GoogleFonts.poppins(
 //                 fontSize: 16,
-//                 color: Get.isDarkMode ? white70 : black54,
+//                 color: Get.isDarkMode ?AppColors.white70 :AppColors.black54,
 //                 height: 1.5,
 //               ),
 //               textAlign: TextAlign.center,
@@ -1341,7 +1341,7 @@
 //         backgroundColor: primary700,
 //         radius: 40,
 //         child:
-//             const Icon(FlutterIslamicIcons.solidMosque, color: white, size: 48),
+//             const Icon(FlutterIslamicIcons.solidMosque, color:AppColors.white, size: 48),
 //       ),
 //     );
 //   }
@@ -1367,7 +1367,7 @@
 //                 !_isLocationServiceEnabled
 //                     ? Icons.location_on
 //                     : Icons.location_searching,
-//                 color: white),
+//                 color:AppColors.white),
 //             const SizedBox(width: 12),
 //             Text(
 //               !_isLocationServiceEnabled
@@ -1376,7 +1376,7 @@
 //               style: GoogleFonts.poppins(
 //                 fontSize: 16,
 //                 fontWeight: FontWeight.w600,
-//                 color: white,
+//                 color:AppColors.white,
 //               ),
 //             ),
 //           ],
@@ -1399,7 +1399,7 @@
 //               style: GoogleFonts.poppins(
 //                 fontSize: 24,
 //                 fontWeight: FontWeight.bold,
-//                 color: Get.isDarkMode ? white : black87,
+//                 color: Get.isDarkMode ?AppColors.white :AppColors.black87,
 //               ),
 //             ),
 //             const SizedBox(height: 16),
@@ -1407,7 +1407,7 @@
 //               message,
 //               style: GoogleFonts.poppins(
 //                 fontSize: 16,
-//                 color: Get.isDarkMode ? white70 : black54,
+//                 color: Get.isDarkMode ?AppColors.white70 :AppColors.black54,
 //                 height: 1.5,
 //               ),
 //               textAlign: TextAlign.center,
@@ -1426,7 +1426,7 @@
 //                   style: GoogleFonts.poppins(
 //                     fontSize: 16,
 //                     fontWeight: FontWeight.w600,
-//                     color: white,
+//                     color:AppColors.white,
 //                   )),
 //             ),
 //           ],
@@ -1450,7 +1450,7 @@
 //               style: GoogleFonts.poppins(
 //                 fontSize: 24,
 //                 fontWeight: FontWeight.bold,
-//                 color: Get.isDarkMode ? white : black87,
+//                 color: Get.isDarkMode ?AppColors.white :AppColors.black87,
 //               ),
 //             ),
 //             const SizedBox(height: 16),
@@ -1458,7 +1458,7 @@
 //               'Your device does not support the required compass sensors to detect Qibla direction. Please try using another device.',
 //               style: GoogleFonts.poppins(
 //                 fontSize: 16,
-//                 color: Get.isDarkMode ? white70 : black54,
+//                 color: Get.isDarkMode ?AppColors.white70 :AppColors.black54,
 //                 height: 1.5,
 //               ),
 //               textAlign: TextAlign.center,
@@ -1577,7 +1577,7 @@ class _QiblaScreenState extends State<QiblaScreen>
         "Qibla Direction",
         style: GoogleFonts.poppins(
           fontWeight: FontWeight.bold,
-          color: Get.isDarkMode ? white : black,
+          color: Get.isDarkMode ? AppColors.white : AppColors.black,
         ),
       ),
     );
@@ -1608,7 +1608,7 @@ class _QiblaScreenState extends State<QiblaScreen>
           Text(
             'Initializing Compass...',
             style: GoogleFonts.poppins(
-              color: Get.isDarkMode ? white : black87,
+              color: Get.isDarkMode ? AppColors.white : AppColors.black87,
               fontSize: 22,
               fontWeight: FontWeight.w600,
             ),
@@ -1617,7 +1617,7 @@ class _QiblaScreenState extends State<QiblaScreen>
           Text(
             'Please hold your device steady',
             style: GoogleFonts.poppins(
-              color: Get.isDarkMode ? white60 : black54,
+              color: Get.isDarkMode ? AppColors.white60 : AppColors.black54,
               fontSize: 16,
             ),
           ),
@@ -1641,7 +1641,7 @@ class _QiblaScreenState extends State<QiblaScreen>
           colors: [
             primary700.withOpacity(0.3),
             primary700.withOpacity(0.1),
-            transparent,
+            AppColors.transparent,
           ],
         ),
         shape: BoxShape.circle,
@@ -1661,7 +1661,7 @@ class _QiblaScreenState extends State<QiblaScreen>
         ),
         child: const Icon(
           FlutterIslamicIcons.solidKaaba,
-          color: white,
+          color: AppColors.white,
           size: 35,
         ),
       ),
@@ -1752,7 +1752,7 @@ class _QiblaScreenState extends State<QiblaScreen>
       boxShadow: [
         BoxShadow(
           color: Get.isDarkMode
-              ? black.withOpacity(0.3)
+              ? AppColors.black.withOpacity(0.3)
               : primary700.withOpacity(0.15),
           blurRadius: 25,
           offset: const Offset(0, 10),
@@ -1783,12 +1783,13 @@ class _QiblaScreenState extends State<QiblaScreen>
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(FlutterIslamicIcons.solidKaaba, color: white, size: 16),
+            const Icon(FlutterIslamicIcons.solidKaaba,
+                color: AppColors.white, size: 16),
             const SizedBox(width: 6),
             Text(
               '${qiblaAngle.toStringAsFixed(1)}°',
               style: GoogleFonts.poppins(
-                color: white,
+                color: AppColors.white,
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
               ),
@@ -1805,14 +1806,15 @@ class _QiblaScreenState extends State<QiblaScreen>
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
         decoration: BoxDecoration(
-          color:
-              Get.isDarkMode ? white.withOpacity(0.1) : black.withOpacity(0.1),
+          color: Get.isDarkMode
+              ? AppColors.white.withOpacity(0.1)
+              : AppColors.black.withOpacity(0.1),
           borderRadius: BorderRadius.circular(15),
         ),
         child: Text(
           'Hold device flat',
           style: GoogleFonts.poppins(
-            color: Get.isDarkMode ? white70 : black54,
+            color: Get.isDarkMode ? AppColors.white70 : AppColors.black54,
             fontSize: 12,
             fontWeight: FontWeight.w500,
           ),
@@ -1867,20 +1869,20 @@ class _QiblaScreenState extends State<QiblaScreen>
           CircleAvatar(
             backgroundColor: color,
             radius: 18,
-            child: Icon(icon, color: white, size: 18),
+            child: Icon(icon, color: AppColors.white, size: 18),
           ),
           const SizedBox(height: 10),
           Text(title,
               style: GoogleFonts.poppins(
                 fontSize: 11,
-                color: Get.isDarkMode ? white70 : black54,
+                color: Get.isDarkMode ? AppColors.white70 : AppColors.black54,
                 fontWeight: FontWeight.w500,
               )),
           const SizedBox(height: 4),
           Text(value,
               style: GoogleFonts.poppins(
                 fontSize: 16,
-                color: Get.isDarkMode ? white : black87,
+                color: Get.isDarkMode ? AppColors.white : AppColors.black87,
                 fontWeight: FontWeight.bold,
               )),
         ],
@@ -1902,7 +1904,7 @@ class _QiblaScreenState extends State<QiblaScreen>
               style: GoogleFonts.poppins(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Get.isDarkMode ? white : black87,
+                color: Get.isDarkMode ? AppColors.white : AppColors.black87,
               ),
             ),
             const SizedBox(height: 16),
@@ -1912,7 +1914,7 @@ class _QiblaScreenState extends State<QiblaScreen>
                   : 'We need your location to calculate Qibla direction. Your privacy is protected.',
               style: GoogleFonts.poppins(
                 fontSize: 16,
-                color: Get.isDarkMode ? white70 : black54,
+                color: Get.isDarkMode ? AppColors.white70 : AppColors.black54,
                 height: 1.5,
               ),
               textAlign: TextAlign.center,
@@ -1942,15 +1944,15 @@ class _QiblaScreenState extends State<QiblaScreen>
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         gradient: RadialGradient(
-          colors: [primary700.withOpacity(0.2), transparent],
+          colors: [primary700.withOpacity(0.2), AppColors.transparent],
         ),
         shape: BoxShape.circle,
       ),
       child: CircleAvatar(
         backgroundColor: primary700,
         radius: 40,
-        child:
-            const Icon(FlutterIslamicIcons.solidMosque, color: white, size: 48),
+        child: const Icon(FlutterIslamicIcons.solidMosque,
+            color: AppColors.white, size: 48),
       ),
     );
   }
@@ -1976,7 +1978,7 @@ class _QiblaScreenState extends State<QiblaScreen>
                 !_isLocationServiceEnabled
                     ? Icons.location_on
                     : Icons.location_searching,
-                color: white),
+                color: AppColors.white),
             const SizedBox(width: 12),
             Text(
               !_isLocationServiceEnabled
@@ -1985,7 +1987,7 @@ class _QiblaScreenState extends State<QiblaScreen>
               style: GoogleFonts.poppins(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
-                color: white,
+                color: AppColors.white,
               ),
             ),
           ],
@@ -2001,21 +2003,21 @@ class _QiblaScreenState extends State<QiblaScreen>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(Icons.error_outline, color: red, size: 64),
+            const Icon(Icons.error_outline, color: AppColors.red, size: 64),
             const SizedBox(height: 24),
             Text(
               'Error Occurred',
               style: GoogleFonts.poppins(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
-                color: Get.isDarkMode ? white : black87,
+                color: Get.isDarkMode ? AppColors.white : AppColors.black87,
               ),
             ),
             const SizedBox(height: 12),
             Text(message,
                 style: GoogleFonts.poppins(
                   fontSize: 16,
-                  color: Get.isDarkMode ? white70 : black54,
+                  color: Get.isDarkMode ? AppColors.white70 : AppColors.black54,
                 ),
                 textAlign: TextAlign.center),
             const SizedBox(height: 24),
@@ -2030,7 +2032,9 @@ class _QiblaScreenState extends State<QiblaScreen>
               ),
               child: Text('Retry',
                   style: GoogleFonts.poppins(
-                      fontSize: 16, fontWeight: FontWeight.w600, color: white)),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.white)),
             ),
           ],
         ),
@@ -2046,14 +2050,15 @@ class _QiblaScreenState extends State<QiblaScreen>
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(Icons.block,
-                color: Get.isDarkMode ? white70 : black45, size: 80),
+                color: Get.isDarkMode ? AppColors.white70 : AppColors.black45,
+                size: 80),
             const SizedBox(height: 20),
             Text(
               'Device Not Supported',
               style: GoogleFonts.poppins(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
-                color: Get.isDarkMode ? white : black87,
+                color: Get.isDarkMode ? AppColors.white : AppColors.black87,
               ),
             ),
             const SizedBox(height: 12),
@@ -2061,7 +2066,7 @@ class _QiblaScreenState extends State<QiblaScreen>
               'Your device does not support the necessary sensors for Qibla direction.',
               style: GoogleFonts.poppins(
                 fontSize: 16,
-                color: Get.isDarkMode ? white70 : black54,
+                color: Get.isDarkMode ? AppColors.white70 : AppColors.black54,
               ),
               textAlign: TextAlign.center,
             ),

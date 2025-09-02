@@ -213,7 +213,7 @@ class DuaCard extends StatelessWidget {
                 fontSize: 26,
                 height: 2,
                 fontWeight: FontWeight.bold,
-                color: black,
+                color: AppColors.black,
               ),
             ),
 
@@ -233,7 +233,7 @@ class DuaCard extends StatelessWidget {
                         fontSize: 18,
                         height: 2,
                         fontWeight: FontWeight.w500,
-                        color: grey,
+                        color: AppColors.grey,
                       ),
                     ),
                   ),
@@ -261,7 +261,7 @@ class DuaCard extends StatelessWidget {
                   fontSize: 16,
                   height: 1.5,
                   fontWeight: FontWeight.w500,
-                  color: grey,
+                  color: AppColors.grey,
                 ),
               ),
 
@@ -270,14 +270,15 @@ class DuaCard extends StatelessWidget {
               Row(
                 children: [
                   IconButton(
-                    icon: const Icon(Icons.edit, color: blue),
+                    icon: const Icon(Icons.edit, color: AppColors.blue),
                     onPressed: () {
                       duaController.showEditDuaDialog(
                           context, category, index, dua);
                     },
                   ),
                   IconButton(
-                    icon: const Icon(CupertinoIcons.delete, color: red),
+                    icon:
+                        const Icon(CupertinoIcons.delete, color: AppColors.red),
                     onPressed: () {
                       duaController.showDeleteConfirmationDialog(
                           context, category, index);

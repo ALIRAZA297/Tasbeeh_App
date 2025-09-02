@@ -41,7 +41,7 @@ class FullHadithView extends StatelessWidget {
               style: GoogleFonts.notoNaskhArabic(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: black,
+                color: AppColors.black,
               ),
             ),
             const SizedBox(height: 10),
@@ -50,7 +50,7 @@ class FullHadithView extends StatelessWidget {
               style: GoogleFonts.poppins(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: black,
+                color: AppColors.black,
               ),
             ),
             const Divider(thickness: 2, height: 20),
@@ -62,7 +62,7 @@ class FullHadithView extends StatelessWidget {
               style: GoogleFonts.amiri(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
-                color: black,
+                color: AppColors.black,
               ),
             ),
             const SizedBox(height: 20),
@@ -73,7 +73,7 @@ class FullHadithView extends StatelessWidget {
               textAlign: TextAlign.right,
               style: GoogleFonts.notoNaskhArabic(
                 fontSize: 18,
-                color: black,
+                color: AppColors.black,
               ),
             ),
             const SizedBox(height: 20),
@@ -83,7 +83,7 @@ class FullHadithView extends StatelessWidget {
               hadith.hadithEnglish,
               style: GoogleFonts.poppins(
                 fontSize: 18,
-                color: black,
+                color: AppColors.black,
               ),
             ),
           ],

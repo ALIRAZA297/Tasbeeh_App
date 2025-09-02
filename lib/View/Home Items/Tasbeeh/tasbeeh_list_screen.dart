@@ -38,7 +38,7 @@ class TasbeehListScreen extends StatelessWidget {
                         Icon(
                           Icons.search_off,
                           size: 50,
-                          color: grey500,
+                          color: AppColors.grey500,
                         ),
                         Text(
                           'No Tasbeeh available',
@@ -46,7 +46,7 @@ class TasbeehListScreen extends StatelessWidget {
                             fontSize: 18,
                             height: 2,
                             fontWeight: FontWeight.bold,
-                            color: grey500,
+                            color: AppColors.grey500,
                           ),
                         ),
                       ],
@@ -94,108 +94,111 @@ class TasbeehListScreen extends StatelessWidget {
           tasbeeh: tasbeeh,
         ),
       ),
-      child: AppButtonAnimation(
-        child: Container(
-          margin: const EdgeInsets.symmetric(
-            vertical: 4,
-            horizontal: 10,
-          ),
-          decoration: BoxDecoration(
-            color: secondary,
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: ListTile(
-            title: Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 5.0,
-              ),
-              child: Text(
-                tasbeeh['title'],
-                textAlign: TextAlign.right,
-                style: GoogleFonts.notoNastaliqUrdu(
-                  fontSize: 18,
-                  height: 2,
-                  fontWeight: FontWeight.bold,
-                  color: primary,
-                ),
-              ),
+      child: Obx(
+        () => AppButtonAnimation(
+          child: Container(
+            margin: const EdgeInsets.symmetric(
+              vertical: 4,
+              horizontal: 10,
             ),
-            subtitle: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5.0),
-                  child: Text(
-                    tasbeeh['zikr'],
-                    textAlign: TextAlign.right,
-                    style: GoogleFonts.amiri(
-                      fontSize: 26,
-                      height: 2,
-                      fontWeight: FontWeight.bold,
-                      color: black,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5.0),
-                  child: Text(
-                    tasbeeh['translation'],
-                    textAlign: TextAlign.right,
-                    style: GoogleFonts.notoNastaliqUrdu(
-                      height: 2,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: grey,
-                    ),
-                  ),
-                ),
-                if (tasbeeh['count'] != null)
-                  Text(
-                    'Count: ${tasbeeh['count']}',
-                    style: GoogleFonts.poppins(
-                      fontSize: 14,
-                      height: 2,
-                      color: grey,
-                    ),
-                  ),
-              ],
+            decoration: BoxDecoration(
+              color: secondary,
+              borderRadius: BorderRadius.circular(12),
             ),
-            leading: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  icon: Icon(
-                    isMyTasbeeh ? Icons.edit : CupertinoIcons.add_circled,
+            child: ListTile(
+              title: Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 5.0,
+                ),
+                child: Text(
+                  tasbeeh['title'],
+                  textAlign: TextAlign.right,
+                  style: GoogleFonts.notoNastaliqUrdu(
+                    fontSize: 18,
+                    height: 2,
+                    fontWeight: FontWeight.bold,
                     color: primary,
                   ),
-                  onPressed: () {
-                    if (isMyTasbeeh) {
-                      controller.showTasbeehDialog(Get.context!,
-                          index: index, tasbeeh: tasbeeh);
-                    } else {
-                      _showAddTasbeehDialog(Get.context!, tasbeeh);
-                    }
-                  },
                 ),
-                if (isMyTasbeeh)
+              ),
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5.0),
+                    child: Text(
+                      tasbeeh['zikr'],
+                      textAlign: TextAlign.right,
+                      style: GoogleFonts.amiri(
+                        fontSize: 26,
+                        height: 2,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.black,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5.0),
+                    child: Text(
+                      tasbeeh['translation'],
+                      textAlign: TextAlign.right,
+                      style: GoogleFonts.notoNastaliqUrdu(
+                        height: 2,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.grey,
+                      ),
+                    ),
+                  ),
+                  if (tasbeeh['count'] != null)
+                    Text(
+                      'Count: ${tasbeeh['count']}',
+                      style: GoogleFonts.poppins(
+                        fontSize: 14,
+                        height: 2,
+                        color: AppColors.grey,
+                      ),
+                    ),
+                ],
+              ),
+              leading: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
                   IconButton(
-                    icon: const Icon(CupertinoIcons.delete, color: red),
+                    icon: Icon(
+                      isMyTasbeeh ? Icons.edit : CupertinoIcons.add_circled,
+                      color: primary,
+                    ),
                     onPressed: () {
-                      Get.defaultDialog(
-                        title: 'Confirm Deletion',
-                        content: const Text(
-                            'Are you sure you want to delete this tasbeeh?'),
-                        textConfirm: 'Delete',
-                        textCancel: 'Cancel',
-                        confirmTextColor: white,
-                        onConfirm: () {
-                          controller.deleteTasbeeh(index); // Perform deletion
-                          Get.back(); // Close the dialog
-                        },
-                      );
+                      if (isMyTasbeeh) {
+                        controller.showTasbeehDialog(Get.context!,
+                            index: index, tasbeeh: tasbeeh);
+                      } else {
+                        _showAddTasbeehDialog(Get.context!, tasbeeh);
+                      }
                     },
                   ),
-              ],
+                  if (isMyTasbeeh)
+                    IconButton(
+                      icon: const Icon(CupertinoIcons.delete,
+                          color: AppColors.red),
+                      onPressed: () {
+                        Get.defaultDialog(
+                          title: 'Confirm Deletion',
+                          content: const Text(
+                              'Are you sure you want to delete this tasbeeh?'),
+                          textConfirm: 'Delete',
+                          textCancel: 'Cancel',
+                          confirmTextColor: AppColors.white,
+                          onConfirm: () {
+                            controller.deleteTasbeeh(index); // Perform deletion
+                            Get.back(); // Close the dialog
+                          },
+                        );
+                      },
+                    ),
+                ],
+              ),
             ),
           ),
         ),
