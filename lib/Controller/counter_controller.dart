@@ -1,54 +1,74 @@
 import 'package:get/get.dart';
-import 'package:tasbeeh_app/Model/count_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CounterController extends GetxController {
-  var counterModel = CounterModel().obs;
-  // late SharedPreferences _prefs;
+  SharedPreferences? _prefs;
+  var isPrefsInitialized = false.obs;
+
+  /// Store counts per tasbeehId
+  var counts = <String, int>{}.obs;
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
-    counterModel.value.count = 0;
+    await _initPrefs();
   }
 
-  // Future<void> _loadCounter() async {
-  //   _prefs = await SharedPreferences.getInstance();
-  //   counterModel.value.count = _prefs.getInt('counter') ?? 0;
-  //   update(); // Notify UI
-  // }
+  Future _initPrefs() async {
+    _prefs = await SharedPreferences.getInstance();
+    isPrefsInitialized.value = true;
+  }
 
-  void increment() {
-    counterModel.value.count++;
-    // _prefs.setInt('counter', counterModel.value.count);
+  Future<int> loadCounter(String tasbeehId) async {
+    if (!isPrefsInitialized.value) {
+      await _initPrefs();
+    }
+    final value = _prefs!.getInt('tasbeeh_$tasbeehId') ?? 0;
+    counts[tasbeehId] = value;
+    update();
+    return value;
+  }
+
+  Future increment(String tasbeehId) async {
+    if (!isPrefsInitialized.value) {
+      await _initPrefs();
+    }
+    counts[tasbeehId] = (counts[tasbeehId] ?? 0) + 1;
+    await _prefs!.setInt('tasbeeh_$tasbeehId', counts[tasbeehId]!);
     update();
   }
 
-  void decrement() {
-    if (counterModel.value.count > 0) {
-      counterModel.value.count--;
-      // _prefs.setInt('counter', counterModel.value.count);
+  Future decrement(String tasbeehId) async {
+    if (!isPrefsInitialized.value) {
+      await _initPrefs();
+    }
+    if ((counts[tasbeehId] ?? 0) > 0) {
+      counts[tasbeehId] = (counts[tasbeehId]! - 1);
+      await _prefs!.setInt('tasbeeh_$tasbeehId', counts[tasbeehId]!);
       update();
     }
   }
 
-  void reset() {
-    counterModel.value.count = 0;
-    // _prefs.setInt('counter', counterModel.value.count);
+  Future reset(String tasbeehId) async {
+    if (!isPrefsInitialized.value) {
+      await _initPrefs();
+    }
+    counts[tasbeehId] = 0;
+    await _prefs!.setInt('tasbeeh_$tasbeehId', 0);
     update();
   }
 
-
   void launchReviewPage() async {
-  const packageName = 'com.tasbeehApp.app';
-  final marketUrl = Uri.parse("market://details?id=$packageName");
-  final webUrl = Uri.parse("https://play.google.com/store/apps/details?id=$packageName");
+    const packageName = 'com.tasbeehApp.app';
+    final marketUrl = Uri.parse("market://details?id=$packageName");
+    final webUrl =
+        Uri.parse("https://play.google.com/store/apps/details?id=$packageName");
 
-  if (await canLaunchUrl(marketUrl)) {
-    await launchUrl(marketUrl, mode: LaunchMode.externalApplication);
-  } else {
-    await launchUrl(webUrl, mode: LaunchMode.externalApplication);
+    if (await canLaunchUrl(marketUrl)) {
+      await launchUrl(marketUrl, mode: LaunchMode.externalApplication);
+    } else {
+      await launchUrl(webUrl, mode: LaunchMode.externalApplication);
+    }
   }
-}
-
 }

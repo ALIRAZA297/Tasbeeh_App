@@ -254,95 +254,141 @@ class _UrduQuranScreenState extends State<UrduQuranScreen> {
                         child: Card(
                           color: secondary,
                           margin: const EdgeInsets.symmetric(
-                            horizontal: 8,
-                            vertical: 8,
+                            horizontal: 16,
+                            vertical: 12,
                           ),
-                          elevation: 1,
+                          elevation: 3,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: BorderRadius.circular(16),
                           ),
                           child: Container(
                             decoration: widget.scrollToAyat == ayatNumber
                                 ? BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
+                                    borderRadius: BorderRadius.circular(16),
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        primary.withOpacity(0.1),
+                                        secondary.withOpacity(0.8),
+                                      ],
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                    ),
                                     border: Border.all(
                                       color: Get.isDarkMode
                                           ? AppColors.red
-                                          : primary.withOpacity(0.5),
-                                      width: 3,
+                                          : primary.withOpacity(0.7),
+                                      width: 3.5,
                                     ),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: primary.withOpacity(0.15),
+                                        blurRadius: 10,
+                                        spreadRadius: 3,
+                                      ),
+                                    ],
                                   )
-                                : null,
+                                : BoxDecoration(
+                                    borderRadius: BorderRadius.circular(16),
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        secondary,
+                                        secondary.withOpacity(0.9),
+                                      ],
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                    ),
+                                  ),
                             child: Padding(
-                              padding: const EdgeInsets.all(8),
+                              padding: const EdgeInsets.all(16),
                               child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     children: [
                                       Container(
                                         padding: const EdgeInsets.symmetric(
-                                          horizontal: 8,
-                                          vertical: 4,
+                                          horizontal: 14,
+                                          vertical: 8,
                                         ),
                                         decoration: BoxDecoration(
-                                          color: primary.withOpacity(0.1),
+                                          color: primary.withOpacity(0.2),
                                           borderRadius:
-                                              BorderRadius.circular(12),
+                                              BorderRadius.circular(20),
+                                          border: Border.all(
+                                            color: primary.withOpacity(0.3),
+                                            width: 1,
+                                          ),
                                         ),
                                         child: Text(
                                           ayatNumber.toString(),
                                           style: TextStyle(
                                             color: primary,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 16,
                                           ),
                                         ),
                                       ),
                                       Row(
                                         children: [
-                                          Obx(() => InkWell(
-                                                onTap: () {
-                                                  favoritesController
-                                                      .toggleAyatFavorite(
-                                                    surahNumber:
-                                                        widget.surahNumber,
-                                                    surahNameAr:
-                                                        widget.surahNameAr,
-                                                    surahNameEng:
-                                                        widget.surahNameEng,
-                                                    ayatNumber: ayatNumber,
-                                                    arabicText:
-                                                        ayat.arabicText ?? '',
-                                                    translation:
-                                                        ayat.translation ?? '',
-                                                    language: widget.lang,
-                                                  );
-                                                },
-                                                child: Icon(
-                                                  favoritesController
-                                                          .isAyatFavorite(
-                                                    surahNumber:
-                                                        widget.surahNumber,
-                                                    ayatNumber: ayatNumber,
-                                                    language: widget.lang,
-                                                  )
-                                                      ? Icons.favorite
-                                                      : Icons.favorite_border,
-                                                  color: favoritesController
-                                                          .isAyatFavorite(
-                                                    surahNumber:
-                                                        widget.surahNumber,
-                                                    ayatNumber: ayatNumber,
-                                                    language: widget.lang,
-                                                  )
-                                                      ? Colors.redAccent
-                                                      : primary,
-                                                  size: 24,
+                                          Obx(() => AnimatedScale(
+                                                scale: favoritesController
+                                                        .isAyatFavorite(
+                                                  surahNumber:
+                                                      widget.surahNumber,
+                                                  ayatNumber: ayatNumber,
+                                                  language: widget.lang,
+                                                )
+                                                    ? 1.1
+                                                    : 1.0,
+                                                duration: const Duration(
+                                                    milliseconds: 200),
+                                                child: InkWell(
+                                                  onTap: () {
+                                                    favoritesController
+                                                        .toggleAyatFavorite(
+                                                      surahNumber:
+                                                          widget.surahNumber,
+                                                      surahNameAr:
+                                                          widget.surahNameAr,
+                                                      surahNameEng:
+                                                          widget.surahNameEng,
+                                                      ayatNumber: ayatNumber,
+                                                      arabicText:
+                                                          ayat.arabicText ?? '',
+                                                      translation:
+                                                          ayat.translation ??
+                                                              '',
+                                                      language: widget.lang,
+                                                    );
+                                                  },
+                                                  child: Icon(
+                                                    favoritesController
+                                                            .isAyatFavorite(
+                                                      surahNumber:
+                                                          widget.surahNumber,
+                                                      ayatNumber: ayatNumber,
+                                                      language: widget.lang,
+                                                    )
+                                                        ? Icons.favorite
+                                                        : Icons.favorite_border,
+                                                    color: favoritesController
+                                                            .isAyatFavorite(
+                                                      surahNumber:
+                                                          widget.surahNumber,
+                                                      ayatNumber: ayatNumber,
+                                                      language: widget.lang,
+                                                    )
+                                                        ? Colors.redAccent
+                                                        : primary,
+                                                    size: 28,
+                                                  ),
                                                 ),
                                               )),
-                                          const SizedBox(width: 8),
+                                          const SizedBox(width: 16),
                                           InkWell(
                                             onTap: () {
                                               Clipboard.setData(
@@ -353,16 +399,23 @@ class _UrduQuranScreenState extends State<UrduQuranScreen> {
                                               ).then((_) {
                                                 ScaffoldMessenger.of(context)
                                                     .showSnackBar(
-                                                  const SnackBar(
-                                                      content: Text(
-                                                          'Copied to your clipboard!')),
+                                                  SnackBar(
+                                                    content: const Text(
+                                                        'Copied to your clipboard!'),
+                                                    duration: const Duration(
+                                                        seconds: 2),
+                                                    backgroundColor: primary,
+                                                  ),
                                                 );
                                               });
                                             },
-                                            child: Icon(Icons.copy,
-                                                color: primary),
+                                            child: Icon(
+                                              Icons.copy,
+                                              color: primary,
+                                              size: 28,
+                                            ),
                                           ),
-                                          const SizedBox(width: 10),
+                                          const SizedBox(width: 16),
                                           Obx(() {
                                             final isLoading =
                                                 quranTextController
@@ -375,53 +428,59 @@ class _UrduQuranScreenState extends State<UrduQuranScreen> {
                                                             .isBufferingAudio[
                                                         index] ==
                                                     false;
-                                            return InkWell(
-                                              onTap: isLoading
-                                                  ? null
-                                                  : () {
-                                                      quranTextController
-                                                          .fetchAndPlayAudio(
-                                                              index,
-                                                              widget
-                                                                  .surahNumber);
-                                                      _saveReadingProgress(
-                                                          ayatNumber);
-                                                    },
-                                              child: isLoading
-                                                  ? SizedBox(
-                                                      width: 18,
-                                                      height: 18,
-                                                      child:
-                                                          CircularProgressIndicator(
-                                                        strokeWidth: 3,
+                                            return AnimatedScale(
+                                              scale: isPlaying ? 1.1 : 1.0,
+                                              duration: const Duration(
+                                                  milliseconds: 200),
+                                              child: InkWell(
+                                                onTap: isLoading
+                                                    ? null
+                                                    : () {
+                                                        quranTextController
+                                                            .fetchAndPlayAudio(
+                                                                index,
+                                                                widget
+                                                                    .surahNumber);
+                                                        _saveReadingProgress(
+                                                            ayatNumber);
+                                                      },
+                                                child: isLoading
+                                                    ? SizedBox(
+                                                        width: 22,
+                                                        height: 22,
+                                                        child:
+                                                            CircularProgressIndicator(
+                                                          strokeWidth: 3.5,
+                                                          color: primary,
+                                                        ),
+                                                      )
+                                                    : Icon(
+                                                        isPlaying
+                                                            ? Icons.pause
+                                                            : Icons.play_arrow,
                                                         color: primary,
+                                                        size: 28,
                                                       ),
-                                                    )
-                                                  : Icon(
-                                                      isPlaying
-                                                          ? Icons.pause
-                                                          : Icons.play_arrow,
-                                                      color: primary,
-                                                      size: 24,
-                                                    ),
+                                              ),
                                             );
                                           }),
-                                          const SizedBox(width: 10),
                                         ],
                                       ),
                                     ],
                                   ),
+                                  const SizedBox(height: 16),
                                   Container(
-                                    margin:
-                                        const EdgeInsets.symmetric(vertical: 5),
+                                    margin: const EdgeInsets.symmetric(
+                                        vertical: 10),
                                     alignment: Alignment.bottomRight,
                                     child: Text(
                                       ayat.arabicText ?? '',
                                       textAlign: TextAlign.right,
                                       style: GoogleFonts.amiri(
                                         color: primary,
-                                        fontSize: 20,
-                                        height: 2,
+                                        fontSize: 24,
+                                        height: 2.3,
+                                        fontWeight: FontWeight.w500,
                                       ),
                                     ),
                                   ),
@@ -435,8 +494,10 @@ class _UrduQuranScreenState extends State<UrduQuranScreen> {
                                           ? TextAlign.left
                                           : TextAlign.right,
                                       style: GoogleFonts.poppins(
-                                        fontSize: 18,
+                                        fontSize: 17,
                                         color: AppColors.black87,
+                                        height: 1.6,
+                                        fontWeight: FontWeight.w400,
                                       ),
                                     ),
                                   ),

@@ -145,19 +145,6 @@ class QuranVerseCard extends StatelessWidget {
                           const SizedBox(
                             width: 10,
                           ),
-                          // Obx(
-                          //   () => InkWell(
-                          //     onTap: () {
-                          //       quranController.playBismillah();
-                          //     },
-                          //     child: Icon(
-                          //         size: 26,
-                          //         color: primary,
-                          //         quranController.isPlaying.value
-                          //             ? Icons.pause_circle_outlined
-                          //             : Icons.play_circle_outline),
-                          //   ),
-                          // ),
                         ],
                       ),
                       Opacity(
@@ -181,7 +168,6 @@ class QuranVerseCard extends StatelessWidget {
               final verseKey = 'verse_${index + 1}';
               final verseText = quran.verse[verseKey] ?? '';
               final verseTextEn = quran.translationBn[verseKey] ?? '';
-//final
 
               return Card(
                 color: AppColors.grey100,

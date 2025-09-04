@@ -42,285 +42,418 @@ class _SurahScreenState extends State<SurahScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: primary,
+      appBar: AppBar(
+        scrolledUnderElevation: 0,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        title: Text(
+          "Quran",
+          style: GoogleFonts.poppins(
+            fontWeight: FontWeight.bold,
+            color: Get.isDarkMode ? AppColors.white : AppColors.black,
+          ),
+        ),
+        centerTitle: true,
+      ),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: Column(
           children: [
-            Container(
-              padding: const EdgeInsets.all(24),
-              child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: InkWell(
-                      onTap: () => Get.back(),
-                      child: const Icon(
-                        Icons.arrow_back,
-                        color: AppColors.white,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      // Left side - Title Section
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          FadeTransition(
-                            opacity: _animationController,
-                            child: Text(
-                              "Al-Quran",
-                              style: GoogleFonts.poppins(
-                                color: AppColors.white.withOpacity(0.65),
-                                fontSize: 14,
-                                letterSpacing: 4,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          SlideTransition(
-                            position: Tween<Offset>(
-                              begin: const Offset(-0.2, 0),
-                              end: Offset.zero,
-                            ).animate(CurvedAnimation(
-                              parent: _animationController,
-                              curve: Curves.easeOut,
-                            )),
-                            child: Text(
-                              'The Holy Quran',
-                              style: GoogleFonts.poppins(
-                                fontSize: 32,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.white,
-                                letterSpacing: 1,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      // Right side - Menu Icon with glow effect
-                      Container(
-                        padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: AppColors.white.withOpacity(0.1),
-                          boxShadow: [
-                            BoxShadow(
-                              color: AppColors.white.withOpacity(0.1),
-                              blurRadius: 20,
-                              spreadRadius: 2,
-                            ),
-                          ],
-                        ),
-                        child: const Icon(
-                          Icons.menu_book_rounded,
-                          color: AppColors.white,
-                          size: 24,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
+            // Container(
+            //   padding: const EdgeInsets.all(24),
+            //   child: Column(
+            //     children: [
+            //       Align(
+            //         alignment: Alignment.centerLeft,
+            //         child: InkWell(
+            //           onTap: () => Get.back(),
+            //           child: const Icon(
+            //             Icons.arrow_back,
+            //             color: AppColors.white,
+            //           ),
+            //         ),
+            //       ),
+            //       const SizedBox(
+            //         height: 10,
+            //       ),
+            //       Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //         children: [
+            //           // Left side - Title Section
+            //           Column(
+            //             crossAxisAlignment: CrossAxisAlignment.start,
+            //             children: [
+            //               FadeTransition(
+            //                 opacity: _animationController,
+            //                 child: Text(
+            //                   "Al-Quran",
+            //                   style: GoogleFonts.poppins(
+            //                     color: AppColors.white.withOpacity(0.65),
+            //                     fontSize: 14,
+            //                     letterSpacing: 4,
+            //                     fontWeight: FontWeight.w500,
+            //                   ),
+            //                 ),
+            //               ),
+            //               const SizedBox(height: 8),
+            //               SlideTransition(
+            //                 position: Tween<Offset>(
+            //                   begin: const Offset(-0.2, 0),
+            //                   end: Offset.zero,
+            //                 ).animate(CurvedAnimation(
+            //                   parent: _animationController,
+            //                   curve: Curves.easeOut,
+            //                 )),
+            //                 child: Text(
+            //                   'The Holy Quran',
+            //                   style: GoogleFonts.poppins(
+            //                     fontSize: 32,
+            //                     fontWeight: FontWeight.bold,
+            //                     color: AppColors.white,
+            //                     letterSpacing: 1,
+            //                   ),
+            //                 ),
+            //               ),
+            //             ],
+            //           ),
+            //           // Right side - Menu Icon with glow effect
+            //           Container(
+            //             padding: const EdgeInsets.all(12),
+            //             decoration: BoxDecoration(
+            //               shape: BoxShape.circle,
+            //               color: AppColors.white.withOpacity(0.1),
+            //               boxShadow: [
+            //                 BoxShadow(
+            //                   color: AppColors.white.withOpacity(0.1),
+            //                   blurRadius: 20,
+            //                   spreadRadius: 2,
+            //                 ),
+            //               ],
+            //             ),
+            //             child: const Icon(
+            //               Icons.menu_book_rounded,
+            //               color: AppColors.white,
+            //               size: 24,
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+
+            //     ],
+            //   ),
+            // ),
             // Enhanced Content Section
             Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Get.isDarkMode ? AppColors.black : AppColors.white,
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30),
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.black.withOpacity(0.1),
-                      blurRadius: 20,
-                      offset: const Offset(0, -5),
-                    ),
-                  ],
-                ),
-                child: Column(
-                  children: [
-                    // Resume Reading Button
-                    Obx(() {
-                      if (quranController.hasLastRead.value) {
-                        final lastRead = quranController.lastReadInfo;
-                        return Container(
-                          margin: const EdgeInsets.all(20),
-                          child: Material(
-                            color: AppColors.transparent,
-                            child: InkWell(
-                              borderRadius: BorderRadius.circular(20),
-                              onTap: () => quranController.resumeReading(),
-                              child: Container(
-                                padding: const EdgeInsets.all(16),
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                    colors: [
-                                      primary,
-                                      primary.withOpacity(0.8),
-                                    ],
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
+              child: Column(
+                children: [
+                  // Resume Reading Button
+                  Obx(() {
+                    if (quranController.hasLastRead.value) {
+                      final lastRead = quranController.lastReadInfo;
+                      return Container(
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 16),
+                        child: Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(24),
+                            onTap: () => quranController.resumeReading(),
+                            child: Container(
+                              padding: const EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                color: AppColors.white,
+                                borderRadius: BorderRadius.circular(24),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: primary.withOpacity(0.1),
+                                    blurRadius: 20,
+                                    spreadRadius: 0,
+                                    offset: const Offset(0, 8),
                                   ),
-                                  borderRadius: BorderRadius.circular(20),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: primary.withOpacity(0.3),
-                                      blurRadius: 15,
-                                      offset: const Offset(0, 5),
-                                    ),
-                                  ],
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.05),
+                                    blurRadius: 10,
+                                    spreadRadius: 0,
+                                    offset: const Offset(0, 2),
+                                  ),
+                                ],
+                                border: Border.all(
+                                  color: primary.withOpacity(0.1),
+                                  width: 1,
                                 ),
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      padding: const EdgeInsets.all(12),
-                                      decoration: BoxDecoration(
-                                        color: AppColors.white.withOpacity(0.2),
-                                        borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  // Header Section
+                                  Row(
+                                    children: [
+                                      Container(
+                                        padding: const EdgeInsets.all(12),
+                                        decoration: BoxDecoration(
+                                          gradient: LinearGradient(
+                                            colors: [
+                                              primary,
+                                              primary.withOpacity(0.8),
+                                            ],
+                                            begin: Alignment.topLeft,
+                                            end: Alignment.bottomRight,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(16),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: primary.withOpacity(0.3),
+                                              blurRadius: 8,
+                                              offset: const Offset(0, 4),
+                                            ),
+                                          ],
+                                        ),
+                                        child: const Icon(
+                                          Icons.auto_stories_rounded,
+                                          color: AppColors.white,
+                                          size: 24,
+                                        ),
                                       ),
-                                      child: const Icon(
-                                        Icons.play_arrow_rounded,
-                                        color: AppColors.white,
-                                        size: 28,
+                                      const SizedBox(width: 16),
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "Continue Reading",
+                                              style: GoogleFonts.poppins(
+                                                color: AppColors.black,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w600,
+                                                height: 1.2,
+                                              ),
+                                            ),
+                                            const SizedBox(height: 2),
+                                            Text(
+                                              quranController
+                                                  .getTimeSinceLastRead(),
+                                              style: GoogleFonts.poppins(
+                                                color: AppColors.black,
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                    const SizedBox(width: 16),
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Resume Reading",
-                                            style: GoogleFonts.poppins(
-                                              color: AppColors.white,
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                          const SizedBox(height: 4),
-                                          Text(
-                                            "${lastRead['surahNameEng']} - Ayat ${lastRead['ayatNumber']}",
-                                            style: GoogleFonts.poppins(
-                                              color: AppColors.white
-                                                  .withOpacity(0.9),
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                          const SizedBox(height: 2),
-                                          Text(
-                                            quranController
-                                                .getTimeSinceLastRead(),
-                                            style: GoogleFonts.poppins(
-                                              color: AppColors.white
-                                                  .withOpacity(0.7),
-                                              fontSize: 12,
-                                            ),
-                                          ),
+                                      Container(
+                                        padding: const EdgeInsets.all(8),
+                                        decoration: BoxDecoration(
+                                          color: primary.withOpacity(0.1),
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                        ),
+                                        child: Icon(
+                                          Icons.play_arrow_rounded,
+                                          color: primary,
+                                          size: 20,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+
+                                  const SizedBox(height: 15),
+
+                                  // Divider
+                                  Container(
+                                    height: 1,
+                                    decoration: BoxDecoration(
+                                      gradient: LinearGradient(
+                                        colors: [
+                                          Colors.transparent,
+                                          primary.withOpacity(0.2),
+                                          Colors.transparent,
                                         ],
                                       ),
                                     ),
-                                    Container(
-                                      padding: const EdgeInsets.all(8),
-                                      child: Text(
-                                        lastRead['surahNameAr'] ?? '',
-                                        style: GoogleFonts.amiri(
-                                          color: AppColors.white,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w600,
+                                  ),
+
+                                  const SizedBox(height: 15),
+
+                                  // Surah Info Section
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              lastRead['surahNameEng'] ?? '',
+                                              style: GoogleFonts.poppins(
+                                                color: AppColors.black,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w600,
+                                                height: 1.3,
+                                              ),
+                                            ),
+                                            const SizedBox(height: 4),
+                                            Container(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                horizontal: 12,
+                                                vertical: 6,
+                                              ),
+                                              decoration: BoxDecoration(
+                                                color: primary.withOpacity(0.1),
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                              ),
+                                              child: Text(
+                                                "Ayat ${lastRead['ayatNumber']}",
+                                                style: GoogleFonts.poppins(
+                                                  color: primary,
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ),
+                                      const SizedBox(width: 16),
+                                      Container(
+                                        padding: const EdgeInsets.all(16),
+                                        decoration: BoxDecoration(
+                                          color: AppColors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(16),
+                                          border: Border.all(
+                                            color: primary.withOpacity(0.1),
+                                            width: 1,
+                                          ),
+                                        ),
+                                        child: Text(
+                                          lastRead['surahNameAr'] ?? '',
+                                          style: GoogleFonts.amiri(
+                                            color: primary,
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.w600,
+                                            height: 1.2,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
                             ),
                           ),
-                        );
-                      }
-                      return const SizedBox.shrink();
-                    }),
-
-                    // Enhanced Statistics Row
-                    Container(
-                      margin: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 10,
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 16,
-                        horizontal: 20,
-                      ),
-                      decoration: BoxDecoration(
-                        gradient: Get.isDarkMode
-                            ? LinearGradient(
-                                colors: [
-                                  AppColors.white.withOpacity(0.2),
-                                  AppColors.white.withOpacity(0.1),
-                                ],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                              )
-                            : LinearGradient(
-                                colors: [
-                                  primary.withOpacity(0.1),
-                                  primary.withOpacity(0.05),
-                                ],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                              ),
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(
-                          color: Get.isDarkMode
-                              ? secondary
-                              : primary.withOpacity(0.1),
                         ),
+                      );
+                    }
+                    return const SizedBox.shrink();
+                  }),
+                  // Enhanced Statistics Row
+                  Container(
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                    ),
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.circular(24),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Get.isDarkMode
+                              ? Colors.black.withOpacity(0.3)
+                              : primary.withOpacity(0.08),
+                          blurRadius: 20,
+                          spreadRadius: 0,
+                          offset: const Offset(0, 8),
+                        ),
+                        BoxShadow(
+                          color: Get.isDarkMode
+                              ? Colors.black.withOpacity(0.2)
+                              : Colors.black.withOpacity(0.04),
+                          blurRadius: 6,
+                          spreadRadius: 0,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
+                      border: Border.all(
+                        color: Get.isDarkMode
+                            ? AppColors.white.withOpacity(0.1)
+                            : primary.withOpacity(0.08),
+                        width: 1,
+                      ),
+                    ),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: 10,
                       ),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          _buildStatItem("Total", "114", Icons.menu_book),
+                          // Total Surahs
+                          Expanded(
+                            child: _buildModernStatItem(
+                              title: "Total",
+                              value: "114",
+                              icon: Icons.library_books_rounded,
+                              color: primary,
+                              isFirst: true,
+                            ),
+                          ),
+
+                          // Divider
                           _buildVerticalDivider(),
-                          _buildStatItem("Makki", "86", Icons.mosque),
+                          // Makki Surahs
+                          Expanded(
+                            child: _buildModernStatItem(
+                              title: "Makki",
+                              value: "86",
+                              icon: Icons.mosque_rounded,
+                              color: const Color(0xFF10B981), // Emerald
+                              isMiddle: true,
+                            ),
+                          ),
+
+                          // Divider
                           _buildVerticalDivider(),
-                          _buildStatItem("Madani", "28", Icons.location_on),
+
+                          // Madani Surahs
+                          Expanded(
+                            child: _buildModernStatItem(
+                              title: "Madani",
+                              value: "28",
+                              icon: Icons.location_city_rounded,
+                              color: const Color(0xFFF59E0B), // Amber
+                              isLast: true,
+                            ),
+                          ),
                         ],
                       ),
                     ),
-                    // Enhanced Surah List
-                    Expanded(
-                      child: Obx(() {
-                        if (quranController.quranSurahList.isEmpty) {
-                          return CircularProgressIndicator(
-                            color: primary,
-                          );
-                        }
-                        return ListView.builder(
-                          padding: const EdgeInsets.only(
-                            bottom: 100,
-                            top: 10,
-                          ),
-                          physics: const BouncingScrollPhysics(),
-                          itemCount: quranController.quranSurahList.length,
-                          itemBuilder: (context, index) {
-                            final surah = quranController.quranSurahList[index];
-                            return _buildEnhancedSurahCard(
-                                context, surah, index);
-                          },
+                  ),
+                  // Enhanced Surah List
+                  Expanded(
+                    child: Obx(() {
+                      if (quranController.quranSurahList.isEmpty) {
+                        return CircularProgressIndicator(
+                          color: primary,
                         );
-                      }),
-                    ),
-                  ],
-                ),
+                      }
+                      return ListView.builder(
+                        padding: const EdgeInsets.only(
+                          bottom: 100,
+                          top: 10,
+                        ),
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: quranController.quranSurahList.length,
+                        itemBuilder: (context, index) {
+                          final surah = quranController.quranSurahList[index];
+                          return _buildEnhancedSurahCard(context, surah, index);
+                        },
+                      );
+                    }),
+                  ),
+                ],
               ),
             ),
           ],
@@ -333,36 +466,63 @@ class _SurahScreenState extends State<SurahScreen>
     return Container(
       height: 30,
       width: 1,
-      color: Get.isDarkMode
-          ? secondary.withOpacity(0.5)
-          : primary.withOpacity(0.2),
+      color: primary.withOpacity(0.2),
     );
   }
 
-  Widget _buildStatItem(String label, String value, IconData icon) {
+  Widget _buildModernStatItem({
+    required String title,
+    required String value,
+    required IconData icon,
+    required Color color,
+    bool isFirst = false,
+    bool isMiddle = false,
+    bool isLast = false,
+  }) {
     return Column(
       children: [
-        Icon(
-          icon,
-          color: Get.isDarkMode ? primary200 : primary,
-          size: 20,
+        // Icon with background
+        Container(
+          width: 48,
+          height: 48,
+          decoration: BoxDecoration(
+            color: color.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(
+              color: color.withOpacity(0.2),
+              width: 1,
+            ),
+          ),
+          child: Icon(
+            icon,
+            size: 24,
+            color: color,
+          ),
         ),
-        const SizedBox(height: 6),
+
+        const SizedBox(height: 12),
+
+        // Value
         Text(
           value,
           style: GoogleFonts.poppins(
-            color: Get.isDarkMode ? primary200 : primary,
-            fontSize: 16,
+            fontSize: 24,
             fontWeight: FontWeight.bold,
+            color: AppColors.black,
+            height: 1.0,
           ),
         ),
-        const SizedBox(height: 2),
+
+        const SizedBox(height: 4),
+
+        // Title
         Text(
-          label,
+          title,
           style: GoogleFonts.poppins(
-            color: Get.isDarkMode ? AppColors.grey400 : AppColors.grey700,
-            fontSize: 10,
+            fontSize: 13,
             fontWeight: FontWeight.w500,
+            color: AppColors.black45,
+            height: 1.2,
           ),
         ),
       ],
@@ -374,7 +534,7 @@ class _SurahScreenState extends State<SurahScreen>
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: AppColors.secondary,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
@@ -405,14 +565,8 @@ class _SurahScreenState extends State<SurahScreen>
                       width: 50,
                       height: 50,
                       decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            primary.withOpacity(0.2),
-                            primary.withOpacity(0.1),
-                          ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
+                        color: AppColors.white,
+                        border: Border.all(color: primary),
                         borderRadius: BorderRadius.circular(15),
                         boxShadow: [
                           BoxShadow(

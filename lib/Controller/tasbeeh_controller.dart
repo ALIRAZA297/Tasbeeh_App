@@ -10,18 +10,23 @@ import 'package:tasbeeh_app/Utils/app_colors.dart';
 
 class TasbeehController extends GetxController {
   RxList<Map<String, dynamic>> myTasbeehList = <Map<String, dynamic>>[].obs;
+
+  /// Popular tasbeehs with pre-defined IDs
   RxList<Map<String, dynamic>> popularTasbeeh = <Map<String, dynamic>>[
     {
+      'id': '1',
       'title': 'حمد و ثنا اور توبہ و استغفار',
       'zikr': 'سُبْحَانَ اللهِ وَبِحَمدِهِ',
       'translation': 'پاک ہے اللہ اپنی خوبیوں سمیت',
     },
     {
+      'id': '2',
       'title': 'حمد و ثنا اور توبہ و استغفار',
       'zikr': 'سُبْحَانَ اللهِ وَبِحَمْدِهِ سُبْحَانَ اللَّهِ الْعَظِيمِ',
       'translation': 'پاک ہے اللہ اپنی خوبیوں سمیت پاک ہے اللہ بہت عظمت والا۔',
     },
     {
+      'id': '3',
       'title': 'توبہ و استغفار',
       'zikr':
           'اسْتَغْفِرُ اللَّهُ الَّذِي لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ وَاتُوبُ اليه',
@@ -29,52 +34,57 @@ class TasbeehController extends GetxController {
           'میں اللہ سے معافی مانگتا ہوں، وہ (اللہ) جس کے سوا کوئی معبود نہیں زندہ ہے، کائنات کا نگران ہے اور میں اسی کے حضور توبہ کرتا ہوں۔',
     },
     {
+      'id': '4',
       'title': 'تسبیح فاطمہ',
-      'zikr': 'سُبْحَانَ الله 33'
-          '\n'
-          '33 الحمد لله'
-          '\n'
-          '34 الله اكبر',
+      'zikr': 'سُبْحَانَ الله 33\n33 الحمد لله\n34 الله اكبر',
       'translation': 'اللہ پاک ہے، ہر تعریف اللہ کے لیے ہے، اللہ سب سے بڑا ہے۔'
     },
     {
+      'id': '5',
       'title': "روزانہ ذکر",
       'zikr': "يَا رَبُّ الْعَالَمِينَ",
       'translation': "اے جہانوں کے رب"
     },
     {
+      'id': '6',
       'title': "روزانہ ذکر",
       'zikr': "يَا ذَا الْجَلالِ وَالإِكْرَام",
       'translation': "اے عظمت و بزرگی کے مالک۔",
     },
     {
+      'id': '7',
       'title': "روزانہ ذکر",
       'zikr': "يَا قَاضِي الْحَاجَاتِ",
       'translation': "حاجت روا کرنے والا، اللہ تعالیٰ",
     },
     {
+      'id': '8',
       'title': "روزانہ ذکر",
       'zikr': "يَا أَرْحَمَ الرَّاحِمِينَ",
       'translation': "اے رحم کرنے والوں میں سب سے زیادہ رحم کرنے والے",
     },
     {
+      'id': '9',
       'title': "روزانہ ذکر",
       'zikr': "يَا حَيُّ يَا قَيُّومُ",
       'translation': "اے ہمیشہ زندہ رہنے والے",
     },
     {
+      'id': '10',
       'title': "روزانہ ذکر",
       'zikr': "لَا إِلَهَ إِلَّا اللهُ الْمَلِكُ الْحَقُّ الْمُبِينُ",
       'translation':
-          "اللّٰہ کے سوا کوئی معبود نہیں  جوحقیقی بادشاہت  کا  مالک ہے",
+          "اللّٰہ کے سوا کوئی معبود نہیں  جوحقیقی بادشاہت  کا  مالک ہے",
     },
     {
+      'id': '11',
       'title': "روزانہ ذکر",
       'zikr':
           "اللَّهُمَّ صَلِّ عَلٰی سَيِّدِنَا مُحَمَّدٍ وَّعَلٰٓی اٰلِہٖ وَسَلِّمُ",
       'translation': "درود شریف",
     },
     {
+      'id': '12',
       'title': "آیت کریمہ",
       'zikr':
           "لَآ اِلٰهَ اِلَّآ اَنتَ سُبحٰنَکَ اِنِّی کُنتُ مِنَ الظَّالِمِینَ",
@@ -82,6 +92,7 @@ class TasbeehController extends GetxController {
           "اے اللہ! تیرے سوا کویٔی معبود نہیں ہے، تو پاک ہے، بے شک میں ظالموں سے ہوں",
     },
     {
+      'id': '13',
       'title': "مشکل وقت کے لیے دعا",
       'zikr': "رَبِّ اَنِّیۡ مَغْلُوبٌ فَانْتَصِرْ",
       'translation': "اے میرے اللہ میں بے بس ہوں میری مدد فرما",
@@ -156,10 +167,12 @@ class TasbeehController extends GetxController {
       onConfirm: () {
         if (titleController.text.isNotEmpty && zikrController.text.isNotEmpty) {
           Map<String, dynamic> newTasbeeh = {
+            'id': tasbeeh?['id'] ??
+                DateTime.now().millisecondsSinceEpoch.toString(), // ✅ unique id
             'title': titleController.text,
             'zikr': zikrController.text,
             'translation': translationController.text,
-            'count': int.tryParse(countController.text), // Nullable int
+            'count': int.tryParse(countController.text),
           };
           if (index == null) {
             myTasbeehList.add(newTasbeeh);
@@ -180,7 +193,10 @@ class TasbeehController extends GetxController {
   }
 
   void duplicateTasbeeh(Map<String, dynamic> tasbeeh) {
-    myTasbeehList.add({...tasbeeh});
+    myTasbeehList.add({
+      ...tasbeeh,
+      'id': DateTime.now().millisecondsSinceEpoch.toString(), // ✅ new id
+    });
     saveMyTasbeeh();
   }
 
