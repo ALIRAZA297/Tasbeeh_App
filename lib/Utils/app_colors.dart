@@ -113,6 +113,12 @@ class AppColors {
       _settingsController.selectedPrimaryColor.value.shade200;
   static Color get primary300 =>
       _settingsController.selectedPrimaryColor.value.shade300;
+  static Color get primary400 =>
+      _settingsController.selectedPrimaryColor.value.shade400;
+  static Color get primary500 =>
+      _settingsController.selectedPrimaryColor.value.shade500;
+  static Color get primary600 =>
+      _settingsController.selectedPrimaryColor.value.shade600;
   static Color get primary700 =>
       _settingsController.selectedPrimaryColor.value.shade700;
   static Color get primary900 =>
@@ -125,5 +131,8 @@ Color get secondary => AppColors.secondary;
 Color get primary100 => AppColors.primary100;
 Color get primary200 => AppColors.primary200;
 Color get primary300 => AppColors.primary300;
+Color get primary400 => AppColors.primary400;
+Color get primary500 => AppColors.primary500;
+Color get primary600 => AppColors.primary600;
 Color get primary700 => AppColors.primary700;
 Color get primary900 => AppColors.primary900;

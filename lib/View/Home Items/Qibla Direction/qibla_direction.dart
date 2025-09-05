@@ -1747,7 +1747,7 @@ class _QiblaScreenState extends State<QiblaScreen>
         end: Alignment.bottomRight,
         colors: Get.isDarkMode
             ? [const Color(0xFF2C2C2E), const Color(0xFF1C1C1E)]
-            : [primary300, primary200, primary300],
+            : [primary500, primary200, primary100],
       ),
       boxShadow: [
         BoxShadow(

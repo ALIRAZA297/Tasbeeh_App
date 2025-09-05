@@ -562,15 +562,19 @@ class HomeScreen extends StatelessWidget {
                 body = Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(FlutterIslamicIcons.solidMosque,
-                        color: primary700, size: 24),
+                    Obx(
+                      () => Icon(FlutterIslamicIcons.solidMosque,
+                          color: primary700, size: 24),
+                    ),
                     const SizedBox(width: 8),
-                    Text(
-                      "Pull to refresh",
-                      style: GoogleFonts.poppins(
-                        color: primary700,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
+                    Obx(
+                      () => Text(
+                        "Pull to refresh",
+                        style: GoogleFonts.poppins(
+                          color: primary700,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                   ],
@@ -579,14 +583,16 @@ class HomeScreen extends StatelessWidget {
                 body = Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    AnimatedLoader(color: primary700),
+                    Obx(() => AnimatedLoader(color: primary700)),
                     const SizedBox(height: 8),
-                    Text(
-                      "Fetching Prayer Times...",
-                      style: GoogleFonts.poppins(
-                        color: primary700,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
+                    Obx(
+                      () => Text(
+                        "Fetching Prayer Times...",
+                        style: GoogleFonts.poppins(
+                          color: primary700,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                   ],
@@ -597,12 +603,14 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     Icon(Icons.check_circle, color: primary700, size: 24),
                     const SizedBox(width: 8),
-                    Text(
-                      "Prayer times updated!",
-                      style: GoogleFonts.poppins(
-                        color: primary700,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
+                    Obx(
+                      () => Text(
+                        "Prayer times updated!",
+                        style: GoogleFonts.poppins(
+                          color: primary700,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                   ],

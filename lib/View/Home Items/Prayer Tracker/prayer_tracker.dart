@@ -336,7 +336,7 @@ class PrayerTrackerScreen extends StatelessWidget {
                             border: Border.all(
                               color: status == prayerStatus
                                   ? prayerStatus.color
-                                  : AppColors.grey300,
+                                  : AppColors.grey400,
                               width: 1,
                             ),
                           ),
