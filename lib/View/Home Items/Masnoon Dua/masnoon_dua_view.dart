@@ -88,7 +88,7 @@ class _DuaScreenState extends State<DuaScreen> {
               .firstWhereOrNull((c) => c.name == widget.categoryName);
           return (category != null && category.isUserAdded)
               ? FloatingActionButton(
-                  onPressed: () => duaController.showAddDuaDialog(
+                  onPressed: () => duaController.showAddDuaDiadebugPrint(
                     context,
                     widget.categoryName,
                   ),

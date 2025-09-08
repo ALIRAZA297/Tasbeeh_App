@@ -103,6 +103,9 @@ class AppColors {
 
   static const Color kAccentColor = Color(0xFF185ADB);
 
+  static const Color amber = Colors.amber;
+  static Color amber700 = Colors.amber.shade700;
+
   // Dynamic primary colors based on selected color
   static Color get primary => _settingsController.selectedPrimaryColor.value;
   static Color get secondary =>

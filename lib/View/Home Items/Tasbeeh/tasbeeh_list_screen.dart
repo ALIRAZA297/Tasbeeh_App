@@ -171,10 +171,10 @@ class TasbeehListScreen extends StatelessWidget {
                     ),
                     onPressed: () {
                       if (isMyTasbeeh) {
-                        controller.showTasbeehDialog(Get.context!,
+                        controller.showTasbeehDiadebugPrint(Get.context!,
                             index: index, tasbeeh: tasbeeh);
                       } else {
-                        _showAddTasbeehDialog(Get.context!, tasbeeh);
+                        _showAddTasbeehDiadebugPrint(Get.context!, tasbeeh);
                       }
                     },
                   ),
@@ -206,7 +206,7 @@ class TasbeehListScreen extends StatelessWidget {
     );
   }
 
-  void _showAddTasbeehDialog(
+  void _showAddTasbeehDiadebugPrint(
       BuildContext context, Map<String, dynamic> tasbeeh) {
     final titleController = TextEditingController(text: tasbeeh['title']);
     final zikrController = TextEditingController(text: tasbeeh['zikr']);

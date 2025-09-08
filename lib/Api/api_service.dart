@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'dart:developer';
 
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import '../View/Home Items/Quran/Model/surah_e_quran_model.dart';
@@ -28,20 +28,21 @@ class ApiService {
   /// GET Hadiths with pagination
   static Future<Map<String, dynamic>?> getHadiths(int page) async {
     final url = "$baseUrl/hadiths/?apiKey=$apiKey&page=$page";
-    log("Calling API: $url");
+    debugPrint("Calling API: $url");
 
     try {
       final response = await http.get(Uri.parse(url));
 
       if (response.statusCode == 200) {
-        log("API Response: ${response.body.substring(0, 300)}..."); // Print part of response
+        debugPrint(
+            "API Response: ${response.body.substring(0, 300)}..."); // Print part of response
         return json.decode(response.body);
       } else {
-        log("API Error: ${response.statusCode}, ${response.body}");
+        debugPrint("API Error: ${response.statusCode}, ${response.body}");
         return null;
       }
     } catch (e) {
-      log("Network Error: $e");
+      debugPrint("Network Error: $e");
       return null;
     }
   }
@@ -49,23 +50,23 @@ class ApiService {
   static Future<List<Surah>> getSurah(int id, String lang) async {
     List<Surah> surah = [];
     final url = 'https://quranenc.com/api/v1/translation/sura/$lang/$id';
-    log("Fetching Surah from: $url");
+    debugPrint("Fetching Surah from: $url");
 
     try {
       final response = await ApiMethod(true).get(url);
 
-      log("Raw API Response: $response");
+      debugPrint("Raw API Response: $response");
 
       if (response != null && response["result"] != null) {
         response["result"].forEach((e) {
           surah.add(Surah.fromJson(e));
         });
-        log("Fetched Ayats: ${surah.length}");
+        debugPrint("Fetched Ayats: ${surah.length}");
       } else {
-        log("No result found in API response");
+        debugPrint("No result found in API response");
       }
     } catch (e) {
-      log('Error fetching Surah: $e');
+      debugPrint('Error fetching Surah: $e');
     }
 
     return surah;

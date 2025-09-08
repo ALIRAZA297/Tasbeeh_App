@@ -19,7 +19,7 @@ class SurahController extends GetxController {
 
     if (shouldShow) {
       Future.delayed(const Duration(milliseconds: 300), () {
-        showSaveAyahDialog();
+        showSaveAyahDiadebugPrint();
       });
     }
   }
@@ -29,7 +29,7 @@ class SurahController extends GetxController {
     await prefs.setBool("showSaveAyahDialog", value);
   }
 
-  void showSaveAyahDialog() {
+  void showSaveAyahDiadebugPrint() {
     Get.dialog(
       Theme(
         data: ThemeData(
@@ -124,6 +124,6 @@ class SurahController extends GetxController {
   // Future<void> clearSharedPreferences() async {
   //   final prefs = await SharedPreferences.getInstance();
   //   await prefs.clear(); // Clears all stored data
-  //   log("SharedPreferences cleared!");
+  //   debugPrint("SharedPreferences cleared!");
   // }
 }

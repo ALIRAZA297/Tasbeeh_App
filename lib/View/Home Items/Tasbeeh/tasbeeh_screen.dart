@@ -78,7 +78,7 @@ class _TasbeehScreenState extends State<TasbeehScreen>
         return currentTabIndex.value == 1
             ? FloatingActionButton(
                 backgroundColor: primary900,
-                onPressed: () => controller.showTasbeehDialog(context),
+                onPressed: () => controller.showTasbeehDiadebugPrint(context),
                 child: const Icon(Icons.add, color: AppColors.white),
               )
             : const SizedBox.shrink();

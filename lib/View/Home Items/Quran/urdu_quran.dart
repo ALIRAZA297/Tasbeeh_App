@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'package:tasbeeh_app/Utils/app_colors.dart';
 import 'package:tasbeeh_app/Controller/fav_controller.dart';
+import 'package:tasbeeh_app/Utils/app_colors.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 import '../../../Controller/quran_controller.dart';
@@ -194,44 +194,33 @@ class _UrduQuranScreenState extends State<UrduQuranScreen> {
                   ),
                 Visibility(
                   visible: widget.surahNumber != 1 && widget.surahNumber != 9,
-                  child: Card(
-                    color: secondary,
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 8,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 15,
+                      horizontal: 15,
                     ),
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 15,
-                        horizontal: 15,
-                      ),
-                      child: Column(
-                        children: [
-                          Text(
-                            'بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ',
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
+                    child: Column(
+                      children: [
+                        Text(
+                          'بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ',
+                          style: GoogleFonts.amiri(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                            color: primary,
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        Opacity(
+                          opacity: 0.8,
+                          child: Text(
+                            'Bismillah Hir Rahman Nir Rahim',
+                            style: GoogleFonts.poppins(
+                              fontSize: 18,
                               color: primary,
                             ),
                           ),
-                          const SizedBox(height: 4),
-                          Opacity(
-                            opacity: 0.8,
-                            child: Text(
-                              'Bismillah Hir Rahman Nir Rahim',
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: primary,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -123,7 +122,7 @@ class TasbeehController extends GetxController {
     await prefs.setStringList('myTasbeeh', encodedTasbeeh);
   }
 
-  void showTasbeehDialog(BuildContext context,
+  void showTasbeehDiadebugPrint(BuildContext context,
       {int? index, Map<String, dynamic>? tasbeeh}) {
     TextEditingController titleController =
         TextEditingController(text: tasbeeh?['title'] ?? '');
@@ -207,7 +206,7 @@ class TasbeehController extends GetxController {
     if (reminderTime.isBefore(now)) {
       reminderTime = reminderTime.add(const Duration(days: 1));
     }
-    log("Planning Zikr Reminder for: $reminderTime");
+    debugPrint("Planning Zikr Reminder for: $reminderTime");
     NotificationService.scheduleZikrReminder(reminderTime);
   }
 }

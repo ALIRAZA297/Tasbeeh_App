@@ -65,15 +65,15 @@ class DuaCategoryScreen extends StatelessWidget {
                               IconButton(
                                 icon: const Icon(Icons.delete,
                                     color: AppColors.red),
-                                onPressed: () =>
-                                    duaController.showDeleteCategoryDialog(
+                                onPressed: () => duaController
+                                    .showDeleteCategoryDiadebugPrint(
                                         context, category.name),
                               ),
                               IconButton(
                                 icon: const Icon(Icons.edit,
                                     color: AppColors.blue),
                                 onPressed: () =>
-                                    duaController.showEditCategoryDialog(
+                                    duaController.showEditCategoryDiadebugPrint(
                                         context, category.name),
                               ),
                             ],
@@ -90,14 +90,14 @@ class DuaCategoryScreen extends StatelessWidget {
         );
       }),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => showAddCategoryDialog(context, duaController),
+        onPressed: () => showAddCategoryDiadebugPrint(context, duaController),
         backgroundColor: primary,
         child: const Icon(Icons.add, color: AppColors.white),
       ),
     );
   }
 
-  void showAddCategoryDialog(
+  void showAddCategoryDiadebugPrint(
       BuildContext context, DuaController duaController) {
     final TextEditingController categoryController = TextEditingController();
     Get.defaultDialog(

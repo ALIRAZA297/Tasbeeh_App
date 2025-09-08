@@ -12,7 +12,7 @@
 //     try {
 //       isLoading(true);
 //       final data = await ApiService.get("hadiths/?chapterId=$bookSlug");
-//       log('${headings.length}');
+//       debugPrint('${headings.length}');
 
 //       if (data != null) {
 //         headings.value = HadithHeadingsResponse.fromJson(data).headings;

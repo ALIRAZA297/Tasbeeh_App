@@ -1214,7 +1214,7 @@ class DuaController extends GetxController {
     }
   }
 
-  void showEditDuaDialog(
+  void showEditDuaDiadebugPrint(
       BuildContext context, String categoryName, int index, DuaModel dua) {
     TextEditingController titleController =
         TextEditingController(text: dua.title);
@@ -1284,7 +1284,7 @@ class DuaController extends GetxController {
     );
   }
 
-  void showDeleteConfirmationDialog(
+  void showDeleteConfirmationDiadebugPrint(
       BuildContext context, String categoryName, int index) {
     showDialog(
       context: context,
@@ -1316,7 +1316,7 @@ class DuaController extends GetxController {
     );
   }
 
-  void showAddDuaDialog(BuildContext context, String categoryName) {
+  void showAddDuaDiadebugPrint(BuildContext context, String categoryName) {
     final GlobalKey<FormState> formKey = GlobalKey<FormState>();
     final TextEditingController titleController = TextEditingController();
     final TextEditingController duaController = TextEditingController();
@@ -1389,7 +1389,8 @@ class DuaController extends GetxController {
     );
   }
 
-  void showDeleteCategoryDialog(BuildContext context, String categoryName) {
+  void showDeleteCategoryDiadebugPrint(
+      BuildContext context, String categoryName) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -1426,7 +1427,8 @@ class DuaController extends GetxController {
     saveDuaCategories();
   }
 
-  void showEditCategoryDialog(BuildContext context, String oldCategoryName) {
+  void showEditCategoryDiadebugPrint(
+      BuildContext context, String oldCategoryName) {
     TextEditingController categoryController =
         TextEditingController(text: oldCategoryName);
 

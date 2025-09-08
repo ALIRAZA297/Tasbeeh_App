@@ -1,505 +1,3 @@
-// import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
-// import 'package:google_fonts/google_fonts.dart';
-// import 'package:tasbeeh_app/Components/animation.dart';
-
-// import '../../../Api/hadith_api_service.dart';
-// import '../../../Utils/app_colors.dart';
-// import 'hadith_list_screen.dart';
-
-// class HadithSectionsScreen extends StatefulWidget {
-//   final String editionName;
-//   final String displayName;
-//   final String language;
-
-//   const HadithSectionsScreen({
-//     super.key,
-//     required this.editionName,
-//     required this.displayName,
-//     required this.language,
-//   });
-
-//   @override
-//   State<HadithSectionsScreen> createState() => _HadithSectionsScreenState();
-// }
-
-// class _HadithSectionsScreenState extends State<HadithSectionsScreen> {
-//   List<HadithSection> sections = [];
-//   bool isLoading = true;
-//   String? errorMessage;
-//   final TextEditingController _searchController = TextEditingController();
-//   List<HadithSection> filteredSections = [];
-//   bool isSearching = false;
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     _loadSections();
-//     _searchController.addListener(_filterSections);
-//   }
-
-//   @override
-//   void dispose() {
-//     _searchController.dispose();
-//     super.dispose();
-//   }
-
-//   Future<void> _loadSections() async {
-//     try {
-//       setState(() {
-//         isLoading = true;
-//         errorMessage = null;
-//       });
-
-//       final fetchedSections =
-//           await HadithApiService.getSections(widget.editionName);
-
-//       setState(() {
-//         sections = fetchedSections;
-//         filteredSections = fetchedSections;
-//         isLoading = false;
-//       });
-//     } catch (e) {
-//       debugPrint('Error loading sections: $e');
-//       setState(() {
-//         errorMessage = e.toString();
-//         isLoading = false;
-//       });
-//     }
-//   }
-
-//   void _filterSections() {
-//     final query = _searchController.text.toLowerCase();
-//     setState(() {
-//       if (query.isEmpty) {
-//         filteredSections = sections;
-//       } else {
-//         filteredSections = sections
-//             .where((section) =>
-//                 section.name.toLowerCase().contains(query) ||
-//                 section.arabicName.toLowerCase().contains(query) ||
-//                 section.sectionNumber.toString().contains(query))
-//             .toList();
-//       }
-//     });
-//   }
-
-//   void _toggleSearch() {
-//     setState(() {
-//       isSearching = !isSearching;
-//       if (!isSearching) {
-//         _searchController.clear();
-//         filteredSections = sections;
-//       }
-//     });
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-//       appBar: AppBar(
-//         centerTitle: true,
-//         elevation: 0,
-//         scrolledUnderElevation: 0,
-//         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-//         title: isSearching
-//             ? TextField(
-//                 controller: _searchController,
-//                 style: GoogleFonts.poppins(
-//                     color: Get.isDarkMode ? AppColors.white : AppColors.black,
-//                     fontSize: 18),
-//                 decoration: InputDecoration(
-//                   hintText: 'Search sections...',
-//                   hintStyle: GoogleFonts.poppins(
-//                       color: Get.isDarkMode
-//                           ? AppColors.white60
-//                           : AppColors.black45),
-//                   border: InputBorder.none,
-//                 ),
-//                 autofocus: true,
-//               )
-//             : Text(
-//                 'Sections',
-//                 style: GoogleFonts.poppins(
-//                   fontSize: 20,
-//                   color: Get.isDarkMode ? AppColors.white : AppColors.black,
-//                   fontWeight: FontWeight.bold,
-//                 ),
-//               ),
-//         actions: [
-//           IconButton(
-//             onPressed: _toggleSearch,
-//             icon: Icon(
-//               isSearching ? Icons.close : Icons.search,
-//               color: Get.isDarkMode ? AppColors.white : AppColors.black,
-//               size: 24,
-//             ),
-//           ),
-//         ],
-//       ),
-//       body: Column(
-//         children: [
-//           // Book header info
-//           if (!isSearching) ...[
-//             Container(
-//               width: double.infinity,
-//               padding: const EdgeInsets.all(16),
-//               decoration: BoxDecoration(
-//                 color: Get.isDarkMode ? AppColors.transparent : primary,
-//                 borderRadius: const BorderRadius.only(
-//                   bottomLeft: Radius.circular(16),
-//                   bottomRight: Radius.circular(16),
-//                 ),
-//               ),
-//               child: Column(
-//                 crossAxisAlignment: CrossAxisAlignment.start,
-//                 children: [
-//                   Row(
-//                     children: [
-//                       Container(
-//                         width: 50,
-//                         height: 50,
-//                         decoration: BoxDecoration(
-//                           borderRadius: BorderRadius.circular(10),
-//                           color: AppColors.grey100.withOpacity(0.2),
-//                           border: Border.all(
-//                             color: AppColors.grey100,
-//                             width: 1.5,
-//                           ),
-//                         ),
-//                         child: Icon(
-//                           Icons.menu_book_rounded,
-//                           color: AppColors.grey100,
-//                           size: 24,
-//                         ),
-//                       ),
-//                       const SizedBox(width: 12),
-//                       Expanded(
-//                         child: Column(
-//                           crossAxisAlignment: CrossAxisAlignment.start,
-//                           children: [
-//                             Text(
-//                               widget.displayName,
-//                               style: GoogleFonts.poppins(
-//                                 fontSize: 18,
-//                                 color: AppColors.white,
-//                                 fontWeight: FontWeight.w600,
-//                               ),
-//                             ),
-//                             const SizedBox(height: 4),
-//                             Row(
-//                               children: [
-//                                 Container(
-//                                   padding: const EdgeInsets.symmetric(
-//                                       horizontal: 8, vertical: 2),
-//                                   decoration: BoxDecoration(
-//                                     color: AppColors.grey100.withOpacity(0.2),
-//                                     borderRadius: BorderRadius.circular(8),
-//                                     border: Border.all(
-//                                       color: AppColors.grey100.withOpacity(0.5),
-//                                     ),
-//                                   ),
-//                                   child: Text(
-//                                     widget.language,
-//                                     style: GoogleFonts.poppins(
-//                                       color: AppColors.grey100,
-//                                       fontSize: 11,
-//                                       fontWeight: FontWeight.w500,
-//                                     ),
-//                                   ),
-//                                 ),
-//                                 const SizedBox(width: 8),
-//                                 Container(
-//                                   padding: const EdgeInsets.symmetric(
-//                                       horizontal: 8, vertical: 2),
-//                                   decoration: BoxDecoration(
-//                                     color: AppColors.grey100.withOpacity(0.2),
-//                                     borderRadius: BorderRadius.circular(8),
-//                                     border: Border.all(
-//                                       color: AppColors.grey100.withOpacity(0.5),
-//                                     ),
-//                                   ),
-//                                   child: Text(
-//                                     '${sections.length} Sections',
-//                                     style: GoogleFonts.poppins(
-//                                       color: AppColors.grey100,
-//                                       fontSize: 11,
-//                                       fontWeight: FontWeight.w500,
-//                                     ),
-//                                   ),
-//                                 ),
-//                               ],
-//                             ),
-//                           ],
-//                         ),
-//                       ),
-//                     ],
-//                   ),
-//                 ],
-//               ),
-//             ),
-//             const SizedBox(height: 8),
-//           ],
-
-//           // Sections list
-//           Expanded(
-//             child: _buildSectionsContent(),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-
-//   Widget _buildSectionsContent() {
-//     if (isLoading) {
-//       return Center(
-//         child: CircularProgressIndicator(
-//           color: primary,
-//         ),
-//       );
-//     }
-
-//     if (errorMessage != null) {
-//       return Center(
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: [
-//             Icon(
-//               Icons.error_outline,
-//               color: AppColors.white54,
-//               size: 48,
-//             ),
-//             const SizedBox(height: 16),
-//             Text(
-//               'Error loading sections',
-//               style: GoogleFonts.poppins(
-//                 color: Get.isDarkMode ? AppColors.white : AppColors.black,
-//                 fontSize: 16,
-//                 fontWeight: FontWeight.w600,
-//               ),
-//             ),
-//             const SizedBox(height: 8),
-//             Padding(
-//               padding: const EdgeInsets.symmetric(horizontal: 32),
-//               child: Text(
-//                 errorMessage!,
-//                 textAlign: TextAlign.center,
-//                 style: GoogleFonts.poppins(
-//                   color: AppColors.white70,
-//                   fontSize: 12,
-//                 ),
-//               ),
-//             ),
-//             const SizedBox(height: 16),
-//             ElevatedButton(
-//               onPressed: _loadSections,
-//               style: ElevatedButton.styleFrom(
-//                 backgroundColor: AppColors.grey100,
-//               ),
-//               child: Text(
-//                 'Retry',
-//                 style: GoogleFonts.poppins(
-//                     color: Get.isDarkMode ? AppColors.white : AppColors.black),
-//               ),
-//             ),
-//           ],
-//         ),
-//       );
-//     }
-
-//     if (filteredSections.isEmpty) {
-//       return Center(
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: [
-//             Icon(
-//               isSearching ? Icons.search_off : Icons.book_outlined,
-//               color: Get.isDarkMode ? AppColors.white54 : AppColors.black54,
-//               size: 48,
-//             ),
-//             const SizedBox(height: 16),
-//             Text(
-//               isSearching ? 'No sections found' : 'No sections available',
-//               style: GoogleFonts.poppins(
-//                 color: Get.isDarkMode ? AppColors.white70 : AppColors.black54,
-//                 fontSize: 16,
-//               ),
-//             ),
-//             if (isSearching) ...[
-//               const SizedBox(height: 8),
-//               Text(
-//                 'Try different search terms',
-//                 style: GoogleFonts.poppins(
-//                   color: Get.isDarkMode ? AppColors.white54 : AppColors.black54,
-//                   fontSize: 14,
-//                 ),
-//               ),
-//             ],
-//           ],
-//         ),
-//       );
-//     }
-
-//     return RefreshIndicator(
-//       onRefresh: _loadSections,
-//       color: AppColors.grey100,
-//       backgroundColor: primary,
-//       child: ListView.builder(
-//         padding: const EdgeInsets.symmetric(horizontal: 16),
-//         itemCount: filteredSections.length,
-//         itemBuilder: (context, index) {
-//           final section = filteredSections[index];
-//           return AppButtonAnimation(
-//             child: SectionTile(
-//               section: section,
-//               onTap: () {
-//                 Get.to(() => HadithListScreen(
-//                       editionName: widget.editionName,
-//                       section: section,
-//                       displayName: widget.displayName,
-//                       language: widget.language,
-//                     ));
-//               },
-//             ),
-//           );
-//         },
-//       ),
-//     );
-//   }
-// }
-
-// class SectionTile extends StatelessWidget {
-//   final HadithSection section;
-//   final VoidCallback onTap;
-
-//   const SectionTile({
-//     super.key,
-//     required this.section,
-//     required this.onTap,
-//   });
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return InkWell(
-//       onTap: onTap,
-//       borderRadius: BorderRadius.circular(12),
-//       child: Container(
-//         margin: const EdgeInsets.only(bottom: 12),
-//         padding: const EdgeInsets.all(16),
-//         decoration: BoxDecoration(
-//           color: secondary,
-//           borderRadius: BorderRadius.circular(12),
-//           border: Border.all(color: AppColors.white12),
-//         ),
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             // Section number badge
-//             Row(
-//               children: [
-//                 Container(
-//                   padding:
-//                       const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-//                   decoration: BoxDecoration(
-//                     color: AppColors.black.withOpacity(0.1),
-//                     borderRadius: BorderRadius.circular(8),
-//                     border: Border.all(
-//                       color: AppColors.grey100.withOpacity(0.5),
-//                     ),
-//                   ),
-//                   child: Text(
-//                     'Section ${section.sectionNumber}',
-//                     style: GoogleFonts.poppins(
-//                       fontWeight: FontWeight.w600,
-//                       fontSize: 12,
-//                       color: AppColors.black54,
-//                     ),
-//                   ),
-//                 ),
-//                 const Spacer(),
-//                 Icon(
-//                   Icons.arrow_forward_ios_rounded,
-//                   color: primary,
-//                   size: 16,
-//                 ),
-//               ],
-//             ),
-//             const SizedBox(height: 12),
-
-//             // Arabic title
-//             if (section.arabicName.isNotEmpty) ...[
-//               Text(
-//                 section.arabicName,
-//                 style: GoogleFonts.poppins(
-//                   fontSize: 18,
-//                   color: const Color(0xFFFFC107),
-//                   fontWeight: FontWeight.w600,
-//                   height: 1.5,
-//                 ),
-//                 textAlign: TextAlign.right,
-//               ),
-//               const SizedBox(height: 8),
-//             ],
-
-//             // English title
-//             Text(
-//               section.name,
-//               style: GoogleFonts.poppins(
-//                 fontSize: 16,
-//                 color: primary,
-//                 fontWeight: FontWeight.w600,
-//                 height: 1.3,
-//               ),
-//             ),
-//             const SizedBox(height: 12),
-
-//             // Statistics
-//             Row(
-//               children: [
-//                 _buildStatItem(
-//                   Icons.format_list_numbered_rounded,
-//                   '${section.hadithCount} Hadiths',
-//                   AppColors.black54,
-//                 ),
-//                 const SizedBox(width: 16),
-//                 if (section.rangeText.isNotEmpty)
-//                   _buildStatItem(
-//                     Icons.numbers_rounded,
-//                     'Range: ${section.rangeText}',
-//                     AppColors.black54,
-//                   ),
-//               ],
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-
-//   Widget _buildStatItem(IconData icon, String text, Color color) {
-//     return Row(
-//       mainAxisSize: MainAxisSize.min,
-//       children: [
-//         Icon(
-//           icon,
-//           color: color,
-//           size: 16,
-//         ),
-//         const SizedBox(width: 6),
-//         Text(
-//           text,
-//           style: GoogleFonts.poppins(
-//             fontSize: 12,
-//             color: color,
-//             fontWeight: FontWeight.w500,
-//           ),
-//         ),
-//       ],
-//     );
-//   }
-// }
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -535,7 +33,6 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen>
   bool isSearching = false;
   late AnimationController _animationController;
   late AnimationController _searchAnimationController;
-  late Animation<double> _searchAnimation;
 
   @override
   void initState() {
@@ -547,10 +44,6 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen>
     _searchAnimationController = AnimationController(
       duration: const Duration(milliseconds: 300),
       vsync: this,
-    );
-    _searchAnimation = CurvedAnimation(
-      parent: _searchAnimationController,
-      curve: Curves.easeInOut,
     );
     _loadSections();
     _searchController.addListener(_filterSections);
@@ -642,21 +135,7 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen>
         right: 16,
         bottom: 8,
       ),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: Get.isDarkMode
-              ? [
-                  Colors.grey[900]!.withOpacity(0.8),
-                  Colors.grey[800]!.withOpacity(0.6),
-                ]
-              : [
-                  primary.withOpacity(0.1),
-                  secondary.withOpacity(0.05),
-                ],
-        ),
-      ),
+      color: Theme.of(context).scaffoldBackgroundColor,
       child: Column(
         children: [
           // App Bar
@@ -666,7 +145,7 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen>
                 icon: Icon(
                   Icons.arrow_back,
                   // size: 18,
-                  color: Get.isDarkMode ? Colors.white : Colors.black87,
+                  color: Get.isDarkMode ? AppColors.white : AppColors.black87,
                 ),
                 onPressed: () => Navigator.of(context).pop(),
               ),
@@ -680,11 +159,11 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen>
               const SizedBox(width: 16),
               IconButton(
                 icon: AnimatedRotation(
-                  turns: isSearching ? 0.05 : 0.0,
+                  turns: isSearching ? 0.13 : 0.0,
                   duration: const Duration(milliseconds: 300),
                   child: Icon(
-                    isSearching ? Icons.close_rounded : Icons.search_rounded,
-                    color: Get.isDarkMode ? Colors.white : Colors.black87,
+                    isSearching ? Icons.add : Icons.search_rounded,
+                    color: Get.isDarkMode ? AppColors.white : AppColors.black87,
                   ),
                 ),
                 onPressed: _toggleSearch,
@@ -707,7 +186,7 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen>
       'Sections',
       style: GoogleFonts.poppins(
         fontSize: 22,
-        color: Get.isDarkMode ? Colors.white : Colors.black87,
+        color: Get.isDarkMode ? AppColors.white : AppColors.black87,
         fontWeight: FontWeight.bold,
       ),
     );
@@ -717,27 +196,27 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen>
     return Container(
       decoration: BoxDecoration(
         color: Get.isDarkMode
-            ? Colors.white.withOpacity(0.1)
-            : Colors.white.withOpacity(0.8),
+            ? AppColors.white.withOpacity(0.1)
+            : AppColors.white.withOpacity(0.8),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
           color: Get.isDarkMode
-              ? Colors.white.withOpacity(0.2)
-              : Colors.black.withOpacity(0.1),
+              ? AppColors.white.withOpacity(0.2)
+              : AppColors.black.withOpacity(0.1),
         ),
       ),
       child: TextField(
         controller: _searchController,
         style: GoogleFonts.poppins(
-          color: Get.isDarkMode ? Colors.white : Colors.black87,
+          color: Get.isDarkMode ? AppColors.white : AppColors.black87,
           fontSize: 16,
         ),
         decoration: InputDecoration(
           hintText: 'Search sections...',
           hintStyle: GoogleFonts.poppins(
             color: Get.isDarkMode
-                ? Colors.white.withOpacity(0.5)
-                : Colors.black.withOpacity(0.5),
+                ? AppColors.white.withOpacity(0.5)
+                : AppColors.black.withOpacity(0.5),
           ),
           border: InputBorder.none,
           contentPadding: const EdgeInsets.symmetric(
@@ -747,8 +226,8 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen>
           prefixIcon: Icon(
             Icons.search_rounded,
             color: Get.isDarkMode
-                ? Colors.white.withOpacity(0.5)
-                : Colors.black.withOpacity(0.5),
+                ? AppColors.white.withOpacity(0.5)
+                : AppColors.black.withOpacity(0.5),
             size: 20,
           ),
         ),
@@ -761,14 +240,12 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen>
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Get.isDarkMode
-            ? Colors.white.withOpacity(0.05)
-            : Colors.white.withOpacity(0.7),
+        color: Get.isDarkMode ? AppColors.white.withOpacity(0.05) : secondary,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: Get.isDarkMode
-              ? Colors.white.withOpacity(0.1)
-              : Colors.black.withOpacity(0.08),
+              ? AppColors.white.withOpacity(0.1)
+              : AppColors.black.withOpacity(0.08),
         ),
       ),
       child: Row(
@@ -778,6 +255,8 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen>
             height: 60,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
+              border: Border.all(
+                  color: Get.isDarkMode ? secondary : primary, width: 2),
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -789,14 +268,14 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen>
               boxShadow: [
                 BoxShadow(
                   color: primary.withOpacity(0.3),
-                  blurRadius: 8,
+                  blurRadius: 5,
                   offset: const Offset(0, 4),
                 ),
               ],
             ),
-            child: Icon(
+            child: const Icon(
               Icons.menu_book_rounded,
-              color: Colors.white,
+              color: AppColors.white,
               size: 28,
             ),
           ),
@@ -809,7 +288,7 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen>
                   widget.displayName,
                   style: GoogleFonts.poppins(
                     fontSize: 18,
-                    color: Get.isDarkMode ? Colors.white : Colors.black87,
+                    color: Get.isDarkMode ? AppColors.white : AppColors.black87,
                     fontWeight: FontWeight.bold,
                   ),
                   maxLines: 1,
@@ -836,7 +315,7 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen>
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
-        color: primary.withOpacity(0.15),
+        color: AppColors.white,
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
           color: primary.withOpacity(0.3),
@@ -915,8 +394,8 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen>
               fontSize: 16,
               fontWeight: FontWeight.w500,
               color: Get.isDarkMode
-                  ? Colors.white.withOpacity(0.8)
-                  : Colors.black87.withOpacity(0.8),
+                  ? AppColors.white.withOpacity(0.8)
+                  : AppColors.black87.withOpacity(0.8),
             ),
           ),
         ],
@@ -935,12 +414,12 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen>
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              Colors.red.withOpacity(0.1),
-              Colors.red.withOpacity(0.05),
+              AppColors.red.withOpacity(0.1),
+              AppColors.red.withOpacity(0.05),
             ],
           ),
           border: Border.all(
-            color: Colors.red.withOpacity(0.2),
+            color: AppColors.red.withOpacity(0.2),
           ),
         ),
         child: Column(
@@ -951,11 +430,11 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen>
               height: 70,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.red.withOpacity(0.1),
+                color: AppColors.red.withOpacity(0.1),
               ),
-              child: Icon(
+              child: const Icon(
                 Icons.error_outline_rounded,
-                color: Colors.red,
+                color: AppColors.red,
                 size: 35,
               ),
             ),
@@ -965,7 +444,7 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen>
               style: GoogleFonts.poppins(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Colors.red,
+                color: AppColors.red,
               ),
             ),
             const SizedBox(height: 8),
@@ -975,8 +454,8 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen>
               style: GoogleFonts.poppins(
                 fontSize: 14,
                 color: Get.isDarkMode
-                    ? Colors.white.withOpacity(0.7)
-                    : Colors.black87.withOpacity(0.7),
+                    ? AppColors.white.withOpacity(0.7)
+                    : AppColors.black87.withOpacity(0.7),
               ),
             ),
             const SizedBox(height: 20),
@@ -986,7 +465,7 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen>
               label: const Text('Try Again'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: primary,
-                foregroundColor: Colors.white,
+                foregroundColor: AppColors.white,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                 shape: RoundedRectangleBorder(
@@ -1012,14 +491,14 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen>
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: Get.isDarkMode
-                  ? Colors.white.withOpacity(0.1)
+                  ? AppColors.white.withOpacity(0.1)
                   : primary.withOpacity(0.1),
             ),
             child: Icon(
               isSearching ? Icons.search_off_rounded : Icons.list_alt_rounded,
               size: 50,
               color: Get.isDarkMode
-                  ? Colors.white.withOpacity(0.5)
+                  ? AppColors.white.withOpacity(0.5)
                   : primary.withOpacity(0.5),
             ),
           ),
@@ -1030,8 +509,8 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen>
               fontSize: 18,
               fontWeight: FontWeight.w600,
               color: Get.isDarkMode
-                  ? Colors.white.withOpacity(0.7)
-                  : Colors.black87.withOpacity(0.7),
+                  ? AppColors.white.withOpacity(0.7)
+                  : AppColors.black87.withOpacity(0.7),
             ),
           ),
           if (isSearching) ...[
@@ -1041,8 +520,8 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen>
               style: GoogleFonts.poppins(
                 fontSize: 14,
                 color: Get.isDarkMode
-                    ? Colors.white.withOpacity(0.5)
-                    : Colors.black87.withOpacity(0.5),
+                    ? AppColors.white.withOpacity(0.5)
+                    : AppColors.black87.withOpacity(0.5),
               ),
             ),
           ],
@@ -1055,7 +534,7 @@ class _HadithSectionsScreenState extends State<HadithSectionsScreen>
     return RefreshIndicator(
       onRefresh: _loadSections,
       color: primary,
-      backgroundColor: Get.isDarkMode ? Colors.grey[800] : Colors.white,
+      backgroundColor: Get.isDarkMode ? AppColors.grey800 : AppColors.white,
       child: AnimatedBuilder(
         animation: _animationController,
         builder: (context, child) {
@@ -1145,12 +624,12 @@ class ModernSectionTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(18),
           border: Border.all(
             color: Get.isDarkMode
-                ? Colors.white.withOpacity(0.1)
-                : Colors.black.withOpacity(0.05),
+                ? AppColors.white.withOpacity(0.1)
+                : AppColors.black.withOpacity(0.05),
           ),
         ),
         child: Material(
-          color: Colors.transparent,
+          color: AppColors.secondary,
           borderRadius: BorderRadius.circular(18),
           child: InkWell(
             borderRadius: BorderRadius.circular(18),
@@ -1210,18 +689,18 @@ class ModernSectionTile extends StatelessWidget {
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
                         color: Get.isDarkMode
-                            ? Colors.amber.withOpacity(0.1)
-                            : Colors.amber.withOpacity(0.08),
+                            ? AppColors.amber.withOpacity(0.1)
+                            : AppColors.amber.withOpacity(0.08),
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
-                          color: Colors.amber.withOpacity(0.2),
+                          color: AppColors.amber.withOpacity(0.2),
                         ),
                       ),
                       child: Text(
                         section.arabicName,
                         style: GoogleFonts.poppins(
                           fontSize: 16,
-                          color: Colors.amber[700],
+                          color: AppColors.amber700,
                           fontWeight: FontWeight.w600,
                           height: 1.6,
                         ),
@@ -1237,7 +716,7 @@ class ModernSectionTile extends StatelessWidget {
                     section.name,
                     style: GoogleFonts.poppins(
                       fontSize: 16,
-                      color: Get.isDarkMode ? Colors.white : Colors.black87,
+                      color: primary,
                       fontWeight: FontWeight.bold,
                       height: 1.4,
                     ),
@@ -1258,9 +737,7 @@ class ModernSectionTile extends StatelessWidget {
                         _buildStatItem(
                           Icons.numbers_rounded,
                           'Range: ${section.rangeText}',
-                          Get.isDarkMode
-                              ? Colors.white.withOpacity(0.6)
-                              : Colors.black87.withOpacity(0.6),
+                          AppColors.black87.withOpacity(0.6),
                         ),
                       ],
                     ],

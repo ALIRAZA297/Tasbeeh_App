@@ -56,7 +56,7 @@
 //     if (!_scrollController.hasClients ||
 //         widget.lastReadAyah == null ||
 //         widget.lastReadAyah! <= 0) {
-//       log('Scroll aborted: invalid conditions');
+//       debugPrint('Scroll aborted: invalid conditions');
 //       return;
 //     }
 
@@ -98,7 +98,7 @@
 //               duration: const Duration(milliseconds: 300),
 //               curve: Curves.easeOut,
 //             );
-//             log('Stopped at ayah ${widget.lastReadAyah} at position: $centeredOffset');
+//             debugPrint('Stopped at ayah ${widget.lastReadAyah} at position: $centeredOffset');
 //             return;
 //           }
 //         }
@@ -110,12 +110,12 @@
 //         Future.delayed(scrollInterval, scrollToNextPosition);
 //       } else {
 //         _isScrolling = false;
-//         log('Reached end of list at: $currentPosition');
+//         debugPrint('Reached end of list at: $currentPosition');
 //       }
 //     }
 
 //     // Start scrolling
-//     log('Starting scroll to find ayah ${widget.lastReadAyah}');
+//     debugPrint('Starting scroll to find ayah ${widget.lastReadAyah}');
 //     scrollToNextPosition();
 //   }
 

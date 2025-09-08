@@ -118,12 +118,12 @@
 //                 if (dua.isUserAdded) ...[
 //                   IconButton(
 //                     icon: const Icon(Icons.edit, color: Colors.blue),
-//                     onPressed: () => duaController.showEditDuaDialog(
+//                     onPressed: () => duaController.showEditDuaDiadebugPrint(
 //                         context, index, dua),
 //                   ),
 //                   IconButton(
 //                     icon: const Icon(CupertinoIcons.delete, color: Colors.red),
-//                     onPressed: () => duaController.showDeleteConfirmationDialog(
+//                     onPressed: () => duaController.showDeleteConfirmationDiadebugPrint(
 //                         context, index),
 //                   ),
 //                 ],
@@ -272,7 +272,7 @@ class DuaCard extends StatelessWidget {
                   IconButton(
                     icon: const Icon(Icons.edit, color: AppColors.blue),
                     onPressed: () {
-                      duaController.showEditDuaDialog(
+                      duaController.showEditDuaDiadebugPrint(
                           context, category, index, dua);
                     },
                   ),
@@ -280,7 +280,7 @@ class DuaCard extends StatelessWidget {
                     icon:
                         const Icon(CupertinoIcons.delete, color: AppColors.red),
                     onPressed: () {
-                      duaController.showDeleteConfirmationDialog(
+                      duaController.showDeleteConfirmationDiadebugPrint(
                           context, category, index);
                     },
                   ),

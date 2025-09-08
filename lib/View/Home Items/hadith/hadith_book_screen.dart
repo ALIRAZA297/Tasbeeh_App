@@ -185,7 +185,7 @@
 
 //           final displayName = collectionDisplayNames[collectionName] ??
 //               collectionName; // Get display name
-//           log('Loading collection: $collectionName with ${editions.length} editions');
+//           debugPrint('Loading collection: $collectionName with ${editions.length} editions');
 //           return _buildCollectionCard(collectionName, editions, displayName);
 //         },
 //       ),
@@ -605,7 +605,8 @@ class _HadithBooksScreenState extends State<HadithBooksScreen>
                 ),
               );
 
-              log('Loading collection: $collectionName with ${editions.length} editions');
+              debugPrint(
+                  'Loading collection: $collectionName with ${editions.length} editions');
               return SlideTransition(
                 position: Tween<Offset>(
                   begin: const Offset(0, 0.3),
@@ -662,7 +663,7 @@ class _HadithBooksScreenState extends State<HadithBooksScreen>
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: Material(
-              color: AppColors.transparent,
+              color: AppColors.secondary,
               child: InkWell(
                 borderRadius: BorderRadius.circular(20),
                 onTap: () {
@@ -679,9 +680,9 @@ class _HadithBooksScreenState extends State<HadithBooksScreen>
                         height: 60,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
-                          color: AppColors.white.withOpacity(0.2),
+                          color: AppColors.white,
                           border: Border.all(
-                            color: primary.withOpacity(0.3),
+                            color: primary,
                             width: 2,
                           ),
                         ),
@@ -702,9 +703,7 @@ class _HadithBooksScreenState extends State<HadithBooksScreen>
                             Text(
                               displayName,
                               style: GoogleFonts.poppins(
-                                color: Get.isDarkMode
-                                    ? AppColors.white
-                                    : AppColors.black,
+                                color: primary,
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -717,9 +716,7 @@ class _HadithBooksScreenState extends State<HadithBooksScreen>
                             Text(
                               _getCollectionDescription(collectionName),
                               style: GoogleFonts.poppins(
-                                color: Get.isDarkMode
-                                    ? AppColors.white.withOpacity(0.7)
-                                    : AppColors.black.withOpacity(0.7),
+                                color: AppColors.black.withOpacity(0.5),
                                 fontSize: 13,
                                 height: 1.4,
                               ),

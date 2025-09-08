@@ -155,7 +155,7 @@ void showHadithTranslationsBottomSheet(
                   edition.language,
                   _getLanguageIcon(edition.language),
                   () {
-                    log('Edition details: '
+                    debugPrint('Edition details: '
                         'name: ${edition.name}, '
                         'language: ${edition.language}, '
                         'author: ${edition.author}, '

@@ -129,6 +129,10 @@ class AboutPage extends StatelessWidget {
                 "Get accurate prayer timings based on your location.",
               ),
               _buildFeatureItem(
+                "Hadith Collection",
+                "Explore authentic Hadith books and teachings of Prophet Muhammad (PBUH).",
+              ),
+              _buildFeatureItem(
                 "Dark & Light Theme",
                 "Switch seamlessly between dark and light themes for a better experience.",
               ),

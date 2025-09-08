@@ -527,19 +527,7 @@ class _HadithTileState extends State<HadithTile> {
       //       duration: const Duration(seconds: 2),
       //     ),
       //   );
-    } catch (e) {
-      //   // Close loading dialog
-      //   Navigator.pop(context);
-
-      //   // Show error
-      //   ScaffoldMessenger.of(context).showSnackBar(
-      //     SnackBar(
-      //       content: Text('Failed to toggle favorite: $e'),
-      //       backgroundColor: red,
-      //       duration: const Duration(seconds: 2),
-      //     ),
-      //   );
-    }
+    } catch (e) {}
   }
 
   @override

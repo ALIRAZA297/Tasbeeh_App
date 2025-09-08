@@ -31,8 +31,10 @@ class AllQuranScreen extends StatelessWidget {
             Obx(() {
               if (quranController.quranVerseList.isEmpty ||
                   quranController.loading.value) {
-                return const Center(
-                  child: CircularProgressIndicator(),
+                return Center(
+                  child: CircularProgressIndicator(
+                    color: primary,
+                  ),
                 );
               } else {
                 return SizedBox(
@@ -208,32 +210,6 @@ class QuranVerseCard extends StatelessWidget {
                               SizedBox(
                                 width: 10,
                               ),
-                              //!play && pause button
-                              // Obx(
-                              //   () => InkWell(
-                              //     onTap: () {
-                              //       //! functional work here
-                              //       final verseKey2 = 'verse_${index + 1}';
-                              //       quranController.url.value =
-                              //           audio.audios[verseKey2] ?? '';
-
-                              //       quranController.playAudio(
-                              //         quranController.url.value,
-                              //       );
-
-                              //       quranController.selectPlayingIndex.value =
-                              //           index + 1;
-                              //     },
-                              //     child: Icon(
-                              //       size: 26,
-                              //       quranController.selectPlayingIndex.value ==
-                              //                   index + 1 &&
-                              //               quranController.isPlayingAudio.value
-                              //           ? Icons.pause_circle_outlined
-                              //           : Icons.play_circle_outline,
-                              //     ),
-                              //   ),
-                              // ),
                             ],
                           ),
                         ],

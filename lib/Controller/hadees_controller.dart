@@ -1,5 +1,4 @@
-import 'dart:developer';
-
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tasbeeh_app/Api/api_service.dart';
 import 'package:tasbeeh_app/Model/hadees_model.dart';
@@ -24,7 +23,7 @@ class HadithsController extends GetxController {
       if (data == null ||
           !data.containsKey("hadiths") ||
           data["hadiths"]["data"] == null) {
-        log("❌ Invalid API response format");
+        debugPrint("❌ Invalid API response format");
         return;
       }
 
@@ -45,9 +44,10 @@ class HadithsController extends GetxController {
       currentPage++;
       hasMore.value = currentPage <= totalPages;
 
-      log("✅ Total Hadiths Loaded: ${allHadiths.length}, Filtered: ${filteredHadiths.length}");
+      debugPrint(
+          "✅ Total Hadiths Loaded: ${allHadiths.length}, Filtered: ${filteredHadiths.length}");
     } catch (e) {
-      log("❌ Error fetching Hadiths: $e");
+      debugPrint("❌ Error fetching Hadiths: $e");
     } finally {
       isLoading(false);
     }

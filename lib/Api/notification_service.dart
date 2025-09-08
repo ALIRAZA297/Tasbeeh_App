@@ -1,6 +1,5 @@
-import 'dart:developer';
-
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:flutter/material.dart';
 
 import '../Utils/app_colors.dart';
 
@@ -8,7 +7,7 @@ class NotificationService {
   // Cancel all scheduled notifications
   static Future<void> cancelAll() async {
     await AwesomeNotifications().cancelAll();
-    log("All notifications cancelled");
+    debugPrint("All notifications cancelled");
   }
 
   static Future<void> scheduleZikrReminder(DateTime dateTime) async {
@@ -16,29 +15,29 @@ class NotificationService {
       final now = DateTime.now();
       if (dateTime.isBefore(now)) {
         dateTime = dateTime.add(const Duration(days: 1));
-        log("Adjusted to next day: $dateTime");
+        debugPrint("Adjusted to next day: $dateTime");
       }
 
-      log("Scheduling Zikr reminder for: $dateTime");
+      debugPrint("Scheduling Zikr reminder for: $dateTime");
 
       final channels =
           await AwesomeNotifications().listScheduledNotifications();
       final exists =
           channels.any((c) => c.content?.channelKey == 'zikr_channel');
-      log("Channel exists: $exists");
+      debugPrint("Channel exists: $exists");
 
       // Check permission
       final hasPermission =
           await AwesomeNotifications().isNotificationAllowed();
-      log("Notification permission status: $hasPermission");
+      debugPrint("Notification permission status: $hasPermission");
       if (!hasPermission) {
-        log("Requesting permission...");
+        debugPrint("Requesting permission...");
         await AwesomeNotifications().requestPermissionToSendNotifications();
         final permissionAfterRequest =
             await AwesomeNotifications().isNotificationAllowed();
-        log("Permission after request: $permissionAfterRequest");
+        debugPrint("Permission after request: $permissionAfterRequest");
         if (!permissionAfterRequest) {
-          log("Scheduling aborted: No notification permission granted");
+          debugPrint("Scheduling aborted: No notification permission granted");
           return;
         }
       }
@@ -60,11 +59,11 @@ class NotificationService {
         ),
       );
 
-      log(result
+      debugPrint(result
           ? "Notification scheduled successfully"
           : "Failed to schedule Zikr - likely a platform-specific issue");
     } catch (e, stackTrace) {
-      log("Error scheduling notification: $e\nStackTrace: $stackTrace");
+      debugPrint("Error scheduling notification: $e\nStackTrace: $stackTrace");
     }
   }
 
@@ -77,7 +76,7 @@ class NotificationService {
     try {
       if (dateTime.isBefore(DateTime.now())) {
         dateTime = dateTime.add(const Duration(days: 1));
-        log("Adjusted $title prayer to next day: $dateTime");
+        debugPrint("Adjusted $title prayer to next day: $dateTime");
       }
 
       final result = await AwesomeNotifications().createNotification(
@@ -97,11 +96,11 @@ class NotificationService {
           allowWhileIdle: true,
         ),
       );
-      log(result
+      debugPrint(result
           ? "Scheduled $title prayer notification successfully"
           : "Failed to schedule $title prayer notification");
     } catch (e) {
-      log("Error scheduling $title prayer notification: $e");
+      debugPrint("Error scheduling $title prayer notification: $e");
     }
   }
 }
