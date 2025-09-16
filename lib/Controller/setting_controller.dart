@@ -33,6 +33,19 @@ class SettingsController extends GetxController {
       color: Colors.red,
       icon: Icons.local_fire_department,
     ),
+    ColorOption(name: 'Amber', color: Colors.amber, icon: Icons.lightbulb),
+    ColorOption(name: 'Cyan', color: Colors.cyan, icon: Icons.waves),
+    ColorOption(
+        name: 'Deep Purple', color: Colors.deepPurple, icon: Icons.diamond),
+    ColorOption(
+        name: 'Deep Orange', color: Colors.deepOrange, icon: Icons.sunny),
+    ColorOption(name: 'Light Blue', color: Colors.lightBlue, icon: Icons.cloud),
+    ColorOption(
+        name: 'Light Green', color: Colors.lightGreen, icon: Icons.grass),
+    ColorOption(name: 'Lime', color: Colors.lime, icon: Icons.local_florist),
+    ColorOption(name: 'Brown', color: Colors.brown, icon: Icons.coffee),
+    ColorOption(name: 'Grey', color: Colors.grey, icon: Icons.cloud_outlined),
+    ColorOption(name: 'Blue Grey', color: Colors.blueGrey, icon: Icons.palette),
   ];
 
   @override
@@ -152,6 +165,10 @@ class ColorSelectionDialog extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Container(
         padding: const EdgeInsets.all(20),
+        constraints: BoxConstraints(
+          maxWidth: MediaQuery.of(context).size.width * 0.9,
+          maxHeight: MediaQuery.of(context).size.height * 0.8,
+        ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -164,73 +181,126 @@ class ColorSelectionDialog extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            GridView.builder(
-              shrinkWrap: true,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4,
-                crossAxisSpacing: 5,
-                mainAxisSpacing: 5,
-              ),
-              itemCount: availableColors.length,
-              itemBuilder: (context, index) {
-                final colorOption = availableColors[index];
+            Flexible(
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  // Calculate responsive grid
+                  double itemWidth = 100; // Desired item width
+                  int crossAxisCount =
+                      (constraints.maxWidth / itemWidth).floor();
+                  crossAxisCount =
+                      crossAxisCount.clamp(3, 5); // Min 3, Max 5 columns
 
-                return Obx(() {
-                  final isSelected = controller.selectedPrimaryColor.value ==
-                      colorOption.color;
-
-                  return GestureDetector(
-                    onTap: () {
-                      onColorSelected(colorOption.color);
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: colorOption.color.shade50,
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: isSelected
-                              ? colorOption.color.shade700
-                              : colorOption.color.shade200,
-                          width: isSelected ? 3 : 1,
-                        ),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            colorOption.icon,
-                            color: colorOption.color.shade700,
-                            size: 24,
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            colorOption.name,
-                            style: GoogleFonts.poppins(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w500,
-                              color: colorOption.color.shade700,
-                            ),
-                          ),
-                          if (isSelected)
-                            Icon(
-                              Icons.check_circle,
-                              color: colorOption.color.shade700,
-                              size: 16,
-                            ),
-                        ],
-                      ),
+                  return GridView.builder(
+                    shrinkWrap: true,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: crossAxisCount,
+                      crossAxisSpacing: 8,
+                      mainAxisSpacing: 8,
+                      childAspectRatio: 0.85, // Make items slightly taller
                     ),
+                    itemCount: availableColors.length,
+                    itemBuilder: (context, index) {
+                      final colorOption = availableColors[index];
+
+                      return Obx(() {
+                        final isSelected =
+                            controller.selectedPrimaryColor.value ==
+                                colorOption.color;
+
+                        return GestureDetector(
+                          onTap: () {
+                            onColorSelected(colorOption.color);
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: colorOption.color.shade50,
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(
+                                color: isSelected
+                                    ? colorOption.color.shade700
+                                    : colorOption.color.shade200,
+                                width: isSelected ? 3 : 1,
+                              ),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                // Icon with flexible sizing
+                                Flexible(
+                                  flex: 3,
+                                  child: Icon(
+                                    colorOption.icon,
+                                    color: colorOption.color.shade700,
+                                    size: 20,
+                                  ),
+                                ),
+                                const SizedBox(height: 2),
+
+                                // Text with overflow handling
+                                Flexible(
+                                  flex: 2,
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 2),
+                                    child: Text(
+                                      colorOption.name,
+                                      textAlign: TextAlign.center,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w500,
+                                        color: colorOption.color.shade700,
+                                        height: 1.1,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                                // Selected indicator
+                                if (isSelected)
+                                  Flexible(
+                                    flex: 1,
+                                    child: Icon(
+                                      Icons.check_circle,
+                                      color: colorOption.color.shade700,
+                                      size: 16,
+                                    ),
+                                  )
+                                else
+                                  const Flexible(
+                                    flex: 1,
+                                    child: SizedBox(height: 14),
+                                  ),
+                              ],
+                            ),
+                          ),
+                        );
+                      });
+                    },
                   );
-                });
-              },
+                },
+              ),
             ),
             const SizedBox(height: 20),
-            TextButton(
-              onPressed: () => Get.back(),
-              child: Text(
-                'Close',
-                style: GoogleFonts.poppins(
-                  color: Get.isDarkMode ? AppColors.white70 : AppColors.black87,
+            SizedBox(
+              width: double.infinity,
+              child: TextButton(
+                onPressed: () => Get.back(),
+                style: TextButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                child: Text(
+                  'Close',
+                  style: GoogleFonts.poppins(
+                    color:
+                        Get.isDarkMode ? AppColors.white70 : AppColors.black87,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
             ),
